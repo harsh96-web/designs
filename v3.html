@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platinum Athletic Club — Surrey's Premier Fitness Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Semi+Condensed:wght@300;400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black:   #06090f;
+  --dark:    #0c1018;
+  --card:    #111520;
+  --card2:   #161c2a;
+  --border:  rgba(90,140,220,0.12);
+  --blue:    #1c5eb4;
+  --blue2:   #2471d4;
+  --blue3:   #4a9af5;
+  --blue-glow: rgba(36,113,212,0.25);
+  --plat:    #c8cdd8;
+  --plat2:   #e2e6f0;
+  --silver:  #a8aec0;
+  --white:   #f0f4ff;
+  --muted:   rgba(200,210,235,0.45);
+  --muted2:  rgba(200,210,235,0.25);
+  --green:   #22c55e;
+  --green-bg: rgba(34,197,94,0.1);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 400; overflow-x: hidden; }
+
+/* ═══ NAV ═══ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 5vw;
+  background: rgba(6,9,15,0.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
+}
+nav.scrolled { padding: 0.75rem 5vw; }
+.logo-wrap { display: flex; align-items: center; gap: 0.85rem; cursor: pointer; }
+.logo-hex {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue3) 100%);
+  clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; color: #fff; letter-spacing: 0.05em;
+}
+.logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.14em; background: linear-gradient(110deg, var(--plat2) 0%, var(--blue3) 55%, var(--plat) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.logo-sub { font-size: 0.5rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--silver); margin-top: -4px; display: block; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; position: relative; }
+.nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--blue3); transform: scaleX(0); transition: transform 0.25s; }
+.nav-links a:hover { color: var(--plat2); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-right { display: flex; align-items: center; gap: 0.85rem; }
+.nav-phone { font-size: 0.78rem; color: var(--silver); display: none; }
+@media (min-width: 900px) { .nav-phone { display: block; } }
+.nav-cta { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #fff; background: var(--blue); padding: 0.6rem 1.4rem; text-decoration: none; transition: all 0.25s; clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); position: relative; overflow: hidden; }
+.nav-cta::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent); transform: translateX(-100%); transition: transform 0.5s; }
+.nav-cta:hover::before { transform: translateX(100%); }
+.nav-cta:hover { background: var(--blue2); box-shadow: 0 0 25px var(--blue-glow); }
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--plat2); transition: all 0.3s; border-radius: 1px; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+@media (max-width: 860px) { .nav-links { display: none; } .hamburger { display: flex; } }
+/* Mobile menu */
+.mobile-menu {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 150;
+  background: rgba(6,9,15,0.97); backdrop-filter: blur(20px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.1em; color: var(--plat2); text-decoration: none; transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--blue3); }
+.mobile-menu .m-phone { font-size: 1rem; color: var(--blue3); letter-spacing: 0.1em; }
+
+/* WhatsApp float */
+.wa-float {
+  position: fixed; bottom: 2rem; right: 1.5rem; z-index: 180;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25d366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  animation: waPop 1s 2s cubic-bezier(0.23,1,0.32,1) both;
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+.wa-float svg { width: 28px; height: 28px; fill: #fff; }
+.wa-tooltip {
+  position: absolute; right: 68px; top: 50%; transform: translateY(-50%);
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--plat2); font-size: 0.75rem; white-space: nowrap;
+  padding: 0.4rem 0.8rem; border-radius: 6px;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+.wa-float:hover .wa-tooltip { opacity: 1; }
+
+/* Mobile call bar */
+.mobile-call-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 170;
+  background: var(--blue); padding: 0.9rem;
+  display: none; align-items: center; justify-content: center; gap: 0.6rem;
+  font-family: 'Barlow Semi Condensed', sans-serif; font-size: 0.9rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #fff; text-decoration: none; font-weight: 600;
+}
+@media (max-width: 860px) { .mobile-call-bar { display: flex; } }
+
+/* ═══ HERO ═══ */
+#hero { min-height: 100vh; position: relative; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 90% 70% at 55% 40%, rgba(28,94,180,0.18) 0%,transparent 65%), radial-gradient(ellipse 40% 50% at 5% 70%, rgba(28,94,180,0.1) 0%,transparent 50%), linear-gradient(175deg, #0d1422 0%, #06090f 55%, #08101c 100%); }
+.hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(36,113,212,0.06) 1px,transparent 1px), linear-gradient(90deg, rgba(36,113,212,0.06) 1px,transparent 1px); background-size: 70px 70px; mask-image: radial-gradient(ellipse 75% 75% at 55% 45%,black 10%,transparent 80%); }
+.hero-orb { position: absolute; width: 600px; height: 600px; border-radius: 50%; left: 40%; top: 50%; transform: translate(-30%,-50%); background: radial-gradient(circle, rgba(36,113,212,0.15) 0%, transparent 70%); animation: orbPulse 6s ease-in-out infinite; }
+.hero-content { position: relative; z-index: 2; padding: 10rem 5vw 6rem; max-width: 1000px; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.7rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--blue3); border: 1px solid rgba(74,154,245,0.25); padding: 0.5rem 1.2rem 0.5rem 1rem; margin-bottom: 2rem; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s 0.3s forwards; }
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue3); animation: blink 2s ease-in-out infinite; }
+.hero-h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem,13vw,13rem); line-height: 0.86; letter-spacing: 0.025em; opacity: 0; transform: translateY(30px); animation: fadeUp 0.9s 0.55s forwards; }
+.h1-l1 { display: block; color: var(--plat2); }
+.h1-l2 { display: block; background: linear-gradient(110deg, var(--blue2) 0%, var(--blue3) 50%, var(--plat2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.h1-l3 { display: block; color: rgba(200,210,235,0.22); -webkit-text-stroke: 1px rgba(200,210,235,0.15); }
+.hero-line { width: 80px; height: 2px; margin: 2rem 0; background: linear-gradient(90deg, var(--blue), var(--blue3), transparent); opacity: 0; animation: fadeUp 0.6s 0.9s forwards; }
+.hero-sub { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 1.15rem; line-height: 1.75; color: rgba(200,215,245,0.6); max-width: 500px; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s 1.0s forwards; }
+.hero-ctas { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; margin-top: 2.5rem; opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s 1.2s forwards; }
+.btn-p { font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; color: #fff; background: var(--blue); padding: 1.05rem 2.6rem; text-decoration: none; display: inline-block; clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); transition: all 0.3s; position: relative; overflow: hidden; }
+.btn-p::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent); transform: translateX(-100%); transition: transform 0.6s; }
+.btn-p:hover::before { transform: translateX(100%); }
+.btn-p:hover { background: var(--blue2); box-shadow: 0 8px 35px var(--blue-glow); transform: translateY(-2px); }
+.btn-o { font-size: 0.82rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--plat2); background: transparent; padding: 1.05rem 2.6rem; text-decoration: none; display: inline-block; border: 1px solid rgba(200,210,235,0.25); transition: all 0.25s; clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%); }
+.btn-o:hover { border-color: var(--blue3); color: var(--blue3); background: rgba(36,113,212,0.06); }
+.hero-badge-wrap { position: absolute; right: 5vw; bottom: 6rem; opacity: 0; animation: heroFade 0.8s 1.5s forwards; }
+.hero-badge { width: 130px; height: 130px; border: 1px solid rgba(74,154,245,0.35); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2px; position: relative; }
+.hero-badge::before { content: ''; position: absolute; inset: -8px; border: 1px dashed rgba(74,154,245,0.15); border-radius: 50%; animation: spinSlow 25s linear infinite; }
+.badge-n { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; background: linear-gradient(135deg, var(--blue3), var(--plat2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.badge-t { font-size: 0.57rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); line-height: 1.4; }
+.hero-scroll { position: absolute; bottom: 2.5rem; left: 5vw; display: flex; align-items: center; gap: 0.75rem; opacity: 0; animation: heroFade 0.8s 1.8s forwards; }
+.scroll-bar { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--blue3), transparent); animation: scrollDown 2s ease-in-out infinite; }
+.scroll-lbl { font-size: 0.63rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); writing-mode: vertical-rl; }
+
+/* ═══ STATS ═══ */
+.stats-ribbon { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3.5rem 5vw; }
+.stats-inner { display: flex; justify-content: space-around; align-items: center; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; gap: 2rem; }
+.stat-b { text-align: center; }
+.stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; letter-spacing: 0.04em; line-height: 1; background: linear-gradient(135deg, var(--blue2) 0%, var(--blue3) 60%, var(--plat2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-l { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
+.stat-sep { width: 1px; height: 50px; background: linear-gradient(to bottom,transparent,var(--border),transparent); }
+
+/* ═══ SECTION BASE ═══ */
+section { padding: 8rem 5vw; }
+.s-label { font-size: 0.68rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--blue3); display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.2rem; }
+.s-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--blue3); }
+.s-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem,7vw,6rem); line-height: 0.9; letter-spacing: 0.03em; }
+.s-h2 em { font-style: normal; background: linear-gradient(110deg, var(--blue2) 0%, var(--blue3) 55%, var(--plat2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* ═══ MARQUEE ═══ */
+.marquee-wrap { overflow: hidden; padding: 1.75rem 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.marquee-track { display: flex; gap: 4rem; white-space: nowrap; animation: marqueeScroll 28s linear infinite; }
+.m-item { display: flex; align-items: center; gap: 1.5rem; font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 0.12em; color: var(--muted2); flex-shrink: 0; }
+.m-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+
+/* ═══ ABOUT ═══ */
+#about { background: var(--black); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+.about-body { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 1.05rem; line-height: 1.85; color: rgba(200,215,245,0.6); margin-top: 1.5rem; }
+.about-body p + p { margin-top: 1rem; }
+.about-cred { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 2rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue3); border-left: 2px solid var(--blue); padding-left: 1rem; }
+.af-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.af { background: var(--card); padding: 2rem 1.5rem; position: relative; overflow: hidden; transition: background 0.3s; }
+.af:hover { background: var(--card2); }
+.af::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--blue), var(--blue3)); transform: scaleX(0); transform-origin: left; transition: transform 0.35s; }
+.af:hover::after { transform: scaleX(1); }
+.af-ico { font-size: 1.75rem; margin-bottom: 0.8rem; }
+.af-title { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--plat2); margin-bottom: 0.4rem; }
+.af-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+
+/* ═══ PROGRAMS ═══ */
+#programs { background: var(--dark); }
+.prog-head { display: flex; justify-content: space-between; align-items: flex-end; max-width: 1200px; margin: 0 auto 3.5rem; gap: 2rem; flex-wrap: wrap; }
+.prog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+.prog-card { background: var(--card); border: 1px solid var(--border); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.23,1,0.32,1); }
+.prog-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg,rgba(28,94,180,0.12) 0%,transparent 60%); opacity: 0; transition: opacity 0.4s; }
+.prog-card:hover::before { opacity: 1; }
+.prog-card:hover { border-color: rgba(74,154,245,0.35); transform: translateY(-5px); }
+.prog-num { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; line-height: 1; color: rgba(36,113,212,0.08); position: absolute; top: 0.5rem; right: 1rem; transition: color 0.35s; }
+.prog-card:hover .prog-num { color: rgba(74,154,245,0.15); }
+.prog-ico { width: 46px; height: 46px; background: rgba(28,94,180,0.15); border: 1px solid rgba(74,154,245,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 1.4rem; clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); transition: background 0.3s; }
+.prog-card:hover .prog-ico { background: rgba(28,94,180,0.3); border-color: var(--blue3); }
+.prog-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.45rem; letter-spacing: 0.08em; color: var(--plat2); margin-bottom: 0.75rem; }
+.prog-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
+.prog-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; border-top: 1px solid var(--border); padding-top: 1rem; }
+.prog-pill { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue3); border: 1px solid rgba(74,154,245,0.3); padding: 0.28rem 0.8rem; clip-path: polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%); }
+.prog-cta { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue3); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 0.3rem; }
+.prog-cta:hover { color: var(--plat2); }
+.prog-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg,var(--blue),var(--blue3)); transform: scaleX(0); transition: transform 0.4s; }
+.prog-card:hover .prog-bar { transform: scaleX(1); }
+
+/* ═══ FACILITIES ═══ */
+#facilities { background: var(--black); }
+.fac-layout { max-width: 1200px; margin: 0 auto; }
+.fac-top { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 5rem; align-items: center; margin-bottom: 4rem; }
+.fac-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 2rem; }
+.fac-li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.92rem; color: rgba(200,215,245,0.65); }
+.fac-li-ico { width: 20px; height: 20px; background: rgba(28,94,180,0.2); border: 1px solid rgba(74,154,245,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; flex-shrink: 0; }
+.fac-big-wrap { text-align: right; }
+.fac-big { font-family: 'Bebas Neue', sans-serif; font-size: clamp(6rem,14vw,12rem); line-height: 0.85; background: linear-gradient(180deg, var(--blue3) 0%, rgba(36,113,212,0.2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.fac-big-sub { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue3); text-align: right; margin-top: -0.5rem; }
+.fac-cards { display: grid; grid-template-columns: repeat(6,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.fac-card { background: var(--card); padding: 2rem 1rem; text-align: center; transition: background 0.25s; }
+.fac-card:hover { background: var(--card2); }
+.fac-card-ico { font-size: 1.7rem; margin-bottom: 0.6rem; }
+.fac-card-nm { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--silver); line-height: 1.4; }
+
+/* ═══ WHY PLATINUM ═══ */
+#why { background: var(--dark); }
+.why-inner { max-width: 1200px; margin: 0 auto; }
+.why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.why-card { background: var(--card); border: 1px solid var(--border); padding: 2.5rem 2rem; position: relative; transition: border-color 0.3s; }
+.why-card.featured { border-color: rgba(74,154,245,0.4); }
+.why-card.featured::before { content: 'Platinum advantage'; position: absolute; top: -11px; left: 1.5rem; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue3); background: var(--dark); padding: 0 0.5rem; }
+.why-vs { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.75rem; }
+.why-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.06em; }
+.why-logo.platinum { background: linear-gradient(110deg, var(--blue2), var(--blue3), var(--plat2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.why-logo.comp { color: var(--muted); }
+.why-price { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; line-height: 1; margin-bottom: 0.3rem; }
+.why-price.blue-grad { background: linear-gradient(135deg, var(--blue2), var(--blue3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.why-price.muted { color: var(--muted); }
+.why-price-sub { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; }
+.why-features { display: flex; flex-direction: column; gap: 0.6rem; }
+.why-feat { display: flex; align-items: center; gap: 0.6rem; font-size: 0.88rem; }
+.why-check { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; flex-shrink: 0; }
+.check-yes { background: var(--green-bg); color: var(--green); }
+.check-no  { background: rgba(239,68,68,0.1); color: #ef4444; }
+.feat-yes { color: rgba(200,215,245,0.7); }
+.feat-no  { color: var(--muted2); text-decoration: line-through; }
+
+/* ═══ PRICING ═══ */
+#pricing { background: var(--black); }
+.pricing-inner { max-width: 1100px; margin: 0 auto; }
+.pricing-note { font-size: 0.88rem; color: var(--muted); margin-top: 0.75rem; font-family: 'Barlow', sans-serif; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.p-card { background: var(--card); border: 1px solid var(--border); padding: 2.5rem 2rem; position: relative; transition: border-color 0.3s; }
+.p-card.popular { border-color: rgba(74,154,245,0.5); }
+.p-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--blue), var(--blue3)); color: #fff; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 1rem; white-space: nowrap; clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); }
+.p-tier { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue3); margin-bottom: 1rem; }
+.p-price { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; }
+.p-price-unit { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 1rem; color: var(--muted); }
+.p-price.grad { background: linear-gradient(135deg, var(--blue2), var(--blue3), var(--plat2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.p-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin: 0.75rem 0 1.5rem; }
+.p-divider { height: 1px; background: var(--border); margin-bottom: 1.5rem; }
+.p-perks { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+.p-perk { display: flex; align-items: center; gap: 0.6rem; font-size: 0.87rem; color: rgba(200,215,245,0.7); }
+.p-perk-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue3); flex-shrink: 0; }
+.p-btn { display: block; text-align: center; padding: 0.9rem; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.25s; }
+.p-btn.solid { background: var(--blue); color: #fff; clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
+.p-btn.solid:hover { background: var(--blue2); box-shadow: 0 6px 25px var(--blue-glow); }
+.p-btn.outline { border: 1px solid var(--border); color: var(--plat2); }
+.p-btn.outline:hover { border-color: var(--blue3); color: var(--blue3); }
+.pricing-disclaimer { text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--muted); font-family: 'Barlow', sans-serif; }
+
+/* ═══ SCHEDULE ═══ */
+#schedule { background: var(--dark); }
+.sched-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; max-width: 1200px; margin: 0 auto; }
+.hours-box { margin-top: 2rem; }
+.h-row { display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--border); font-size: 0.92rem; transition: background 0.2s; }
+.h-row:first-child { border-top: 1px solid var(--border); }
+.h-row:hover { background: rgba(28,94,180,0.06); }
+.h-day { color: rgba(200,215,245,0.55); letter-spacing: 0.05em; }
+.h-time { color: var(--blue3); font-weight: 600; letter-spacing: 0.05em; }
+.contact-box { margin-top: 1.5rem; padding: 1.75rem; background: var(--card); border: 1px solid var(--border); }
+.ci { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.25rem; font-size: 0.92rem; }
+.ci:last-child { margin-bottom: 0; }
+.ci-ico { color: var(--blue3); font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+.ci-body { color: rgba(200,215,245,0.6); line-height: 1.55; }
+.ci-body strong { display: block; font-size: 0.63rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--blue3); margin-bottom: 0.2rem; }
+.map-wrap { margin-top: 1.5rem; border: 1px solid var(--border); overflow: hidden; height: 260px; position: relative; }
+.map-placeholder { width: 100%; height: 100%; background: var(--card2); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; }
+.map-placeholder-ico { font-size: 2rem; }
+.map-placeholder-text { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue3); }
+.map-placeholder-sub { font-size: 0.75rem; color: var(--muted); text-align: center; padding: 0 2rem; }
+.map-open-btn { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue3); text-decoration: none; border: 1px solid rgba(74,154,245,0.3); padding: 0.5rem 1rem; transition: all 0.2s; }
+.map-open-btn:hover { background: rgba(36,113,212,0.1); }
+.comm-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-top: 2.5rem; }
+.cs-n { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; background: linear-gradient(135deg, var(--blue2), var(--blue3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cs-l { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.15rem; }
+
+/* ═══ FAQ ═══ */
+#faq { background: var(--black); }
+.faq-inner { max-width: 900px; margin: 0 auto; }
+.faq-trust-banner { margin-top: 1.5rem; padding: 1rem 1.25rem; background: var(--green-bg); border: 1px solid rgba(34,197,94,0.2); border-radius: 0; display: flex; align-items: center; gap: 0.75rem; }
+.faq-trust-banner span { font-size: 0.85rem; color: rgba(200,235,215,0.85); line-height: 1.55; }
+.faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.faq-item { background: var(--card); }
+.faq-q { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 1.5rem; background: none; border: none; color: var(--plat2); font-family: 'Barlow Semi Condensed', sans-serif; font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; text-align: left; cursor: pointer; transition: background 0.2s; gap: 1rem; }
+.faq-q:hover { background: rgba(36,113,212,0.05); }
+.faq-arrow { font-size: 1rem; color: var(--blue3); transition: transform 0.3s; flex-shrink: 0; }
+.faq-item.open .faq-arrow { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; padding: 0 1.5rem; }
+.faq-item.open .faq-a { max-height: 300px; padding: 0 1.5rem 1.25rem; }
+.faq-a p { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 0.95rem; line-height: 1.75; color: rgba(200,215,245,0.65); }
+
+/* ═══ SOCIAL PROOF ═══ */
+#proof { background: var(--dark); }
+.proof-inner { max-width: 1200px; margin: 0 auto; }
+.proof-rating-bar { display: flex; align-items: center; gap: 1.5rem; margin-top: 0.75rem; flex-wrap: wrap; }
+.rating-pill { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border: 1px solid var(--border); background: var(--card); }
+.rating-stars { color: var(--blue3); font-size: 0.85rem; letter-spacing: 0.08em; }
+.rating-text { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; }
+.proof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+.proof-card { background: var(--card); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.25s; }
+.proof-card:hover { border-color: rgba(74,154,245,0.3); }
+.proof-stars { color: var(--blue3); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+.proof-q { font-family: 'Barlow', sans-serif; font-weight: 300; font-size: 0.93rem; line-height: 1.7; color: rgba(200,215,245,0.65); font-style: italic; margin-bottom: 1.25rem; }
+.proof-q::before { content: '"'; }
+.proof-q::after  { content: '"'; }
+.proof-name { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--plat); }
+.proof-src { font-size: 0.68rem; color: var(--muted); margin-top: 0.2rem; }
+.proof-google-badge { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: #4285f4; border: 1px solid rgba(66,133,244,0.25); padding: 0.15rem 0.5rem; margin-top: 0.4rem; }
+
+/* ═══ CTA ═══ */
+#cta { padding: 7rem 0; }
+.cta-inner { margin: 0 5vw; background: radial-gradient(ellipse 70% 100% at 50% 50%, rgba(28,94,180,0.2) 0%,transparent 70%), var(--card); border: 1px solid rgba(74,154,245,0.2); padding: 7rem 5vw; text-align: center; position: relative; overflow: hidden; }
+.cta-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(74,154,245,0.04) 1px,transparent 1px), linear-gradient(90deg,rgba(74,154,245,0.04) 1px,transparent 1px); background-size: 50px 50px; }
+.cta-ghost { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Bebas Neue', sans-serif; font-size: 20vw; white-space: nowrap; color: rgba(36,113,212,0.04); pointer-events: none; user-select: none; }
+.cta-inner .s-label { justify-content: center; }
+.cta-inner .s-label::before { display: none; }
+.cta-h { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,9vw,8rem); line-height: 0.88; letter-spacing: 0.03em; margin: 1rem 0; position: relative; z-index: 1; }
+.cta-h em { font-style: normal; background: linear-gradient(110deg, var(--blue2), var(--blue3), var(--plat2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cta-sub { color: var(--muted); font-size: 1rem; line-height: 1.75; max-width: 500px; margin: 1.5rem auto 2.5rem; position: relative; z-index: 1; }
+.cta-acts { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; position: relative; z-index: 1; }
+.cta-perks { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-top: 4rem; position: relative; z-index: 1; padding-top: 3rem; border-top: 1px solid var(--border); }
+.cp-n { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; background: linear-gradient(135deg, var(--blue3), var(--plat2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cp-l { font-size: 0.67rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; }
+
+/* ═══ FOOTER ═══ */
+footer { background: var(--card); border-top: 1px solid var(--border); padding: 5rem 5vw 6rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto; padding-bottom: 3.5rem; border-bottom: 1px solid var(--border); }
+.footer-about { color: var(--muted); font-size: 0.87rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+.footer-socials { display: flex; gap: 0.6rem; margin-top: 1.5rem; }
+.soc { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; color: var(--muted); text-decoration: none; clip-path: polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%); transition: all 0.2s; }
+.soc:hover { border-color: var(--blue3); color: var(--blue3); background: rgba(74,154,245,0.08); }
+.f-title { font-size: 0.67rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--blue3); margin-bottom: 1.5rem; }
+.f-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.f-links a { font-size: 0.87rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.f-links a:hover { color: var(--plat2); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 2rem auto 0; font-size: 0.76rem; color: rgba(200,215,245,0.2); letter-spacing: 0.05em; flex-wrap: wrap; gap: 1rem; }
+.f-award { color: var(--blue3); opacity: 0.7; display: flex; align-items: center; gap: 0.5rem; }
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes heroFade { to { opacity: 1; } }
+@keyframes orbPulse { 0%,100% { opacity: 0.8; transform: translate(-30%,-50%) scale(1); } 50% { opacity: 1; transform: translate(-30%,-50%) scale(1.12); } }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+@keyframes scrollDown { 0% { transform: scaleY(0); transform-origin: top; opacity: 0; } 40% { transform: scaleY(1); transform-origin: top; opacity: 1; } 60% { transform: scaleY(1); transform-origin: bottom; opacity: 1; } 100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; } }
+@keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes waPop { from { transform: scale(0); opacity: 0; } 80% { transform: scale(1.15); } to { transform: scale(1); opacity: 1; } }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 960px) {
+  .about-grid, .sched-wrap, .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .fac-top { grid-template-columns: 1fr; gap: 2.5rem; }
+  .fac-cards { grid-template-columns: repeat(3,1fr); }
+  .prog-grid, .proof-grid, .why-grid, .pricing-grid { grid-template-columns: 1fr 1fr; }
+  .fac-big-wrap { display: none; }
+}
+@media (max-width: 600px) {
+  .prog-grid, .proof-grid, .why-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .fac-cards { grid-template-columns: repeat(2,1fr); }
+  .hero-badge-wrap { display: none; }
+  .cta-inner { margin: 0; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  section { padding: 5rem 5vw; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about"     onclick="closeMenu()">About</a>
+  <a href="#programs"  onclick="closeMenu()">Programs</a>
+  <a href="#facilities"onclick="closeMenu()">Facilities</a>
+  <a href="#pricing"   onclick="closeMenu()">Pricing</a>
+  <a href="#schedule"  onclick="closeMenu()">Hours</a>
+  <a href="#faq"       onclick="closeMenu()">FAQ</a>
+  <a href="tel:6045019601" class="m-phone">📞 (604) 501-9601</a>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="logo-wrap" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <div class="logo-hex">P</div>
+    <div><span class="logo-text">Platinum</span><span class="logo-sub">Athletic Club</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#facilities">Facilities</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#schedule">Hours</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-phone">(604) 501-9601</span>
+    <a href="#cta" class="nav-cta">Join Now</a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/16045019601" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <div class="wa-tooltip">Chat with us on WhatsApp</div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- MOBILE CALL BAR -->
+<a href="tel:6045019601" class="mobile-call-bar">
+  📞 &nbsp; Call Us · (604) 501-9601
+</a>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Surrey's Largest Premier Fitness Club — Est. 1999</div>
+    <h1 class="hero-h1"><span class="h1-l1">Platinum</span><span class="h1-l2">Athletic</span><span class="h1-l3">Club</span></h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">34,000 sq ft of state-of-the-art training space. 300+ machines. Certified coaches. A community that pushes Surrey to be stronger — one member at a time.</p>
+    <div class="hero-ctas">
+      <a href="#pricing" class="btn-p">View Membership Plans</a>
+      <a href="#programs" class="btn-o">Explore Programs</a>
+    </div>
+  </div>
+  <div class="hero-badge-wrap">
+    <div class="hero-badge">
+      <span class="badge-n">#1</span>
+      <span class="badge-t">Voted Surrey's<br>Best Gym</span>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-bar"></div><span class="scroll-lbl">Scroll</span></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-ribbon">
+  <div class="stats-inner">
+    <div class="stat-b reveal"><div class="stat-n" data-target="34000">0</div><div class="stat-l">Square Feet</div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-b reveal"><div class="stat-n" data-target="300">0</div><div class="stat-l">Machines & Equipment</div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-b reveal"><div class="stat-n" data-target="5000">0</div><div class="stat-l">Sq Ft Ladies Zone</div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-b reveal"><div class="stat-n" data-target="25">0</div><div class="stat-l">Years in Surrey</div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-b reveal"><div class="stat-n">3</div><div class="stat-l">Languages Spoken</div></div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="m-item"><span class="m-dot"></span>Strength Training</span>
+    <span class="m-item"><span class="m-dot"></span>HIIT Classes</span>
+    <span class="m-item"><span class="m-dot"></span>Personal Training</span>
+    <span class="m-item"><span class="m-dot"></span>Ladies-Only Zone</span>
+    <span class="m-item"><span class="m-dot"></span>Dry Sauna</span>
+    <span class="m-item"><span class="m-dot"></span>Juice Bar</span>
+    <span class="m-item"><span class="m-dot"></span>Circuit Training</span>
+    <span class="m-item"><span class="m-dot"></span>Boot Camps</span>
+    <span class="m-item"><span class="m-dot"></span>TRX Suspension</span>
+    <span class="m-item"><span class="m-dot"></span>Childminding</span>
+    <span class="m-item"><span class="m-dot"></span>Nutrition Coaching</span>
+    <span class="m-item"><span class="m-dot"></span>Surrey's #1 Fitness Club</span>
+    <span class="m-item"><span class="m-dot"></span>Strength Training</span>
+    <span class="m-item"><span class="m-dot"></span>HIIT Classes</span>
+    <span class="m-item"><span class="m-dot"></span>Personal Training</span>
+    <span class="m-item"><span class="m-dot"></span>Ladies-Only Zone</span>
+    <span class="m-item"><span class="m-dot"></span>Dry Sauna</span>
+    <span class="m-item"><span class="m-dot"></span>Juice Bar</span>
+    <span class="m-item"><span class="m-dot"></span>Circuit Training</span>
+    <span class="m-item"><span class="m-dot"></span>Boot Camps</span>
+    <span class="m-item"><span class="m-dot"></span>TRX Suspension</span>
+    <span class="m-item"><span class="m-dot"></span>Childminding</span>
+    <span class="m-item"><span class="m-dot"></span>Nutrition Coaching</span>
+    <span class="m-item"><span class="m-dot"></span>Surrey's #1 Fitness Club</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="s-label">Our Story</p>
+      <h2 class="s-h2">Built For<br><em>Every Body</em></h2>
+      <div class="about-body">
+        <p>Since 1999, Platinum Athletic Club has been the heartbeat of Surrey's fitness community. Family-owned and operated, we built this club around one conviction — that world-class training belongs to everyone, regardless of experience level or background.</p>
+        <p>Our 34,000 sq ft facility is more than a gym. It's where Surrey families, competitive athletes, and first-timers come together with the support of expert coaches and multilingual staff fluent in English, Punjabi, and Hindi.</p>
+        <p>Voted Surrey's #1 Fitness Center — because our members made it that way.</p>
+      </div>
+      <div class="about-cred">🏆 &nbsp; Voted Surrey's #1 Fitness Center</div>
+    </div>
+    <div class="af-grid reveal">
+      <div class="af"><div class="af-ico">🏆</div><div class="af-title">Surrey's #1 Gym</div><div class="af-desc">Recognized by the community as the city's premier fitness destination since 1999.</div></div>
+      <div class="af"><div class="af-ico">👩‍🏋️</div><div class="af-title">Ladies-Only Zone</div><div class="af-desc">5,000 sq ft of dedicated private space designed for comfort and confidence.</div></div>
+      <div class="af"><div class="af-ico">👨‍👩‍👧</div><div class="af-title">Family Friendly</div><div class="af-desc">On-site childminding so the whole family can make fitness a real priority.</div></div>
+      <div class="af"><div class="af-ico">🌏</div><div class="af-title">Multilingual Staff</div><div class="af-desc">English, Punjabi & Hindi — everyone deserves to feel welcome here.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="prog-head reveal">
+    <div>
+      <p class="s-label">Training Programs</p>
+      <h2 class="s-h2">Train <em>Smarter,</em><br>Go Further</h2>
+    </div>
+    <p style="color:var(--muted);max-width:280px;font-size:0.95rem;line-height:1.75;font-family:'Barlow',sans-serif;font-weight:300;">Certified coaches. Real programs. Results you can see. Every goal has a path here.</p>
+  </div>
+  <div class="prog-grid">
+    <div class="prog-card reveal">
+      <span class="prog-num">01</span>
+      <div class="prog-ico">⚡</div>
+      <div class="prog-name">HIIT Training</div>
+      <p class="prog-desc">High-intensity intervals engineered to burn fat, boost cardio, and deliver maximum results in minimum time.</p>
+      <div class="prog-footer">
+        <span class="prog-pill">All Levels</span>
+        <a href="tel:6045019601" class="prog-cta">Book Now →</a>
+      </div>
+      <div class="prog-bar"></div>
+    </div>
+    <div class="prog-card reveal">
+      <span class="prog-num">02</span>
+      <div class="prog-ico">🔄</div>
+      <div class="prog-name">Circuit Training</div>
+      <p class="prog-desc">Full-body conditioning circuits blending strength and cardio for a total transformation that sticks.</p>
+      <div class="prog-footer">
+        <span class="prog-pill">All Levels</span>
+        <a href="tel:6045019601" class="prog-cta">Book Now →</a>
+      </div>
+      <div class="prog-bar"></div>
+    </div>
+    <div class="prog-card reveal">
+      <span class="prog-num">03</span>
+      <div class="prog-ico">🎯</div>
+      <div class="prog-name">Personal Training</div>
+      <p class="prog-desc">One-on-one coaching with certified trainers who build your custom plan and keep you accountable.</p>
+      <div class="prog-footer">
+        <span class="prog-pill">By Appointment</span>
+        <a href="tel:6045019601" class="prog-cta">Book Now →</a>
+      </div>
+      <div class="prog-bar"></div>
+    </div>
+    <div class="prog-card reveal">
+      <span class="prog-num">04</span>
+      <div class="prog-ico">💪</div>
+      <div class="prog-name">TRX Suspension</div>
+      <p class="prog-desc">Use gravity and bodyweight to build functional strength, balance, and core stability that carries into daily life.</p>
+      <div class="prog-footer">
+        <span class="prog-pill">Intermediate</span>
+        <a href="tel:6045019601" class="prog-cta">Book Now →</a>
+      </div>
+      <div class="prog-bar"></div>
+    </div>
+    <div class="prog-card reveal">
+      <span class="prog-num">05</span>
+      <div class="prog-ico">🥊</div>
+      <div class="prog-name">Boot Camps</div>
+      <p class="prog-desc">Military-inspired group sessions that push limits, build grit, and forge real-world fitness that lasts.</p>
+      <div class="prog-footer">
+        <span class="prog-pill">Group Class</span>
+        <a href="tel:6045019601" class="prog-cta">Book Now →</a>
+      </div>
+      <div class="prog-bar"></div>
+    </div>
+    <div class="prog-card reveal">
+      <span class="prog-num">06</span>
+      <div class="prog-ico">🥗</div>
+      <div class="prog-name">Nutrition Counseling</div>
+      <p class="prog-desc">Expert-guided nutrition plans synced with your training program for holistic, lasting transformation.</p>
+      <div class="prog-footer">
+        <span class="prog-pill">1-on-1 Sessions</span>
+        <a href="tel:6045019601" class="prog-cta">Book Now →</a>
+      </div>
+      <div class="prog-bar"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities">
+  <div class="fac-layout">
+    <div class="fac-top">
+      <div class="reveal">
+        <p class="s-label">Our Facility</p>
+        <h2 class="s-h2">No Corners<br><em>Were Cut</em></h2>
+        <p style="color:var(--muted);font-size:0.95rem;line-height:1.8;margin-top:1.25rem;font-family:'Barlow',sans-serif;font-weight:300;max-width:480px;">34,000 square feet engineered for everyone — from day-one beginners to elite competitors.</p>
+        <div class="fac-list">
+          <div class="fac-li"><div class="fac-li-ico">✓</div>300+ Cardio & Strength Machines</div>
+          <div class="fac-li"><div class="fac-li-ico">✓</div>Dry Saunas</div>
+          <div class="fac-li"><div class="fac-li-ico">✓</div>Group Fitness Studios</div>
+          <div class="fac-li"><div class="fac-li-ico">✓</div>Juice Bar & Pro Shop</div>
+          <div class="fac-li"><div class="fac-li-ico">✓</div>Functional Turf Area</div>
+          <div class="fac-li"><div class="fac-li-ico">✓</div>Childminding Services</div>
+          <div class="fac-li"><div class="fac-li-ico">✓</div>5,000 sq ft Ladies Zone</div>
+          <div class="fac-li"><div class="fac-li-ico">✓</div>Free On-Site Parking</div>
+        </div>
+      </div>
+      <div class="fac-big-wrap reveal">
+        <div class="fac-big">34K</div>
+        <div class="fac-big-sub">Square Feet of Pure Potential</div>
+      </div>
+    </div>
+    <div class="fac-cards reveal">
+      <div class="fac-card"><div class="fac-card-ico">🏋️</div><div class="fac-card-nm">Strength Floor</div></div>
+      <div class="fac-card"><div class="fac-card-ico">🚴</div><div class="fac-card-nm">Cardio Zone</div></div>
+      <div class="fac-card"><div class="fac-card-ico">🧖</div><div class="fac-card-nm">Dry Sauna</div></div>
+      <div class="fac-card"><div class="fac-card-ico">🎽</div><div class="fac-card-nm">Group Studio</div></div>
+      <div class="fac-card"><div class="fac-card-ico">🥤</div><div class="fac-card-nm">Juice Bar</div></div>
+      <div class="fac-card"><div class="fac-card-ico">🌿</div><div class="fac-card-nm">Turf Area</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PLATINUM -->
+<section id="why">
+  <div class="why-inner">
+    <div class="reveal">
+      <p class="s-label">Why Platinum</p>
+      <h2 class="s-h2">More Than<br><em>Budget Gyms Offer</em></h2>
+      <p style="color:var(--muted);font-size:0.95rem;line-height:1.75;margin-top:1rem;max-width:500px;font-family:'Barlow',sans-serif;font-weight:300;">Yes, Planet Fitness is $10/month. Here's what that $10 doesn't buy you.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-vs"><span class="why-logo comp">Budget Gyms</span></div>
+        <div class="why-price muted">$10–20</div>
+        <div class="why-price-sub">/ month starting</div>
+        <div class="why-features">
+          <div class="why-feat"><div class="why-check check-yes">✓</div><span class="feat-yes">Basic cardio equipment</span></div>
+          <div class="why-feat"><div class="why-check check-no">✗</div><span class="feat-no">Expert certified coaches</span></div>
+          <div class="why-feat"><div class="why-check check-no">✗</div><span class="feat-no">Ladies-only dedicated zone</span></div>
+          <div class="why-feat"><div class="why-check check-no">✗</div><span class="feat-no">Childminding services</span></div>
+          <div class="why-feat"><div class="why-check check-no">✗</div><span class="feat-no">Sauna & recovery facilities</span></div>
+          <div class="why-feat"><div class="why-check check-no">✗</div><span class="feat-no">Multilingual staff</span></div>
+          <div class="why-feat"><div class="why-check check-no">✗</div><span class="feat-no">Nutrition counseling</span></div>
+          <div class="why-feat"><div class="why-check check-no">✗</div><span class="feat-no">300+ specialized machines</span></div>
+        </div>
+      </div>
+      <div class="why-card featured reveal">
+        <div class="why-badge" style="position:absolute;top:-11px;left:1.5rem;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--blue3);background:var(--dark);padding:0 0.5rem;">Platinum Advantage</div>
+        <div class="why-vs"><span class="why-logo platinum">Platinum</span></div>
+        <div class="why-price grad" style="font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;margin-bottom:0.3rem;background:linear-gradient(135deg,var(--blue2),var(--blue3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Full Access</div>
+        <div class="why-price-sub">34,000 sq ft · Everything included</div>
+        <div class="why-features">
+          <div class="why-feat"><div class="why-check check-yes">✓</div><span class="feat-yes">300+ premium machines</span></div>
+          <div class="why-feat"><div class="why-check check-yes">✓</div><span class="feat-yes">Certified expert coaches</span></div>
+          <div class="why-feat"><div class="why-check check-yes">✓</div><span class="feat-yes">5,000 sq ft ladies-only zone</span></div>
+          <div class="why-feat"><div class="why-check check-yes">✓</div><span class="feat-yes">On-site childminding</span></div>
+          <div class="why-feat"><div class="why-check check-yes">✓</div><span class="feat-yes">Dry sauna & recovery</span></div>
+          <div class="why-feat"><div class="why-check check-yes">✓</div><span class="feat-yes">English, Punjabi & Hindi staff</span></div>
+          <div class="why-feat"><div class="why-check check-yes">✓</div><span class="feat-yes">Nutrition counseling</span></div>
+          <div class="why-feat"><div class="why-check check-yes">✓</div><span class="feat-yes">Surrey community since 1999</span></div>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--blue3);margin-bottom:0.75rem;">What members say</div>
+          <p style="font-family:'Barlow',sans-serif;font-weight:300;font-size:0.9rem;color:rgba(200,215,245,0.65);line-height:1.7;font-style:italic;">"I tried Planet Fitness and two other gyms when Platinum was closed. Nothing comes close to the equipment variety and the atmosphere here. Worth every penny."</p>
+          <div style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);margin-top:0.75rem;">Jimmy G. · Google Review</div>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:1.25rem;">
+          <p style="font-family:'Barlow',sans-serif;font-weight:300;font-size:0.9rem;color:rgba(200,215,245,0.65);line-height:1.7;font-style:italic;">"Best bodybuilding gym in Surrey — possibly top 5 in western Canada for serious lifters. Lighting, mirrors, equipment selection — nothing else in the city compares."</p>
+          <div style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--silver);margin-top:0.75rem;">Kris G. · Google Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-inner">
+    <div class="reveal">
+      <p class="s-label">Membership Plans</p>
+      <h2 class="s-h2">Pick Your<br><em>Starting Point</em></h2>
+      <p class="pricing-note">All memberships include full access to 34,000 sq ft of facilities. Call us to confirm current rates and promotions.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="p-card reveal">
+        <div class="p-tier">Monthly Flex</div>
+        <div class="p-price">Call for</div>
+        <div class="p-price-unit">current pricing</div>
+        <p class="p-desc">Month-to-month access with no long-term commitment. Perfect for trying Platinum before going all-in.</p>
+        <div class="p-divider"></div>
+        <div class="p-perks">
+          <div class="p-perk"><span class="p-perk-dot"></span>Full facility access</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>300+ machines</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>Group classes included</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>Locker rooms & sauna</div>
+        </div>
+        <a href="tel:6045019601" class="p-btn outline">Call (604) 501-9601</a>
+      </div>
+      <div class="p-card popular reveal">
+        <div class="p-badge">Most Popular</div>
+        <div class="p-tier">Annual Membership</div>
+        <div class="p-price grad">Best Value</div>
+        <div class="p-price-unit">lowest monthly rate · 12 months</div>
+        <p class="p-desc">Our most popular plan. Lock in the best rate and commit to your transformation for a full year.</p>
+        <div class="p-divider"></div>
+        <div class="p-perks">
+          <div class="p-perk"><span class="p-perk-dot"></span>Everything in Monthly Flex</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>Ladies-only zone access</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>Childminding services</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>Juice bar & pro shop discounts</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>Local merchant discount card</div>
+        </div>
+        <a href="tel:6045019601" class="p-btn solid">Get Started Today</a>
+      </div>
+      <div class="p-card reveal">
+        <div class="p-tier">Family / Couple Plans</div>
+        <div class="p-price">Group</div>
+        <div class="p-price-unit">rates available · ask us</div>
+        <p class="p-desc">Bring the whole family. We have options for couples, families, and student memberships that make fitness accessible.</p>
+        <div class="p-divider"></div>
+        <div class="p-perks">
+          <div class="p-perk"><span class="p-perk-dot"></span>Couples & family rates</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>Student discounts available</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>Senior-friendly programs</div>
+          <div class="p-perk"><span class="p-perk-dot"></span>Childminding included</div>
+        </div>
+        <a href="tel:6045019601" class="p-btn outline">Ask About Group Rates</a>
+      </div>
+    </div>
+    <p class="pricing-disclaimer">All memberships include a free facility tour with no obligation. Call (604) 501-9601 or visit us at 7635 King George Blvd, Unit 200, Surrey BC.</p>
+  </div>
+</section>
+
+<!-- SCHEDULE + MAP -->
+<section id="schedule">
+  <div class="sched-wrap">
+    <div class="reveal">
+      <p class="s-label">Hours & Location</p>
+      <h2 class="s-h2">We're <em>Here</em><br>For You</h2>
+      <div class="hours-box">
+        <div class="h-row"><span class="h-day">Monday – Friday</span><span class="h-time">5:00 AM – 12:00 AM</span></div>
+        <div class="h-row"><span class="h-day">Saturday</span><span class="h-time">8:00 AM – 9:00 PM</span></div>
+        <div class="h-row"><span class="h-day">Sunday</span><span class="h-time">8:00 AM – 9:00 PM</span></div>
+        <div class="h-row"><span class="h-day">Holidays</span><span class="h-time">Hours may vary</span></div>
+      </div>
+      <div class="contact-box">
+        <div class="ci"><span class="ci-ico">📍</span><div class="ci-body"><strong>Address</strong>7635 King George Blvd, Unit 200<br>Surrey, BC V3W 5B1</div></div>
+        <div class="ci"><span class="ci-ico">📞</span><div class="ci-body"><strong>Phone</strong><a href="tel:6045019601" style="color:var(--blue3);text-decoration:none;">(604) 501-9601</a></div></div>
+        <div class="ci"><span class="ci-ico">💬</span><div class="ci-body"><strong>WhatsApp</strong><a href="https://wa.me/16045019601" style="color:var(--green);text-decoration:none;">Message us directly</a> · English, ਪੰਜਾਬੀ, हिन्दी</div></div>
+      </div>
+      <div class="map-wrap">
+        <div class="map-placeholder">
+          <div class="map-placeholder-ico">📍</div>
+          <div class="map-placeholder-text">7635 King George Blvd, Surrey BC</div>
+          <div class="map-placeholder-sub">Located at the corner of 76th Ave & King George Blvd · Free on-site parking</div>
+          <a href="https://maps.google.com/?q=Platinum+Athletic+Club+Surrey+BC" target="_blank" class="map-open-btn">Open in Google Maps →</a>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="s-label">Community</p>
+      <h2 class="s-h2">More Than<br><em>A Gym</em></h2>
+      <p style="color:var(--muted);font-size:1rem;line-height:1.85;margin-top:1.25rem;font-family:'Barlow',sans-serif;font-weight:300;">For over 25 years, Platinum has been the fitness home of Surrey's diverse and vibrant community. Our multilingual team — fluent in English, Punjabi, and Hindi — makes sure every member feels instantly at home.</p>
+      <p style="color:var(--muted);font-size:1rem;line-height:1.85;margin-top:1rem;font-family:'Barlow',sans-serif;font-weight:300;">We sponsor local kids' programs, support family fitness events, and run a local merchant discount program — because a healthier Surrey is a better Surrey for everyone.</p>
+      <div class="comm-stats">
+        <div><div class="cs-n">25+</div><div class="cs-l">Years in Surrey</div></div>
+        <div><div class="cs-n">3</div><div class="cs-l">Languages</div></div>
+        <div><div class="cs-n">#1</div><div class="cs-l">Voted in Surrey</div></div>
+      </div>
+      <div style="margin-top:2rem;padding:1.25rem;background:var(--card);border:1px solid var(--border);border-left:2px solid var(--blue3);">
+        <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue3);margin-bottom:0.5rem;">Multilingual Team</div>
+        <p style="font-size:0.9rem;color:rgba(200,215,245,0.65);line-height:1.6;">Our staff speak English, <strong style="color:var(--plat);">ਪੰਜਾਬੀ</strong>, and <strong style="color:var(--plat);">हिन्दी</strong>. You can also reach us on WhatsApp in any of these languages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="reveal">
+      <p class="s-label">FAQ</p>
+      <h2 class="s-h2">Honest Answers<br><em>To Real Questions</em></h2>
+    </div>
+    <div class="faq-trust-banner reveal">
+      <span style="font-size:1.2rem;">✅</span>
+      <span>We believe in full transparency around memberships, billing, and cancellations. Read below — or call us directly at <a href="tel:6045019601" style="color:#22c55e;">(604) 501-9601</a> if you have any questions we haven't answered.</span>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do I cancel my membership?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Cancellations must be done in person at the club with written notice, per your membership agreement. We recommend keeping a copy of your cancellation form for your records. If you have any billing concerns after cancellation, please contact us directly at (604) 501-9601 and we'll resolve them promptly.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Are there contracts? Can I go month-to-month?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <p>We offer both contract and month-to-month membership options. Annual memberships offer the best monthly rate with a 12-month commitment. Month-to-month plans are available with more flexibility. Ask our staff about the current options and any ongoing promotions when you visit or call.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I try the gym before joining?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Absolutely. We welcome everyone to come in for a free tour of the facility with no obligation. You'll get to see all 34,000 sq ft, meet our staff, and ask any questions you have before making any commitment. Just call ahead or walk in during our operating hours.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is the ladies-only section always available?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes. Our 5,000 sq ft ladies-only section is a permanent part of the facility — not a time-restricted zone. It features its own cardio and strength equipment designed for privacy and comfort, available during all regular operating hours.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you offer childminding? Is it included?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes, we have on-site childminding services so parents can train without worry. Availability and any associated fees depend on your membership type. Ask our front desk for current childminding hours and policies.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can your staff help me in Punjabi or Hindi?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes! Our staff are fluent in English, Punjabi (ਪੰਜਾਬੀ), and Hindi (हिन्दी). You're welcome to call us, visit in person, or message us on WhatsApp in any of these languages. We want every member of Surrey's diverse community to feel completely at home here.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is there parking available?
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes, there is parking available in the area at 7635 King George Blvd, Unit 200. The club is located at the north/west corner of 76th Ave and King George Blvd. If you have any trouble finding us, call (604) 501-9601 and we'll help you out.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section id="proof">
+  <div class="proof-inner">
+    <div class="reveal">
+      <p class="s-label">Member Reviews</p>
+      <h2 class="s-h2">Real People.<br><em>Real Results.</em></h2>
+      <div class="proof-rating-bar">
+        <div class="rating-pill"><span class="rating-stars">★★★★</span><span class="rating-text">Google Reviews · 4+ Stars</span></div>
+        <div class="rating-pill"><span class="rating-stars">★★★★★</span><span class="rating-text">@platinum.athleticclub · 4.7K Followers</span></div>
+      </div>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card reveal">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-q">Best gym in Surrey for bodybuilding. Lots of machines, free weights and I never have to wait — there are so many options. I live near Langley and make the drive 6 days a week.</p>
+        <div class="proof-name">Kris G.</div>
+        <div class="proof-src">Verified Google Review</div>
+        <div class="proof-google-badge">G Google</div>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-q">I tried 5 other gyms when Platinum was temporarily closed. Nothing is anywhere near as good when it comes to proper equipment and no overcrowding. Absolutely love this gym.</p>
+        <div class="proof-name">Jimmy G.</div>
+        <div class="proof-src">Verified Google Review</div>
+        <div class="proof-google-badge">G Google</div>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-stars">★★★★★</div>
+        <p class="proof-q">The staff are very hospitable and respectful. It was my first time and they made it a really great experience. Very large gym with lots of high quality equipment and helpful management.</p>
+        <div class="proof-name">Verified Member</div>
+        <div class="proof-src">Google Review · March 2024</div>
+        <div class="proof-google-badge">G Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" style="padding:7rem 0;">
+  <div class="cta-inner reveal">
+    <div class="cta-grid"></div>
+    <div class="cta-ghost">PLATINUM</div>
+    <p class="s-label">Start Today</p>
+    <h2 class="cta-h">Your Strongest<br>Self <em>Starts Now</em></h2>
+    <p class="cta-sub">No judgment. No hidden fees. Just Surrey's largest, best-equipped fitness club with the expert coaches and community you need to actually change.</p>
+    <div class="cta-acts">
+      <a href="tel:6045019601" class="btn-p">📞 &nbsp; Call (604) 501-9601</a>
+      <a href="https://wa.me/16045019601" class="btn-o" target="_blank">💬 &nbsp; WhatsApp Us</a>
+    </div>
+    <div class="cta-perks">
+      <div><div class="cp-n">FREE</div><div class="cp-l">Facility Tour</div></div>
+      <div><div class="cp-n">34K</div><div class="cp-l">Sq Ft Facility</div></div>
+      <div><div class="cp-n">300+</div><div class="cp-l">Machines</div></div>
+      <div><div class="cp-n">25+</div><div class="cp-l">Yrs Experience</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="logo-wrap"><div class="logo-hex">P</div><div><span class="logo-text">Platinum</span><span class="logo-sub">Athletic Club</span></div></div>
+      <p class="footer-about">Surrey's largest premier fitness club since 1999. 34,000 sq ft of world-class equipment, expert coaching, and a community that lifts each other up. English · ਪੰਜਾਬੀ · हिन्दी</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/platinum.athleticclub/" target="_blank" class="soc">ig</a>
+        <a href="#" class="soc">fb</a>
+        <a href="https://wa.me/16045019601" target="_blank" class="soc">wa</a>
+      </div>
+    </div>
+    <div>
+      <p class="f-title">Navigate</p>
+      <ul class="f-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="f-title">Programs</p>
+      <ul class="f-links">
+        <li><a href="#">Personal Training</a></li>
+        <li><a href="#">HIIT Classes</a></li>
+        <li><a href="#">Boot Camps</a></li>
+        <li><a href="#">TRX Training</a></li>
+        <li><a href="#">Nutrition</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="f-title">Contact</p>
+      <ul class="f-links">
+        <li><a href="tel:6045019601">(604) 501-9601</a></li>
+        <li><a href="https://wa.me/16045019601">WhatsApp Us</a></li>
+        <li><a href="#">7635 King George Blvd</a></li>
+        <li><a href="#">Unit 200, Surrey BC V3W 5B1</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Platinum Athletic Club · North West Athletics Inc. · All rights reserved.</span>
+    <span class="f-award">🏆 Voted Surrey's #1 Fitness Center</span>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Counter animation
+function countUp(el) {
+  const target = +el.dataset.target, dur = 2000, start = performance.now();
+  const run = t => {
+    const p = Math.min((t - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 4);
+    el.textContent = Math.floor(ease * target).toLocaleString();
+    if (p < 1) requestAnimationFrame(run);
+    else el.textContent = target.toLocaleString();
+  };
+  requestAnimationFrame(run);
+}
+const cObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting && e.target.dataset.target) { countUp(e.target); cObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-target]').forEach(el => cObs.observe(el));
+
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').classList.toggle('scrolled', scrollY > 60);
+}, { passive: true });
+
+// Mobile menu
+function toggleMenu() {
+  const m = document.getElementById('mobile-menu');
+  const h = document.getElementById('hamburger');
+  m.classList.toggle('open'); h.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
