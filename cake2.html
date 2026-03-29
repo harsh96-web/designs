@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anna's Cake House — Fusion Baking Since 1974</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F6EFE4; --paper:#FAF6EF; --blush:#EDD5BF;
+  --rose:#B86B52;  --gold:#A8782A;  --gold2:#C9963C;
+  --espresso:#140804; --brown:#3D1A0C; --muted:#7A5840;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--brown);font-family:var(--sans);overflow-x:hidden;cursor:none;}
+
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+
+/* CURSOR */
+#cu{position:fixed;width:9px;height:9px;background:var(--rose);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+#cr{position:fixed;width:30px;height:30px;border:1px solid var(--rose);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .18s ease;opacity:.5;}
+body.hov #cu{background:var(--gold2);}
+body.hov #cr{width:50px;height:50px;border-color:var(--gold2);opacity:.9;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:1.6rem 5rem;transition:all .5s;}
+nav.solid{background:rgba(250,246,239,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(168,120,42,.15);padding:1rem 5rem;}
+.nlogo{font-family:var(--serif);font-size:1.4rem;font-weight:300;letter-spacing:.16em;color:#fff;text-decoration:none;transition:color .4s;}
+nav.solid .nlogo{color:var(--espresso);}
+.nlinks{display:flex;gap:2.8rem;list-style:none;}
+.nlinks a{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);text-decoration:none;transition:.2s;}
+nav.solid .nlinks a{color:var(--muted);}
+.nlinks a:hover{color:var(--gold2);}
+.ncta{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;padding:.52rem 1.5rem;border:1px solid rgba(255,255,255,.4);color:#fff;text-decoration:none;transition:all .3s;}
+nav.solid .ncta{border-color:var(--brown);color:var(--brown);}
+.ncta:hover{background:var(--rose);border-color:var(--rose);color:#fff;}
+
+/* ═══════════════════════════════════
+   HERO — full-screen live canvas
+═══════════════════════════════════ */
+.hero{
+  position:relative;
+  height:100vh; min-height:700px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+
+/* Canvas sits full-screen behind everything */
+#cake-canvas{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  z-index:0;
+}
+
+/* Radial vignette to give depth */
+.hero-vignette{
+  position:absolute; inset:0; z-index:1;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%,
+    transparent 30%,
+    rgba(20,8,4,.45) 100%
+  );
+}
+
+/* Central content sits above canvas */
+.hero-content{
+  position:relative; z-index:3;
+  text-align:center;
+  display:flex; flex-direction:column; align-items:center;
+}
+
+.hero-tag{
+  display:flex; align-items:center; gap:.9rem;
+  font-size:.63rem; letter-spacing:.42em; text-transform:uppercase;
+  color:rgba(255,255,255,.65); margin-bottom:2rem;
+  animation:fu .8s ease both;
+}
+.hero-tag-line{width:36px;height:1px;background:var(--gold2);}
+
+.hero-h1{
+  font-family:var(--serif);
+  font-size:clamp(5rem,11vw,13rem);
+  font-weight:300; line-height:.87;
+  color:#fff; letter-spacing:-.01em;
+  text-shadow:0 4px 60px rgba(20,8,4,.4);
+  animation:fu 1s .12s ease both;
+}
+.hero-h1 em{
+  font-style:italic; display:block;
+  color:var(--gold2);
+  font-size:.82em;
+  text-shadow:0 2px 40px rgba(168,120,42,.5);
+}
+
+.hero-divider{
+  display:flex; align-items:center; gap:1.2rem;
+  margin:2.4rem 0; animation:fu .9s .35s both;
+}
+.hero-divider-line{width:56px;height:1px;background:rgba(201,150,60,.5);}
+.hero-divider-diamond{
+  width:8px;height:8px;background:var(--gold2);
+  transform:rotate(45deg);
+}
+
+.hero-sub{
+  font-family:var(--serif); font-size:1.15rem; font-style:italic;
+  color:rgba(255,255,255,.6); max-width:480px; line-height:1.65;
+  animation:fu .9s .28s ease both;
+  text-shadow:0 2px 20px rgba(20,8,4,.5);
+}
+
+.hero-btns{
+  display:flex; gap:1.1rem; margin-top:3rem;
+  animation:fu 1s .5s both; flex-wrap:wrap; justify-content:center;
+}
+.hbp{
+  padding:.85rem 2.6rem; background:var(--gold2); color:var(--espresso);
+  font-family:var(--sans); font-size:.7rem; letter-spacing:.22em;
+  text-transform:uppercase; text-decoration:none; transition:all .28s;
+}
+.hbp:hover{background:#fff; transform:translateY(-2px);}
+.hbg{
+  padding:.85rem 2.6rem; border:1px solid rgba(255,255,255,.35); color:#fff;
+  font-family:var(--sans); font-size:.7rem; letter-spacing:.22em;
+  text-transform:uppercase; text-decoration:none; transition:all .28s;
+}
+.hbg:hover{border-color:var(--gold2);color:var(--gold2);}
+
+.hero-scroll{
+  position:absolute; bottom:2.8rem; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:.6rem;
+  z-index:3; animation:fu 1s 1s both;
+}
+.scroll-bar{width:1px;height:54px;background:linear-gradient(to bottom,var(--gold2),transparent);animation:spulse 2.5s ease-in-out infinite;}
+@keyframes spulse{0%,100%{transform:scaleY(.3);transform-origin:top;opacity:.2;}50%{transform:scaleY(1);transform-origin:top;opacity:1;}}
+.scroll-lbl{font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+
+@keyframes fu{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── TICKER ── */
+.ticker{background:var(--espresso);padding:.65rem 0;overflow:hidden;}
+.ttrack{display:flex;white-space:nowrap;animation:tk 30s linear infinite;}
+.titem{display:inline-flex;align-items:center;gap:1.8rem;padding:0 2rem;font-family:var(--serif);font-size:.95rem;font-style:italic;color:rgba(250,246,239,.5);}
+.titem strong{font-style:normal;color:var(--gold2);font-weight:400;}
+.tdash{width:14px;height:1px;background:rgba(201,150,60,.3);flex-shrink:0;}
+@keyframes tk{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── STATS ── */
+.statsbar{background:var(--ivory);padding:4.5rem 5rem;border-bottom:1px solid rgba(168,120,42,.12);}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);max-width:1100px;margin:0 auto;}
+.stcell{text-align:center;padding:2rem 1.5rem;position:relative;}
+.stcell+.stcell::before{content:'';position:absolute;left:0;top:20%;height:60%;width:1px;background:rgba(168,120,42,.18);}
+.snum{font-family:var(--serif);font-size:5rem;font-weight:300;color:var(--brown);line-height:1;}
+.sunit{font-size:2.2rem;color:var(--gold2);}
+.slbl{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:.5rem;}
+
+/* ── STORY ── */
+.story{display:grid;grid-template-columns:1fr 1fr;min-height:680px;}
+.story-img{
+  position:relative;overflow:hidden;
+  background:url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=1000&q=85') center 30%/cover no-repeat;
+  transition:transform .8s ease;
+}
+.story:hover .story-img{transform:scale(1.02);}
+.story-badge{
+  position:absolute;top:3rem;right:3rem;z-index:2;
+  width:100px;height:100px;background:var(--gold2);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.story-badge strong{font-family:var(--serif);font-size:2.3rem;font-weight:300;color:var(--espresso);line-height:1;}
+.story-badge small{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--espresso);opacity:.7;text-align:center;padding:0 .3rem;}
+.story-copy{background:var(--blush);padding:6.5rem 5.5rem;display:flex;flex-direction:column;justify-content:center;}
+.ey{font-size:.63rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.ttl{font-family:var(--serif);font-size:clamp(2.4rem,3vw,3.5rem);font-weight:300;line-height:1.1;color:var(--brown);margin-bottom:1.5rem;}
+.ttl em{font-style:italic;color:var(--rose);}
+.sbdy{font-size:.9rem;line-height:1.9;color:var(--muted);margin-bottom:1.1rem;}
+.squote{border-left:3px solid var(--gold2);padding:.9rem 0 .9rem 1.6rem;margin:2rem 0;font-family:var(--serif);font-size:1.22rem;font-style:italic;color:var(--brown);line-height:1.55;}
+.sig{font-family:var(--serif);font-size:1.6rem;font-style:italic;color:var(--rose);margin-top:.8rem;}
+
+/* ── PRODUCTS ── */
+.products{background:var(--paper);}
+.prod-hdr{padding:5.5rem 5rem 3.5rem;}
+.prod-hdr .ey{color:var(--gold);}
+.prod-hdr .ttl{color:var(--espresso);}
+.pgrid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:420px 380px;gap:4px;}
+.pc:nth-child(1){grid-column:1/6;grid-row:1;}
+.pc:nth-child(2){grid-column:6/9;grid-row:1;}
+.pc:nth-child(3){grid-column:9/13;grid-row:1;}
+.pc:nth-child(4){grid-column:1/5;grid-row:2;}
+.pc:nth-child(5){grid-column:5/9;grid-row:2;}
+.pc:nth-child(6){grid-column:9/13;grid-row:2;}
+.pc{position:relative;overflow:hidden;cursor:none;background:var(--blush);}
+.pc-photo{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .75s ease;}
+.pc:hover .pc-photo{transform:scale(1.07);}
+.pc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(20,8,4,.88) 0%,rgba(20,8,4,.2) 55%,transparent 100%);transition:.4s;}
+.pc:hover .pc-ov{background:linear-gradient(to top,rgba(168,107,82,.95) 0%,rgba(168,107,82,.4) 55%,transparent 100%);}
+.pc-body{position:absolute;bottom:0;left:0;right:0;padding:1.8rem 2rem 2.2rem;transform:translateY(4px);transition:transform .4s;}
+.pc:hover .pc-body{transform:translateY(0);}
+.pc-tag{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,150,60,.9);margin-bottom:.5rem;}
+.pc-name{font-family:var(--serif);font-size:1.75rem;font-weight:300;color:#fff;line-height:1.05;margin-bottom:.4rem;}
+.pc:nth-child(1) .pc-name{font-size:2.2rem;}
+.pc-desc{font-size:.77rem;color:rgba(255,255,255,.6);line-height:1.65;max-height:0;overflow:hidden;transition:max-height .45s;}
+.pc:hover .pc-desc{max-height:90px;}
+.pc-pill{display:inline-flex;align-items:center;gap:.5rem;margin-top:.85rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.3);padding:.28rem .9rem;opacity:0;transition:opacity .3s .1s;}
+.pc:hover .pc-pill{opacity:1;}
+
+/* ── PHILOSOPHY ── */
+.phil{padding:8rem 5rem;background:var(--ivory);position:relative;overflow:hidden;}
+.phil-deco{position:absolute;top:-4rem;right:-2rem;font-family:var(--serif);font-size:40rem;font-weight:300;color:rgba(168,120,42,.04);line-height:1;pointer-events:none;user-select:none;}
+.phil-in{max-width:960px;margin:0 auto;text-align:center;position:relative;}
+.phil-in .ey{color:var(--gold);}
+.phil-q{font-family:var(--serif);font-size:clamp(2rem,3vw,3rem);font-weight:300;font-style:italic;color:var(--brown);line-height:1.38;margin:0 0 5rem;}
+.phil-q strong{font-style:normal;color:var(--rose);font-weight:600;}
+.phil-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:4rem;border-top:1px solid rgba(168,120,42,.2);padding-top:4rem;}
+.phil-col-bar{width:32px;height:2px;background:var(--gold2);margin:0 auto 1.2rem;}
+.phil-col-title{font-family:var(--serif);font-size:1.15rem;color:var(--brown);margin-bottom:.6rem;}
+.phil-col-text{font-size:.82rem;color:var(--muted);line-height:1.78;}
+
+/* ── OCCASIONS ── */
+.occ{padding:7rem 5rem;background:var(--paper);}
+.occ-hdr{text-align:center;max-width:540px;margin:0 auto 4rem;}
+.occ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1200px;margin:0 auto;}
+.occcard{background:var(--blush);padding:3rem 2.2rem 3.5rem;position:relative;transition:all .35s;overflow:hidden;}
+.occcard::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--rose);transform:scaleX(0);transform-origin:left;transition:.35s;}
+.occcard:hover::after{transform:scaleX(1);}
+.occcard:hover{background:var(--ivory);}
+.occ-num{font-family:var(--serif);font-size:4rem;font-weight:300;color:rgba(61,26,12,.1);line-height:1;margin-bottom:.8rem;}
+.occ-ttl{font-family:var(--serif);font-size:1.3rem;color:var(--brown);margin-bottom:.6rem;}
+.occ-desc{font-size:.82rem;color:var(--muted);line-height:1.72;}
+
+/* ── ORDER ── */
+.order{display:grid;grid-template-columns:1fr 1fr;}
+.order-img{position:relative;overflow:hidden;min-height:640px;background:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1000&q=85') center/cover no-repeat;}
+.order-img-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(20,8,4,.15),rgba(20,8,4,.5));}
+.order-img-quote{position:absolute;bottom:3.5rem;left:3rem;right:3rem;}
+.order-img-quote p{font-family:var(--serif);font-size:1.5rem;font-style:italic;color:rgba(255,255,255,.75);line-height:1.4;}
+.order-form-panel{background:var(--espresso);padding:5rem 4.5rem;}
+.of-ey{font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold2);margin-bottom:1rem;}
+.of-ttl{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:#fff;margin-bottom:.4rem;}
+.of-sub{font-size:.8rem;color:rgba(255,255,255,.38);margin-bottom:2.5rem;line-height:1.6;}
+.frow{margin-bottom:1.1rem;}
+.frow label{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,150,60,.8);margin-bottom:.4rem;}
+.frow input,.frow select,.frow textarea{width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;font-family:var(--sans);font-size:.87rem;outline:none;transition:border-color .2s;}
+.frow input:focus,.frow select:focus,.frow textarea:focus{border-color:var(--gold2);}
+.frow select option{background:#1A0804;}
+.frow textarea{height:88px;resize:none;}
+.frow-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fbtn{width:100%;padding:.95rem;margin-top:.5rem;background:var(--rose);border:none;color:#fff;font-family:var(--sans);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;cursor:none;transition:all .25s;}
+.fbtn:hover{background:var(--gold2);}
+.contact-rows{margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:.65rem;}
+.crow{display:flex;align-items:center;gap:.9rem;font-size:.8rem;color:rgba(255,255,255,.45);}
+.crow-icon{width:30px;height:30px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.crow-icon svg{width:13px;height:13px;}
+.crow strong{color:rgba(255,255,255,.75);}
+
+/* ── TESTIMONIALS ── */
+.testi{padding:7rem 5rem;background:var(--blush);}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:1200px;margin:4rem auto 0;}
+.tc{background:var(--paper);padding:3rem 2.5rem;position:relative;transition:transform .3s;}
+.tc:hover{transform:translateY(-4px);}
+.tc-bar{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--rose),var(--gold2));transform:scaleX(0);transform-origin:left;transition:.4s;}
+.tc:hover .tc-bar{transform:scaleX(1);}
+.tc-stars{display:flex;gap:3px;margin-bottom:1.3rem;}
+.tstar{width:9px;height:9px;background:var(--gold2);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.tc-text{font-family:var(--serif);font-size:1.08rem;font-style:italic;color:var(--brown);line-height:1.72;margin-bottom:1.5rem;}
+.tc-name{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+.tc-src{font-size:.62rem;color:var(--gold);margin-top:.25rem;}
+
+/* ── LOCATION ── */
+.loc-section{background:var(--espresso);padding:7rem 5rem;}
+.loc-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:start;}
+.loc-imgcard{position:relative;overflow:hidden;}
+.loc-img{width:100%;aspect-ratio:4/3;background:url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&q=85') center 40%/cover no-repeat;}
+.loc-img-cap{background:rgba(168,120,42,.1);border:1px solid rgba(168,120,42,.2);padding:1.8rem 2rem;margin-top:2px;}
+.loc-addr{font-family:var(--serif);font-size:1rem;font-weight:300;color:#fff;line-height:1.7;}
+.loc-phone{font-size:.85rem;color:rgba(255,255,255,.4);margin-top:.4rem;}
+.loc-sky{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);border:1px solid rgba(168,120,42,.35);padding:.35rem .9rem;}
+.loc-d .ey{color:var(--gold2);}
+.loc-d .ttl{color:#fff;font-size:2.8rem;margin-bottom:2.5rem;}
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem 1.5rem;margin-bottom:2.5rem;}
+.hrow{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.8rem;}
+.hday{color:rgba(255,255,255,.38);}
+.htime{color:rgba(255,255,255,.75);}
+.hrow.today .hday,.hrow.today .htime{color:var(--gold2);}
+.loc-rows{display:flex;flex-direction:column;gap:.6rem;}
+.lrow{display:flex;align-items:center;gap:.9rem;font-size:.8rem;color:rgba(255,255,255,.45);}
+.licon{width:32px;height:32px;background:rgba(168,120,42,.2);border:1px solid rgba(168,120,42,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.licon svg{width:13px;height:13px;}
+
+footer{background:#0A0302;border-top:1px solid rgba(168,120,42,.1);padding:2.5rem 5rem;}
+.fin{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.flogo{font-family:var(--serif);font-size:1.35rem;font-weight:300;letter-spacing:.15em;color:rgba(255,255,255,.75);}
+.ftag{font-family:var(--serif);font-size:.92rem;font-style:italic;color:rgba(255,255,255,.28);}
+.fcopy{font-size:.62rem;color:rgba(255,255,255,.2);letter-spacing:.06em;}
+
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease;}
+.rvl{opacity:0;transform:translateX(-24px);transition:opacity .9s ease,transform .9s ease;}
+.rvr{opacity:0;transform:translateX(24px);transition:opacity .9s ease,transform .9s ease;}
+.rv.on,.rvl.on,.rvr.on{opacity:1;transform:none;}
+
+/* ─── HAMBURGER ─── */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  cursor:none;background:none;border:none;padding:.3rem;
+  z-index:1000;
+}
+.hamburger span{
+  display:block;width:24px;height:1.5px;
+  background:#fff;transition:all .3s;transform-origin:center;
+}
+nav.solid .hamburger span{background:var(--espresso);}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* mobile drawer */
+.mobile-menu{
+  position:fixed;inset:0;z-index:800;
+  background:var(--espresso);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+  transform:translateX(100%);transition:transform .4s cubic-bezier(.77,0,.175,1);
+}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu a{
+  font-family:var(--serif);font-size:2.8rem;font-weight:300;
+  color:rgba(255,255,255,.8);text-decoration:none;letter-spacing:.05em;
+  transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--gold2);}
+.mobile-menu .m-cta{
+  margin-top:1rem;padding:.85rem 2.8rem;
+  background:var(--rose);color:#fff;
+  font-family:var(--sans);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+}
+
+/* ─── 960px: tablet ─── */
+@media(max-width:960px){
+  /* cursor off on touch */
+  #cu,#cr{display:none;}
+  body{cursor:auto;}
+
+  nav,nav.solid{padding:1rem 1.5rem;}
+  .nlinks,.ncta{display:none;}
+  .hamburger{display:flex;}
+
+  /* hero */
+  .hero{min-height:100svh;}
+  .hero-h1{font-size:clamp(3.8rem,14vw,6rem);}
+  .hero-tag{font-size:.58rem;gap:.6rem;}
+  .hero-tag-line{width:22px;}
+  .hero-sub{font-size:1rem;max-width:90vw;}
+  .hero-btns{flex-direction:column;align-items:center;gap:.8rem;width:100%;}
+  .hbp,.hbg{width:100%;max-width:280px;text-align:center;}
+
+  /* stats */
+  .statsbar{padding:3rem 1.5rem;}
+  .sg{grid-template-columns:repeat(2,1fr);}
+  .stcell{padding:1.5rem 1rem;}
+  .snum{font-size:3.8rem;}
+
+  /* story */
+  .story{display:block;}
+  .story-img{min-height:320px;}
+  .story-badge{top:1.5rem;right:1.5rem;width:85px;height:85px;}
+  .story-badge strong{font-size:1.9rem;}
+  .story-copy{padding:3rem 1.8rem;}
+
+  /* products */
+  .prod-hdr{padding:3.5rem 1.5rem 2rem;}
+  .pgrid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:3px;}
+  .pc{grid-column:auto!important;grid-row:auto!important;min-height:260px;}
+  .pc:nth-child(1){grid-column:span 2!important;min-height:320px;}
+  .pc-name{font-size:1.45rem!important;}
+
+  /* philosophy */
+  .phil{padding:4.5rem 1.5rem;}
+  .phil-deco{font-size:22rem;}
+  .phil-q{font-size:1.6rem;}
+  .phil-cols{grid-template-columns:1fr;gap:2rem;padding-top:2.5rem;}
+
+  /* occasions */
+  .occ{padding:4.5rem 1.5rem;}
+  .occ-grid{grid-template-columns:1fr 1fr;gap:2px;}
+
+  /* order */
+  .order{display:block;}
+  .order-img{min-height:300px;}
+  .order-form-panel{padding:3rem 1.8rem;}
+  .frow-2{grid-template-columns:1fr;}
+
+  /* testimonials */
+  .testi{padding:4.5rem 1.5rem;}
+  .tgrid{grid-template-columns:1fr;gap:2px;}
+
+  /* location */
+  .loc-section{padding:4.5rem 1.5rem;}
+  .loc-in{display:block;gap:0;}
+  .loc-imgcard{margin-bottom:2.5rem;}
+  .loc-d{padding-top:0;}
+  .loc-d .ttl{font-size:2.2rem;}
+  .hgrid{grid-template-columns:1fr;}
+
+  /* footer */
+  footer{padding:2rem 1.5rem;}
+  .fin{flex-direction:column;align-items:flex-start;gap:.5rem;}
+  .ftag{display:none;}
+}
+
+/* ─── 480px: small phones ─── */
+@media(max-width:480px){
+  .hero-h1{font-size:clamp(3rem,16vw,4.5rem);}
+  .hero-tag{display:none;}
+  .hero-divider{margin:1.5rem 0;}
+  .hero-sub{font-size:.95rem;}
+  .hero-btns{margin-top:2rem;}
+
+  .sg{grid-template-columns:1fr 1fr;}
+  .snum{font-size:3rem;}
+  .sunit{font-size:1.6rem;}
+  .stcell{padding:1.2rem .8rem;}
+
+  .ttl{font-size:2.2rem;}
+  .story-copy{padding:2.5rem 1.5rem;}
+  .squote{font-size:1.05rem;}
+
+  .pgrid{grid-template-columns:1fr!important;}
+  .pc{min-height:240px!important;}
+  .pc:nth-child(1){grid-column:1!important;min-height:280px!important;}
+
+  .phil-q{font-size:1.4rem;}
+
+  .occ-grid{grid-template-columns:1fr;}
+  .occ-num{font-size:3rem;}
+
+  .order-form-panel{padding:2.5rem 1.5rem;}
+  .of-ttl{font-size:1.8rem;}
+
+  .loc-d .ttl{font-size:1.9rem;}
+  .loc-img{aspect-ratio:3/2;}
+
+  .mobile-menu a{font-size:2.2rem;}
+}
+</style>
+</head>
+<body>
+<div id="cu"></div>
+<div id="cr"></div>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#story"     onclick="closeMobile()">Our Story</a>
+  <a href="#menu"      onclick="closeMobile()">Menu</a>
+  <a href="#occasions" onclick="closeMobile()">Occasions</a>
+  <a href="#order"     onclick="closeMobile()">Order</a>
+  <a href="#visit"     onclick="closeMobile()">Visit Us</a>
+  <a href="#order" class="m-cta" onclick="closeMobile()">Order a Cake</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nlogo">Anna&rsquo;s Cake House</a>
+  <ul class="nlinks">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#occasions">Occasions</a></li>
+    <li><a href="#order">Order</a></li>
+    <li><a href="#visit">Visit Us</a></li>
+  </ul>
+  <a href="#order" class="ncta">Order a Cake</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO — live canvas with cake decorations
+══════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <canvas id="cake-canvas"></canvas>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="hero-tag-line"></span>
+      Fusion Baking Since 1974 &nbsp;&middot;&nbsp; Burnaby, BC
+      <span class="hero-tag-line"></span>
+    </div>
+    <h1 class="hero-h1">Anna&rsquo;s<br><em>Cake House</em></h1>
+    <div class="hero-divider">
+      <span class="hero-divider-line"></span>
+      <span class="hero-divider-diamond"></span>
+      <span class="hero-divider-line"></span>
+    </div>
+    <p class="hero-sub">Blending European Recipes with Asian Techniques &mdash; Baked from Scratch, Every Single Day.</p>
+    <div class="hero-btns">
+      <a href="#order" class="hbp">Order a Custom Cake</a>
+      <a href="#menu" class="hbg">Explore the Menu</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span class="scroll-lbl">Discover</span>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ttrack">
+    <span class="titem"><strong>Egg Tarts</strong><span class="tdash"></span></span>
+    <span class="titem">Fruit Cream Cakes<span class="tdash"></span></span>
+    <span class="titem"><strong>Wedding Cakes</strong><span class="tdash"></span></span>
+    <span class="titem">Mango Mousse Cake<span class="tdash"></span></span>
+    <span class="titem"><strong>Cheese Tarts</strong><span class="tdash"></span></span>
+    <span class="titem">Cream Puffs<span class="tdash"></span></span>
+    <span class="titem"><strong>BBQ Pork Buns</strong><span class="tdash"></span></span>
+    <span class="titem">Coconut Cake<span class="tdash"></span></span>
+    <span class="titem"><strong>Napoleon Cake</strong><span class="tdash"></span></span>
+    <span class="titem">Baked from Scratch Daily<span class="tdash"></span></span>
+    <span class="titem"><strong>Egg Tarts</strong><span class="tdash"></span></span>
+    <span class="titem">Fruit Cream Cakes<span class="tdash"></span></span>
+    <span class="titem"><strong>Wedding Cakes</strong><span class="tdash"></span></span>
+    <span class="titem">Mango Mousse Cake<span class="tdash"></span></span>
+    <span class="titem"><strong>Cheese Tarts</strong><span class="tdash"></span></span>
+    <span class="titem">Cream Puffs<span class="tdash"></span></span>
+    <span class="titem"><strong>BBQ Pork Buns</strong><span class="tdash"></span></span>
+    <span class="titem">Coconut Cake<span class="tdash"></span></span>
+    <span class="titem"><strong>Napoleon Cake</strong><span class="tdash"></span></span>
+    <span class="titem">Baked from Scratch Daily<span class="tdash"></span></span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="statsbar">
+  <div class="sg rv">
+    <div class="stcell"><div class="snum" id="cy">0</div><div class="slbl">Years of Heritage</div></div>
+    <div class="stcell"><div class="snum"><span id="cc">0</span><span class="sunit">K+</span></div><div class="slbl">Monthly Customers</div></div>
+    <div class="stcell"><div class="snum">100<span class="sunit">%</span></div><div class="slbl">Natural Ingredients</div></div>
+    <div class="stcell"><div class="snum" style="font-size:2.6rem;line-height:1.15">From<br>Scratch</div><div class="slbl">Every Product, Every Day</div></div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-img rvl">
+    <div class="story-badge"><strong>50+</strong><small>Years of Family Baking</small></div>
+  </div>
+  <div class="story-copy rvr">
+    <p class="ey">A Family Legacy</p>
+    <h2 class="ttl">Where <em>East Meets West</em> in Every Bite</h2>
+    <p class="sbdy">It began in a small kitchen in the early 1970s. Anna Cheung, newly arrived in Canada, started baking the way she always had &mdash; with precision, patience, and love. Combining the delicate, airy techniques of European pastry with the bold, natural flavours of Asian baking, she created something Vancouver had never tasted before.</p>
+    <p class="sbdy">In 1974, Anna, Ronald, and Kathleen Cheung opened the first location. Over fifty years later, the Cheung family still runs every bakery &mdash; every product still made from scratch, every day, with no artificial colours or flavours. Ever.</p>
+    <blockquote class="squote">&ldquo;We make every product as if we were going to serve it ourselves &mdash; or someone in our own family.&rdquo;</blockquote>
+    <div class="sig">&mdash; Anna Cheung, Founder</div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="menu">
+  <div class="prod-hdr rv">
+    <p class="ey">The Menu</p>
+    <h2 class="ttl">Crafted with <em>Intention</em></h2>
+  </div>
+  <div class="pgrid rv">
+    <div class="pc"><div class="pc-photo" style="background-image:url('https://images.unsplash.com/photo-1587314168485-3236d6710814?w=1400&q=88');background-position:center 40%;"></div><div class="pc-ov"></div><div class="pc-body"><p class="pc-tag">Signature &middot; The Icon</p><h3 class="pc-name">The Famous Egg Tart</h3><p class="pc-desc">A solid tart shell &mdash; not puff pastry &mdash; filled with silky, perfectly-set custard. Customers call it the best in Metro Vancouver.</p><span class="pc-pill">Available Daily</span></div></div>
+    <div class="pc"><div class="pc-photo" style="background-image:url('https://images.unsplash.com/photo-1562440499-64c9a111f713?w=900&q=88');"></div><div class="pc-ov"></div><div class="pc-body"><p class="pc-tag">Custom &middot; Wedding &amp; Events</p><h3 class="pc-name">Celebration Cakes</h3><p class="pc-desc">Multi-tier cakes for weddings and every milestone. Light cream, fruit mousse &mdash; ordered morning, ready by 4pm.</p><span class="pc-pill">Custom Order</span></div></div>
+    <div class="pc"><div class="pc-photo" style="background-image:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=88');"></div><div class="pc-ov"></div><div class="pc-body"><p class="pc-tag">Seasonal Favourite</p><h3 class="pc-name">Mango &amp; Fruit Cream</h3><p class="pc-desc">Fresh mango, strawberry mousse, light whipped cream over cloud-soft sponge. Seasonal fruit at peak ripeness.</p><span class="pc-pill">Whole Cake Available</span></div></div>
+    <div class="pc"><div class="pc-photo" style="background-image:url('https://images.unsplash.com/photo-1488477304112-4944851de03d?w=900&q=88');background-position:center 60%;"></div><div class="pc-ov"></div><div class="pc-body"><p class="pc-tag">Daily Fresh</p><h3 class="pc-name">Cheese &amp; Cream Tarts</h3><p class="pc-desc">Smooth, creamy cheese in a delicate shell. Light, never cloying &mdash; the perfect afternoon treat.</p><span class="pc-pill">In-Store Daily</span></div></div>
+    <div class="pc"><div class="pc-photo" style="background-image:url('https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&q=88');"></div><div class="pc-ov"></div><div class="pc-body"><p class="pc-tag">Asian Bakery Classics</p><h3 class="pc-name">Buns &amp; Pastries</h3><p class="pc-desc">BBQ pork buns, curry beef puffs, coconut buns &mdash; Anna&rsquo;s original scratch recipes. True fusion on every tray.</p><span class="pc-pill">Available Daily</span></div></div>
+    <div class="pc"><div class="pc-photo" style="background-image:url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=900&q=88');background-position:center 30%;"></div><div class="pc-ov"></div><div class="pc-body"><p class="pc-tag">European Classics</p><h3 class="pc-name">Cream Puffs &amp; Napoleon</h3><p class="pc-desc">Pillowy cream puffs and flaky Napoleon cake. European technique with an Asian lightness, always from scratch.</p><span class="pc-pill">While Stocks Last</span></div></div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="phil">
+  <div class="phil-deco">A</div>
+  <div class="phil-in rv">
+    <p class="ey">Our Philosophy</p>
+    <p class="phil-q">&ldquo;Fusion Baking since 1974 &mdash; blending <strong>European Recipes</strong> with <strong>Asian Techniques</strong> to bring out the best of both worlds.&rdquo;</p>
+    <div class="phil-cols">
+      <div><div class="phil-col-bar"></div><div class="phil-col-title">Natural Ingredients</div><p class="phil-col-text">No artificial colours, no artificial flavours. We refuse to cut corners with cheap substitutes or fillers. What you taste is exactly what it is.</p></div>
+      <div><div class="phil-col-bar"></div><div class="phil-col-title">Baked from Scratch</div><p class="phil-col-text">One of the last remaining scratch bakeries in Greater Vancouver. Every product made fresh daily &mdash; never in bulk, never days in advance.</p></div>
+      <div><div class="phil-col-bar"></div><div class="phil-col-title">Family Owned</div><p class="phil-col-text">The Cheung family still runs every location. The same standards, the same recipes, the same love &mdash; unchanged for over fifty years.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OCCASIONS -->
+<section class="occ" id="occasions">
+  <div class="occ-hdr rv"><p class="ey">Every Occasion</p><h2 class="ttl">A Cake for <em>Every</em> Celebration</h2></div>
+  <div class="occ-grid">
+    <div class="occcard rv"><div class="occ-num">01</div><h3 class="occ-ttl">Weddings</h3><p class="occ-desc">Multi-tier wedding cakes as beautiful as they taste. Custom flavours and designs, ready on time &mdash; always.</p></div>
+    <div class="occcard rv"><div class="occ-num">02</div><h3 class="occ-ttl">Birthdays</h3><p class="occ-desc">Last-minute? Order by 10am, pick up by 4pm. Or plan ahead with a fully custom design that&rsquo;s entirely yours.</p></div>
+    <div class="occcard rv"><div class="occ-num">03</div><h3 class="occ-ttl">Festivals</h3><p class="occ-desc">Chinese New Year, Diwali, Christmas &mdash; seasonal specialties and traditional baked goods for every festive calendar.</p></div>
+    <div class="occcard rv"><div class="occ-num">04</div><h3 class="occ-ttl">Corporate</h3><p class="occ-desc">Office treats, client appreciation boxes, event orders. Consistent quality that makes every team feel genuinely valued.</p></div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section class="order" id="order">
+  <div class="order-img rvl">
+    <div class="order-img-ov"></div>
+    <div class="order-img-quote"><p>&ldquo;A wedding cake that won&rsquo;t break the bank &mdash; and will never disappoint.&rdquo;</p></div>
+  </div>
+  <div class="order-form-panel rvr">
+    <p class="of-ey">Custom Orders</p>
+    <h3 class="of-ttl">Order Your Cake</h3>
+    <p class="of-sub">We&rsquo;ll contact you within 24 hours to confirm every detail of your order.</p>
+    <div class="frow-2">
+      <div class="frow"><label>Your Name</label><input type="text" placeholder="e.g. Sarah Chen"></div>
+      <div class="frow"><label>Phone or Email</label><input type="text" placeholder="Best way to reach you"></div>
+    </div>
+    <div class="frow-2">
+      <div class="frow"><label>Occasion</label><select><option>Birthday Cake</option><option>Wedding Cake</option><option>Anniversary</option><option>Corporate</option><option>Festive</option><option>Other</option></select></div>
+      <div class="frow"><label>Pickup Date</label><input type="date"></div>
+    </div>
+    <div class="frow"><label>Cake Size</label><select><option>6&quot; Round (serves 8&ndash;10)</option><option>8&quot; Round (serves 12&ndash;16)</option><option>10&quot; Round (serves 20+)</option><option>Multi-Tier (Custom)</option><option>Sheet Cake</option></select></div>
+    <div class="frow"><label>Special Requests</label><textarea placeholder="Flavours, dietary needs, design ideas, allergy info..."></textarea></div>
+    <button class="fbtn">Send Inquiry &rarr;</button>
+    <div class="contact-rows">
+      <div class="crow"><div class="crow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(201,150,60,.7)" stroke-width="1.5" stroke-linecap="round"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div><span><strong>(604) 444-3332</strong> &nbsp;&mdash;&nbsp; Lougheed</span></div>
+      <div class="crow"><div class="crow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(201,150,60,.7)" stroke-width="1.5" stroke-linecap="round"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg></div><span>Unit D15, 9855 Austin Ave, Burnaby BC</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="rv" style="text-align:center;max-width:540px;margin:0 auto"><p class="ey">Loved Across Burnaby</p><h2 class="ttl">What Customers Say</h2></div>
+  <div class="tgrid">
+    <div class="tc rv"><div class="tc-bar"></div><div class="tc-stars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div><p class="tc-text">&ldquo;Their fruit cream cakes are so fresh and delicious. There was a layer of strawberry and mango mousse &mdash; the fruit was great quality, the whipped cream just right. Not too sweet at all.&rdquo;</p><p class="tc-name">Munchica L.</p><p class="tc-src">Yelp &middot; Lougheed Town Centre</p></div>
+    <div class="tc rv"><div class="tc-bar"></div><div class="tc-stars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div><p class="tc-text">&ldquo;If you&rsquo;re looking for a tart-shelled egg tart &mdash; not the puff pastry kind &mdash; this is the place. They make the best ones in town, every single time.&rdquo;</p><p class="tc-name">Google Reviewer</p><p class="tc-src">Google Reviews &middot; Burnaby</p></div>
+    <div class="tc rv"><div class="tc-bar"></div><div class="tc-stars"><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div><div class="tstar"></div></div><p class="tc-text">&ldquo;I came for my wedding cake after visiting many bakeries. Anna&rsquo;s gave me a beautiful three-tier cake at a price that didn&rsquo;t break the bank. The box even came with a ribbon.&rdquo;</p><p class="tc-name">Patricia L.</p><p class="tc-src">Postcard Reviews &middot; Vancouver</p></div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="loc-section" id="visit">
+  <div class="loc-in">
+    <div class="rvl"><div class="loc-imgcard"><div class="loc-img"></div><div class="loc-img-cap"><div class="loc-addr">Unit D15, 9855 Austin Ave<br>Lougheed Town Centre<br>Burnaby, BC V3J 1N4</div><div class="loc-phone">(604) 444-3332</div><div class="loc-sky">Steps from SkyTrain</div></div></div></div>
+    <div class="loc-d rvr">
+      <p class="ey">Find Us</p>
+      <h2 class="ttl">Visit the <em style="color:var(--gold2)">Lougheed</em> Bakery</h2>
+      <div class="hgrid">
+        <div class="hrow today"><span class="hday">Sunday</span><span class="htime">11:00am &ndash; 6:00pm</span></div>
+        <div class="hrow"><span class="hday">Monday</span><span class="htime">10:00am &ndash; 6:00pm</span></div>
+        <div class="hrow"><span class="hday">Tuesday</span><span class="htime">10:00am &ndash; 6:00pm</span></div>
+        <div class="hrow"><span class="hday">Wednesday</span><span class="htime">10:00am &ndash; 9:00pm</span></div>
+        <div class="hrow"><span class="hday">Thursday</span><span class="htime">10:00am &ndash; 9:00pm</span></div>
+        <div class="hrow"><span class="hday">Friday</span><span class="htime">10:00am &ndash; 9:00pm</span></div>
+        <div class="hrow"><span class="hday">Saturday</span><span class="htime">9:30am &ndash; 6:00pm</span></div>
+      </div>
+      <div class="loc-rows">
+        <div class="lrow"><div class="licon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(201,150,60,.8)" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="3" width="22" height="16" rx="2"/><path d="M1 9h22"/></svg></div><span>Lougheed Town Centre Station &mdash; Expo &amp; Millennium Lines</span></div>
+        <div class="lrow"><div class="licon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(201,150,60,.8)" stroke-width="1.5" stroke-linecap="round"><rect x="1" y="3" width="22" height="16" rx="2"/><path d="M8 3v6M16 3v6"/></svg></div><span>Bus Routes 101, 110, 136, 152, 157, 555 &amp; more</span></div>
+        <div class="lrow"><div class="licon"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(201,150,60,.8)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 10-16 0c0 3 2.7 6.9 8 11.7z"/></svg></div><span>Free guest parking at Lougheed Town Centre</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fin">
+    <div class="flogo">Anna&rsquo;s Cake House</div>
+    <div class="ftag">Fusion Baking Since 1974</div>
+    <div class="fcopy">&copy; 2026 Anna&rsquo;s Cake House &middot; Burnaby, BC &middot; Designed by Marblella Designs</div>
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════
+   LIVE CANVAS — CAKE DECORATIONS
+   Particles: sprinkles, sugar pearls, gold stars,
+   sugar flower petals, cream swirl dots, ribbon curls
+════════════════════════════════════════════════ */
+const canvas = document.getElementById('cake-canvas');
+const ctx    = canvas.getContext('2d');
+
+let W, H, particles = [], mouse = { x: -999, y: -999 };
+
+/* Warm bakery palette — no emojis, pure color geometry */
+const PALETTE = [
+  '#C9963C', // antique gold
+  '#E8B86D', // light gold
+  '#B86B52', // terracotta rose
+  '#D4896A', // apricot
+  '#EDD5BF', // blush
+  '#FFFFFF', // white pearl
+  '#F5E6D3', // cream
+  '#637060', // sage green
+  '#A0522D', // cinnamon
+  '#E8D5C4', // pale blush
+];
+
+/* Background gradient — warm deep mahogany to rose */
+function drawBg() {
+  const grd = ctx.createLinearGradient(0, 0, W, H);
+  grd.addColorStop(0,   '#1A0604');
+  grd.addColorStop(0.4, '#2C0C08');
+  grd.addColorStop(0.75,'#3D1408');
+  grd.addColorStop(1,   '#1A0604');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, W, H);
+
+  /* subtle warm radial glow in centre */
+  const glow = ctx.createRadialGradient(W*.5, H*.45, 0, W*.5, H*.45, W*.55);
+  glow.addColorStop(0,   'rgba(180,90,40,.25)');
+  glow.addColorStop(0.5, 'rgba(120,50,20,.1)');
+  glow.addColorStop(1,   'transparent');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, W, H);
+}
+
+/* ── particle types ── */
+const TYPES = ['sprinkle','pearl','star','petal','swirldot','ribbon'];
+
+function randColor() { return PALETTE[Math.floor(Math.random() * PALETTE.length)]; }
+function rand(a, b)  { return a + Math.random() * (b - a); }
+
+function makeParticle() {
+  const type  = TYPES[Math.floor(Math.random() * TYPES.length)];
+  const side  = Math.random() > .5;
+  return {
+    type,
+    x:     rand(0, W),
+    y:     rand(-120, -10),
+    vx:    rand(-0.4, 0.4),
+    vy:    rand(0.5, 1.6),
+    rot:   rand(0, Math.PI * 2),
+    rotV:  rand(-0.025, 0.025),
+    size:  type === 'sprinkle' ? rand(4, 9)
+         : type === 'pearl'    ? rand(3, 7)
+         : type === 'star'     ? rand(6, 13)
+         : type === 'petal'    ? rand(5, 11)
+         : type === 'swirldot' ? rand(3, 6)
+         :                       rand(8, 16),
+    color:  randColor(),
+    color2: randColor(),
+    alpha:  rand(0.55, 0.95),
+    wave:   rand(0, Math.PI * 2),
+    waveAmp:rand(0.3, 1.0),
+    life:   0,
+    maxLife:rand(0.6, 1.0),
+  };
+}
+
+function initParticles() {
+  particles = [];
+  const count = Math.min(220, Math.floor((W * H) / 5000));
+  for (let i = 0; i < count; i++) {
+    const p = makeParticle();
+    p.y = rand(0, H); // scatter at start
+    particles.push(p);
+  }
+}
+
+/* ── drawing helpers ── */
+
+function drawSprinkle(p) {
+  ctx.save();
+  ctx.translate(p.x, p.y);
+  ctx.rotate(p.rot);
+  ctx.globalAlpha = p.alpha;
+  /* capsule shape */
+  const w = p.size * .38, h = p.size;
+  ctx.beginPath();
+  ctx.roundRect(-w/2, -h/2, w, h, w/2);
+  ctx.fillStyle = p.color;
+  ctx.fill();
+  /* shine stripe */
+  ctx.beginPath();
+  ctx.roundRect(-w/4, -h/2 + h*.15, w*.3, h*.3, w*.15);
+  ctx.fillStyle = 'rgba(255,255,255,.35)';
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawPearl(p) {
+  ctx.save();
+  ctx.translate(p.x, p.y);
+  ctx.globalAlpha = p.alpha;
+  const r = p.size;
+  /* pearl body */
+  const grad = ctx.createRadialGradient(-r*.3, -r*.3, 0, 0, 0, r);
+  grad.addColorStop(0,   'rgba(255,255,255,.95)');
+  grad.addColorStop(0.3, p.color);
+  grad.addColorStop(1,   'rgba(0,0,0,.2)');
+  ctx.beginPath();
+  ctx.arc(0, 0, r, 0, Math.PI * 2);
+  ctx.fillStyle = grad;
+  ctx.fill();
+  /* specular */
+  ctx.beginPath();
+  ctx.arc(-r*.32, -r*.32, r*.28, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,.55)';
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawStar(p) {
+  ctx.save();
+  ctx.translate(p.x, p.y);
+  ctx.rotate(p.rot);
+  ctx.globalAlpha = p.alpha;
+  const n = 5, outer = p.size, inner = p.size * .45;
+  ctx.beginPath();
+  for (let i = 0; i < n * 2; i++) {
+    const angle = (i * Math.PI) / n - Math.PI / 2;
+    const r = i % 2 === 0 ? outer : inner;
+    i === 0 ? ctx.moveTo(Math.cos(angle)*r, Math.sin(angle)*r)
+            : ctx.lineTo(Math.cos(angle)*r, Math.sin(angle)*r);
+  }
+  ctx.closePath();
+  ctx.fillStyle = p.color;
+  ctx.fill();
+  /* inner glow */
+  ctx.beginPath();
+  for (let i = 0; i < n * 2; i++) {
+    const angle = (i * Math.PI) / n - Math.PI / 2;
+    const r = i % 2 === 0 ? outer * .55 : inner * .55;
+    i === 0 ? ctx.moveTo(Math.cos(angle)*r, Math.sin(angle)*r)
+            : ctx.lineTo(Math.cos(angle)*r, Math.sin(angle)*r);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(255,255,255,.3)';
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawPetal(p) {
+  ctx.save();
+  ctx.translate(p.x, p.y);
+  ctx.rotate(p.rot);
+  ctx.globalAlpha = p.alpha * .85;
+  const s = p.size;
+  /* teardrop / petal shape */
+  ctx.beginPath();
+  ctx.moveTo(0, -s);
+  ctx.bezierCurveTo(s*.65, -s*.4,  s*.65, s*.5, 0, s*.7);
+  ctx.bezierCurveTo(-s*.65, s*.5, -s*.65, -s*.4, 0, -s);
+  ctx.closePath();
+  ctx.fillStyle = p.color;
+  ctx.fill();
+  /* vein line */
+  ctx.beginPath();
+  ctx.moveTo(0, -s*.8);
+  ctx.lineTo(0, s*.5);
+  ctx.strokeStyle = 'rgba(255,255,255,.2)';
+  ctx.lineWidth = 0.8;
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawSwirlDot(p) {
+  ctx.save();
+  ctx.translate(p.x, p.y);
+  ctx.globalAlpha = p.alpha;
+  /* cluster of 3 cream dots — looks like piped icing */
+  const r = p.size;
+  ctx.fillStyle = p.color;
+  ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI*2); ctx.fill();
+  ctx.globalAlpha = p.alpha * .6;
+  ctx.beginPath(); ctx.arc(r*1.3, -r*.4, r*.65, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(-r*1.2, -r*.5, r*.55, 0, Math.PI*2); ctx.fill();
+  ctx.restore();
+}
+
+function drawRibbon(p) {
+  ctx.save();
+  ctx.translate(p.x, p.y);
+  ctx.rotate(p.rot);
+  ctx.globalAlpha = p.alpha * .75;
+  const s = p.size;
+  /* S-curve ribbon segment */
+  ctx.beginPath();
+  ctx.moveTo(-s*.6, -s*.4);
+  ctx.bezierCurveTo(-s*.1, -s*.8, s*.3, s*.1, s*.6, -.1);
+  ctx.bezierCurveTo(s*.9, -.3, s*.5, s*.6, -s*.1, s*.5);
+  ctx.bezierCurveTo(-s*.6, s*.4, -s*.9, -.1, -s*.6, -s*.4);
+  ctx.closePath();
+  ctx.fillStyle = p.color;
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,.15)';
+  ctx.lineWidth = .6;
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawParticle(p) {
+  switch(p.type) {
+    case 'sprinkle':  drawSprinkle(p); break;
+    case 'pearl':     drawPearl(p);    break;
+    case 'star':      drawStar(p);     break;
+    case 'petal':     drawPetal(p);    break;
+    case 'swirldot':  drawSwirlDot(p); break;
+    case 'ribbon':    drawRibbon(p);   break;
+  }
+}
+
+/* ── mouse interaction — particles gently drift away ── */
+document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+/* ── animation loop ── */
+let frame = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  frame++;
+
+  drawBg();
+
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+
+    /* gentle sine sway */
+    p.wave += 0.018;
+    p.x   += p.vx + Math.sin(p.wave) * p.waveAmp * .4;
+    p.y   += p.vy;
+    p.rot += p.rotV;
+
+    /* mouse repulsion — light, dreamy */
+    const dx = p.x - mouse.x, dy = p.y - mouse.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if (dist < 120) {
+      const force = (120 - dist) / 120 * .8;
+      p.vx += (dx / dist) * force * .06;
+      p.vy += (dy / dist) * force * .04;
+    }
+    /* dampen velocity */
+    p.vx *= 0.995;
+    p.vy  = Math.max(p.vy * 0.998, 0.4);
+
+    drawParticle(p);
+
+    /* recycle when off screen */
+    if (p.y > H + 30 || p.x < -40 || p.x > W + 40) {
+      particles[i] = makeParticle();
+    }
+  }
+
+  /* slowly spawn new ones to keep density */
+  if (frame % 8 === 0 && particles.length < 240) {
+    particles.push(makeParticle());
+  }
+}
+
+function resize() {
+  W = canvas.width  = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+  initParticles();
+}
+
+window.addEventListener('resize', resize);
+resize();
+animate();
+
+/* ════ CURSOR ════ */
+const cu=document.getElementById('cu'), cr=document.getElementById('cr');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cu.style.left=mx+'px'; cu.style.top=my+'px'; });
+(function loop(){ rx+=(mx-rx)*.13; ry+=(my-ry)*.13; cr.style.left=rx+'px'; cr.style.top=ry+'px'; requestAnimationFrame(loop); })();
+document.querySelectorAll('a,button,.pc,.occcard,.tc').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
+});
+
+/* ════ NAV SCROLL ════ */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 90));
+
+/* ════ SCROLL REVEAL ════ */
+const obs = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }); }, { threshold:.1 });
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el => obs.observe(el));
+
+/* ════ COUNTERS ════ */
+function count(el, to, dur=2000) {
+  let s=null;
+  (function step(ts){ if(!s)s=ts; const p=Math.min((ts-s)/dur,1), e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2; el.textContent=Math.round(e*to); if(p<1)requestAnimationFrame(step); })(performance.now());
+}
+const so = new IntersectionObserver(es => { es.forEach(e => { if(e.isIntersecting){ count(document.getElementById('cy'),52); count(document.getElementById('cc'),60); so.disconnect(); } }); }, {threshold:.3});
+so.observe(document.querySelector('.statsbar'));
+
+/* stagger cards */
+document.querySelectorAll('.pc').forEach((c,i)=>{ c.style.transitionDelay=i*.07+'s'; });
+document.querySelectorAll('.occcard').forEach((c,i)=>{ c.style.transitionDelay=i*.1+'s'; });
+document.querySelectorAll('.tc').forEach((c,i)=>{ c.style.transitionDelay=i*.12+'s'; });
+
+/* ════ HAMBURGER MENU ════ */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+/* close on escape */
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMobile(); });
+</script>
+</body>
+</html>
