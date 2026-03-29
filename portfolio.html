@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Harsh Kumar - Designer & Developer</title>
 <meta property="og:title" content="Harsh Kumar | Product Design Portfolio">
-<meta property="og:description" content="Designer & developer at Northeastern Vancouver. AI pipelines, motion design, web animation. 6 projects.">
+<meta property="og:description" content="Designer & developer at Northeastern Vancouver. AI pipelines, motion design, web animation.">
 <meta property="og:url" content="https://harsh96-web.github.io/designs/Portfolio.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -183,7 +183,7 @@ section:not(.hero){padding:100px 52px}
 .ci:focus{border-color:rgba(196,255,63,.4)}
 .csb{width:32px;height:32px;background:var(--accent);border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#080808;font-size:15px;font-weight:700;flex-shrink:0;transition:transform .2s}
 .csb:hover{transform:scale(1.08)}
-.ckey{padding:7px 13px 10px;font-size:11px;color:var(--muted);border-top:1px solid #1c1c1c}
+.ckey{display:none}
 .cki{width:100%;background:#181818;border:1px solid #282828;border-radius:6px;padding:6px 10px;color:var(--text);font-size:11px;font-family:var(--mono);outline:none;margin-top:4px;transition:border-color .2s}
 .cki:focus{border-color:rgba(196,255,63,.4)}
 @keyframes fup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -205,18 +205,7 @@ section:not(.hero){padding:100px 52px}
 }
 @media(max-width:480px){.prg{grid-template-columns:1fr}.skills-grid{grid-template-columns:1fr}}
 @media(max-width:480px){.hero-name{font-size:clamp(52px,14vw,80px)!important}.hero-year{display:none}.hero{padding-left:18px;padding-right:18px;padding-bottom:120px}.htag{font-size:14px;max-width:100%}.hero-pills{gap:6px}.pill{font-size:9px;padding:5px 11px}.scrl{display:none}nav{padding:18px 20px}section:not(.hero){padding:70px 18px}.sh{font-size:clamp(28px,8vw,48px)}.wg{gap:2px}.skills-grid{grid-template-columns:1fr}.prg{grid-template-columns:1fr}.chl{font-size:clamp(42px,13vw,80px)}.cfab{bottom:24px;right:20px;width:50px;height:50px}.cpanel{width:calc(100vw - 32px);right:16px;bottom:90px}.stats{grid-template-columns:1fr 1fr}}
-#demos{background:var(--bg)}
-.demo-grid2{display:grid;grid-template-columns:1fr 1fr;gap:3px}
-.demo-card{position:relative;background:var(--bg2);overflow:hidden;cursor:none}
-.demo-label{position:absolute;top:0;left:0;right:0;z-index:10;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(8,8,8,.95),transparent);pointer-events:none}
-.demo-title{font-family:var(--sans);font-weight:700;font-size:13px;color:var(--text)}
-.demo-tag{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(196,255,63,.3);padding:3px 9px;border-radius:20px}
-.demo-frame-wrap{position:relative;width:100%;height:480px;overflow:hidden}
-.demo-overlay{position:absolute;inset:0;z-index:5;cursor:none;display:flex;align-items:flex-end;justify-content:flex-end;padding:20px;background:linear-gradient(to top,rgba(8,8,8,.7) 0%,transparent 40%)}
-.demo-open{font-family:var(--mono);font-size:10px;color:var(--text);letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);padding:8px 16px;border-radius:20px;text-decoration:none;background:rgba(8,8,8,.6);backdrop-filter:blur(8px);transition:border-color .2s,color .2s}
-.demo-open:hover{border-color:var(--accent);color:var(--accent)}
-@media(max-width:900px){.demo-grid2{grid-template-columns:1fr}}
-@media(max-width:480px){.demo-frame-wrap{height:280px}}
+#demos{background:var(--bg)}.demo-grid2{display:grid;grid-template-columns:1fr 1fr;gap:3px}.demo-card{position:relative;background:var(--bg2);overflow:hidden;cursor:none}.demo-label{position:absolute;top:0;left:0;right:0;z-index:10;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(to bottom,rgba(8,8,8,.95),transparent);pointer-events:none}.demo-title{font-family:var(--sans);font-weight:700;font-size:13px;color:var(--text)}.demo-tag{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(196,255,63,.3);padding:3px 9px;border-radius:20px}.demo-frame-wrap{position:relative;width:100%;height:480px;overflow:hidden}.demo-overlay{position:absolute;inset:0;z-index:5;cursor:none;display:flex;align-items:flex-end;justify-content:flex-end;padding:20px;background:linear-gradient(to top,rgba(8,8,8,.7) 0%,transparent 40%)}.demo-open{font-family:var(--mono);font-size:10px;color:var(--text);letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);padding:8px 16px;border-radius:20px;text-decoration:none;background:rgba(8,8,8,.6);backdrop-filter:blur(8px);transition:border-color .2s,color .2s}.demo-open:hover{border-color:var(--accent);color:var(--accent)}@media(max-width:900px){.demo-grid2{grid-template-columns:1fr}}@media(max-width:480px){.demo-frame-wrap{height:280px}}
 </style>
 </head>
 <body>
@@ -300,7 +289,6 @@ section:not(.hero){padding:100px 52px}
     
   </div>
 </section>
-
 <section id="demos">
   <div class="lbl rv">Live Work</div>
   <div class="wh rv"><h2 class="sh">Live<br>Websites</h2><div class="wcnt">02</div></div>
@@ -323,7 +311,6 @@ section:not(.hero){padding:100px 52px}
     </div>
   </div>
 </section>
-
 <section id="about">
   <div class="ag">
     <div class="rv">
@@ -485,9 +472,7 @@ var cfab=document.getElementById('cfab'),cpanel=document.getElementById('cpanel'
 var cmsgs=document.getElementById('cmsgs'),cinp=document.getElementById('cinp');
 var csnd=document.getElementById('csnd'),cki=document.getElementById('cki'),cklbl=document.getElementById('cklbl');
 var chatOpen=false;
-var _savedKey='';
-try{var _k=localStorage.getItem('hk_apikey')||sessionStorage.getItem('hk_apikey');if(_k){cki.value=_k;_savedKey=_k;cklbl.textContent='API key saved ✓';}}catch(e){}
-cki.addEventListener('input',function(){var k=cki.value.trim();if(k.length>10){_savedKey=k;try{localStorage.setItem('hk_apikey',k);sessionStorage.setItem('hk_apikey',k);}catch(e){}cklbl.textContent='API key saved ✓';}});
+var _savedKey='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';
 cfab.addEventListener('click',function(){
   chatOpen=!chatOpen;cpanel.classList.toggle('open',chatOpen);cfab.classList.toggle('open',chatOpen);
   if(chatOpen)setTimeout(function(){cinp.focus()},380);
@@ -498,8 +483,7 @@ function removeTyping(){var t=document.getElementById('typind');if(t)t.remove()}
 function sendMsg(){
   var msg=cinp.value.trim();if(!msg)return;
   cinp.value='';addMsg(msg,'usr');addTyping();
-  var key=cki.value.trim()||_savedKey;
-  if(!key){removeTyping();addMsg('Paste your Anthropic API key below to chat!','bot');return}
+  var key=_savedKey;
   fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
@@ -513,13 +497,11 @@ function sendMsg(){
     if(data.content&&data.content[0]&&data.content[0].text)addMsg(data.content[0].text,'bot');
     else addMsg('Error: '+(data.error?data.error.message:'check API key'),'bot');
   }).catch(function(err){
-    removeTyping();
-    addMsg('Network error — check your connection and API key.','bot');
+    removeTyping();addMsg('Network error — check your connection.','bot');
   });
 }
 csnd.addEventListener('click',sendMsg);
 cinp.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg()});
-// 3D Card Tilt
 document.querySelectorAll('.pc').forEach(function(card){
   card.addEventListener('mouseenter',function(){card.style.transition='transform .15s ease,box-shadow .5s cubic-bezier(.16,1,.3,1)'});
   card.addEventListener('mousemove',function(e){var b=card.getBoundingClientRect();var x=(e.clientX-b.left)/b.width-0.5;var y=(e.clientY-b.top)/b.height-0.5;card.style.transform='scale(1.04) rotateX('+(-y*10)+'deg) rotateY('+(x*12)+'deg)';});
