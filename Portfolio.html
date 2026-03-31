@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Harsh Kumar - Designer & Developer</title>
 <meta property="og:title" content="Harsh Kumar | Product Design Portfolio">
-<meta property="og:description" content="Designer & developer at Northeastern Vancouver.">
+<meta property="og:description" content="Designer & developer at Northeastern Vancouver. AI pipelines, motion design, web animation.">
 <meta property="og:url" content="https://harsh-portfolio.vercel.app">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="Harsh Kumar — Designer & Developer. Northeastern Vancouver.">
+<meta name="description" content="Harsh Kumar — Designer & Developer. Digital Media Connect at Northeastern Vancouver.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -396,7 +396,7 @@ section:not(.hero){padding:100px 52px}
 <section id="contact">
   <p class="csup rv">Let's build something unforgettable</p>
   <div class="chl rv d1">LET'S<br><span>WORK</span></div>
-  <a href="/cdn-cgi/l/email-protection#1c717d6e7e7970707d78796f7b75726f5c73696870737377327f7371" class="cem rv d2"><span class="__cf_email__" data-cfemail="670a061505020b0b06030214000e0914270812130b08080c4904080a">[email&#160;protected]</span></a>
+  <a href="mailto:marbelladesgins@outlook.com" class="cem rv d2">marbelladesgins@outlook.com</a>
   <div class="socs rv d3">
     <a href="https://www.linkedin.com/in/harshkumaruxui/" target="_blank" class="soc">LinkedIn</a>
     <a href="#" class="soc">Behance</a>
@@ -430,7 +430,7 @@ section:not(.hero){padding:100px 52px}
     <input class="cki" id="cki" type="password" placeholder="sk-ant-...">
   </div>
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 const CD=document.getElementById('cd'),CR=document.getElementById('cr');
@@ -515,4 +515,9 @@ document.querySelectorAll('.demo-card').forEach(function(card){
   var raf=null,mx=0,my=0;
   card.addEventListener('mouseenter',function(){card.style.transition='transform .15s ease,box-shadow .5s cubic-bezier(.16,1,.3,1)';});
   card.addEventListener('mousemove',function(e){var b=card.getBoundingClientRect();mx=(e.clientX-b.left)/b.width-0.5;my=(e.clientY-b.top)/b.height-0.5;if(!raf)raf=requestAnimationFrame(function(){card.style.transform='scale(1.02) rotateX('+(-my*6)+'deg) rotateY('+(mx*8)+'deg)';raf=null;});});
-  card.addEventListener('mouseleave',function(){if(raf){cancelAnimationFrame(raf);raf=null;}card.style.transition='transform .6s cubic-bezier(
+  card.addEventListener('mouseleave',function(){if(raf){cancelAnimationFrame(raf);raf=null;}card.style.transition='transform .6s cubic-bezier(.16,1,.3,1),box-shadow .5s cubic-bezier(.16,1,.3,1)';card.style.transform='scale(1) rotateX(0deg) rotateY(0deg)';});
+  card.addEventListener('mousedown',function(){card.style.transform='scale(0.98) rotateX(0deg) rotateY(0deg)'});
+});
+</script>
+</body>
+</html>
