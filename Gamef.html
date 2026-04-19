@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endless Waiting — Live Dual Framework Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Offline fallbacks — if Google Fonts can't load, these keep the layout intact */
+  @font-face { font-family: 'Space Mono'; src: local('Courier New'), local('Courier'); }
+  @font-face { font-family: 'Bebas Neue'; src: local('Impact'), local('Arial Black'); }
+  @font-face { font-family: 'Inter'; src: local('Helvetica Neue'), local('Arial'); }
+</style>
+<style>
+  :root {
+    --bg:        #08080f;
+    --surface:   #0e0e1a;
+    --surface2:  #141424;
+    --border:    #1e1e3a;
+    --red:       #e63946;
+    --red-dim:   #7f1d1d;
+    --red-glow:  rgba(230,57,70,0.18);
+    --amber:     #f59e0b;
+    --green:     #22c55e;
+    --blue:      #3b82f6;
+    --muted:     #4a4a6a;
+    --text:      #e2e2f0;
+    --text-dim:  #7070a0;
+    --mono:      'Space Mono', monospace;
+    --display:   'Bebas Neue', sans-serif;
+    --sans:      'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ─── TOP BAR ─────────────────────────────────────────────── */
+  #topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 52px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  #topbar .title {
+    font-family: var(--display);
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--text);
+  }
+  #topbar .subtitle {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+  #topbar .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    text-align: right;
+    line-height: 1.6;
+  }
+  #topbar .session-timer {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--amber);
+    font-weight: bold;
+  }
+
+  /* ─── MAIN LAYOUT ─────────────────────────────────────────── */
+  #main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    gap: 0;
+  }
+
+  /* ─── GAME PANEL (LEFT 58%) ───────────────────────────────── */
+  #game-panel {
+    width: 58%;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+    background: radial-gradient(ellipse at 50% 40%, #0f0f20 0%, var(--bg) 70%);
+  }
+
+  #game-title {
+    font-family: var(--display);
+    font-size: 52px;
+    letter-spacing: 6px;
+    color: var(--text);
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  #game-subtitle {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+  }
+
+  #game-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+  }
+
+  /* Progress section */
+  #progress-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 3px;
+  }
+  #progress-wrapper {
+    position: relative;
+    height: 28px;
+    background: var(--surface2);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  #progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--red);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+    position: relative;
+  }
+  #progress-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 20px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.15));
+  }
+  #progress-text {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+    font-weight: bold;
+  }
+
+  /* Status row */
+  #status-row {
+    display: flex;
+    gap: 10px;
+  }
+  .stat-box {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .stat-box .stat-label {
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    display: block;
+  }
+  .stat-box .stat-val {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+    font-weight: bold;
+    display: block;
+    margin-top: 2px;
+  }
+  .stat-box.bad .stat-val { color: var(--red); }
+  .stat-box.warn .stat-val { color: var(--amber); }
+
+  /* Button */
+  #press-btn {
+    width: 100%;
+    padding: 16px;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: var(--text);
+    background: var(--surface2);
+    border: 1px solid var(--muted);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  #press-btn:hover:not(:disabled) {
+    border-color: var(--red);
+    box-shadow: 0 0 20px var(--red-glow);
+    color: #fff;
+  }
+  #press-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: var(--border);
+  }
+  #press-btn .btn-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* Delay bar inside button */
+  #btn-delay-bar {
+    position: absolute;
+    left: 0; bottom: 0; top: 0;
+    width: 0%;
+    background: rgba(230,57,70,0.12);
+    transition: width linear;
+    pointer-events: none;
+  }
+
+  /* Countdown */
+  #countdown {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--red);
+    text-align: center;
+    min-height: 16px;
+    letter-spacing: 1px;
+  }
+
+  /* Result panel */
+  #result-panel {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #result-label { color: var(--text-dim); }
+  #result-value { color: var(--text-dim); font-style: italic; }
+  #result-value.flash-bad { color: var(--red); animation: flashText 0.5s ease; }
+  #result-value.flash-good { color: var(--green); animation: flashText 0.5s ease; }
+
+  /* Redacted goal */
+  #goal-bar {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    padding: 6px;
+    border-top: 1px solid var(--border);
+    letter-spacing: 1px;
+  }
+  #goal-bar span {
+    background: var(--text-dim);
+    color: var(--text-dim);
+    border-radius: 2px;
+    padding: 1px 4px;
+    user-select: none;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── ERROR POPUP ──────────────────────────────────────────── */
+  #error-popup {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--surface);
+    border: 1px solid var(--red);
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 0 40px rgba(230,57,70,0.3);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+  }
+  #error-popup.visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .popup-header {
+    background: var(--red);
+    padding: 10px 14px;
+    border-radius: 9px 9px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  .popup-header .popup-x {
+    width: 18px; height: 18px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    cursor: not-allowed;
+    user-select: none;
+  }
+  .popup-body { padding: 16px 14px; }
+  .popup-body p {
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .popup-body p span { color: var(--red); }
+  #popup-cooldown {
+    color: var(--amber) !important;
+    font-weight: bold;
+  }
+  .popup-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: bold;
+    background: var(--surface2);
+    border: 1px solid var(--muted);
+    color: var(--text-dim);
+    border-radius: 5px;
+    cursor: not-allowed;
+    letter-spacing: 1px;
+  }
+
+  /* ─── FRAMEWORK PANEL (RIGHT 42%) ────────────────────────── */
+  #fw-panel {
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  #fw-header {
+    padding: 14px 20px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  #fw-header h2 {
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--text);
+  }
+  #fw-header p {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--red);
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* MDA section */
+  .fw-section {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .fw-section-title {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .fw-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Reverse MDA flow */
+  #mda-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .mda-node {
+    flex: 1;
+    padding: 10px 8px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .mda-node:last-child { border-right: none; }
+  .mda-node .mda-label {
+    font-family: var(--display);
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    transition: color 0.3s;
+    display: block;
+  }
+  .mda-node .mda-sub {
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--muted);
+    margin-top: 3px;
+    transition: color 0.3s;
+    display: block;
+    line-height: 1.4;
+  }
+  .mda-arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    color: var(--muted);
+    font-size: 14px;
+    border-right: 1px solid var(--border);
+    font-family: var(--mono);
+    transition: color 0.3s;
+  }
+  .mda-node.active .mda-label { color: var(--red); }
+  .mda-node.active .mda-sub { color: #ff6b6b; }
+  .mda-node.active { background: var(--red-glow); }
+  .mda-arrow.active { color: var(--red); }
+
+  /* Active aesthetic display */
+  #current-aesthetic {
+    margin-top: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    min-height: 32px;
+    transition: all 0.3s;
+  }
+  #current-aesthetic.lit {
+    border-color: var(--red);
+    color: var(--text);
+    background: var(--red-glow);
+  }
+  #current-aesthetic .ae-label { color: var(--text-dim); font-size: 8px; letter-spacing: 1px; display: block; margin-bottom: 3px; }
+  #current-aesthetic .ae-value { color: var(--red); font-weight: bold; font-size: 12px; }
+
+  /* SDT needs */
+  #sdt-needs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sdt-need {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .sdt-need::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--muted);
+    transition: background 0.3s;
+  }
+  .sdt-need.destroyed::before { background: var(--red); }
+  .sdt-need.destroyed { border-color: var(--red-dim); background: rgba(127,29,29,0.15); }
+  .sdt-need-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .sdt-need-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--text-dim);
+    transition: color 0.3s;
+  }
+  .sdt-need.destroyed .sdt-need-name { color: var(--red); }
+  .sdt-need-status {
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--green);
+    letter-spacing: 1px;
+    padding: 2px 6px;
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+  .sdt-need.destroyed .sdt-need-status {
+    color: var(--red);
+    border-color: var(--red);
+    content: 'DESTROYED';
+  }
+  .sdt-bar-bg {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .sdt-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease, background 0.3s;
+  }
+  .sdt-need-desc {
+    font-family: var(--mono);
+    font-size: 8px;
+    color: var(--text-dim);
+    margin-top: 5px;
+    line-height: 1.5;
+    transition: color 0.3s;
+  }
+  .sdt-need.destroyed .sdt-need-desc { color: #ff6b6b; }
+
+  /* Event log */
+  #event-log-wrap {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  #event-log {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 20px 8px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .log-entry {
+    font-family: var(--mono);
+    font-size: 9px;
+    line-height: 1.5;
+    padding: 6px 8px;
+    border-radius: 4px;
+    background: var(--surface2);
+    border-left: 2px solid var(--border);
+    animation: slideIn 0.3s ease;
+    flex-shrink: 0;
+  }
+  .log-entry.type-destroy { border-left-color: var(--red); }
+  .log-entry.type-mda { border-left-color: var(--amber); }
+  .log-entry.type-sdt { border-left-color: var(--blue); }
+  .log-entry.type-info { border-left-color: var(--muted); }
+  .log-entry .log-time { color: var(--text-dim); margin-right: 6px; }
+  .log-entry .log-tag {
+    display: inline-block;
+    padding: 0px 5px;
+    border-radius: 3px;
+    font-size: 7px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .log-entry.type-destroy .log-tag { background: var(--red-dim); color: #fca5a5; }
+  .log-entry.type-mda .log-tag { background: #78350f; color: #fcd34d; }
+  .log-entry.type-sdt .log-tag { background: #1e3a5f; color: #93c5fd; }
+  .log-entry.type-info .log-tag { background: var(--surface); color: var(--text-dim); }
+  .log-entry .log-msg { color: var(--text); }
+
+  /* ─── PRESENTATION POINTS (BOTTOM BAR) ───────────────────── */
+  #pres-bar {
+    height: 54px;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  #pres-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  #pres-message {
+    flex: 1;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--amber);
+    line-height: 1.4;
+    min-width: 0;
+  }
+  #pres-message.empty { color: var(--muted); font-style: italic; }
+  #pres-next {
+    padding: 7px 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    background: transparent;
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  #pres-next:hover {
+    background: var(--amber);
+    color: #000;
+  }
+  #pres-counter {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  /* ─── PRESENTATION OVERLAY CALLOUT ───────────────────────── */
+  #callout {
+    position: fixed;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1a1a00;
+    border: 1px solid var(--amber);
+    border-radius: 10px;
+    padding: 14px 20px;
+    max-width: 600px;
+    width: calc(100% - 40px);
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 200;
+    box-shadow: 0 0 40px rgba(245,158,11,0.2);
+  }
+  #callout.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  #callout .callout-num {
+    font-family: var(--display);
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  #callout .callout-text {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  #callout .callout-framework {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--amber);
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* ─── ANIMATIONS ──────────────────────────────────────────── */
+  @keyframes flashText {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(10px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes pulseRed {
+    0%,100% { box-shadow: 0 0 0 0 var(--red-glow); }
+    50%     { box-shadow: 0 0 20px 6px var(--red-glow); }
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%     { transform: translateX(-4px); }
+    40%     { transform: translateX(4px); }
+    60%     { transform: translateX(-3px); }
+    80%     { transform: translateX(3px); }
+  }
+  .shake { animation: shake 0.4s ease; }
+  .pulse-red { animation: pulseRed 0.6s ease; }
+
+  @keyframes resetFlash {
+    0%   { background: rgba(230,57,70,0.4); }
+    100% { background: transparent; }
+  }
+  .reset-flash { animation: resetFlash 0.8s ease; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <div>
+    <div class="title">ENDLESS WAITING</div>
+    <div class="subtitle">LIVE DUAL FRAMEWORK DEMO — DGM 6400 SPRING 2026</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <div class="session-timer" id="session-timer">00:00</div>
+    <button id="demo-btn" onclick="toggleDemo()" style="
+      padding:5px 12px; font-family:var(--mono); font-size:10px; font-weight:bold;
+      letter-spacing:1px; background:transparent; border:1px solid var(--green);
+      color:var(--green); border-radius:4px; cursor:pointer; transition:all 0.2s;
+    ">DEMO MODE: OFF</button>
+    <button onclick="resetGame()" style="
+      padding:5px 12px; font-family:var(--mono); font-size:10px; font-weight:bold;
+      letter-spacing:1px; background:transparent; border:1px solid var(--amber);
+      color:var(--amber); border-radius:4px; cursor:pointer; transition:all 0.2s;
+    ">↺ RESET</button>
+    <button id="sound-btn" onclick="toggleSound()" style="
+      padding:5px 12px; font-family:var(--mono); font-size:10px; font-weight:bold;
+      letter-spacing:1px; background:transparent; border:1px solid var(--green);
+      color:var(--green); border-radius:4px; cursor:pointer; transition:all 0.2s;
+    ">🔊 SOUND</button>
+
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+  <!-- ═══ GAME PANEL ════════════════════════════════════════ -->
+  <div id="game-panel">
+    <div id="game-title">ENDLESS WAITING</div>
+    <div id="game-subtitle">v1.0.0 — LOADING ENVIRONMENT...</div>
+
+    <div id="game-card">
+
+      <!-- Progress -->
+      <div>
+        <div id="progress-label">P R O G R E S S</div>
+        <div id="progress-wrapper" style="margin-top:8px;">
+          <div id="progress-fill"></div>
+          <div id="progress-text">0%</div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div id="status-row">
+        <div class="stat-box warn">
+          <span class="stat-label">ATTEMPTS</span>
+          <span class="stat-val" id="stat-attempts">0</span>
+        </div>
+        <div class="stat-box bad" id="stat-result-box">
+          <span class="stat-label">LAST RESULT</span>
+          <span class="stat-val" id="stat-result">—</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">STATUS</span>
+          <span class="stat-val" id="stat-status" style="color:#f59e0b">IDLE</span>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div style="position:relative;">
+        <button id="press-btn" onclick="pressButton()">
+          <div id="btn-delay-bar"></div>
+          <div class="btn-inner">
+            <span id="btn-text">PRESS TO PROGRESS</span>
+          </div>
+        </button>
+        <div id="countdown"></div>
+      </div>
+
+      <!-- Result panel -->
+      <div id="result-panel">
+        <span class="result-label">Last action result:</span>
+        <span id="result-value" class="stat-val">unknown</span>
+      </div>
+
+      <!-- Goal bar -->
+      <div id="goal-bar">
+        WIN CONDITION: &nbsp;<span id="goal-text">REACH 100%</span>
+      </div>
+
+    </div>
+
+    <!-- Error popup -->
+    <div id="error-popup">
+      <div class="popup-header">
+        <span>⚠ SYSTEM ERROR</span>
+        <div class="popup-x" title="Cannot dismiss yet">✕</div>
+      </div>
+      <div class="popup-body">
+        <p>Error: Progress may have reset.</p>
+        <p>Reason: <span>Error 0x00FF — Unexpected reset triggered.</span></p>
+        <p>Action: Wait.</p>
+        <p id="popup-cooldown">Retry cooldown: <span id="popup-timer">--</span>s</p>
+        <button class="popup-btn" disabled id="popup-ok">OK (maybe)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FRAMEWORK PANEL ═══════════════════════════════════ -->
+  <div id="fw-panel">
+
+    <div id="fw-header">
+      <h2>DUAL FRAMEWORK LIVE</h2>
+      <p>REVERSE MDA × INVERTED SELF-DETERMINATION THEORY</p>
+    </div>
+
+    <!-- MDA Section -->
+    <div class="fw-section">
+      <div class="fw-section-title">FRAMEWORK 1 — REVERSE MDA (A→D→M)</div>
+      <div id="mda-flow">
+        <div class="mda-node" id="mda-a">
+          <span class="mda-label">A</span>
+          <span class="mda-sub">AESTHETIC<br>Target Emotion</span>
+        </div>
+        <div class="mda-arrow" id="mda-arr1">→</div>
+        <div class="mda-node" id="mda-d">
+          <span class="mda-label">D</span>
+          <span class="mda-sub">DYNAMICS<br>Runtime Behavior</span>
+        </div>
+        <div class="mda-arrow" id="mda-arr2">→</div>
+        <div class="mda-node" id="mda-m">
+          <span class="mda-label">M</span>
+          <span class="mda-sub">MECHANICS<br>Engineered Rule</span>
+        </div>
+      </div>
+      <div id="current-aesthetic">
+        <span class="ae-label">CURRENT AESTHETIC TRIGGERED</span>
+        <span class="ae-value" id="ae-value">— waiting for player action —</span>
+      </div>
+    </div>
+
+    <!-- SDT Section -->
+    <div class="fw-section">
+      <div class="fw-section-title">FRAMEWORK 2 — INVERTED SDT (NEED DESTRUCTION)</div>
+      <div id="sdt-needs">
+
+        <div class="sdt-need" id="sdt-autonomy">
+          <div class="sdt-need-header">
+            <span class="sdt-need-name">AUTONOMY</span>
+            <span class="sdt-need-status" id="sdt-a-status">INTACT</span>
+          </div>
+          <div class="sdt-bar-bg">
+            <div class="sdt-bar-fill" id="sdt-a-bar" style="width:100%;background:var(--green)"></div>
+          </div>
+          <div class="sdt-need-desc" id="sdt-a-desc">Actions feel meaningful and self-directed. Player perceives control.</div>
+        </div>
+
+        <div class="sdt-need" id="sdt-competence">
+          <div class="sdt-need-header">
+            <span class="sdt-need-name">COMPETENCE</span>
+            <span class="sdt-need-status" id="sdt-c-status">INTACT</span>
+          </div>
+          <div class="sdt-bar-bg">
+            <div class="sdt-bar-fill" id="sdt-c-bar" style="width:100%;background:var(--green)"></div>
+          </div>
+          <div class="sdt-need-desc" id="sdt-c-desc">Skill and mastery are attainable. Effort produces predictable outcomes.</div>
+        </div>
+
+        <div class="sdt-need" id="sdt-relatedness">
+          <div class="sdt-need-header">
+            <span class="sdt-need-name">RELATEDNESS</span>
+            <span class="sdt-need-status" id="sdt-r-status">INTACT</span>
+          </div>
+          <div class="sdt-bar-bg">
+            <div class="sdt-bar-fill" id="sdt-r-bar" style="width:100%;background:var(--green)"></div>
+          </div>
+          <div class="sdt-need-desc" id="sdt-r-desc">Player connects emotionally to goal, world, or purpose.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Event Log -->
+    <div class="fw-section" style="padding-bottom:6px;border-bottom:none;">
+      <div class="fw-section-title">LIVE FRAMEWORK EVENT LOG</div>
+    </div>
+    <div id="event-log-wrap">
+      <div id="event-log">
+        <div class="log-entry type-info">
+          <span class="log-tag">INFO</span>
+          <span class="log-msg">Framework monitors active. Press button to begin live analysis.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PRESENTATION BAR -->
+<div id="pres-bar">
+  <span id="pres-label">🎓 FRAMEWORK POINT</span>
+  <span id="pres-message" class="empty">Press "NEXT POINT" to walk through the framework during your presentation</span>
+  <span id="pres-counter">0 / 6</span>
+  <button id="pres-next" onclick="nextPresPoint()">NEXT POINT →</button>
+</div>
+
+<!-- CALLOUT OVERLAY -->
+<div id="callout">
+  <div class="callout-num" id="callout-num">FRAMEWORK POINT 1</div>
+  <div class="callout-text" id="callout-text"></div>
+  <div class="callout-framework" id="callout-fw"></div>
+</div>
+
+<script>
+
+// ═══════════════════════════════════════════════════════════
+// SOUND ENGINE — Web Audio API (no files needed, works offline)
+// ═══════════════════════════════════════════════════════════
+let audioCtx = null;
+let soundEnabled = true;
+
+function getCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+
+function playTone(freq, duration, type = 'sine', vol = 0.3, delay = 0) {
+  if (!soundEnabled) return;
+  try {
+    const ctx = getCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ctx.currentTime + delay);
+    gain.gain.setValueAtTime(0, ctx.currentTime + delay);
+    gain.gain.linearRampToValueAtTime(vol, ctx.currentTime + delay + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+    osc.start(ctx.currentTime + delay);
+    osc.stop(ctx.currentTime + delay + duration + 0.05);
+  } catch(e) {}
+}
+
+// Windows XP Error chord — that iconic 4-note descending ding
+function soundXPError() {
+  if (!soundEnabled) return;
+  const notes = [
+    { freq: 987,  delay: 0,    dur: 0.28, vol: 0.22 },
+    { freq: 784,  delay: 0,    dur: 0.28, vol: 0.18 },
+    { freq: 659,  delay: 0,    dur: 0.28, vol: 0.15 },
+    { freq: 523,  delay: 0.12, dur: 0.35, vol: 0.20 },
+    { freq: 440,  delay: 0.12, dur: 0.35, vol: 0.16 },
+    { freq: 392,  delay: 0.25, dur: 0.4,  vol: 0.18 },
+  ];
+  notes.forEach(n => playTone(n.freq, n.dur, 'triangle', n.vol, n.delay));
+}
+
+// Button click — short blip
+function soundClick() {
+  playTone(880, 0.06, 'square', 0.08);
+  playTone(660, 0.06, 'square', 0.05, 0.03);
+}
+
+// Progress increase — quick ascending ding
+function soundIncrease() {
+  playTone(523, 0.1, 'sine', 0.15);
+  playTone(659, 0.12, 'sine', 0.18, 0.06);
+}
+
+// Progress decrease — descending tone
+function soundDecrease() {
+  playTone(440, 0.12, 'triangle', 0.18);
+  playTone(330, 0.18, 'triangle', 0.15, 0.08);
+}
+
+// Full reset — dramatic crash (Windows XP critical stop style)
+function soundReset() {
+  if (!soundEnabled) return;
+  // Low rumble
+  playTone(120, 0.5, 'sawtooth', 0.15);
+  // Descending chord crash
+  playTone(392, 0.3, 'triangle', 0.20, 0.0);
+  playTone(311, 0.3, 'triangle', 0.18, 0.05);
+  playTone(247, 0.4, 'triangle', 0.20, 0.10);
+  playTone(196, 0.5, 'triangle', 0.22, 0.18);
+  playTone(155, 0.6, 'triangle', 0.18, 0.28);
+}
+
+// Popup appear — XP error sound
+function soundPopup() {
+  soundXPError();
+}
+
+// Popup dismiss — soft confirm
+function soundDismiss() {
+  playTone(523, 0.1, 'sine', 0.12);
+  playTone(659, 0.15, 'sine', 0.15, 0.08);
+  playTone(784, 0.2, 'sine', 0.12, 0.18);
+}
+
+// SDT need destroyed — deep ominous drop
+function soundNeedDestroyed() {
+  if (!soundEnabled) return;
+  playTone(220, 0.4, 'sawtooth', 0.18);
+  playTone(174, 0.5, 'sawtooth', 0.15, 0.15);
+  playTone(110, 0.7, 'sawtooth', 0.20, 0.30);
+}
+
+// Stall — flat buzz
+function soundStall() {
+  playTone(220, 0.15, 'square', 0.08);
+}
+
+// Countdown tick
+function soundTick() {
+  playTone(660, 0.03, 'square', 0.04);
+}
+
+// Toggle mute
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  const btn = document.getElementById('sound-btn');
+  btn.textContent = soundEnabled ? '🔊 SOUND' : '🔇 MUTED';
+  btn.style.borderColor = soundEnabled ? 'var(--green)' : 'var(--muted)';
+  btn.style.color = soundEnabled ? 'var(--green)' : 'var(--muted)';
+}
+
+// ═══════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════
+let progress = 0;
+let attempts = 0;
+let isWaiting = false;
+let isPopupOpen = false;
+let sessionSeconds = 0;
+let sdtHealth = { autonomy: 100, competence: 100, relatedness: 100 };
+let presIndex = 0;
+let calloutTimer = null;
+let goalRevealed = false;
+let demoMode = false;
+
+// ═══════════════════════════════════════════════════════════
+// PRESENTATION POINTS
+// ═══════════════════════════════════════════════════════════
+const PRES_POINTS = [
+  {
+    label: "POINT 1 — THE REVERSE MDA CONCEPT",
+    msg: "Standard MDA: M→D→A. This game uses A→D→M — the designer's direction REVERSED. We chose the target aesthetic first (learned helplessness), then engineered backwards.",
+    calloutText: "Traditional MDA has designers build mechanics and hope aesthetics emerge. Reverse MDA starts with the emotional target — learned helplessness — and reverse-engineers every mechanic to guarantee it. This is a more rigorous design process.",
+    calloutFw: "REVERSE MDA — Hunicke, LeBlanc & Zubek (2004): 'From the player's perspective, aesthetics set the tone, which is born out in observable dynamics and eventually, operable mechanics.'",
+    action: () => { activateMDA('a', 'LEARNED HELPLESSNESS', 'Target aesthetic identified. Designing backwards.'); }
+  },
+  {
+    label: "POINT 2 — SDT FRAMEWORK INTRO",
+    msg: "Self-Determination Theory (Ryan & Deci, 2000): players need 3 needs satisfied to stay motivated. This game systematically destroys all 3. Watch the meters.",
+    calloutText: "SDT research (Ryan, Rigby & Przybylski, 2006) shows that when Autonomy, Competence, and Relatedness are frustrated — not just unmet, but actively blocked — the result is amotivation: complete psychological withdrawal. That's the exact feeling this game targets.",
+    calloutFw: "INVERTED SDT — Ryan & Deci (2000): Need frustration → amotivation → player stops caring entirely",
+    action: () => {}
+  },
+  {
+    label: "POINT 3 — AUTONOMY DESTROYED (Press the button now)",
+    msg: "The forced delay + 'unknown' result DESTROYS Autonomy. Player inputs produce no visible effect. Actions feel disconnected from the system → Abnegation aesthetic.",
+    calloutText: "Watch: after pressing the button, the delay fires and the result says 'unknown'. The player acted — but received zero information. This breaks the input→outcome loop that makes actions feel meaningful. Autonomy collapses. The MDA aesthetic: Abnegation.",
+    calloutFw: "SDT: Autonomy destroyed → MDA: Abnegation | Mechanic: Forced 5–15s delay + 'unknown' result",
+    action: () => { destroyNeed('autonomy', 40); activateMDA('d', 'EFFORT FEELS DISCONNECTED', 'Delay + unknown result firing'); }
+  },
+  {
+    label: "POINT 4 — COMPETENCE DESTROYED (Watch the random outcome)",
+    msg: "4 random outcomes — none skill-based. A player at 80% can hit 0% in one press. No learning is possible → Challenge (Inverted) aesthetic. Mastery is structurally impossible.",
+    calloutText: "Competence requires predictable outcomes from skill. Here, identical inputs produce random results. The full reset is the sharpest attack: progress wiped to zero with an error code as the only explanation. No strategy, no learning curve, no mastery. The MDA aesthetic: Challenge Inverted.",
+    calloutFw: "SDT: Competence destroyed → MDA: Challenge (Inverted) | Mechanic: Random 4-outcome result + full reset",
+    action: () => { destroyNeed('competence', 45); activateMDA('m', 'CHALLENGE (INVERTED)', 'Random outcomes eliminate mastery'); triggerReset(true); }
+  },
+  {
+    label: "POINT 5 — RELATEDNESS DESTROYED (See the goal bar)",
+    msg: "The win condition is [REDACTED]. Players can't form an emotional connection to a goal they can't see → Narrative (Absent) aesthetic. Purpose collapses.",
+    calloutText: "Relatedness is the need to connect to something — a goal, a world, a purpose. The redacted win condition removes all of that. Players stop asking 'how do I win?' and start asking 'is winning even possible?' When that question appears, engagement ends.",
+    calloutFw: "SDT: Relatedness destroyed → MDA: Narrative (Absent) | Mechanic: [REDACTED] win condition",
+    action: () => {
+      destroyNeed('relatedness', 50);
+      document.getElementById('goal-text').innerHTML = '<span>[REDACTED]</span>';
+      goalRevealed = true;
+      activateMDA('a', 'NARRATIVE (ABSENT)', 'Goal hidden — relatedness severed');
+      addLog('destroy', 'SDT', 'Relatedness destroyed — win condition redacted. No goal to connect to.');
+      addLog('mda', 'MDA', 'Aesthetic: Narrative (Absent) — purpose has collapsed.');
+    }
+  },
+  {
+    label: "POINT 6 — THE DUAL FRAMEWORK CONCLUSION",
+    msg: "Both frameworks run in reverse simultaneously. Each mechanic targets one SDT need and produces one MDA aesthetic. Remove any one mechanic — the effect softens. This required MORE intentional design thinking than building a good game.",
+    calloutText: "The jaw-drop: Most bad games are accidentally bad. Endless Waiting is rigorously bad. Designing it required understanding which psychological needs produce which emotional states, then removing the conditions that satisfy them. That's a more intentional design process than aiming for fun — because fun can happen by accident, but learned helplessness cannot.",
+    calloutFw: "CONCLUSION: Good design is the systematic satisfaction of the exact needs this game systematically destroys.",
+    action: () => {
+      destroyNeed('autonomy', 60); destroyNeed('competence', 55); destroyNeed('relatedness', 50);
+      activateMDA('a', 'LEARNED HELPLESSNESS', 'All 3 SDT needs destroyed. Amotivation achieved.');
+      addLog('destroy', 'DUAL', 'All SDT needs destroyed simultaneously. Amotivation state achieved.');
+      addLog('mda', 'CONCLUSION', 'Reverse MDA × Inverted SDT: The absence of good design, engineered precisely, is its most complete proof.');
+    }
+  }
+];
+
+// ═══════════════════════════════════════════════════════════
+// SESSION TIMER
+// ═══════════════════════════════════════════════════════════
+setInterval(() => {
+  sessionSeconds++;
+  const m = String(Math.floor(sessionSeconds/60)).padStart(2,'0');
+  const s = String(sessionSeconds%60).padStart(2,'0');
+  document.getElementById('session-timer').textContent = m+':'+s;
+}, 1000);
+
+// ═══════════════════════════════════════════════════════════
+// PRESS BUTTON
+// ═══════════════════════════════════════════════════════════
+function pressButton() {
+  if (isWaiting || isPopupOpen) return;
+  isWaiting = true;
+  attempts++;
+  document.getElementById('stat-attempts').textContent = attempts;
+  document.getElementById('stat-status').textContent = 'WAITING...';
+  document.getElementById('stat-status').style.color = 'var(--amber)';
+
+  soundClick();
+  const delay = demoMode ? (1500 + Math.random() * 2000) : (5000 + Math.random() * 10000);
+  const btn = document.getElementById('press-btn');
+  const delayBar = document.getElementById('btn-delay-bar');
+  const countdown = document.getElementById('countdown');
+  btn.disabled = true;
+
+  // Animate delay bar
+  delayBar.style.transition = `width ${delay}ms linear`;
+  delayBar.style.width = '100%';
+
+  // Countdown
+  let remaining = Math.ceil(delay/1000);
+  countdown.textContent = `⏳ calculating... ${remaining}s`;
+  const countInterval = setInterval(() => {
+    remaining--;
+    soundTick();
+    if (remaining > 0) {
+      countdown.textContent = `⏳ calculating... ${remaining}s`;
+    } else {
+      countdown.textContent = '';
+      clearInterval(countInterval);
+    }
+  }, 1000);
+
+  // Fire MDA / SDT for delay mechanic
+  activateMDA('m', 'ABNEGATION', 'Forced delay engaged — input→response loop broken');
+  destroyNeed('autonomy', 8);
+  addLog('destroy', 'SDT', `Forced delay (${Math.round(delay/1000)}s) — Autonomy under attack. Action disconnected from feedback.`);
+  addLog('mda', 'MDA', 'Mechanic → Dynamics: waiting behavior. Aesthetic: Abnegation emerging.');
+
+  setTimeout(() => {
+    clearInterval(countInterval);
+    countdown.textContent = '';
+    delayBar.style.transition = '';
+    delayBar.style.width = '0%';
+    resolveOutcome();
+  }, delay);
+}
+
+// ═══════════════════════════════════════════════════════════
+// RESOLVE OUTCOME
+// ═══════════════════════════════════════════════════════════
+function resolveOutcome() {
+  const outcomes = ['increase','increase','stall','decrease','reset'];
+  const outcome = outcomes[Math.floor(Math.random() * outcomes.length)];
+  const resultEl = document.getElementById('result-value');
+  const statusEl = document.getElementById('stat-status');
+
+  // Always show "unknown"
+  resultEl.textContent = 'unknown';
+  resultEl.className = 'stat-val';
+
+  addLog('destroy', 'SDT', `Result: "${outcome}" — but shown as "unknown". Autonomy feedback loop severed. Player learns nothing.`);
+
+  switch(outcome) {
+    case 'increase':
+      const gain = 2 + Math.random() * 8;
+      progress = Math.min(99, progress + gain);
+      resultEl.className = 'stat-val flash-bad';
+      statusEl.textContent = 'UNKNOWN';
+      statusEl.style.color = 'var(--text-dim)';
+      soundIncrease();
+      activateMDA('d', 'ABNEGATION', 'Progress increased — but player doesn\'t know');
+      destroyNeed('autonomy', 5);
+      addLog('mda', 'MDA', `Progress +${gain.toFixed(1)}% (hidden from player) → Dynamics: uncertainty. Aesthetic: Abnegation.`);
+      break;
+
+    case 'stall':
+      resultEl.className = 'stat-val flash-bad';
+      statusEl.textContent = 'STALLED';
+      statusEl.style.color = 'var(--text-dim)';
+      soundStall();
+      activateMDA('d', 'ABNEGATION', 'No change — effort produced nothing');
+      destroyNeed('autonomy', 10);
+      destroyNeed('competence', 8);
+      addLog('destroy', 'SDT', 'Stall outcome — Competence attacked. Effort produced zero result. Mastery loop broken.');
+      addLog('mda', 'MDA', 'Dynamics: mechanical pressing behavior. Aesthetic: Abnegation (hollow loop).');
+      break;
+
+    case 'decrease':
+      const loss = 3 + Math.random() * 10;
+      progress = Math.max(0, progress - loss);
+      resultEl.className = 'stat-val flash-bad';
+      statusEl.textContent = 'REGRESSED';
+      statusEl.style.color = 'var(--red)';
+      document.getElementById('game-card').classList.add('shake');
+      setTimeout(() => document.getElementById('game-card').classList.remove('shake'), 400);
+      soundDecrease();
+      activateMDA('d', 'CHALLENGE (INVERTED)', 'Progress decreased with no cause or skill relation');
+      destroyNeed('competence', 15);
+      addLog('destroy', 'SDT', `Progress -${loss.toFixed(1)}%. Random decrease — Competence severely attacked. Skill has no bearing on outcome.`);
+      addLog('mda', 'MDA', 'Mechanics → Dynamics: regression behavior. Aesthetic: Challenge (Inverted).');
+      break;
+
+    case 'reset':
+      triggerReset(false);
+      break;
+  }
+
+  updateProgress();
+
+  // Sometimes trigger popup
+  if (Math.random() < 0.35) {
+    setTimeout(() => triggerPopup(), 800);
+  } else {
+    releaseButton();
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// RESET
+// ═══════════════════════════════════════════════════════════
+function triggerReset(silent) {
+  const prev = progress;
+  progress = 0;
+  updateProgress();
+  soundReset();
+  document.getElementById('game-panel').classList.add('reset-flash');
+  setTimeout(() => document.getElementById('game-panel').classList.remove('reset-flash'), 800);
+  document.getElementById('stat-status').textContent = 'RESET';
+  document.getElementById('stat-status').style.color = 'var(--red)';
+  activateMDA('a', 'CHALLENGE (INVERTED)', `Full reset from ${prev.toFixed(0)}% — effort erased`);
+  destroyNeed('competence', 25);
+  destroyNeed('autonomy', 15);
+  addLog('destroy', 'SDT', `FULL RESET from ${prev.toFixed(0)}%. Competence destroyed — skill cannot prevent this. Effort means nothing.`);
+  addLog('mda', 'MDA', 'Mechanics: random reset. Dynamics: helpless repetition. Aesthetic: Challenge (Inverted) + Submission.');
+  if (!silent) {
+    setTimeout(() => triggerPopup(), 600);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// POPUP
+// ═══════════════════════════════════════════════════════════
+function triggerPopup() {
+  isPopupOpen = true;
+  isWaiting = true;
+  soundPopup();
+  document.getElementById('error-popup').classList.add('visible');
+  activateMDA('m', 'SUBMISSION', 'Undismissable popup — player has zero recourse');
+  destroyNeed('autonomy', 20);
+  destroyNeed('competence', 12);
+  addLog('destroy', 'SDT', 'Popup blocks button — Autonomy + Competence attacked simultaneously. Player cannot act.');
+  addLog('mda', 'MDA', 'Mechanic: undismissable popup. Dynamics: forced waiting on waiting. Aesthetic: Submission.');
+
+  let cd = demoMode ? (3 + Math.floor(Math.random() * 3)) : (8 + Math.floor(Math.random() * 7));
+  document.getElementById('popup-timer').textContent = cd;
+  const ok = document.getElementById('popup-ok');
+  ok.textContent = `OK (maybe)`;
+  ok.disabled = true;
+
+  const cdInterval = setInterval(() => {
+    cd--;
+    document.getElementById('popup-timer').textContent = cd;
+    if (cd <= 0) {
+      clearInterval(cdInterval);
+      ok.textContent = 'OK (finally)';
+      ok.disabled = false;
+      ok.style.cursor = 'pointer';
+      ok.style.borderColor = 'var(--red)';
+      ok.style.color = 'var(--text)';
+      ok.onclick = dismissPopup;
+    }
+  }, 1000);
+}
+
+function dismissPopup() {
+  soundDismiss();
+  document.getElementById('error-popup').classList.remove('visible');
+  document.getElementById('popup-ok').onclick = null;
+  document.getElementById('popup-ok').disabled = true;
+  document.getElementById('popup-ok').style.cursor = 'not-allowed';
+  document.getElementById('popup-ok').style.borderColor = '';
+  document.getElementById('popup-ok').style.color = '';
+  isPopupOpen = false;
+  addLog('info', 'GAME', 'Popup dismissed. Button restored. Ready for next attempt.');
+  releaseButton();
+}
+
+function releaseButton() {
+  isWaiting = false;
+  document.getElementById('press-btn').disabled = false;
+  document.getElementById('stat-status').textContent = 'IDLE';
+  document.getElementById('stat-status').style.color = 'var(--amber)';
+}
+
+// ═══════════════════════════════════════════════════════════
+// UPDATE UI
+// ═══════════════════════════════════════════════════════════
+function updateProgress() {
+  document.getElementById('progress-fill').style.width = progress + '%';
+  document.getElementById('progress-text').textContent = Math.round(progress) + '%';
+}
+
+// ═══════════════════════════════════════════════════════════
+// MDA ACTIVATION
+// ═══════════════════════════════════════════════════════════
+function activateMDA(node, aesthetic, note) {
+  ['a','d','m'].forEach(n => {
+    document.getElementById('mda-'+n).classList.remove('active');
+    if (n !== 'a') document.getElementById('mda-arr'+(n==='d'?1:2)).classList.remove('active');
+  });
+  document.getElementById('mda-'+node).classList.add('active');
+  if (node === 'd' || node === 'm') document.getElementById('mda-arr1').classList.add('active');
+  if (node === 'm') document.getElementById('mda-arr2').classList.add('active');
+
+  const ae = document.getElementById('current-aesthetic');
+  ae.classList.add('lit');
+  document.getElementById('ae-value').textContent = aesthetic;
+  setTimeout(() => ae.classList.remove('lit'), 2000);
+}
+
+// ═══════════════════════════════════════════════════════════
+// SDT NEED DESTRUCTION
+// ═══════════════════════════════════════════════════════════
+function destroyNeed(need, amount) {
+  const map = { autonomy: 'a', competence: 'c', relatedness: 'r' };
+  const k = map[need];
+  sdtHealth[need] = Math.max(0, sdtHealth[need] - amount);
+  const h = sdtHealth[need];
+
+  const bar = document.getElementById(`sdt-${k}-bar`);
+  bar.style.width = h + '%';
+  bar.style.background = h > 60 ? 'var(--green)' : h > 30 ? 'var(--amber)' : 'var(--red)';
+
+  const el = document.getElementById(`sdt-${need}`);
+  const status = document.getElementById(`sdt-${k}-status`);
+  const desc = document.getElementById(`sdt-${k}-desc`);
+
+  el.classList.add('pulse-red');
+  setTimeout(() => el.classList.remove('pulse-red'), 600);
+
+  if (h <= 0) {
+    soundNeedDestroyed();
+    el.classList.add('destroyed');
+    status.textContent = 'DESTROYED';
+    const descs = {
+      autonomy: 'Player actions produce no meaningful feedback. Control is an illusion.',
+      competence: 'Skill and mastery are structurally impossible. Effort is meaningless.',
+      relatedness: 'No goal, no world, no purpose. Player has nothing to connect to.'
+    };
+    desc.textContent = descs[need];
+  } else if (h <= 30) {
+    status.textContent = 'CRITICAL';
+    status.style.color = 'var(--red)';
+    status.style.borderColor = 'var(--red)';
+  } else if (h <= 60) {
+    status.textContent = 'DAMAGED';
+    status.style.color = 'var(--amber)';
+    status.style.borderColor = 'var(--amber)';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// EVENT LOG
+// ═══════════════════════════════════════════════════════════
+function addLog(type, tag, msg) {
+  const log = document.getElementById('event-log');
+  const now = new Date();
+  const time = String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
+  const entry = document.createElement('div');
+  entry.className = `log-entry type-${type}`;
+  entry.innerHTML = `<span class="log-time">${time}</span><span class="log-tag">${tag}</span><span class="log-msg">${msg}</span>`;
+  log.insertBefore(entry, log.firstChild);
+  // Limit entries
+  while (log.children.length > 30) log.removeChild(log.lastChild);
+}
+
+// ═══════════════════════════════════════════════════════════
+// PRESENTATION POINTS
+// ═══════════════════════════════════════════════════════════
+function nextPresPoint() {
+  if (presIndex >= PRES_POINTS.length) { presIndex = 0; }
+  const point = PRES_POINTS[presIndex];
+
+  document.getElementById('pres-message').textContent = point.msg;
+  document.getElementById('pres-message').classList.remove('empty');
+  document.getElementById('pres-counter').textContent = `${presIndex+1} / ${PRES_POINTS.length}`;
+
+  // Show callout
+  const callout = document.getElementById('callout');
+  document.getElementById('callout-num').textContent = point.label;
+  document.getElementById('callout-text').textContent = point.calloutText;
+  document.getElementById('callout-fw').textContent = point.calloutFw;
+  callout.classList.add('visible');
+
+  // Fire the associated framework action
+  if (point.action) point.action();
+
+  // Log it
+  addLog('info', `POINT ${presIndex+1}`, point.label);
+
+  if (calloutTimer) clearTimeout(calloutTimer);
+  calloutTimer = setTimeout(() => callout.classList.remove('visible'), 12000);
+
+  presIndex++;
+  if (presIndex >= PRES_POINTS.length) {
+    document.getElementById('pres-next').textContent = 'RESTART →';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// DEMO MODE TOGGLE
+// ═══════════════════════════════════════════════════════════
+function toggleDemo() {
+  demoMode = !demoMode;
+  const btn = document.getElementById('demo-btn');
+  btn.textContent = demoMode ? 'DEMO MODE: ON' : 'DEMO MODE: OFF';
+  btn.style.borderColor = demoMode ? 'var(--amber)' : 'var(--green)';
+  btn.style.color = demoMode ? 'var(--amber)' : 'var(--green)';
+  addLog('info', 'MODE', demoMode ? 'Demo mode ON — delays shortened to 1.5–3.5s, popup cooldown 3–5s.' : 'Demo mode OFF — full game delays restored.');
+}
+
+// ═══════════════════════════════════════════════════════════
+// RESET GAME
+// ═══════════════════════════════════════════════════════════
+function resetGame() {
+  // Reset all state
+  progress = 0;
+  attempts = 0;
+  isWaiting = false;
+  isPopupOpen = false;
+  sessionSeconds = 0;
+  sdtHealth = { autonomy: 100, competence: 100, relatedness: 100 };
+  presIndex = 0;
+  goalRevealed = false;
+  if (calloutTimer) clearTimeout(calloutTimer);
+
+  // Reset UI
+  updateProgress();
+  document.getElementById('stat-attempts').textContent = '0';
+  document.getElementById('stat-result').textContent = '—';
+  document.getElementById('stat-status').textContent = 'IDLE';
+  document.getElementById('stat-status').style.color = 'var(--amber)';
+  document.getElementById('result-value').textContent = 'unknown';
+  document.getElementById('countdown').textContent = '';
+  document.getElementById('btn-delay-bar').style.width = '0%';
+  document.getElementById('press-btn').disabled = false;
+  document.getElementById('goal-text').textContent = 'REACH 100%';
+  document.getElementById('goal-text').innerHTML = 'REACH 100%';
+  document.getElementById('callout').classList.remove('visible');
+  document.getElementById('pres-message').textContent = 'Press "NEXT POINT" to walk through the framework during your presentation';
+  document.getElementById('pres-message').classList.add('empty');
+  document.getElementById('pres-counter').textContent = '0 / 6';
+  document.getElementById('pres-next').textContent = 'NEXT POINT →';
+
+  // Reset error popup
+  soundDismiss();
+  document.getElementById('error-popup').classList.remove('visible');
+  const ok = document.getElementById('popup-ok');
+  ok.disabled = true;
+  ok.textContent = 'OK (maybe)';
+  ok.style.cursor = 'not-allowed';
+  ok.style.borderColor = '';
+  ok.style.color = '';
+  ok.onclick = null;
+
+  // Reset MDA nodes
+  ['a','d','m'].forEach(n => {
+    document.getElementById('mda-'+n).classList.remove('active');
+  });
+  document.getElementById('mda-arr1').classList.remove('active');
+  document.getElementById('mda-arr2').classList.remove('active');
+  document.getElementById('ae-value').textContent = '— waiting for player action —';
+  document.getElementById('current-aesthetic').classList.remove('lit');
+
+  // Reset SDT bars
+  ['a','c','r'].forEach(k => {
+    const need = k === 'a' ? 'autonomy' : k === 'c' ? 'competence' : 'relatedness';
+    document.getElementById('sdt-'+need).classList.remove('destroyed');
+    const bar = document.getElementById('sdt-'+k+'-bar');
+    bar.style.width = '100%';
+    bar.style.background = 'var(--green)';
+    const status = document.getElementById('sdt-'+k+'-status');
+    status.textContent = 'INTACT';
+    status.style.color = '';
+    status.style.borderColor = '';
+    const descs = {
+      a: 'Actions feel meaningful and self-directed. Player perceives control.',
+      c: 'Skill and mastery are attainable. Effort produces predictable outcomes.',
+      r: 'Player connects emotionally to goal, world, or purpose.'
+    };
+    document.getElementById('sdt-'+k+'-desc').textContent = descs[k];
+  });
+
+  // Clear log and re-init
+  document.getElementById('event-log').innerHTML = '';
+  addLog('info', 'RESET', 'Game reset. All frameworks restored to baseline.');
+  addLog('sdt', 'SDT', 'Baseline: Autonomy 100% | Competence 100% | Relatedness 100% — all intact.');
+  addLog('mda', 'MDA', 'Target aesthetic: Learned Helplessness. Design direction: A→D→M (Reverse MDA).');
+}
+
+// Auto-hide callout on click
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#callout') && !e.target.closest('#pres-next')) {
+    document.getElementById('callout').classList.remove('visible');
+  }
+});
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+addLog('info', 'INIT', 'Dual Framework monitors online. Reverse MDA × Inverted SDT ready.');
+addLog('sdt', 'SDT', 'Baseline: Autonomy 100% | Competence 100% | Relatedness 100% — all intact.');
+addLog('mda', 'MDA', 'Target aesthetic: Learned Helplessness. Design direction: A→D→M (Reverse MDA).');
+</script>
+</body>
+</html>
