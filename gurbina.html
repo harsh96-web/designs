@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Gurbina — Bridal Hairstylist · Vancouver BC</title>
 <meta name="description" content="Gurbina — bridal and editorial hairstylist in Vancouver, BC. Specializing in South Asian bridal, waterfall braids, floral placement, balayage, precision cuts, and keratin treatments." />
 <meta name="theme-color" content="#F8F1EA" />
@@ -1057,155 +1057,547 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 .floating-book:active { transform: scale(0.97); }
 
 /* ═══════════════════════════════════════════════════════════
-   RESPONSIVE — mobile-first rebuilt at 900 / 768 / 480
+   ✦ PREMIUM MOBILE REDESIGN ✦
+   Editorial layout, thumb-zone navigation, scroll-snap gallery,
+   full-bleed hero, paper texture, dramatic typography
 ═══════════════════════════════════════════════════════════ */
-@media (max-width: 1100px) {
+
+/* Paper texture — layered on top of grain for editorial feel */
+@media (max-width: 900px) {
+  body::before {
+    opacity: 0.75;
+  }
+  body::after {
+    opacity: 0.065;   /* stronger grain on mobile for paper feel */
+  }
 }
 
+/* Horizontal scroll-snap mobile gallery */
+.bento-mobile-wrapper {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BOTTOM TAB BAR — primary mobile nav in thumb zone
+═══════════════════════════════════════════════════════════ */
+.tabbar {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 98;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(248, 241, 234, 0.88);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border-top: 1px solid rgba(193, 117, 102, 0.18);
+  box-shadow: 0 -10px 30px -10px rgba(42, 22, 22, 0.12);
+}
+.tabbar-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  align-items: center;
+}
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 4px;
+  min-height: 48px;
+  color: var(--ink-soft);
+  transition: color 0.25s ease, transform 0.25s ease;
+  border-radius: 14px;
+}
+.tab-item:active { transform: scale(0.94); }
+.tab-item .tab-icon {
+  font-size: 17px;
+  line-height: 1;
+  color: var(--rose-deep);
+}
+.tab-item .tab-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.tab-item.book {
+  background: var(--ink);
+  color: var(--cream);
+  margin: -4px 0;
+}
+.tab-item.book .tab-icon { color: var(--gold); }
+.tab-item.book .tab-label { color: var(--cream); }
+.tab-item.book:active { transform: scale(0.96); background: var(--rose-deep); }
+
+/* ═══════════════════════════════════════════════════════════
+   STICKY SECTION EYEBROW — tells you where you are
+═══════════════════════════════════════════════════════════ */
+.section-marker {
+  display: none;
+  position: fixed;
+  top: 62px; left: 50%;
+  transform: translateX(-50%) translateY(-40px);
+  z-index: 97;
+  padding: 6px 14px;
+  background: rgba(248, 241, 234, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(193, 117, 102, 0.25);
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease), transform 0.4s var(--ease);
+  pointer-events: none;
+}
+.section-marker::before {
+  content: "✦";
+  margin-right: 8px;
+  color: var(--gold);
+}
+.section-marker.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE BLUR-UP LOADING
+═══════════════════════════════════════════════════════════ */
+.bento-card img,
+.sig-photo img,
+.hero-img img,
+.ig-tile img,
+.about-image img {
+  background: linear-gradient(135deg, var(--blush-soft), var(--cream-deep));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FULL-BLEED SECTION BREAK — parallax photo between sections
+═══════════════════════════════════════════════════════════ */
+.section-break {
+  display: none;
+  position: relative;
+  height: 50vh;
+  min-height: 380px;
+  overflow: hidden;
+  margin: 20px 0;
+  border-radius: 0;
+}
+.section-break img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  position: absolute;
+  top: -10%; left: 0;
+  will-change: transform;
+}
+.section-break::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(42, 22, 22, 0.15) 0%,
+    rgba(42, 22, 22, 0.55) 70%,
+    rgba(42, 22, 22, 0.8) 100%);
+  pointer-events: none;
+}
+.section-break-caption {
+  position: absolute;
+  bottom: 30px;
+  left: 24px; right: 24px;
+  z-index: 2;
+  color: var(--cream);
+  font-family: var(--editorial);
+  font-style: italic;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+.section-break-caption .mark {
+  font-family: var(--script);
+  color: var(--gold);
+  font-style: normal;
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE HORIZONTAL SCROLL-SNAP GALLERY
+═══════════════════════════════════════════════════════════ */
+.mobile-gallery {
+  display: none;
+  position: relative;
+  margin: 0 -18px;                    /* bleed edges */
+}
+.mobile-gallery-track {
+  display: flex;
+  gap: 14px;
+  padding: 4px 18px 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 18px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.mobile-gallery-track::-webkit-scrollbar { display: none; }
+.mobile-slide {
+  flex: 0 0 82%;                      /* ~85% screen width */
+  scroll-snap-align: start;
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--cream-deep);
+  box-shadow: 0 20px 50px -20px rgba(42, 22, 22, 0.3);
+}
+.mobile-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(1.08);
+}
+.mobile-slide-caption {
+  position: absolute;
+  bottom: 18px; left: 18px; right: 18px;
+  z-index: 2;
+}
+.mobile-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(42, 22, 22, 0.8) 100%);
+  pointer-events: none;
+}
+.mobile-slide-caption .tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 100px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 3;
+}
+.mobile-slide-caption h4 {
+  color: var(--cream);
+  font-family: var(--editorial);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.15rem;
+  line-height: 1.15;
+  position: relative;
+  z-index: 3;
+}
+.mobile-gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 0 18px;
+}
+.mobile-gallery-dots span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(193, 117, 102, 0.3);
+  transition: all 0.3s var(--ease);
+}
+.mobile-gallery-dots span.active {
+  width: 22px;
+  border-radius: 3px;
+  background: var(--rose-deep);
+}
+.mobile-gallery-hint {
+  position: absolute;
+  top: 10px; right: 22px;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  pointer-events: none;
+}
+.mobile-gallery-hint::after {
+  content: " →";
+  animation: swipeHint 1.6s ease-in-out infinite;
+  display: inline-block;
+  color: var(--rose-deep);
+}
+@keyframes swipeHint {
+  0%, 100% { transform: translateX(0); opacity: 0.5; }
+  50% { transform: translateX(6px); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EDITORIAL MOBILE HERO — magazine cover style
+═══════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  /* Hamburger takes over */
-  .nav-burger { display: flex; }
-  .nav-cta { display: none; }
-  .nav-links {
-    position: fixed;
-    top: 0; right: -100%;
-    width: min(320px, 80vw);
-    height: 100vh;
-    background: var(--cream);
-    flex-direction: column;
-    justify-content: center;
-    gap: 24px;
-    padding: 80px 40px;
-    box-shadow: -20px 0 60px -20px rgba(42, 22, 22, 0.3);
-    transition: right 0.45s var(--ease);
-    z-index: 101;
-  }
-  .nav-links.open { right: 0; }
-  .nav-links a {
-    font-family: var(--editorial);
-    font-size: 2rem;
-    font-style: italic;
-    color: var(--ink);
-    padding: 8px 0;
-  }
-  .nav-links a::after { display: none; }
-  .nav-links .mobile-book-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    padding: 16px 28px;
-    background: var(--ink);
-    color: var(--cream);
-    border-radius: 100px;
-    font-family: var(--sans);
-    font-style: normal;
-    font-size: 15px;
-    min-height: 52px;
-  }
-
-  /* Floating book shown on mobile */
-  .floating-book { display: flex; }
-
-  /* Hero: stack text over image */
+  /* Full-bleed hero: image behind, text above */
   .hero {
     grid-template-columns: 1fr;
-    padding: 120px 0 70px;
-    gap: 50px;
+    padding: 0;
+    gap: 0;
+    min-height: 100svh;     /* svh = small viewport height, accounts for mobile browser bars */
+    position: relative;
+    margin: 0 -18px;          /* break out of wrap padding */
   }
-  .hero-text .eyebrow { margin-bottom: 20px; }
+  .hero-blob-1, .hero-blob-2 { opacity: 0.3; }
+
+  /* Image becomes full-bleed background */
+  .hero-visual {
+    position: absolute !important;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+  .hero-img.main {
+    top: 0; left: 0; right: 0;
+    width: 100%; height: 100%;
+    transform: none !important;
+    animation: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .hero-img.main img {
+    animation: slowZoomMobile 20s ease-in-out infinite alternate;
+  }
+  @keyframes slowZoomMobile { to { transform: scale(1.06); } }
+  .hero-img.main::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(248, 241, 234, 0.4) 0%,
+      rgba(248, 241, 234, 0.1) 30%,
+      rgba(42, 22, 22, 0.3) 65%,
+      rgba(42, 22, 22, 0.85) 100%);
+    z-index: 1;
+  }
+  .hero-img.accent {
+    display: none;            /* single photo on mobile */
+  }
+  .badge-circle {
+    top: 90px; right: 18px;
+    bottom: auto;
+    width: 92px; height: 92px;
+    z-index: 3;
+    background: rgba(248, 241, 234, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 50%;
+    padding: 4px;
+  }
+  .badge-circle text { font-size: 9.5px; }
+  .badge-inner { font-size: 24px; }
+
+  /* Text overlays bottom half */
+  .hero-text {
+    position: relative;
+    z-index: 2;
+    padding: 0 24px 180px;
+    margin-top: auto;
+    align-self: flex-end;
+    width: 100%;
+    color: var(--cream);
+  }
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-text .eyebrow {
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .hero-text .eyebrow::before { color: var(--gold); }
   .hero h1 {
-    font-size: clamp(3rem, 10vw, 5rem);
-    margin-bottom: 28px;
+    font-size: clamp(3.5rem, 12vw, 5rem);
+    line-height: 0.92;
+    color: var(--cream);
+    margin-bottom: 22px;
+    text-shadow: 0 2px 30px rgba(42, 22, 22, 0.3);
   }
+  .hero h1 .it { color: var(--gold-soft); }
+  .hero h1 .underline-svg { stroke: var(--gold); }
   .hero-sub {
-    font-size: 16px;
-    margin-bottom: 32px;
+    font-size: 15px;
+    color: rgba(248, 241, 234, 0.9);
+    margin-bottom: 28px;
     max-width: none;
   }
+  .hero-sub strong { color: var(--cream); }
   .hero-meta {
-    gap: 24px;
-    margin-bottom: 36px;
-    padding: 20px 0;
+    padding: 18px 0;
+    margin-bottom: 28px;
+    border-color: rgba(244, 199, 184, 0.35);
+    gap: 20px;
   }
-  .hero-meta .n { font-size: 1.6rem; }
-  .hero-meta .l { font-size: 10px; }
-  .hero-ctas { gap: 10px; width: 100%; }
-  .cta { flex: 1 1 auto; padding: 16px 22px; font-size: 13.5px; }
+  .hero-meta .n {
+    color: var(--cream);
+    font-size: 1.5rem;
+  }
+  .hero-meta .n .em { color: var(--gold-soft); }
+  .hero-meta .l {
+    color: rgba(248, 241, 234, 0.7);
+    font-size: 9.5px;
+  }
+  .hero-ctas {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .cta { width: 100%; padding: 17px 24px; font-size: 14px; }
+  .cta.primary { background: var(--cream); color: var(--ink); }
+  .cta.primary::before { background: linear-gradient(135deg, var(--gold), var(--gold-soft)); }
+  .cta.secondary {
+    border-color: rgba(244, 199, 184, 0.6);
+    color: var(--cream);
+  }
+  .cta.secondary:hover, .cta.secondary:active {
+    background: var(--cream);
+    color: var(--ink);
+  }
 
-  .hero-visual { height: 520px; }
-  .hero-img.main { width: 78%; height: 82%; }
-  .hero-img.accent { width: 52%; height: 40%; border-width: 5px; }
-  .badge-circle { width: 100px; height: 100px; right: 0; bottom: 0; }
+  /* Show scroll indicator */
+  .hero::after {
+    content: "scroll";
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(248, 241, 234, 0.6);
+    animation: bounce 2s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+    50% { transform: translateX(-50%) translateY(6px); opacity: 1; }
+  }
 
-  /* Section heads stack */
-  .section-head { flex-direction: column; align-items: flex-start; gap: 20px; }
-  .section-head .aside { max-width: none; }
+  /* Hide the desktop sparkles on mobile */
+  .hero .sparkle.s1, .hero .sparkle.s2 { display: none; }
+  .hero .sparkle.s3, .hero .sparkle.s4 { z-index: 3; }
 
-  /* Credentials 2-col on tablet, 1-col below */
-  /* Services stay 2-col */
-  .services { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  /* Wrap padding adjustments */
+  .wrap { padding: 0 24px; }
 
-  /* Testimonials stack */
-  .quotes { grid-template-columns: 1fr; gap: 18px; }
-  .quote:nth-child(2) { transform: none; }
+  /* ═══════════════ Activate tab bar + section marker ═══════════════ */
+  .tabbar { display: block; }
+  .section-marker { display: block; }
 
-  /* Contact tightens */
-  .contact { padding: 120px 0 180px; }
-  .contact-meta { gap: 24px; }
+  /* Hide desktop hamburger (tab bar replaces it on phones) */
+  .nav-burger { display: none; }
+  .nav-cta { display: none; }
+  nav { padding: 16px 20px; }
+  nav.scrolled { padding: 12px 20px; background: rgba(248, 241, 234, 0.85); }
 
-  /* Section vertical rhythm */
-  section { padding: 90px 0; }
+  /* Hide the old floating book (replaced by tab bar) */
+  .floating-book { display: none !important; }
+
+  /* Add safe-area padding to footer so tab bar doesn't cover it */
+  footer {
+    padding: 40px 0 calc(100px + env(safe-area-inset-bottom));
+  }
+  .contact {
+    padding: 100px 0 140px;
+  }
+
+  /* ═══════════════ Gallery: hide desktop bento, show mobile swipe ═══════════════ */
+  .bento { display: none; }
+  .mobile-gallery { display: block; }
+
+  /* Full-bleed section break shown */
+  .section-break { display: block; }
+
+  /* ═══════════════ Editorial typography bumps ═══════════════ */
+  .section-title {
+    font-size: clamp(2.8rem, 10vw, 4rem);
+    line-height: 0.95;
+  }
+  .section-head { margin-bottom: 44px; gap: 18px; }
+  .section-head .eyebrow { font-size: 10px; }
+  .section-head .aside {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  /* Services cleaner */
+  .services { grid-template-columns: 1fr; gap: 14px; }
+  .service { padding: 28px 24px; }
+  .service h3 { font-size: 1.45rem; }
+
+  /* Signatures stacked */
+  .signatures-grid { grid-template-columns: 1fr; gap: 18px; }
+
+  /* About: add a drop-cap feel */
+  .about-text p:first-of-type::first-letter {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 3.6rem;
+    float: left;
+    line-height: 0.85;
+    margin: 6px 10px -4px 0;
+    color: var(--rose-deep);
+  }
+
+  /* IG grid */
+  .ig-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+  /* Section rhythm */
+  section { padding: 80px 0; }
+
+  /* Content bleed a touch for wider feel */
+  .section-head { padding: 0 4px; }
 }
 
 @media (max-width: 600px) {
-  .wrap { padding: 0 18px; }
-  nav { padding: 14px 18px; }
-  nav.scrolled { padding: 10px 18px; }
-  .logo { font-size: 1.5rem; }
-  .logo .flourish { font-size: 1.35rem; }
+  /* Tighten mobile hero further */
+  .hero h1 { font-size: clamp(3rem, 13vw, 4.5rem); }
+  .hero-sub { font-size: 14.5px; }
+  .hero-meta .n { font-size: 1.35rem; }
+  .hero-meta { gap: 14px; }
 
-  .hero { padding: 110px 0 50px; }
-  .hero h1 { font-size: clamp(2.8rem, 12vw, 4rem); line-height: 1; }
-  .hero-sub { font-size: 15.5px; }
-  .hero-visual { height: 440px; }
+  .section-break { min-height: 340px; height: 45vh; }
+  .section-break-caption { font-size: 1.2rem; }
 
-  /* Credentials 1-col */
-  .cred-card { padding: 28px 22px; }
+  /* Tabbar text tighter */
+  .tab-item .tab-label { font-size: 9px; }
+  .tab-item .tab-icon { font-size: 15px; }
 
-  /* Services 1-col */
-  .services { grid-template-columns: 1fr; }
-  .service { padding: 28px 22px; }
-
-  /* Bento 2-col on small phones */
-  .bento { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-
-  .contact h2 { font-size: clamp(2.4rem, 11vw, 3.6rem); }
-  .contact-cta { padding: 15px 22px; font-size: 13.5px; }
-  .contact-meta { flex-direction: column; gap: 14px; }
-
-  /* Floating book button tighter */
-  .floating-book {
-    bottom: 14px;
-    left: 14px; right: 14px;
-    padding: 14px 22px;
-    font-size: 14px;
-  }
-
-  /* Section padding mobile */
   section { padding: 70px 0; }
-  .section-head { margin-bottom: 44px; }
 
-  /* IG grid 2-col on phones */
-  .ig-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  /* Contact meta single column for readability */
+  .contact-meta { flex-direction: column; gap: 16px; }
 }
 
 @media (max-width: 380px) {
-  .hero h1 { font-size: 2.6rem; }
-  .hero-meta { gap: 18px; }
-  .hero-meta .n { font-size: 1.4rem; }
-  .cta { font-size: 13px; padding: 15px 18px; }
-  .bento { grid-template-columns: 1fr; }
+  .hero-meta .n { font-size: 1.2rem; }
+  .hero h1 { font-size: 2.8rem; }
+  .mobile-slide { flex-basis: 88%; }
+  .tab-item .tab-label { font-size: 8.5px; }
+}
+
+/* Large tablets — cleaner mid-zone */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr 0.85fr; gap: 40px; }
+  .hero h1 { font-size: clamp(3rem, 7vw, 5.5rem); }
+  .services { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* REVEAL */
@@ -1244,6 +1636,32 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 <div class="c-dot" id="cDot"></div>
 <div class="c-ring" id="cRing"></div>
 
+<!-- Section marker — floating chip that tells you what section you're in -->
+<div class="section-marker" id="sectionMarker"></div>
+
+<!-- Bottom tab bar — primary mobile nav -->
+<nav class="tabbar" aria-label="Mobile navigation">
+  <div class="tabbar-inner">
+    <a href="#work" class="tab-item">
+      <span class="tab-icon">◆</span>
+      <span class="tab-label">Work</span>
+    </a>
+    <a href="#about" class="tab-item">
+      <span class="tab-icon">✿</span>
+      <span class="tab-label">About</span>
+    </a>
+    <a href="mailto:makeoversgurbina@gmail.com?subject=Consultation%20Inquiry" class="tab-item book">
+      <span class="tab-icon">✉</span>
+      <span class="tab-label">Book</span>
+    </a>
+    <button class="tab-item" id="tabbarMenu" aria-label="More">
+      <span class="tab-icon">⋯</span>
+      <span class="tab-label">More</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Old floating book hidden on mobile (tab bar replaces it); desktop fallback kept -->
 <a href="mailto:makeoversgurbina@gmail.com?subject=Consultation%20Inquiry" class="floating-book" id="floatingBook">
   <span>✿ Book a consultation</span>
   <span>→</span>
@@ -1433,7 +1851,80 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
   </div>
+
+  <!-- Mobile-only horizontal scroll-snap gallery -->
+  <div class="mobile-gallery" aria-hidden="false">
+    <span class="mobile-gallery-hint">Swipe</span>
+    <div class="mobile-gallery-track" id="mobileGalleryTrack">
+      <div class="mobile-slide">
+        <img src="images/05-rose-bun-babybreath.jpg" alt="Rose bun with baby's breath" loading="lazy" decoding="async" />
+        <div class="mobile-slide-caption">
+          <span class="tag">Signature</span>
+          <h4>Rose bun · baby's breath &amp; bougainvillea</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid" loading="lazy" decoding="async" />
+        <div class="mobile-slide-caption">
+          <span class="tag">Bridal</span>
+          <h4>Waterfall braid · soft cascade</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/02-pearl-floral-bridal.jpg" alt="Pearl floral bridal" loading="lazy" decoding="async" />
+        <div class="mobile-slide-caption">
+          <span class="tag">Pearls</span>
+          <h4>Pearl floral crown</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/06-red-roses-crown.jpg" alt="Red rose crown" loading="lazy" decoding="async" />
+        <div class="mobile-slide-caption">
+          <span class="tag">Florals</span>
+          <h4>Red rose crown · gypsophila</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/03-butterfly-braid-mehndi.jpg" alt="Butterfly fishtail" loading="lazy" decoding="async" />
+        <div class="mobile-slide-caption">
+          <span class="tag">Mehndi</span>
+          <h4>Butterfly fishtail</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/04-pink-floral-braids.jpg" alt="Pink floral braids" loading="lazy" decoding="async" />
+        <div class="mobile-slide-caption">
+          <span class="tag">Sangeet</span>
+          <h4>Twin braids · pink bloom</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/07-balayage-crystal-vine.jpg" alt="Balayage with crystal vine" loading="lazy" decoding="async" />
+        <div class="mobile-slide-caption">
+          <span class="tag">Colour</span>
+          <h4>Balayage · crystal vine</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/08-cascade-curls-ringlets.jpg" alt="Ringlet cascade" loading="lazy" decoding="async" />
+        <div class="mobile-slide-caption">
+          <span class="tag">Styling</span>
+          <h4>Ringlet cascade</h4>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-gallery-dots" id="mobileGalleryDots"></div>
+  </div>
 </section>
+
+<!-- Full-bleed section break between Work and About -->
+<div class="section-break reveal">
+  <img src="images/06-red-roses-crown.jpg" alt="Red rose bridal work" loading="lazy" decoding="async" id="parallaxBreak1"/>
+  <div class="section-break-caption">
+    <span class="mark">every bride · every story</span>
+    "The difference between a good look and one a girl keeps<br/>talking about is almost always in the finish."
+  </div>
+</div>
 
 <section id="about">
   <div class="blob about-blob"></div>
@@ -1774,6 +2265,108 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       floatingBook.classList.remove('visible');
     }
   });
+
+  /* ---------- Tab bar "More" button → opens hamburger ---------- */
+  const tabbarMenu = document.getElementById('tabbarMenu');
+  if (tabbarMenu) {
+    tabbarMenu.addEventListener('click', () => {
+      burger.classList.add('open');
+      navLinks.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // haptic feedback (iOS/modern Android)
+      if (navigator.vibrate) navigator.vibrate(8);
+    });
+  }
+  // Haptic on all tab-items
+  document.querySelectorAll('.tab-item').forEach(el => {
+    el.addEventListener('click', () => {
+      if (navigator.vibrate) navigator.vibrate(5);
+    });
+  });
+
+  /* ---------- Sticky section marker — shows which section you're in ---------- */
+  const sectionMarker = document.getElementById('sectionMarker');
+  const sectionLabels = {
+    'work':       'Selected Work',
+    'about':      'About Gurbina',
+    'services':   'The Menu',
+    'signatures': 'Signatures',
+    'words':      'Kind Words',
+    'social':     'On The Feed',
+    'contact':    'Say Hello'
+  };
+  const sectionEls = Object.keys(sectionLabels)
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  let lastSection = null;
+  function updateSectionMarker() {
+    if (window.innerWidth > 900) {
+      sectionMarker.classList.remove('visible');
+      return;
+    }
+    const scrollY = window.scrollY + 120;
+    let current = null;
+    sectionEls.forEach(el => {
+      if (el.offsetTop <= scrollY) current = el;
+    });
+    if (current && current !== lastSection) {
+      lastSection = current;
+      sectionMarker.textContent = sectionLabels[current.id] || '';
+      sectionMarker.classList.add('visible');
+    } else if (!current || window.scrollY < window.innerHeight * 0.8) {
+      sectionMarker.classList.remove('visible');
+      lastSection = null;
+    }
+  }
+  window.addEventListener('scroll', updateSectionMarker, { passive: true });
+  window.addEventListener('resize', updateSectionMarker);
+
+  /* ---------- Mobile scroll-snap gallery dots ---------- */
+  const track = document.getElementById('mobileGalleryTrack');
+  const dotsContainer = document.getElementById('mobileGalleryDots');
+  if (track && dotsContainer) {
+    const slides = track.querySelectorAll('.mobile-slide');
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      if (i === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    });
+    const dots = dotsContainer.querySelectorAll('span');
+    // Update active dot on scroll
+    track.addEventListener('scroll', () => {
+      const slideWidth = slides[0].offsetWidth + 14; // incl. gap
+      const idx = Math.round(track.scrollLeft / slideWidth);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }, { passive: true });
+  }
+
+  /* ---------- Parallax section break ---------- */
+  const parallaxImg = document.getElementById('parallaxBreak1');
+  if (parallaxImg && !reducedMotion) {
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth > 900) return;
+      const rect = parallaxImg.parentElement.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+      const offset = progress * -40;
+      parallaxImg.style.transform = `translateY(${offset}px)`;
+    }, { passive: true });
+  }
+
+  /* ---------- Smart hero CTA: pulse on idle ---------- */
+  // (keeps hero CTAs feeling alive)
+  setTimeout(() => {
+    const primary = document.querySelector('.hero-ctas .cta.primary');
+    if (primary && !reducedMotion) {
+      primary.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.03)' },
+        { transform: 'scale(1)' }
+      ], { duration: 1400, iterations: 2, easing: 'ease-in-out' });
+    }
+  }, 3000);
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
