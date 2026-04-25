@@ -362,7 +362,7 @@ nav.scrolled {
   overflow: hidden;
   box-shadow: 0 30px 80px -20px var(--rose-glow), 0 15px 35px -10px rgba(42, 22, 22, 0.22);
 }
-.hero-img img { width: 100%; height: 100%; object-fit: cover; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
 
 .hero-img.main {
   top: 0; right: 0;
@@ -496,7 +496,7 @@ section { padding: 140px 0; position: relative; }
 .bento-card img {
   width: 100%; height: 100%;
   object-fit: cover;              /* fills perfectly since aspect matches */
-  object-position: center;
+  object-position: center 25%;
   transition: transform 0.8s var(--ease), filter 0.6s var(--ease);
   filter: saturate(1.05);
 }
@@ -705,6 +705,51 @@ section { padding: 140px 0; position: relative; }
 }
 .service:hover .service-arrow { transform: translateX(8px); }
 
+/* ═══════════════════════════════════════════════════════════
+   ADD-ONS — quick service pills below main services
+═══════════════════════════════════════════════════════════ */
+.addons {
+  margin-top: 36px;
+  padding: 32px;
+  background: linear-gradient(135deg, var(--blush-soft) 0%, var(--cream-deep) 100%);
+  border: 1px solid rgba(193, 117, 102, 0.18);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.addons-label {
+  font-family: var(--editorial);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--rose-deep);
+  margin-bottom: 20px;
+  letter-spacing: 0.01em;
+}
+.addons-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.addons-pills span {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--cream);
+  border: 1px solid rgba(193, 117, 102, 0.25);
+  border-radius: 100px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  transition: all 0.3s var(--ease);
+  cursor: default;
+}
+.addons-pills span:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
 /* TESTIMONIALS */
 .quotes {
   display: grid;
@@ -787,7 +832,7 @@ section { padding: 140px 0; position: relative; }
 .ig-tile img {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 25%;
   transition: filter 0.4s var(--ease);
 }
 .ig-tile:hover img { filter: saturate(1.15); }
@@ -927,7 +972,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 .sig-photo img {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 25%;
   transition: transform 0.8s var(--ease), filter 0.5s var(--ease);
   filter: saturate(1.05);
 }
@@ -1065,6 +1110,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   width: 100%;
   height: 115%;
   object-fit: cover;
+  object-position: center 30%;
   position: absolute;
   top: -8%; left: 0;
   will-change: transform;
@@ -1132,6 +1178,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 .mobile-slide img {
   width: 100%; height: 100%;
   object-fit: cover;
+  object-position: center 25%;
   filter: saturate(1.08);
 }
 .mobile-slide::after {
@@ -1370,6 +1417,12 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   .service h3 { font-size: 1.4rem; }
   .signatures-grid { grid-template-columns: 1fr; gap: 18px; }
 
+  /* Add-ons more compact on mobile */
+  .addons { padding: 26px 20px; margin-top: 28px; }
+  .addons-label { font-size: 1rem; margin-bottom: 16px; }
+  .addons-pills { gap: 6px; }
+  .addons-pills span { padding: 7px 13px; font-size: 12px; }
+
   /* ── About stacks ── */
   .about { grid-template-columns: 1fr !important; gap: 50px; }
   .about-text p:first-of-type::first-letter {
@@ -1474,10 +1527,10 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 <nav id="nav">
   <a href="#" class="logo"><span class="flourish">✿</span>Gurbina</a>
   <div class="nav-links" id="navLinks">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
+    <a href="#work">Bridal</a>
+    <a href="#colour-cuts">Colour</a>
     <a href="#services">Services</a>
-    <a href="#signatures">Signatures</a>
+    <a href="#about">About</a>
     <a href="#words">Reviews</a>
     <a href="mailto:makeoversgurbina@gmail.com?subject=Consultation%20Inquiry" class="mobile-book-link">Book a consultation →</a>
   </div>
@@ -1518,7 +1571,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <span class="l">Brides Styled</span>
       </div>
       <div>
-        <span class="n"><span class="em">9</span></span>
+        <span class="n"><span class="em">12</span></span>
         <span class="l">Signature Services</span>
       </div>
     </div>
@@ -1583,7 +1636,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 <section id="work">
   <div class="section-head reveal">
     <div class="lead">
-      <span class="eyebrow">Selected Work · 2023—2026</span>
+      <span class="eyebrow">Bridal Work · 2020—2026</span>
       <h2 class="section-title">Brides, <span class="it">braids,</span> and every flower in between.</h2>
     </div>
     <p class="aside">Every bride gets a look built for her — the face, the outfit, the lighting, the ceremony. Hover any piece for detail.</p>
@@ -1721,6 +1774,155 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   </div>
 </section>
 
+<!-- ═══════════════ COLOUR & CUTS ═══════════════ -->
+<section id="colour-cuts">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">Colour &amp; Cuts</span>
+      <h2 class="section-title">Beyond the bridal — <span class="it">everyday</span> luxury.</h2>
+    </div>
+    <p class="aside">Balayage, ombre, layered cuts, peek-a-boo highlights — the work that keeps clients coming back every six weeks.</p>
+  </div>
+
+  <!-- Desktop bento for colour/cuts -->
+  <div class="bento bento-cuts reveal-stagger">
+    <div class="bento-card featured" data-hover>
+      <img src="images/c03-balayage-caramel-chunks.jpg" alt="Black with caramel chunky highlights" loading="lazy" decoding="async"/>
+      <div class="bento-caption">
+        <span class="tag">Balayage</span>
+        <h4>Caramel chunks · black base</h4>
+      </div>
+    </div>
+    <div class="bento-card" data-hover>
+      <img src="images/c01-layered-cut-brunette.jpg" alt="Long layered brunette cut with bouncy curls" loading="lazy" decoding="async"/>
+      <div class="bento-caption">
+        <span class="tag">Layered Cut</span>
+        <h4>Long layers · feathered finish</h4>
+      </div>
+    </div>
+    <div class="bento-card" data-hover>
+      <img src="images/c04-silver-ombre-balayage.jpg" alt="Black to silver grey ombre balayage" loading="lazy" decoding="async"/>
+      <div class="bento-caption">
+        <span class="tag">Ombre</span>
+        <h4>Silver smoke ombre</h4>
+      </div>
+    </div>
+    <div class="bento-card" data-hover>
+      <img src="images/c05-blonde-ombre-balayage.jpg" alt="Black to blonde balayage" loading="lazy" decoding="async"/>
+      <div class="bento-caption">
+        <span class="tag">Balayage</span>
+        <h4>Black to blonde melt</h4>
+      </div>
+    </div>
+    <div class="bento-card" data-hover>
+      <img src="images/c06-red-peekaboo.jpg" alt="Red peek-a-boo highlights on black" loading="lazy" decoding="async"/>
+      <div class="bento-caption">
+        <span class="tag">Statement</span>
+        <h4>Red peek-a-boo</h4>
+      </div>
+    </div>
+    <div class="bento-card" data-hover>
+      <img src="images/c07-copper-layers.jpg" alt="Copper layered cut with bouncy ends" loading="lazy" decoding="async"/>
+      <div class="bento-caption">
+        <span class="tag">Cut + Colour</span>
+        <h4>Copper layers · '70s flick</h4>
+      </div>
+    </div>
+    <div class="bento-card" data-hover>
+      <img src="images/c08-side-profile-highlights.jpg" alt="Layered cut with warm caramel highlights" loading="lazy" decoding="async"/>
+      <div class="bento-caption">
+        <span class="tag">Highlights</span>
+        <h4>Warm caramel ribbons</h4>
+      </div>
+    </div>
+    <div class="bento-card" data-hover>
+      <img src="images/c02-layered-cut-caramel.jpg" alt="Long layered cut with subtle warm tones" loading="lazy" decoding="async"/>
+      <div class="bento-caption">
+        <span class="tag">Cut</span>
+        <h4>Long layers · subtle warmth</h4>
+      </div>
+    </div>
+    <div class="bento-card" data-hover>
+      <img src="images/c09-long-flowing-caramel.jpg" alt="Long flowing layered cut" loading="lazy" decoding="async"/>
+      <div class="bento-caption">
+        <span class="tag">Blowout</span>
+        <h4>Hollywood waves blowout</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile horizontal swipe gallery for Colour & Cuts -->
+  <div class="mobile-gallery">
+    <span class="mobile-gallery-hint">Swipe</span>
+    <div class="mobile-gallery-track" id="mobileGalleryCutsTrack">
+      <div class="mobile-slide">
+        <img src="images/c03-balayage-caramel-chunks.jpg" alt="Caramel balayage" loading="lazy" decoding="async"/>
+        <div class="mobile-slide-caption">
+          <span class="tag">Balayage</span>
+          <h4>Caramel chunks · black base</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/c01-layered-cut-brunette.jpg" alt="Layered cut" loading="lazy" decoding="async"/>
+        <div class="mobile-slide-caption">
+          <span class="tag">Layered Cut</span>
+          <h4>Long layers · feathered finish</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/c04-silver-ombre-balayage.jpg" alt="Silver ombre" loading="lazy" decoding="async"/>
+        <div class="mobile-slide-caption">
+          <span class="tag">Ombre</span>
+          <h4>Silver smoke ombre</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/c05-blonde-ombre-balayage.jpg" alt="Blonde balayage" loading="lazy" decoding="async"/>
+        <div class="mobile-slide-caption">
+          <span class="tag">Balayage</span>
+          <h4>Black to blonde melt</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/c06-red-peekaboo.jpg" alt="Red peek-a-boo" loading="lazy" decoding="async"/>
+        <div class="mobile-slide-caption">
+          <span class="tag">Statement</span>
+          <h4>Red peek-a-boo</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/c07-copper-layers.jpg" alt="Copper layers" loading="lazy" decoding="async"/>
+        <div class="mobile-slide-caption">
+          <span class="tag">Cut + Colour</span>
+          <h4>Copper layers · '70s flick</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/c08-side-profile-highlights.jpg" alt="Caramel highlights" loading="lazy" decoding="async"/>
+        <div class="mobile-slide-caption">
+          <span class="tag">Highlights</span>
+          <h4>Warm caramel ribbons</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/c02-layered-cut-caramel.jpg" alt="Subtle layered cut" loading="lazy" decoding="async"/>
+        <div class="mobile-slide-caption">
+          <span class="tag">Cut</span>
+          <h4>Long layers · subtle warmth</h4>
+        </div>
+      </div>
+      <div class="mobile-slide">
+        <img src="images/c09-long-flowing-caramel.jpg" alt="Hollywood blowout" loading="lazy" decoding="async"/>
+        <div class="mobile-slide-caption">
+          <span class="tag">Blowout</span>
+          <h4>Hollywood waves blowout</h4>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-gallery-dots" id="mobileGalleryCutsDots"></div>
+  </div>
+</section>
+
 <!-- Full-bleed section break between Work and About -->
 <div class="section-break reveal">
   <img src="images/06-red-roses-crown.jpg" alt="Red rose bridal work" loading="lazy" decoding="async" id="parallaxBreak1"/>
@@ -1746,7 +1948,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       <span class="eyebrow">The Girl Behind the Braids</span>
       <h2 class="section-title" style="margin-top: 18px;">Seven years of <span class="it">braids,</span> curls, and beautiful <span class="it">brides.</span></h2>
       <p style="margin-top: 32px;">
-        I trained formally in India, spent four years in a full-service salon outside Delhi where I learned the discipline — 25-client weeks, every bride's family watching over my shoulder, every strand counted — and relocated to Canada in 2023.
+        I trained formally in India, spent four years in a full-service salon outside Delhi where I learned the discipline — 25-client weeks, every bride's family watching over my shoulder, every strand counted — and relocated to Canada in 2020.
       </p>
       <p>
         I'm happiest in the finish. A bridal look can be complicated on paper and still feel <em style="font-style: italic;">off</em> if the braid isn't balanced, the curls aren't sealed, the flowers aren't placed with intention. <strong>The difference between a good bridal style and one a bride keeps talking about is almost always the last ten minutes.</strong>
@@ -1765,7 +1967,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       <span class="eyebrow">The Menu</span>
       <h2 class="section-title">What I'm <span class="it">known</span> for.</h2>
     </div>
-    <p class="aside">Six services, built on seven years of real chairs, real weddings, and every kind of hair — fine to thick, pin-straight to 4A.</p>
+    <p class="aside">Hair, makeup, brows — every service designed to make you walk out feeling more like yourself. From bridal day-of to everyday upkeep.</p>
   </div>
 
   <div class="services reveal-stagger">
@@ -1789,39 +1991,76 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     </div>
     <div class="service" data-hover>
       <div class="service-num">04 · ✿</div>
+      <h3>Bridal <span class="it">Makeup</span></h3>
+      <p>Full bridal looks built around the outfit and ceremony. Airbrush or HD foundation, custom-blended lip, lashes, and the touch-up plan for a 12-hour day.</p>
+      <div class="service-arrow">the makeup →</div>
+    </div>
+    <div class="service" data-hover>
+      <div class="service-num">05 · ✿</div>
+      <h3>Soft Glam <span class="it">&amp; Party</span></h3>
+      <p>Sangeet, mehndi, engagement, reception. Buildable glam from soft-day to full-glam-night, plus brow and lash work matched to the look.</p>
+      <div class="service-arrow">the glam →</div>
+    </div>
+    <div class="service" data-hover>
+      <div class="service-num">06 · ✿</div>
+      <h3>Brows &amp; <span class="it">Lashes</span></h3>
+      <p>Brow shaping, threading, tinting, lamination — and lash extensions for daily wear or one-day strip lashes for events. Every face has its own perfect arch.</p>
+      <div class="service-arrow">the brows →</div>
+    </div>
+    <div class="service" data-hover>
+      <div class="service-num">07 · ✿</div>
       <h3>Dimensional <span class="it">Balayage</span></h3>
       <p>Hand-painted colour with soft grow-out. Natural, sun-kissed, designed to look good eight weeks from now — not just the day you leave the chair.</p>
       <div class="service-arrow">the colour →</div>
     </div>
     <div class="service" data-hover>
-      <div class="service-num">05 · ✿</div>
+      <div class="service-num">08 · ✿</div>
       <h3>Precision <span class="it">Cutting</span></h3>
       <p>Blunt bobs, french bobs, clavicle layers, long movement. Dry cuts, point cuts, whatever the hair is actually asking for — not what Pinterest says.</p>
       <div class="service-arrow">the cut →</div>
     </div>
     <div class="service" data-hover>
-      <div class="service-num">06 · ✿</div>
+      <div class="service-num">09 · ✿</div>
       <h3>Colour <span class="it">Correction</span></h3>
       <p>Box-dye recoveries, banding, brass removal, tone fixes. The work nobody wants but somebody has to do beautifully — and gently.</p>
       <div class="service-arrow">the rescue →</div>
     </div>
     <div class="service" data-hover>
-      <div class="service-num">07 · ✿</div>
+      <div class="service-num">10 · ✿</div>
       <h3>Keratin &amp; <span class="it">Smoothing</span></h3>
       <p>Keratin treatments, Brazilian blowouts, anti-frizz smoothing. Healthier hair that behaves — minus the harsh formaldehyde shortcuts.</p>
       <div class="service-arrow">the treatment →</div>
     </div>
     <div class="service" data-hover>
-      <div class="service-num">08 · ✿</div>
+      <div class="service-num">11 · ✿</div>
       <h3>Extensions &amp; <span class="it">Length</span></h3>
       <p>Tape-ins, clip-ins, blending, placement, and maintenance. Seamless enough that the consult focuses on the haircut, not the install.</p>
       <div class="service-arrow">the length →</div>
     </div>
     <div class="service" data-hover>
-      <div class="service-num">09 · ✿</div>
+      <div class="service-num">12 · ✿</div>
       <h3>Events &amp; <span class="it">Blowouts</span></h3>
       <p>Red carpet, prom, sangeet, engagement parties. Voluminous blowouts, Hollywood waves, and pin-perfect updos that last all night.</p>
       <div class="service-arrow">the night →</div>
+    </div>
+  </div>
+
+  <!-- Add-ons strip — small pill chips for the little extras -->
+  <div class="addons reveal">
+    <div class="addons-label">+ &nbsp;Add-ons &amp; quick services</div>
+    <div class="addons-pills">
+      <span>Brow Threading</span>
+      <span>Brow Tinting</span>
+      <span>Brow Lamination</span>
+      <span>Strip Lashes</span>
+      <span>Lash Tinting</span>
+      <span>Hair Wash &amp; Style</span>
+      <span>Updo Practice</span>
+      <span>Trial Sessions</span>
+      <span>Touch-up Visits</span>
+      <span>Saree Draping</span>
+      <span>Dupatta Setting</span>
+      <span>Mehndi-Day Hair</span>
     </div>
   </div>
 </section>
@@ -2070,10 +2309,11 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     }
   });
 
-  /* ---------- Mobile scroll-snap gallery dots ---------- */
-  const track = document.getElementById('mobileGalleryTrack');
-  const dotsContainer = document.getElementById('mobileGalleryDots');
-  if (track && dotsContainer) {
+  /* ---------- Mobile scroll-snap gallery dots (handles all mobile galleries) ---------- */
+  function wireMobileGallery(trackId, dotsId) {
+    const track = document.getElementById(trackId);
+    const dotsContainer = document.getElementById(dotsId);
+    if (!track || !dotsContainer) return;
     const slides = track.querySelectorAll('.mobile-slide');
     slides.forEach((_, i) => {
       const dot = document.createElement('span');
@@ -2087,6 +2327,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       dots.forEach((d, i) => d.classList.toggle('active', i === idx));
     }, { passive: true });
   }
+  wireMobileGallery('mobileGalleryTrack', 'mobileGalleryDots');
+  wireMobileGallery('mobileGalleryCutsTrack', 'mobileGalleryCutsDots');
 
   /* ---------- Parallax section break ---------- */
   const parallaxImg = document.getElementById('parallaxBreak1');
