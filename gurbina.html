@@ -854,20 +854,33 @@ section { padding: 140px 0; position: relative; }
 .contact h2 {
   font-family: var(--editorial);
   font-weight: 400;
-  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
   line-height: 1;
   letter-spacing: -0.03em;
   margin-bottom: 30px;
   color: var(--ink);
+  padding: 0 16px;             /* breathing room from edges */
+  overflow-wrap: break-word;
 }
-.contact h2 .it { font-style: italic; color: var(--rose-deep); display: inline-block; }
+.contact h2 .it {
+  font-style: italic;
+  color: var(--rose-deep);
+  display: inline-block;
+  white-space: nowrap;        /* "beautiful ✿" stays together */
+}
 .contact h2 .heart {
   color: var(--gold);
   display: inline-block;
   font-size: 0.8em;
-  animation: pulse 2s ease-in-out infinite;
+  margin-left: 0.15em;
+  vertical-align: middle;
+  animation: spinFlower 6s linear infinite;
+  transform-origin: 50% 55%;  /* spin around its visual center */
 }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+@keyframes spinFlower {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
 .contact-sub {
   font-size: 17px;
   color: var(--ink-soft);
@@ -1494,14 +1507,25 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   transform: translateY(22px);
   transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
 }
-.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.13s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.21s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.29s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.37s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.45s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(7) { transition-delay: 0.53s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.visible > *:nth-child(8) { transition-delay: 0.61s; opacity: 1; transform: translateY(0); }
+/* All children become visible when parent gets .visible */
+.reveal-stagger.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Stagger delays for the first 12 — anything beyond that just appears at 12's delay */
+.reveal-stagger.visible > *:nth-child(1)  { transition-delay: 0.05s; }
+.reveal-stagger.visible > *:nth-child(2)  { transition-delay: 0.10s; }
+.reveal-stagger.visible > *:nth-child(3)  { transition-delay: 0.15s; }
+.reveal-stagger.visible > *:nth-child(4)  { transition-delay: 0.20s; }
+.reveal-stagger.visible > *:nth-child(5)  { transition-delay: 0.25s; }
+.reveal-stagger.visible > *:nth-child(6)  { transition-delay: 0.30s; }
+.reveal-stagger.visible > *:nth-child(7)  { transition-delay: 0.35s; }
+.reveal-stagger.visible > *:nth-child(8)  { transition-delay: 0.40s; }
+.reveal-stagger.visible > *:nth-child(9)  { transition-delay: 0.45s; }
+.reveal-stagger.visible > *:nth-child(10) { transition-delay: 0.50s; }
+.reveal-stagger.visible > *:nth-child(11) { transition-delay: 0.55s; }
+.reveal-stagger.visible > *:nth-child(12) { transition-delay: 0.60s; }
+.reveal-stagger.visible > *:nth-child(n+13) { transition-delay: 0.65s; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
