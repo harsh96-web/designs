@@ -64,7 +64,13 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;          /* belt and suspenders: lock html too */
+  width: 100%;
+  max-width: 100vw;
+}
 body {
   background: var(--cream);
   color: var(--ink);
@@ -74,6 +80,16 @@ body {
   overflow-x: hidden;
   cursor: none;
   position: relative;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  /* Prevent rubber-band horizontal sliding on iOS */
+  overscroll-behavior-x: none;
+}
+/* Every section clips its own contents — no overflow can ever bleed sideways */
+section, header.hero, .marquee-wrap, .section-break {
+  overflow-x: clip;
+  max-width: 100vw;
 }
 @media (max-width: 900px) { body { cursor: auto; } }
 
@@ -125,6 +141,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   filter: blur(40px);
   opacity: 0.5;
   z-index: 0;
+  max-width: 100%;             /* never bigger than parent */
   animation: morph 18s ease-in-out infinite alternate;
 }
 @keyframes morph {
@@ -1278,7 +1295,15 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     padding: 110px 0 60px;
     gap: 36px;
   }
-  .hero-blob-1, .hero-blob-2 { opacity: 0.35; }
+  .hero-blob-1, .hero-blob-2 {
+    opacity: 0.35;
+    width: 280px !important;
+    height: 280px !important;
+    left: auto !important;
+    right: auto !important;
+  }
+  .hero-blob-1 { top: -5% !important; left: -10% !important; }
+  .hero-blob-2 { top: 35% !important; right: -10% !important; }
   .hero-text .eyebrow {
     margin-bottom: 18px;
     font-size: 10px;
@@ -1324,13 +1349,13 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     position: absolute;
     top: 0; right: 0; left: 0; bottom: 0;
     width: 100%; height: 100%;
-    transform: rotate(1.5deg);
+    transform: none;            /* no tilt on mobile — was causing horizontal overflow */
     animation: none;
   }
   .hero-img.accent { display: none; }
   .badge-circle {
     width: 88px; height: 88px;
-    right: -8px; bottom: -8px;
+    right: 8px; bottom: 8px;     /* inside the photo, no overflow */
     background: var(--cream);
     border-radius: 50%;
     padding: 4px;
