@@ -198,6 +198,15 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
   transition: all 0.5s var(--ease);
 }
+/* On mobile: always show nav background so content never bleeds through */
+@media (max-width: 900px) {
+  nav {
+    background: rgba(248, 241, 234, 0.92);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-bottom: 1px solid rgba(193, 117, 102, 0.12);
+  }
+}
 nav.scrolled {
   padding: 14px 32px;
   background: rgba(248, 241, 234, 0.75);
@@ -594,7 +603,12 @@ section { padding: 140px 0; position: relative; }
 }
 @media (max-width: 900px) { .about { grid-template-columns: 1fr; gap: 60px; } }
 
-.about-visual { position: relative; aspect-ratio: 3/4; }
+.about-visual {
+  position: relative;
+  aspect-ratio: 3/4;
+  /* Extra padding so the tag (-30px) and frame (-16px) don't get clipped */
+  margin: 0 10px 40px 10px;
+}
 .about-image {
   position: absolute; inset: 0;
   border-radius: var(--radius-lg);
@@ -602,7 +616,7 @@ section { padding: 140px 0; position: relative; }
   box-shadow: 0 30px 70px -20px rgba(42, 22, 22, 0.3);
   transform: rotate(-2deg);
 }
-.about-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.05); object-position: center; }
+.about-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(1.05); object-position: top center; }
 .about-frame {
   position: absolute;
   inset: -16px;
@@ -623,7 +637,7 @@ section { padding: 140px 0; position: relative; }
 }
 .about-tag {
   position: absolute;
-  bottom: -30px; left: -30px;
+  bottom: -24px; left: -10px;
   padding: 14px 24px;
   background: var(--cream);
   border-radius: 100px;
@@ -1359,6 +1373,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
   /* ── Nav + hamburger (simpler) ── */
   nav { padding: 14px 18px; }
+  nav.scrolled { padding: 12px 18px; }
   nav.scrolled { padding: 10px 18px; background: rgba(248, 241, 234, 0.85); }
   .nav-cta { display: none; }
   .nav-burger { display: flex; }
@@ -1403,16 +1418,19 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   /* ── Floating book button shown on mobile instead of tab bar ── */
   .floating-book {
     display: flex !important;
-    bottom: calc(16px + env(safe-area-inset-bottom));
+    bottom: calc(12px + env(safe-area-inset-bottom));
     left: 50%;
     right: auto;
-    transform: translateX(-50%) translateY(120%);
     width: auto;
-    max-width: 86vw;
-    padding: 14px 26px;
-    font-size: 14px;
-    background: var(--ink);
-    box-shadow: 0 15px 40px -8px rgba(42, 22, 22, 0.4);
+    max-width: 260px;
+    transform: translateX(-50%) translateY(120%);
+    padding: 12px 24px;
+    font-size: 13.5px;
+    background: rgba(42, 22, 22, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px -4px rgba(42, 22, 22, 0.35);
+    min-height: 46px;
   }
   .floating-book.visible {
     transform: translateX(-50%) translateY(0);
@@ -1452,6 +1470,11 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
   /* ── About stacks ── */
   .about { grid-template-columns: 1fr !important; gap: 50px; }
+  .about-visual { margin: 0 0 30px 0; }   /* reset desktop margin on mobile */
+  .about-image { transform: none; }        /* no rotation on mobile — causes cropping */
+  .about-frame { transform: none; }        /* no counter-rotation needed */
+  .about-tag { bottom: -20px; left: 10px; }/* keep tag inside safe zone */
+  .about-sparkle { top: 10px; right: 10px; font-size: 2rem; } /* keep sparkle inside */
   .about-text p:first-of-type::first-letter {
     font-family: var(--editorial);
     font-style: italic;
