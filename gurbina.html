@@ -98,10 +98,10 @@ body::before {
   position: fixed; inset: 0;
   pointer-events: none; z-index: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 10% 0%, var(--blush-soft) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 90% 80%, var(--blush) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 50% 50%, var(--gold-soft) 0%, transparent 70%);
-  opacity: 0.5;
+    radial-gradient(ellipse 80% 70% at 0% 0%, var(--blush-soft) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 55% at 100% 80%, var(--blush-soft) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 45% at 50% 50%, var(--gold-soft) 0%, transparent 80%);
+  opacity: 0.9;
 }
 body::after {
   content: "";
@@ -138,10 +138,10 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .blob {
   position: absolute;
   pointer-events: none;
-  filter: blur(40px);
-  opacity: 0.5;
+  filter: blur(90px);            /* much more diffuse */
+  opacity: 0.35;                 /* softer presence */
   z-index: 0;
-  max-width: 100%;             /* never bigger than parent */
+  max-width: 100%;
   animation: morph 18s ease-in-out infinite alternate;
 }
 @keyframes morph {
@@ -258,8 +258,7 @@ nav.scrolled {
   gap: 60px;
   align-items: center;
 }
-.hero-blob-1 { top: -10%; left: -5%; width: 500px; height: 500px; background: var(--peach); }
-.hero-blob-2 { top: 30%; right: -10%; width: 420px; height: 420px; background: var(--gold-soft); }
+.hero-blob-1, .hero-blob-2 { display: none; }
 
 .hero-text { position: relative; }
 .hero-text .eyebrow { margin-bottom: 28px; }
@@ -1286,7 +1285,6 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 ═══════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
   /* Enable paper texture and grain for editorial feel */
-  body::before { opacity: 0.7; }
   body::after { opacity: 0.065; }
 
   /* ── Hero ── */
@@ -1295,15 +1293,6 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     padding: 110px 0 60px;
     gap: 36px;
   }
-  .hero-blob-1, .hero-blob-2 {
-    opacity: 0.35;
-    width: 280px !important;
-    height: 280px !important;
-    left: auto !important;
-    right: auto !important;
-  }
-  .hero-blob-1 { top: -5% !important; left: -10% !important; }
-  .hero-blob-2 { top: 35% !important; right: -10% !important; }
   .hero-text .eyebrow {
     margin-bottom: 18px;
     font-size: 10px;
