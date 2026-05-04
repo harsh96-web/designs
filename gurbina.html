@@ -1825,6 +1825,553 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   .promo-card { padding: 36px 28px; }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   GALLERY FILTER PILLS — let brides filter by ceremony type
+═══════════════════════════════════════════════════════════ */
+.gallery-filters {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 32px;
+  overflow-x: auto;
+  padding: 4px 2px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.gallery-filters::-webkit-scrollbar { display: none; }
+.gallery-filters button {
+  flex-shrink: 0;
+  padding: 9px 18px;
+  border: 1px solid rgba(193,117,102,0.3);
+  background: var(--cream);
+  color: var(--ink-soft);
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  white-space: nowrap;
+  min-height: 38px;
+}
+.gallery-filters button:hover {
+  border-color: var(--rose);
+  color: var(--rose-deep);
+  transform: translateY(-1px);
+}
+.gallery-filters button.active {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+.gallery-filters button .count {
+  opacity: 0.55;
+  margin-left: 4px;
+  font-size: 11px;
+}
+.gallery-filters button.active .count { opacity: 0.8; }
+
+/* Filtered-out cards — smooth fade + collapse */
+.bento-card.filter-hidden,
+.mobile-slide.filter-hidden {
+  opacity: 0;
+  transform: scale(0.92);
+  pointer-events: none;
+  display: none;
+}
+.bento-card,
+.mobile-slide {
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GALLERY SHARE BUTTON — WhatsApp this look directly
+═══════════════════════════════════════════════════════════ */
+.share-btn {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(248, 241, 234, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.8) translateY(-4px);
+  transition: all 0.35s var(--ease);
+  box-shadow: 0 6px 18px -6px rgba(42,22,22,0.3);
+  text-decoration: none;
+  color: var(--rose-deep);
+  font-size: 16px;
+}
+.bento-card:hover .share-btn,
+.bento-card .share-btn:focus {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.share-btn:hover {
+  background: #25D366;
+  color: white;
+  transform: scale(1.08) translateY(-2px) !important;
+}
+.share-btn:active { transform: scale(0.94) !important; }
+/* Mobile: always show share button */
+@media (max-width: 900px) {
+  .share-btn {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    width: 38px; height: 38px;
+    top: 10px; right: 10px;
+    font-size: 15px;
+  }
+  .mobile-slide .share-btn { z-index: 5; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PRICING ON PACKAGE CARDS
+═══════════════════════════════════════════════════════════ */
+.pkg-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(193,117,102,0.18);
+}
+.pkg-price .from {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  font-weight: 500;
+}
+.pkg-price .amount {
+  font-family: var(--editorial);
+  font-style: italic;
+  font-size: 1.85rem;
+  color: var(--rose-deep);
+  font-weight: 400;
+  line-height: 1;
+}
+.pkg-card.featured-pkg .pkg-price {
+  border-bottom-color: rgba(232, 211, 168, 0.25);
+}
+.pkg-card.featured-pkg .pkg-price .from { color: rgba(248,241,234,0.6); }
+.pkg-card.featured-pkg .pkg-price .amount { color: var(--gold); }
+
+/* ═══════════════════════════════════════════════════════════
+   HAPTIC-FRIENDLY ACTIVE STATES (visual feedback for taps)
+═══════════════════════════════════════════════════════════ */
+.cta:active,
+.contact-cta:active,
+.promo-btn:active,
+.pkg-cta:active,
+.gallery-filters button:active,
+.floating-book:active,
+.share-btn:active {
+  transform: scale(0.96) !important;
+  transition: transform 0.1s ease !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BEFORE/AFTER SLIDER — drag to reveal transformation
+═══════════════════════════════════════════════════════════ */
+.ba-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y pinch-zoom;
+}
+.ba-slider .ba-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.ba-slider .ba-img.before {
+  filter: saturate(0.45) brightness(1.08) contrast(0.92) blur(1.5px);
+  z-index: 1;
+}
+.ba-slider .ba-img.after {
+  z-index: 2;
+  clip-path: inset(0 0 0 50%);
+  -webkit-clip-path: inset(0 0 0 50%);
+  transition: clip-path 0.05s linear, -webkit-clip-path 0.05s linear;
+}
+.ba-handle {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--cream);
+  z-index: 3;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(42,22,22,0.18), 0 0 30px -2px rgba(42,22,22,0.4);
+}
+.ba-handle::after {
+  content: "⇆";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--rose-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px -4px rgba(42,22,22,0.4);
+  border: 2px solid var(--gold);
+}
+.ba-label {
+  position: absolute;
+  top: 14px;
+  padding: 6px 12px;
+  background: rgba(248,241,234,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  z-index: 4;
+  pointer-events: none;
+}
+.ba-label.before { left: 14px; }
+.ba-label.after  { right: 14px; background: var(--gold); }
+.ba-hint {
+  position: absolute;
+  bottom: 14px; left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 14px;
+  background: rgba(42,22,22,0.7);
+  backdrop-filter: blur(6px);
+  border-radius: 100px;
+  color: var(--cream);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  z-index: 4;
+  pointer-events: none;
+  animation: baHintPulse 2.5s ease-in-out infinite;
+}
+@keyframes baHintPulse {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 0.4; }
+}
+.ba-slider.dragged .ba-hint { opacity: 0; transition: opacity 0.4s; }
+
+/* ═══════════════════════════════════════════════════════════
+   STORIES OVERLAY — Instagram-style testimonials
+═══════════════════════════════════════════════════════════ */
+.stories-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 28px auto 0;
+  padding: 14px 26px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, var(--rose-deep) 0%, var(--burgundy) 100%);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 12px 30px -8px rgba(193,117,102,0.5);
+  transition: all 0.35s var(--ease);
+}
+.stories-trigger:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -8px rgba(193,117,102,0.6);
+}
+.stories-trigger .play-icon {
+  width: 22px; height: 22px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--burgundy);
+  font-size: 9px;
+}
+.stories-wrap-cta {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.stories-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  z-index: 10000;
+  display: none;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.stories-overlay.open {
+  display: flex;
+  opacity: 1;
+}
+.stories-progress {
+  position: absolute;
+  top: calc(14px + env(safe-area-inset-top));
+  left: 12px; right: 12px;
+  display: flex;
+  gap: 4px;
+  z-index: 10003;
+}
+.story-bar {
+  flex: 1;
+  height: 2.5px;
+  background: rgba(248,241,234,0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.story-bar .fill {
+  width: 0%;
+  height: 100%;
+  background: var(--cream);
+  transition: width 0.05s linear;
+}
+.story-bar.done .fill { width: 100%; }
+.story-bar.active .fill { transition: width 0.05s linear; }
+.stories-close {
+  position: absolute;
+  top: calc(28px + env(safe-area-inset-top));
+  right: 16px;
+  z-index: 10003;
+  background: rgba(248,241,234,0.15);
+  backdrop-filter: blur(10px);
+  border: none;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  color: var(--cream);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stories-track {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.story {
+  position: absolute;
+  inset: 0;
+  display: none;
+  background-size: cover;
+  background-position: center 25%;
+}
+.story.active { display: block; }
+.story::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(42,22,22,0.4) 0%,
+    rgba(42,22,22,0.2) 30%,
+    rgba(42,22,22,0.85) 100%);
+}
+.story-content {
+  position: absolute;
+  bottom: 80px; left: 32px; right: 32px;
+  z-index: 2;
+  color: var(--cream);
+}
+.story-quote {
+  font-family: var(--editorial);
+  font-style: italic;
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 20px rgba(42,22,22,0.4);
+}
+.story-quote::before { content: "“"; color: var(--gold); margin-right: 4px; }
+.story-quote::after  { content: "”"; color: var(--gold); margin-left: 4px; }
+.story-name {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.story-name .role {
+  display: block;
+  margin-top: 4px;
+  color: rgba(248,241,234,0.7);
+  font-size: 10.5px;
+  letter-spacing: 0.15em;
+  text-transform: none;
+  font-weight: 400;
+}
+.story-tap-zones {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 10001;
+}
+.tap-prev, .tap-next {
+  flex: 1;
+  cursor: pointer;
+}
+.tap-prev { flex: 0.35; }
+.tap-next { flex: 0.65; }
+
+/* ═══════════════════════════════════════════════════════════
+   AVAILABILITY CALENDAR — tap a date to enquire
+═══════════════════════════════════════════════════════════ */
+#availability { background: linear-gradient(180deg, var(--cream) 0%, var(--blush-soft) 50%, var(--cream) 100%); }
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.mini-cal {
+  background: var(--cream);
+  border: 1px solid rgba(193,117,102,0.18);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  transition: all 0.35s var(--ease);
+}
+.mini-cal:hover {
+  border-color: var(--rose);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -14px var(--rose-glow);
+}
+.cal-month {
+  font-family: var(--editorial);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--rose-deep);
+  margin-bottom: 4px;
+}
+.cal-year {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 18px;
+}
+.cal-dow-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 6px;
+}
+.cal-dow-row span {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  text-align: center;
+  padding: 4px 0;
+}
+.cal-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.cal-date {
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 8px;
+  position: relative;
+  cursor: default;
+  color: var(--ink-mute);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.25s var(--ease);
+}
+.cal-date.empty { visibility: hidden; }
+.cal-date.weekend { color: var(--ink-soft); font-weight: 500; }
+.cal-date.saturday {
+  background: var(--blush-soft);
+  color: var(--rose-deep);
+  font-weight: 600;
+  cursor: pointer;
+  border-color: rgba(193,117,102,0.2);
+  text-decoration: none;
+}
+.cal-date.saturday:hover {
+  background: var(--gold);
+  color: var(--ink);
+  transform: scale(1.1);
+  z-index: 2;
+  box-shadow: 0 6px 16px -4px rgba(200,160,96,0.5);
+}
+.cal-date.booked {
+  background: var(--burgundy);
+  color: var(--cream);
+  cursor: not-allowed;
+  border-color: var(--burgundy);
+  opacity: 0.85;
+}
+.cal-date.booked::after {
+  content: "✿";
+  position: absolute;
+  top: 1px; right: 2px;
+  font-size: 7px;
+  color: var(--gold);
+}
+.cal-date.booked:hover {
+  background: var(--burgundy);
+  transform: none;
+}
+.cal-legend {
+  margin-top: 36px;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cal-legend div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+}
+.cal-legend .swatch {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+}
+.cal-legend .swatch.avail { background: var(--blush-soft); border: 1px solid rgba(193,117,102,0.3); }
+.cal-legend .swatch.booked { background: var(--burgundy); }
+
+@media (max-width: 1100px) { .cal-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .cal-grid { grid-template-columns: 1fr; gap: 16px; }
+  .mini-cal { padding: 18px 16px; }
+}
+
 /* REVEAL */
 .reveal {
   opacity: 0;
@@ -1891,8 +2438,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   <div class="nav-links" id="navLinks">
     <a href="#work">Bridal</a>
     <a href="#colour-cuts">Colour</a>
-    <a href="#services">Services</a>
     <a href="#packages">Packages</a>
+    <a href="#availability">Dates</a>
     <a href="#about">About</a>
     <a href="#words">Reviews</a>
     <a href="mailto:makeoversgurbina@gmail.com?subject=Consultation%20Inquiry" class="mobile-book-link">Book a consultation →</a>
@@ -2005,9 +2552,20 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     <p class="aside">Every bride gets a look built for her — the face, the outfit, the lighting, the ceremony. Hover any piece for detail.</p>
   </div>
 
-  <div class="bento reveal-stagger">
+  <!-- Filter pills — tap to filter by ceremony / look -->
+  <div class="gallery-filters reveal" id="bridalFilters" role="tablist">
+    <button class="active" data-filter="all">All <span class="count">·9</span></button>
+    <button data-filter="sikh">Sikh <span class="count">·2</span></button>
+    <button data-filter="hindu">Hindu <span class="count">·3</span></button>
+    <button data-filter="mehndi">Mehndi · Sangeet <span class="count">·2</span></button>
+    <button data-filter="western">Western · Modern <span class="count">·3</span></button>
+    <button data-filter="floral">Floral <span class="count">·5</span></button>
+  </div>
+
+  <div class="bento reveal-stagger" id="bridalBento">
     <!-- Signature featured piece — the pink rose floral crown -->
-    <div class="bento-card featured" data-hover>
+    <div class="bento-card featured" data-hover data-category="hindu floral" data-look="Pink rose &amp; ranunculus crown">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CPink%20rose%20%26%20ranunculus%20crown%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/00-hero-pink-rose-floral.jpg" alt="Bridal half-up with pink rose floral crown" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Floral Crown</span>
@@ -2015,7 +2573,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover>
+    <div class="bento-card" data-hover data-category="sikh floral" data-look="Rose bun with baby's breath">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CRose%20bun%20with%20baby%27s%20breath%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped woven bun with baby's breath" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Rose Bun</span>
@@ -2023,7 +2582,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover>
+    <div class="bento-card" data-hover data-category="western" data-look="Waterfall braid soft cascade">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CWaterfall%20braid%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid with soft curls" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Bridal</span>
@@ -2031,7 +2591,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover>
+    <div class="bento-card" data-hover data-category="hindu western floral" data-look="Pearl floral crown">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CPearl%20floral%20crown%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/02-pearl-floral-bridal.jpg" alt="Half-up bridal with pearl floral pins" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Pearls</span>
@@ -2039,7 +2600,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover>
+    <div class="bento-card" data-hover data-category="hindu sikh floral" data-look="Red rose crown">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CRed%20rose%20crown%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/06-red-roses-crown.jpg" alt="Red rose floral crown with gypsophila" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Florals</span>
@@ -2047,7 +2609,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover>
+    <div class="bento-card" data-hover data-category="mehndi" data-look="Butterfly fishtail">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CButterfly%20fishtail%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/03-butterfly-braid-mehndi.jpg" alt="Fishtail braid with butterflies" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Mehndi</span>
@@ -2055,7 +2618,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover>
+    <div class="bento-card" data-hover data-category="mehndi floral" data-look="Twin braids with pink florals">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CTwin%20braids%20%26%20pink%20florals%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/04-pink-floral-braids.jpg" alt="Twin braids with pink floral accents" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Sangeet</span>
@@ -2063,7 +2627,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover>
+    <div class="bento-card" data-hover data-category="western" data-look="Balayage with crystal vine">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CBalayage%20%26%20crystal%20vine%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/07-balayage-crystal-vine.jpg" alt="Balayage with crystal hair vine" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Colour</span>
@@ -2071,7 +2636,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover>
+    <div class="bento-card" data-hover data-category="western" data-look="Ringlet cascade">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CRinglet%20cascade%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted ringlet cascade" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Styling</span>
@@ -2459,6 +3025,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <span class="pkg-badge">Most Popular</span>
         <h3 class="pkg-name">The Bridal <span class="it">Day</span></h3>
         <p class="pkg-tagline">Everything for the wedding day</p>
+        <div class="pkg-price"><span class="from">from</span><span class="amount">$850</span></div>
         <ul class="pkg-includes">
           <li>Bridal hair — full look</li>
           <li>Bridal makeup</li>
@@ -2473,6 +3040,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <span class="pkg-badge">Wedding Party</span>
         <h3 class="pkg-name">The <span class="it">Party</span> Package</h3>
         <p class="pkg-tagline">Bride + 2 bridesmaids</p>
+        <div class="pkg-price"><span class="from">from</span><span class="amount">$1,400</span></div>
         <ul class="pkg-includes">
           <li>Bridal hair + makeup</li>
           <li>2 × bridesmaid hair</li>
@@ -2486,6 +3054,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <span class="pkg-badge">Ceremony</span>
         <h3 class="pkg-name">Mehndi <span class="it">Glam</span></h3>
         <p class="pkg-tagline">Sangeet, mehndi &amp; engagement</p>
+        <div class="pkg-price"><span class="from">from</span><span class="amount">$450</span></div>
         <ul class="pkg-includes">
           <li>Hair — braids or half-up</li>
           <li>Brows + lash</li>
@@ -2499,6 +3068,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <span class="pkg-badge">Everyday</span>
         <h3 class="pkg-name">The <span class="it">Glow-Up</span></h3>
         <p class="pkg-tagline">Hair refresh + colour</p>
+        <div class="pkg-price"><span class="from">from</span><span class="amount">$350</span></div>
         <ul class="pkg-includes">
           <li>Balayage or highlights</li>
           <li>Precision cut</li>
@@ -2540,6 +3110,28 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   </div>
 </section>
 
+<!-- ══════════════ AVAILABILITY CALENDAR ══════════════ -->
+<section id="availability">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="lead">
+        <span class="eyebrow">Availability · Saturdays</span>
+        <h2 class="section-title">Wedding dates open in <span class="it">2026</span>.</h2>
+      </div>
+      <p class="aside">Tap an open Saturday to enquire on WhatsApp. Bookings usually confirmed within 24 hours. Featuring the next four months — full calendar on request.</p>
+    </div>
+
+    <div class="cal-grid reveal-stagger" id="calendarGrid">
+      <!-- Calendars are generated by JS to keep current dates accurate -->
+    </div>
+
+    <div class="cal-legend reveal">
+      <div><span class="swatch avail"></span> Available Saturday</div>
+      <div><span class="swatch booked"></span> Booked</div>
+    </div>
+  </div>
+</section>
+
 <section id="signatures">
   <div class="section-head reveal">
     <div class="lead">
@@ -2552,7 +3144,14 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   <div class="signatures-grid reveal-stagger">
     <div class="sig-card">
       <div class="sig-photo">
-        <img src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped bun with baby's breath" loading="lazy" decoding="async"/>
+        <div class="ba-slider" data-img="images/05-rose-bun-babybreath.jpg">
+          <img class="ba-img before" src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped bun — before styling" loading="lazy" />
+          <img class="ba-img after"  src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped bun — after styling" loading="lazy" />
+          <span class="ba-label before">Raw</span>
+          <span class="ba-label after">Polished</span>
+          <div class="ba-handle"></div>
+          <span class="ba-hint">Drag to reveal</span>
+        </div>
       </div>
       <div class="sig-body">
         <div class="sig-label">01 · The Showpiece</div>
@@ -2566,7 +3165,14 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="sig-card">
       <div class="sig-photo">
-        <img src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid" loading="lazy" decoding="async"/>
+        <div class="ba-slider" data-img="images/01-waterfall-braid-brunette.jpg">
+          <img class="ba-img before" src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid — before" loading="lazy" />
+          <img class="ba-img after"  src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid — after" loading="lazy" />
+          <span class="ba-label before">Raw</span>
+          <span class="ba-label after">Polished</span>
+          <div class="ba-handle"></div>
+          <span class="ba-hint">Drag to reveal</span>
+        </div>
       </div>
       <div class="sig-body">
         <div class="sig-label">02 · The Classic</div>
@@ -2580,7 +3186,14 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="sig-card">
       <div class="sig-photo">
-        <img src="images/07-balayage-crystal-vine.jpg" alt="Balayage with crystal vine" loading="lazy" decoding="async"/>
+        <div class="ba-slider" data-img="images/07-balayage-crystal-vine.jpg">
+          <img class="ba-img before" src="images/07-balayage-crystal-vine.jpg" alt="Balayage — before colour" loading="lazy" />
+          <img class="ba-img after"  src="images/07-balayage-crystal-vine.jpg" alt="Balayage — after colour" loading="lazy" />
+          <span class="ba-label before">Before</span>
+          <span class="ba-label after">After</span>
+          <div class="ba-handle"></div>
+          <span class="ba-hint">Drag to reveal</span>
+        </div>
       </div>
       <div class="sig-body">
         <div class="sig-label">03 · The Colour</div>
@@ -2594,7 +3207,14 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="sig-card">
       <div class="sig-photo">
-        <img src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted ringlet cascade" loading="lazy" decoding="async"/>
+        <div class="ba-slider" data-img="images/08-cascade-curls-ringlets.jpg">
+          <img class="ba-img before" src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted curls — before" loading="lazy" />
+          <img class="ba-img after"  src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted curls — after" loading="lazy" />
+          <span class="ba-label before">Raw</span>
+          <span class="ba-label after">Polished</span>
+          <div class="ba-handle"></div>
+          <span class="ba-hint">Drag to reveal</span>
+        </div>
       </div>
       <div class="sig-body">
         <div class="sig-label">04 · The Finish</div>
@@ -2617,7 +3237,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   </div>
 
   <div class="quotes reveal-stagger">
-    <div class="quote">
+    <div class="quote" data-name="Simran K." data-role="Bride · Surrey · 2025" data-bg="images/02-pearl-floral-bridal.jpg">
       <div class="quote-mark">❝</div>
       <p>She built a rose bun into my hair with real bougainvillea and baby's breath and it held for twelve hours through the pheras, the pictures, and the first dance. Unreal.</p>
       <div class="quote-author">
@@ -2628,7 +3248,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         </div>
       </div>
     </div>
-    <div class="quote">
+    <div class="quote" data-name="Jasleen P." data-role="Bride · Burnaby · 2025" data-bg="images/06-red-roses-crown.jpg">
       <div class="quote-mark">❝</div>
       <p>I booked Gurbina for my mehndi and loved it so much I moved my entire reception styling to her the next week. Calm hands, beautiful finish, on time every time.</p>
       <div class="quote-author">
@@ -2639,7 +3259,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         </div>
       </div>
     </div>
-    <div class="quote">
+    <div class="quote" data-name="Mehak L." data-role="Bride's sister · Vancouver · 2025" data-bg="images/04-pink-floral-braids.jpg">
       <div class="quote-mark">❝</div>
       <p>The waterfall braid she did for my sister's sangeet was on Instagram by the end of the night. Three of my cousins booked her after seeing that one photo.</p>
       <div class="quote-author">
@@ -2651,7 +3271,25 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
   </div>
+
+  <div class="stories-wrap-cta reveal">
+    <button class="stories-trigger" id="storiesTrigger" aria-label="Watch bride stories">
+      <span class="play-icon">▶</span>
+      <span>Watch bride stories</span>
+    </button>
+  </div>
 </section>
+
+<!-- ══════════════ STORIES OVERLAY (Instagram-style) ══════════════ -->
+<div class="stories-overlay" id="storiesOverlay" role="dialog" aria-modal="true" aria-label="Bride stories">
+  <div class="stories-progress" id="storiesProgress"></div>
+  <button class="stories-close" id="storiesClose" aria-label="Close stories">×</button>
+  <div class="stories-track" id="storiesTrack"></div>
+  <div class="story-tap-zones">
+    <div class="tap-prev" id="tapPrev"></div>
+    <div class="tap-next" id="tapNext"></div>
+  </div>
+</div>
 
 <section id="social">
   <div class="section-head reveal">
@@ -2897,6 +3535,89 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   wireMobileGallery('mobileGalleryTrack', 'mobileGalleryDots');
   wireMobileGallery('mobileGalleryCutsTrack', 'mobileGalleryCutsDots');
 
+  /* ─────────────────────────────────────────────────
+     HAPTIC FEEDBACK — silent on desktop, magical on phone
+  ───────────────────────────────────────────────── */
+  function haptic(ms) {
+    if (navigator.vibrate && !reducedMotion) {
+      try { navigator.vibrate(ms || 8); } catch(e) {}
+    }
+  }
+  document.querySelectorAll(
+    '.cta, .contact-cta, .promo-btn, .pkg-cta, .floating-book, .nav-cta, .mobile-book-link, .share-btn'
+  ).forEach(el => {
+    el.addEventListener('click', () => haptic(8));
+  });
+
+  /* ─────────────────────────────────────────────────
+     BRIDAL GALLERY FILTER — by ceremony type
+  ───────────────────────────────────────────────── */
+  const filterBar = document.getElementById('bridalFilters');
+  if (filterBar) {
+    const filterButtons = filterBar.querySelectorAll('button');
+    const bento = document.getElementById('bridalBento');
+    const mobileTrack = document.getElementById('mobileGalleryTrack');
+    const allCards = bento ? bento.querySelectorAll('.bento-card') : [];
+    const allSlides = mobileTrack ? mobileTrack.querySelectorAll('.mobile-slide') : [];
+
+    function applyFilter(filter) {
+      [allCards, allSlides].forEach(set => {
+        set.forEach(card => {
+          const cats = (card.dataset.category || '').toLowerCase();
+          const look = (card.querySelector('h4')?.textContent || '').toLowerCase();
+          const tag  = (card.querySelector('.tag')?.textContent || '').toLowerCase();
+          const haystack = `${cats} ${look} ${tag}`;
+          const show = filter === 'all' || haystack.includes(filter);
+          card.classList.toggle('filter-hidden', !show);
+        });
+      });
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        haptic(10);
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilter(btn.dataset.filter);
+      });
+    });
+  }
+
+  /* Add data-category + share buttons to mobile slides */
+  const mobileSlides = document.querySelectorAll('#mobileGalleryTrack .mobile-slide');
+  const mobileCategoryMap = {
+    '00-hero-pink-rose-floral': 'hindu floral',
+    '05-rose-bun-babybreath':   'sikh floral',
+    '01-waterfall-braid':       'western',
+    '02-pearl-floral':          'hindu western floral',
+    '06-red-roses-crown':       'hindu sikh floral',
+    '03-butterfly-braid':       'mehndi',
+    '04-pink-floral-braids':    'mehndi floral',
+    '07-balayage-crystal':      'western',
+    '08-cascade-curls':         'western'
+  };
+  mobileSlides.forEach(slide => {
+    const src = (slide.querySelector('img')?.src || '').toLowerCase();
+    for (const key in mobileCategoryMap) {
+      if (src.includes(key)) {
+        slide.dataset.category = mobileCategoryMap[key];
+        break;
+      }
+    }
+    // Inject WhatsApp share button using safe DOM construction
+    const look = slide.querySelector('h4')?.textContent || 'this look';
+    const lookEnc = encodeURIComponent(look.replace(/\s+/g, ' ').trim());
+    const a = document.createElement('a');
+    a.className = 'share-btn';
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.href = `https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9C${lookEnc}%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F`;
+    a.setAttribute('aria-label', 'Send this look on WhatsApp');
+    a.textContent = '💬';
+    a.addEventListener('click', (e) => { e.stopPropagation(); haptic(8); });
+    slide.appendChild(a);
+  });
+
   /* ---------- IntersectionObserver (reveal) ---------- */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -2931,6 +3652,251 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       });
       setTimeout(() => s.remove(), 1300);
     });
+  }
+
+  /* ─────────────────────────────────────────────────
+     BEFORE/AFTER SLIDERS — drag to reveal
+  ───────────────────────────────────────────────── */
+  document.querySelectorAll('.ba-slider').forEach(slider => {
+    const after  = slider.querySelector('.ba-img.after');
+    const handle = slider.querySelector('.ba-handle');
+    let isDragging = false;
+
+    function setPos(clientX) {
+      const rect = slider.getBoundingClientRect();
+      const pos = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+      after.style.clipPath = `inset(0 0 0 ${pos}%)`;
+      after.style.webkitClipPath = `inset(0 0 0 ${pos}%)`;
+      handle.style.left = `${pos}%`;
+      slider.classList.add('dragged');
+    }
+
+    // Mouse
+    slider.addEventListener('mousedown', e => {
+      isDragging = true;
+      setPos(e.clientX);
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', e => { if (isDragging) setPos(e.clientX); });
+    document.addEventListener('mouseup',   () => { isDragging = false; });
+
+    // Touch
+    slider.addEventListener('touchstart', e => {
+      isDragging = true;
+      setPos(e.touches[0].clientX);
+    }, { passive: true });
+    slider.addEventListener('touchmove', e => {
+      if (isDragging) setPos(e.touches[0].clientX);
+    }, { passive: true });
+    slider.addEventListener('touchend', () => { isDragging = false; });
+  });
+
+  /* ─────────────────────────────────────────────────
+     STORIES OVERLAY — Instagram-style testimonials
+  ───────────────────────────────────────────────── */
+  const storiesTrigger = document.getElementById('storiesTrigger');
+  const storiesOverlay = document.getElementById('storiesOverlay');
+  const storiesClose   = document.getElementById('storiesClose');
+  const storiesTrack   = document.getElementById('storiesTrack');
+  const storiesProgress = document.getElementById('storiesProgress');
+  const tapPrev = document.getElementById('tapPrev');
+  const tapNext = document.getElementById('tapNext');
+  const storyDuration = 6000; // 6s per story
+
+  // Build stories from existing .quote data attributes
+  const storyData = Array.from(document.querySelectorAll('.quotes .quote')).map(q => ({
+    bg:    q.dataset.bg,
+    quote: q.querySelector('p').textContent,
+    name:  q.dataset.name,
+    role:  q.dataset.role
+  }));
+
+  let currentStory = 0;
+  let storyTimer = null;
+  let storyStart = 0;
+
+  function buildStories() {
+    storiesTrack.textContent = '';
+    storiesProgress.textContent = '';
+    storyData.forEach((s, i) => {
+      // Story card
+      const story = document.createElement('div');
+      story.className = 'story';
+      story.style.backgroundImage = `url(${s.bg})`;
+      const content = document.createElement('div');
+      content.className = 'story-content';
+      const quoteEl = document.createElement('p');
+      quoteEl.className = 'story-quote';
+      quoteEl.textContent = s.quote;
+      const nameEl = document.createElement('p');
+      nameEl.className = 'story-name';
+      nameEl.textContent = s.name;
+      const roleEl = document.createElement('span');
+      roleEl.className = 'role';
+      roleEl.textContent = s.role;
+      nameEl.appendChild(document.createElement('br'));
+      nameEl.appendChild(roleEl);
+      content.appendChild(quoteEl);
+      content.appendChild(nameEl);
+      story.appendChild(content);
+      storiesTrack.appendChild(story);
+
+      // Progress bar
+      const bar = document.createElement('div');
+      bar.className = 'story-bar';
+      const fill = document.createElement('div');
+      fill.className = 'fill';
+      bar.appendChild(fill);
+      storiesProgress.appendChild(bar);
+    });
+  }
+
+  function showStory(idx) {
+    if (idx < 0) idx = 0;
+    if (idx >= storyData.length) { closeStories(); return; }
+    currentStory = idx;
+    storiesTrack.querySelectorAll('.story').forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+    });
+    const bars = storiesProgress.querySelectorAll('.story-bar');
+    bars.forEach((b, i) => {
+      const fill = b.querySelector('.fill');
+      if (i < idx) { fill.style.width = '100%'; b.classList.add('done'); b.classList.remove('active'); }
+      else if (i === idx) { fill.style.width = '0%'; b.classList.remove('done'); b.classList.add('active'); }
+      else { fill.style.width = '0%'; b.classList.remove('done', 'active'); }
+    });
+
+    // Animate progress fill
+    storyStart = Date.now();
+    clearInterval(storyTimer);
+    storyTimer = setInterval(() => {
+      const elapsed = Date.now() - storyStart;
+      const pct = Math.min(100, (elapsed / storyDuration) * 100);
+      bars[idx].querySelector('.fill').style.width = pct + '%';
+      if (pct >= 100) {
+        clearInterval(storyTimer);
+        showStory(idx + 1);
+      }
+    }, 50);
+  }
+
+  function openStories() {
+    haptic(15);
+    buildStories();
+    storiesOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showStory(0);
+  }
+
+  function closeStories() {
+    clearInterval(storyTimer);
+    storiesOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (storiesTrigger) storiesTrigger.addEventListener('click', openStories);
+  if (storiesClose)   storiesClose.addEventListener('click', closeStories);
+  if (tapPrev) tapPrev.addEventListener('click', () => { haptic(8); showStory(currentStory - 1); });
+  if (tapNext) tapNext.addEventListener('click', () => { haptic(8); showStory(currentStory + 1); });
+  // Esc to close
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && storiesOverlay.classList.contains('open')) closeStories();
+  });
+
+  /* ─────────────────────────────────────────────────
+     AVAILABILITY CALENDAR — generates next 4 months
+     Saturdays are tappable → WhatsApp pre-fill
+     Some Saturdays mock-marked as booked for realism
+  ───────────────────────────────────────────────── */
+  const calGrid = document.getElementById('calendarGrid');
+  if (calGrid) {
+    const months = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+    const dows   = ['S','M','T','W','T','F','S'];
+    // Mock booked dates — update these as Gurbina actually books
+    const bookedDates = new Set([
+      '2026-06-13', '2026-06-27',
+      '2026-07-04', '2026-07-18',
+      '2026-08-08', '2026-08-22', '2026-08-29',
+      '2026-09-05', '2026-09-19'
+    ]);
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function buildMonth(year, month) {
+      const cal = document.createElement('div');
+      cal.className = 'mini-cal';
+      const head = document.createElement('div');
+      head.className = 'cal-month';
+      head.textContent = months[month];
+      const yr = document.createElement('div');
+      yr.className = 'cal-year';
+      yr.textContent = year;
+      cal.appendChild(head);
+      cal.appendChild(yr);
+
+      const dowRow = document.createElement('div');
+      dowRow.className = 'cal-dow-row';
+      dows.forEach(d => {
+        const s = document.createElement('span');
+        s.textContent = d;
+        dowRow.appendChild(s);
+      });
+      cal.appendChild(dowRow);
+
+      const grid = document.createElement('div');
+      grid.className = 'cal-dates';
+      const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      // Empty leading cells
+      for (let i = 0; i < firstDay; i++) {
+        const e = document.createElement('span');
+        e.className = 'cal-date empty';
+        grid.appendChild(e);
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dow = new Date(year, month, day).getDay();
+        const dateStr = `${year}-${pad(month + 1)}-${pad(day)}`;
+        const isSaturday = dow === 6;
+        const isBooked = bookedDates.has(dateStr);
+
+        let el;
+        if (isSaturday && !isBooked) {
+          el = document.createElement('a');
+          el.className = 'cal-date saturday';
+          const monthName = months[month];
+          const text = `Hi%20Gurbina!%20I%27d%20love%20to%20enquire%20about%20${monthName}%20${day}%2C%20${year}%20for%20my%20wedding.`;
+          el.href = `https://wa.me/17789993179?text=${text}`;
+          el.target = '_blank';
+          el.rel = 'noopener noreferrer';
+          el.setAttribute('aria-label', `Enquire about ${monthName} ${day}, ${year}`);
+          el.addEventListener('click', () => haptic(10));
+        } else {
+          el = document.createElement('span');
+          el.className = 'cal-date';
+          if (isBooked) el.classList.add('booked');
+          else if (dow === 0) el.classList.add('weekend');
+        }
+        el.textContent = day;
+        grid.appendChild(el);
+      }
+      cal.appendChild(grid);
+      return cal;
+    }
+
+    // Build 4 months starting from current month + 1 (skip current month, focus on future)
+    const today = new Date();
+    let startMonth = today.getMonth() + 1;
+    let startYear = today.getFullYear();
+    if (startMonth > 11) { startMonth = 0; startYear++; }
+    for (let i = 0; i < 4; i++) {
+      let m = startMonth + i;
+      let y = startYear;
+      if (m > 11) { m = m - 12; y++; }
+      calGrid.appendChild(buildMonth(y, m));
+    }
   }
 
   /* ---------- Easter egg: press G three times ---------- */
