@@ -3185,28 +3185,6 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   </div>
 </section>
 
-<section id="signatures">
-  <div class="wrap">
-    <div class="section-head reveal" style="margin-bottom: 36px;">
-      <div class="lead">
-        <span class="eyebrow">Before &amp; After</span>
-        <h2 class="section-title">The <span class="it">difference</span> is in the finish.</h2>
-      </div>
-      <p class="aside">The same hair — before and after. Every detail placed with intention.</p>
-    </div>
-    <div class="ba-pair reveal">
-      <div class="ba-pair-card">
-        <img src="images/05-rose-bun-babybreath.jpg" alt="Before styling" loading="lazy"/>
-        <span class="ba-pair-label bpl-before">Before</span>
-      </div>
-      <div class="ba-pair-card">
-        <img src="images/05-rose-bun-babybreath.jpg" alt="After — Rose Bun" loading="lazy"/>
-        <span class="ba-pair-label bpl-after">After</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="words">
   <div class="section-head reveal">
     <div class="lead">
@@ -3250,25 +3228,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
   </div>
-
-  <div class="stories-wrap-cta reveal">
-    <button class="stories-trigger" id="storiesTrigger" aria-label="Watch bride stories">
-      <span class="play-icon">▶</span>
-      <span>Watch bride stories</span>
-    </button>
-  </div>
 </section>
-
-<!-- ══════════════ STORIES OVERLAY (Instagram-style) ══════════════ -->
-<div class="stories-overlay" id="storiesOverlay" role="dialog" aria-modal="true" aria-label="Bride stories">
-  <div class="stories-progress" id="storiesProgress"></div>
-  <button class="stories-close" id="storiesClose" aria-label="Close stories">×</button>
-  <div class="stories-track" id="storiesTrack"></div>
-  <div class="story-tap-zones">
-    <div class="tap-prev" id="tapPrev"></div>
-    <div class="tap-next" id="tapNext"></div>
-  </div>
-</div>
 
 <section id="social">
   <div class="section-head reveal">
@@ -3668,118 +3628,6 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       if (isDragging) setPos(e.touches[0].clientX);
     }, { passive: true });
     slider.addEventListener('touchend', () => { isDragging = false; });
-  });
-
-  /* ─────────────────────────────────────────────────
-     STORIES OVERLAY — Instagram-style testimonials
-  ───────────────────────────────────────────────── */
-  const storiesTrigger = document.getElementById('storiesTrigger');
-  const storiesOverlay = document.getElementById('storiesOverlay');
-  const storiesClose   = document.getElementById('storiesClose');
-  const storiesTrack   = document.getElementById('storiesTrack');
-  const storiesProgress = document.getElementById('storiesProgress');
-  const tapPrev = document.getElementById('tapPrev');
-  const tapNext = document.getElementById('tapNext');
-  const storyDuration = 6000; // 6s per story
-
-  // Build stories from existing .quote data attributes
-  const storyData = Array.from(document.querySelectorAll('.quotes .quote')).map(q => ({
-    bg:    q.dataset.bg,
-    quote: q.querySelector('p').textContent,
-    name:  q.dataset.name,
-    role:  q.dataset.role
-  }));
-
-  let currentStory = 0;
-  let storyTimer = null;
-  let storyStart = 0;
-
-  function buildStories() {
-    storiesTrack.textContent = '';
-    storiesProgress.textContent = '';
-    storyData.forEach((s, i) => {
-      // Story card
-      const story = document.createElement('div');
-      story.className = 'story';
-      story.style.backgroundImage = `url(${s.bg})`;
-      const content = document.createElement('div');
-      content.className = 'story-content';
-      const quoteEl = document.createElement('p');
-      quoteEl.className = 'story-quote';
-      quoteEl.textContent = s.quote;
-      const nameEl = document.createElement('p');
-      nameEl.className = 'story-name';
-      nameEl.textContent = s.name;
-      const roleEl = document.createElement('span');
-      roleEl.className = 'role';
-      roleEl.textContent = s.role;
-      nameEl.appendChild(document.createElement('br'));
-      nameEl.appendChild(roleEl);
-      content.appendChild(quoteEl);
-      content.appendChild(nameEl);
-      story.appendChild(content);
-      storiesTrack.appendChild(story);
-
-      // Progress bar
-      const bar = document.createElement('div');
-      bar.className = 'story-bar';
-      const fill = document.createElement('div');
-      fill.className = 'fill';
-      bar.appendChild(fill);
-      storiesProgress.appendChild(bar);
-    });
-  }
-
-  function showStory(idx) {
-    if (idx < 0) idx = 0;
-    if (idx >= storyData.length) { closeStories(); return; }
-    currentStory = idx;
-    storiesTrack.querySelectorAll('.story').forEach((s, i) => {
-      s.classList.toggle('active', i === idx);
-    });
-    const bars = storiesProgress.querySelectorAll('.story-bar');
-    bars.forEach((b, i) => {
-      const fill = b.querySelector('.fill');
-      if (i < idx) { fill.style.width = '100%'; b.classList.add('done'); b.classList.remove('active'); }
-      else if (i === idx) { fill.style.width = '0%'; b.classList.remove('done'); b.classList.add('active'); }
-      else { fill.style.width = '0%'; b.classList.remove('done', 'active'); }
-    });
-
-    // Animate progress fill
-    storyStart = Date.now();
-    clearInterval(storyTimer);
-    storyTimer = setInterval(() => {
-      const elapsed = Date.now() - storyStart;
-      const pct = Math.min(100, (elapsed / storyDuration) * 100);
-      bars[idx].querySelector('.fill').style.width = pct + '%';
-      if (pct >= 100) {
-        clearInterval(storyTimer);
-        showStory(idx + 1);
-      }
-    }, 50);
-  }
-
-  function openStories() {
-    haptic(15);
-    buildStories();
-    storiesOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    showStory(0);
-  }
-
-  function closeStories() {
-    clearInterval(storyTimer);
-    storiesOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  if (storiesTrigger) storiesTrigger.addEventListener('click', openStories);
-  if (storiesClose)   storiesClose.addEventListener('click', closeStories);
-  if (tapPrev) tapPrev.addEventListener('click', () => { haptic(8); showStory(currentStory - 1); });
-  if (tapNext) tapNext.addEventListener('click', () => { haptic(8); showStory(currentStory + 1); });
-  // Esc to close
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && storiesOverlay.classList.contains('open')) closeStories();
   });
 
   /* ─────────────────────────────────────────────────
