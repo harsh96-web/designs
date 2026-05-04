@@ -3,6 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+<!-- ═══ SECURITY HEADERS ═══ -->
+<!-- CSP: only allow resources from same origin + trusted fonts/analytics -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com;
+  img-src 'self' data: https:;
+  connect-src 'self';
+  frame-ancestors 'none';
+  base-uri 'self';
+  form-action 'self' mailto: https://wa.me;
+" />
+<!-- Don't leak referrer to external links -->
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<!-- Disable browser features not needed -->
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
+<!-- Prevent MIME sniffing -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<!-- ═══ END SECURITY HEADERS ═══ -->
+
 <title>Gurbina — Bridal Hairstylist · Vancouver BC</title>
 <meta name="description" content="Gurbina — bridal and editorial hairstylist in Vancouver, BC. Specializing in South Asian bridal, waterfall braids, floral placement, balayage, precision cuts, and keratin treatments." />
 <meta name="theme-color" content="#F8F1EA" />
@@ -1346,6 +1368,21 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
    ACTIVATE MOBILE STYLES at ≤ 900px
 ═══════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
+  /* ── PERFORMANCE: Disable expensive animations on mobile ── */
+  /* Morph animation causes constant repaints — kills scroll performance */
+  .blob { animation: none !important; }
+  /* Marquee is fine but pause on scroll for perf */
+  .marquee-track { will-change: transform; }
+  /* Nav backdrop-filter is expensive — only apply when scrolled */
+  nav:not(.scrolled) { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+  /* Hint browser about elements that will transform */
+  .mobile-slide { will-change: auto; }
+  .bento-card { will-change: auto; }
+  /* Reduce box-shadow complexity on cards */
+  .service, .pkg-card, .quote { box-shadow: none; border: 1px solid rgba(193,117,102,0.2); }
+  /* GPU layer hint for scrolling containers */
+  .mobile-gallery-track { -webkit-overflow-scrolling: touch; transform: translateZ(0); }
+
   /* Enable paper texture and grain for editorial feel */
   body::after { opacity: 0.065; }
 
@@ -2692,27 +2729,43 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   const isDesktop = window.matchMedia('(min-width: 900px)').matches;
 
   /* ---------- Announcement bar ---------- */
-  const announceBar  = document.getElementById('announceBar');
-  const announceMsg  = document.getElementById('announceMsg');
+  const announceBar   = document.getElementById('announceBar');
+  const announceMsg   = document.getElementById('announceMsg');
   const announceClose = document.getElementById('announceClose');
 
+  // Safe messages — text + optional link (never uses raw innerHTML from user input)
   const messages = [
-    'Summer 2026 bridal dates are filling fast — <a href="mailto:makeoversgurbina@gmail.com?subject=Bridal%20Booking%20Enquiry">book your consultation now</a>',
-    '✦ New client offer: complimentary trial session with any bridal package',
-    'Refer a bride, you both get <strong>$50 off</strong> — <a href="#packages">see details</a>',
-    '💬 Prefer to chat? <a href="https://wa.me/17789993179?text=Hi%20Gurbina!" target="_blank">WhatsApp Gurbina directly</a>',
+    { text: 'Summer 2026 bridal dates are filling fast — ', link: 'book your consultation', href: 'mailto:makeoversgurbina@gmail.com?subject=Bridal%20Booking%20Enquiry' },
+    { text: '✦ New client offer: complimentary trial session with any bridal package', link: null },
+    { text: 'Refer a bride, you both get $50 off — ', link: 'see packages', href: '#packages' },
+    { text: '💬 Prefer to chat? ', link: 'WhatsApp Gurbina directly', href: 'https://wa.me/17789993179?text=Hi%20Gurbina!', external: true },
   ];
-  let msgIdx = 0;
-  setInterval(() => {
+
+  function setAnnounceMessage(idx) {
     const txt = document.getElementById('announceText');
     txt.style.opacity = '0';
     txt.style.transform = 'translateY(-8px)';
     setTimeout(() => {
-      msgIdx = (msgIdx + 1) % messages.length;
-      announceMsg.innerHTML = messages[msgIdx];
+      // Safe DOM construction — no innerHTML
+      announceMsg.textContent = '';
+      const m = messages[idx];
+      announceMsg.appendChild(document.createTextNode(m.text));
+      if (m.link) {
+        const a = document.createElement('a');
+        a.textContent = m.link;
+        a.href = m.href;
+        if (m.external) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+        announceMsg.appendChild(a);
+      }
       txt.style.opacity = '1';
       txt.style.transform = 'translateY(0)';
     }, 500);
+  }
+
+  let msgIdx = 0;
+  setInterval(() => {
+    msgIdx = (msgIdx + 1) % messages.length;
+    setAnnounceMessage(msgIdx);
   }, 5000);
 
   if (announceClose) {
@@ -2751,21 +2804,63 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     ring.style.display = 'none';
   }
 
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  });
+  /* ─────────────────────────────────────────────────
+     PERFORMANCE: single throttled scroll handler
+     All scroll logic runs in ONE rAF loop, not 4
+     separate listeners — prevents mobile lag
+  ───────────────────────────────────────────────── */
+  const nav        = document.getElementById('nav');
+  const floatingBook = document.getElementById('floatingBook');
+  const contact    = document.getElementById('contact');
+  const parallaxImg = document.getElementById('parallaxBreak1');
+  let   ticking    = false;
 
-  /* ---------- Mobile hamburger menu ---------- */
-  const burger = document.getElementById('navBurger');
+  function onScroll() {
+    const sy = window.scrollY;
+    const isMobile = window.innerWidth <= 900;
+
+    // Nav frosted glass
+    if (sy > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+
+    // Floating book button (mobile only)
+    if (isMobile && floatingBook) {
+      const atContact = contact && contact.getBoundingClientRect().top < window.innerHeight;
+      if (sy > window.innerHeight * 0.6 && !atContact) {
+        floatingBook.classList.add('visible');
+      } else {
+        floatingBook.classList.remove('visible');
+      }
+    }
+
+    // Parallax section break (mobile only, skip if reduced motion)
+    if (isMobile && parallaxImg && !reducedMotion) {
+      const rect = parallaxImg.parentElement.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        parallaxImg.style.transform = `translateY(${progress * -30}px)`;
+      }
+    }
+
+    ticking = false;
+  }
+
+  // Throttle via requestAnimationFrame — runs max once per frame
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });  // passive: true = no jank, browser can scroll freely
+
+  /* ---------- Mobile hamburger ---------- */
+  const burger   = document.getElementById('navBurger');
   const navLinks = document.getElementById('navLinks');
   burger.addEventListener('click', () => {
     burger.classList.toggle('open');
     navLinks.classList.toggle('open');
     document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
   });
-  // Close menu when any link is tapped
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       burger.classList.remove('open');
@@ -2774,20 +2869,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     });
   });
 
-  /* ---------- Floating mobile book button ---------- */
-  const floatingBook = document.getElementById('floatingBook');
-  const contact = document.getElementById('contact');
-  window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY > window.innerHeight * 0.6;
-    const atContact = contact && contact.getBoundingClientRect().top < window.innerHeight;
-    if (scrolled && !atContact) {
-      floatingBook.classList.add('visible');
-    } else {
-      floatingBook.classList.remove('visible');
-    }
-  });
-
-  /* ---------- Mobile scroll-snap gallery dots (handles all mobile galleries) ---------- */
+  /* ---------- Mobile gallery dots ---------- */
   function wireMobileGallery(trackId, dotsId) {
     const track = document.getElementById(trackId);
     const dotsContainer = document.getElementById(dotsId);
@@ -2799,28 +2881,23 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       dotsContainer.appendChild(dot);
     });
     const dots = dotsContainer.querySelectorAll('span');
+    let galleryTicking = false;
     track.addEventListener('scroll', () => {
-      const slideWidth = slides[0].offsetWidth + 14;
-      const idx = Math.round(track.scrollLeft / slideWidth);
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      if (!galleryTicking) {
+        requestAnimationFrame(() => {
+          const slideWidth = slides[0].offsetWidth + 14;
+          const idx = Math.round(track.scrollLeft / slideWidth);
+          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+          galleryTicking = false;
+        });
+        galleryTicking = true;
+      }
     }, { passive: true });
   }
   wireMobileGallery('mobileGalleryTrack', 'mobileGalleryDots');
   wireMobileGallery('mobileGalleryCutsTrack', 'mobileGalleryCutsDots');
 
-  /* ---------- Parallax section break ---------- */
-  const parallaxImg = document.getElementById('parallaxBreak1');
-  if (parallaxImg && !reducedMotion) {
-    window.addEventListener('scroll', () => {
-      if (window.innerWidth > 900) return;
-      const rect = parallaxImg.parentElement.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-      const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-      const offset = progress * -30;
-      parallaxImg.style.transform = `translateY(${offset}px)`;
-    }, { passive: true });
-  }
-
+  /* ---------- IntersectionObserver (reveal) ---------- */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -2831,44 +2908,32 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 
-  // Force hero elements visible immediately — they're above the fold
-  // and shouldn't wait for scroll trigger
+  // Hero always visible immediately (above the fold)
   document.querySelectorAll('header.hero .reveal, header.hero .reveal-stagger').forEach(el => {
     el.classList.add('visible');
     io.unobserve(el);
   });
 
-  // Sparkle cursor trail
+  /* ---------- Sparkle cursor trail (desktop only) ---------- */
   if (isDesktop && !reducedMotion) {
     let lastSpark = 0;
     document.addEventListener('mousemove', (e) => {
       const now = Date.now();
-      if (now - lastSpark < 140) return;
+      if (now - lastSpark < 160) return; // throttled
       lastSpark = now;
       const s = document.createElement('div');
       s.textContent = '✦';
-      s.style.cssText = `
-        position: fixed;
-        top: ${e.clientY}px;
-        left: ${e.clientX}px;
-        color: var(--gold);
-        font-size: ${Math.random() * 10 + 8}px;
-        pointer-events: none;
-        z-index: 9999;
-        opacity: 1;
-        transform: translate(-50%, -50%);
-        transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-      `;
+      s.style.cssText = `position:fixed;top:${e.clientY}px;left:${e.clientX}px;color:var(--gold);font-size:${Math.random()*10+8}px;pointer-events:none;z-index:9999;opacity:1;transform:translate(-50%,-50%);transition:all 1.2s cubic-bezier(.22,1,.36,1);`;
       document.body.appendChild(s);
       requestAnimationFrame(() => {
         s.style.opacity = '0';
-        s.style.transform = `translate(-50%, -50%) translateY(-30px) rotate(${Math.random()*360}deg) scale(0.3)`;
+        s.style.transform = `translate(-50%,-50%) translateY(-30px) rotate(${Math.random()*360}deg) scale(0.3)`;
       });
       setTimeout(() => s.remove(), 1300);
     });
   }
 
-  // Easter egg: press G three times → flower rain
+  /* ---------- Easter egg: press G three times ---------- */
   let keyBuffer = [];
   document.addEventListener('keydown', (e) => {
     keyBuffer.push(e.key.toLowerCase());
@@ -2878,16 +2943,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         setTimeout(() => {
           const flower = document.createElement('div');
           flower.textContent = ['✿','✦','❀','✿'][Math.floor(Math.random()*4)];
-          flower.style.cssText = `
-            position: fixed;
-            top: -30px;
-            left: ${Math.random() * 100}vw;
-            color: ${['#C17566','#8E3D35','#C8A060','#F0DBC5'][Math.floor(Math.random()*4)]};
-            font-size: ${Math.random() * 24 + 16}px;
-            z-index: 10001;
-            pointer-events: none;
-            animation: fall ${3 + Math.random()*2}s linear forwards;
-          `;
+          flower.style.cssText = `position:fixed;top:-30px;left:${Math.random()*100}vw;color:${['#C17566','#8E3D35','#C8A060','#F0DBC5'][Math.floor(Math.random()*4)]};font-size:${Math.random()*24+16}px;z-index:10001;pointer-events:none;animation:fall ${3+Math.random()*2}s linear forwards;`;
           document.body.appendChild(flower);
           setTimeout(() => flower.remove(), 5000);
         }, i * 80);
