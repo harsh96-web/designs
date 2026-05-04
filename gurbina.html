@@ -1640,6 +1640,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   background: linear-gradient(135deg, var(--blush-soft), var(--cream));
   opacity: 0;
   transition: opacity 0.45s var(--ease);
+  border-radius: inherit;
 }
 .pkg-card > * { position: relative; z-index: 1; }
 .pkg-card:hover {
@@ -1648,6 +1649,64 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   box-shadow: 0 24px 50px -18px var(--rose-glow);
 }
 .pkg-card:hover::before { opacity: 1; }
+/* Featured card — disable the cream overlay, keep the dark bg */
+.pkg-card.featured-pkg::before { display: none; }
+.pkg-card.featured-pkg:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 24px 50px -18px rgba(200, 160, 96, 0.35);
+  background: linear-gradient(155deg, #3D1010 0%, #200808 100%);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BEFORE / AFTER PAIR
+═══════════════════════════════════════════════════════════ */
+.ba-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.ba-pair-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+.ba-pair-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+}
+.ba-pair-card:first-child img {
+  filter: grayscale(1) brightness(0.85) contrast(1.05);
+}
+.ba-pair-label {
+  position: absolute;
+  top: 14px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.bpl-before {
+  left: 14px;
+  background: rgba(248, 241, 234, 0.92);
+}
+.bpl-after {
+  right: 14px;
+  background: var(--gold);
+}
+@media (max-width: 600px) {
+  .ba-pair { grid-template-columns: 1fr; gap: 10px; }
+  .ba-pair-card { aspect-ratio: 4/3; }
+}
 .pkg-card.featured-pkg {
   background: linear-gradient(155deg, var(--burgundy) 0%, #3D0E0E 100%);
   border: 2px solid var(--gold);
@@ -2000,7 +2059,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 }
 .ba-slider .ba-img.before {
   z-index: 1;
-  filter: grayscale(1) brightness(0.78) contrast(0.88) blur(3px);
+  filter: grayscale(1) brightness(0.85) contrast(1.05);
 }
 .ba-slider .ba-img.after {
   z-index: 2;
@@ -3127,75 +3186,22 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 </section>
 
 <section id="signatures">
-  <div class="section-head reveal">
-    <div class="lead">
-      <span class="eyebrow">The Signatures</span>
-      <h2 class="section-title">Four things I'm <span class="it">obsessed</span> with getting right.</h2>
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom: 36px;">
+      <div class="lead">
+        <span class="eyebrow">Before &amp; After</span>
+        <h2 class="section-title">The <span class="it">difference</span> is in the finish.</h2>
+      </div>
+      <p class="aside">The same hair — before and after. Every detail placed with intention.</p>
     </div>
-    <p class="aside">Every stylist has a handful of looks they've practiced until their hands know them cold. These are mine.</p>
-  </div>
-
-  <div class="signatures-grid reveal-stagger">
-    <div class="sig-card">
-      <div class="sig-photo">
-        <div class="ba-slider">
-          <img class="ba-img before" src="images/08-cascade-curls-ringlets.jpg" alt="Loose curls before styling" loading="lazy" />
-          <img class="ba-img after"  src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped bun with baby's breath — finished" loading="lazy" />
-          <span class="ba-label before">Before</span>
-          <span class="ba-label after">After</span>
-          <div class="ba-handle"></div>
-          <span class="ba-hint">Drag to reveal</span>
-        </div>
+    <div class="ba-pair reveal">
+      <div class="ba-pair-card">
+        <img src="images/05-rose-bun-babybreath.jpg" alt="Before styling" loading="lazy"/>
+        <span class="ba-pair-label bpl-before">Before</span>
       </div>
-      <div class="sig-body">
-        <div class="sig-label">01 · The Showpiece</div>
-        <h3>The Rose <span class="it">Bun</span></h3>
-        <p>A woven rose built from the hair itself, dressed with baby's breath and bougainvillea. The centerpiece of any bridal or sangeet look — and the one brides book me for specifically.</p>
-        <div class="sig-tags">
-          <span>Bridal</span><span>Sangeet</span><span>Editorial</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="sig-card">
-      <div class="sig-photo">
-        <img src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid finished" loading="lazy" decoding="async"/>
-      </div>
-      <div class="sig-body">
-        <div class="sig-label">02 · The Classic</div>
-        <h3>Waterfall &amp; <span class="it">Fishtail</span> Braids</h3>
-        <p>Woven crowns that fall into soft curls. The kind of braid that photographs beautifully from every angle and still holds at hour nine. Butterflies, pearls, or fresh florals — your call.</p>
-        <div class="sig-tags">
-          <span>Mehndi</span><span>Engagement</span><span>Reception</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="sig-card">
-      <div class="sig-photo">
-        <img src="images/c03-balayage-caramel-chunks.jpg" alt="Dimensional balayage finished" loading="lazy" decoding="async"/>
-      </div>
-      <div class="sig-body">
-        <div class="sig-label">03 · The Colour</div>
-        <h3>Dimensional <span class="it">Balayage</span></h3>
-        <p>Hand-painted, lived-in colour that grows out softly. Honey-tones, caramel lights, cool beige — matched to your skin tone, not to Pinterest. The finish feels sun-kissed, not streaky.</p>
-        <div class="sig-tags">
-          <span>Balayage</span><span>Correction</span><span>Blonding</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="sig-card">
-      <div class="sig-photo">
-        <img src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted ringlet cascade finished" loading="lazy" decoding="async"/>
-      </div>
-      <div class="sig-body">
-        <div class="sig-label">04 · The Finish</div>
-        <h3>Sculpted <span class="it">Curls</span></h3>
-        <p>Defined ringlets, soft Hollywood waves, loose bridal texture — built to survive humidity, hugs, and a long dance floor. The last ten minutes in the chair are where a good blowout becomes a memorable one.</p>
-        <div class="sig-tags">
-          <span>Blowout</span><span>Events</span><span>Red Carpet</span>
-        </div>
+      <div class="ba-pair-card">
+        <img src="images/05-rose-bun-babybreath.jpg" alt="After — Rose Bun" loading="lazy"/>
+        <span class="ba-pair-label bpl-after">After</span>
       </div>
     </div>
   </div>
