@@ -1999,8 +1999,8 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   pointer-events: none;
 }
 .ba-slider .ba-img.before {
-  filter: saturate(0.45) brightness(1.08) contrast(0.92) blur(1.5px);
   z-index: 1;
+  filter: grayscale(1) brightness(0.78) contrast(0.88) blur(3px);
 }
 .ba-slider .ba-img.after {
   z-index: 2;
@@ -2247,7 +2247,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 #availability { background: linear-gradient(180deg, var(--cream) 0%, var(--blush-soft) 50%, var(--cream) 100%); }
 .cal-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 }
 .mini-cal {
@@ -2552,19 +2552,17 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     <p class="aside">Every bride gets a look built for her — the face, the outfit, the lighting, the ceremony. Hover any piece for detail.</p>
   </div>
 
-  <!-- Filter pills — tap to filter by ceremony / look -->
+  <!-- Filter pills — tap to filter looks -->
   <div class="gallery-filters reveal" id="bridalFilters" role="tablist">
-    <button class="active" data-filter="all">All <span class="count">·9</span></button>
-    <button data-filter="sikh">Sikh <span class="count">·2</span></button>
-    <button data-filter="hindu">Hindu <span class="count">·3</span></button>
-    <button data-filter="mehndi">Mehndi · Sangeet <span class="count">·2</span></button>
-    <button data-filter="western">Western · Modern <span class="count">·3</span></button>
-    <button data-filter="floral">Floral <span class="count">·5</span></button>
+    <button class="active" data-filter="all">All looks <span class="count">·9</span></button>
+    <button data-filter="floral">Floral &amp; Crowns <span class="count">·5</span></button>
+    <button data-filter="braid">Braids <span class="count">·3</span></button>
+    <button data-filter="curl">Curls &amp; Styling <span class="count">·2</span></button>
   </div>
 
   <div class="bento reveal-stagger" id="bridalBento">
     <!-- Signature featured piece — the pink rose floral crown -->
-    <div class="bento-card featured" data-hover data-category="hindu floral" data-look="Pink rose &amp; ranunculus crown">
+    <div class="bento-card featured" data-hover data-category="floral" data-look="Pink rose &amp; ranunculus crown">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CPink%20rose%20%26%20ranunculus%20crown%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/00-hero-pink-rose-floral.jpg" alt="Bridal half-up with pink rose floral crown" loading="lazy" decoding="async" />
       <div class="bento-caption">
@@ -2573,7 +2571,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover data-category="sikh floral" data-look="Rose bun with baby's breath">
+    <div class="bento-card" data-hover data-category="floral" data-look="Rose bun with baby's breath">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CRose%20bun%20with%20baby%27s%20breath%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped woven bun with baby's breath" loading="lazy" decoding="async" />
       <div class="bento-caption">
@@ -2582,7 +2580,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover data-category="western" data-look="Waterfall braid soft cascade">
+    <div class="bento-card" data-hover data-category="braid" data-look="Waterfall braid soft cascade">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CWaterfall%20braid%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid with soft curls" loading="lazy" decoding="async" />
       <div class="bento-caption">
@@ -2591,7 +2589,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover data-category="hindu western floral" data-look="Pearl floral crown">
+    <div class="bento-card" data-hover data-category="floral" data-look="Pearl floral crown">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CPearl%20floral%20crown%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/02-pearl-floral-bridal.jpg" alt="Half-up bridal with pearl floral pins" loading="lazy" decoding="async" />
       <div class="bento-caption">
@@ -2600,7 +2598,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover data-category="hindu sikh floral" data-look="Red rose crown">
+    <div class="bento-card" data-hover data-category="floral" data-look="Red rose crown">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CRed%20rose%20crown%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/06-red-roses-crown.jpg" alt="Red rose floral crown with gypsophila" loading="lazy" decoding="async" />
       <div class="bento-caption">
@@ -2609,7 +2607,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover data-category="mehndi" data-look="Butterfly fishtail">
+    <div class="bento-card" data-hover data-category="braid" data-look="Butterfly fishtail">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CButterfly%20fishtail%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/03-butterfly-braid-mehndi.jpg" alt="Fishtail braid with butterflies" loading="lazy" decoding="async" />
       <div class="bento-caption">
@@ -2618,7 +2616,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover data-category="mehndi floral" data-look="Twin braids with pink florals">
+    <div class="bento-card" data-hover data-category="braid floral" data-look="Twin braids with pink florals">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CTwin%20braids%20%26%20pink%20florals%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/04-pink-floral-braids.jpg" alt="Twin braids with pink floral accents" loading="lazy" decoding="async" />
       <div class="bento-caption">
@@ -2627,7 +2625,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover data-category="western" data-look="Balayage with crystal vine">
+    <div class="bento-card" data-hover data-category="curl" data-look="Balayage with crystal vine">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CBalayage%20%26%20crystal%20vine%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/07-balayage-crystal-vine.jpg" alt="Balayage with crystal hair vine" loading="lazy" decoding="async" />
       <div class="bento-caption">
@@ -2636,7 +2634,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
 
-    <div class="bento-card" data-hover data-category="western" data-look="Ringlet cascade">
+    <div class="bento-card" data-hover data-category="curl" data-look="Ringlet cascade">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CRinglet%20cascade%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
       <img src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted ringlet cascade" loading="lazy" decoding="async" />
       <div class="bento-caption">
@@ -3025,7 +3023,6 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <span class="pkg-badge">Most Popular</span>
         <h3 class="pkg-name">The Bridal <span class="it">Day</span></h3>
         <p class="pkg-tagline">Everything for the wedding day</p>
-        <div class="pkg-price"><span class="from">from</span><span class="amount">$850</span></div>
         <ul class="pkg-includes">
           <li>Bridal hair — full look</li>
           <li>Bridal makeup</li>
@@ -3040,7 +3037,6 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <span class="pkg-badge">Wedding Party</span>
         <h3 class="pkg-name">The <span class="it">Party</span> Package</h3>
         <p class="pkg-tagline">Bride + 2 bridesmaids</p>
-        <div class="pkg-price"><span class="from">from</span><span class="amount">$1,400</span></div>
         <ul class="pkg-includes">
           <li>Bridal hair + makeup</li>
           <li>2 × bridesmaid hair</li>
@@ -3054,7 +3050,6 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <span class="pkg-badge">Ceremony</span>
         <h3 class="pkg-name">Mehndi <span class="it">Glam</span></h3>
         <p class="pkg-tagline">Sangeet, mehndi &amp; engagement</p>
-        <div class="pkg-price"><span class="from">from</span><span class="amount">$450</span></div>
         <ul class="pkg-includes">
           <li>Hair — braids or half-up</li>
           <li>Brows + lash</li>
@@ -3068,7 +3063,6 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <span class="pkg-badge">Everyday</span>
         <h3 class="pkg-name">The <span class="it">Glow-Up</span></h3>
         <p class="pkg-tagline">Hair refresh + colour</p>
-        <div class="pkg-price"><span class="from">from</span><span class="amount">$350</span></div>
         <ul class="pkg-includes">
           <li>Balayage or highlights</li>
           <li>Precision cut</li>
@@ -3144,11 +3138,11 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   <div class="signatures-grid reveal-stagger">
     <div class="sig-card">
       <div class="sig-photo">
-        <div class="ba-slider" data-img="images/05-rose-bun-babybreath.jpg">
-          <img class="ba-img before" src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped bun — before styling" loading="lazy" />
-          <img class="ba-img after"  src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped bun — after styling" loading="lazy" />
-          <span class="ba-label before">Raw</span>
-          <span class="ba-label after">Polished</span>
+        <div class="ba-slider">
+          <img class="ba-img before" src="images/08-cascade-curls-ringlets.jpg" alt="Loose curls before styling" loading="lazy" />
+          <img class="ba-img after"  src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped bun with baby's breath — finished" loading="lazy" />
+          <span class="ba-label before">Before</span>
+          <span class="ba-label after">After</span>
           <div class="ba-handle"></div>
           <span class="ba-hint">Drag to reveal</span>
         </div>
@@ -3165,14 +3159,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="sig-card">
       <div class="sig-photo">
-        <div class="ba-slider" data-img="images/01-waterfall-braid-brunette.jpg">
-          <img class="ba-img before" src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid — before" loading="lazy" />
-          <img class="ba-img after"  src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid — after" loading="lazy" />
-          <span class="ba-label before">Raw</span>
-          <span class="ba-label after">Polished</span>
-          <div class="ba-handle"></div>
-          <span class="ba-hint">Drag to reveal</span>
-        </div>
+        <img src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid finished" loading="lazy" decoding="async"/>
       </div>
       <div class="sig-body">
         <div class="sig-label">02 · The Classic</div>
@@ -3186,14 +3173,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="sig-card">
       <div class="sig-photo">
-        <div class="ba-slider" data-img="images/07-balayage-crystal-vine.jpg">
-          <img class="ba-img before" src="images/07-balayage-crystal-vine.jpg" alt="Balayage — before colour" loading="lazy" />
-          <img class="ba-img after"  src="images/07-balayage-crystal-vine.jpg" alt="Balayage — after colour" loading="lazy" />
-          <span class="ba-label before">Before</span>
-          <span class="ba-label after">After</span>
-          <div class="ba-handle"></div>
-          <span class="ba-hint">Drag to reveal</span>
-        </div>
+        <img src="images/c03-balayage-caramel-chunks.jpg" alt="Dimensional balayage finished" loading="lazy" decoding="async"/>
       </div>
       <div class="sig-body">
         <div class="sig-label">03 · The Colour</div>
@@ -3207,14 +3187,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="sig-card">
       <div class="sig-photo">
-        <div class="ba-slider" data-img="images/08-cascade-curls-ringlets.jpg">
-          <img class="ba-img before" src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted curls — before" loading="lazy" />
-          <img class="ba-img after"  src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted curls — after" loading="lazy" />
-          <span class="ba-label before">Raw</span>
-          <span class="ba-label after">Polished</span>
-          <div class="ba-handle"></div>
-          <span class="ba-hint">Drag to reveal</span>
-        </div>
+        <img src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted ringlet cascade finished" loading="lazy" decoding="async"/>
       </div>
       <div class="sig-body">
         <div class="sig-label">04 · The Finish</div>
@@ -3586,15 +3559,15 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   /* Add data-category + share buttons to mobile slides */
   const mobileSlides = document.querySelectorAll('#mobileGalleryTrack .mobile-slide');
   const mobileCategoryMap = {
-    '00-hero-pink-rose-floral': 'hindu floral',
-    '05-rose-bun-babybreath':   'sikh floral',
-    '01-waterfall-braid':       'western',
-    '02-pearl-floral':          'hindu western floral',
-    '06-red-roses-crown':       'hindu sikh floral',
-    '03-butterfly-braid':       'mehndi',
-    '04-pink-floral-braids':    'mehndi floral',
-    '07-balayage-crystal':      'western',
-    '08-cascade-curls':         'western'
+    '00-hero-pink-rose-floral': 'floral',
+    '05-rose-bun-babybreath':   'floral',
+    '01-waterfall-braid':       'braid',
+    '02-pearl-floral':          'floral',
+    '06-red-roses-crown':       'floral',
+    '03-butterfly-braid':       'braid',
+    '04-pink-floral-braids':    'braid floral',
+    '07-balayage-crystal':      'curl',
+    '08-cascade-curls':         'curl'
   };
   mobileSlides.forEach(slide => {
     const src = (slide.querySelector('img')?.src || '').toLowerCase();
@@ -3886,12 +3859,12 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       return cal;
     }
 
-    // Build 4 months starting from current month + 1 (skip current month, focus on future)
+    // Build 3 months starting from current month + 1
     const today = new Date();
     let startMonth = today.getMonth() + 1;
     let startYear = today.getFullYear();
     if (startMonth > 11) { startMonth = 0; startYear++; }
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       let m = startMonth + i;
       let y = startYear;
       if (m > 11) { m = m - 12; y++; }
