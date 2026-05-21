@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before / After</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300;9..144,400;9..144,500&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-soft: #141414;
+    --line: rgba(245, 235, 220, 0.12);
+    --line-strong: rgba(245, 235, 220, 0.35);
+    --ink: #f5ebdc;
+    --ink-soft: rgba(245, 235, 220, 0.55);
+    --accent: #d9b486;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Subtle film grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    background-size: 200px;
+    mix-blend-mode: overlay;
+  }
+
+  /* Vignette */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%);
+  }
+
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 0;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 28px 48px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 10;
+    position: relative;
+  }
+
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .brand span {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    margin: 0 6px;
+  }
+
+  .meta {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .meta .dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin: 0 8px;
+    vertical-align: middle;
+  }
+
+  /* STAGE */
+  .viewer-wrap {
+    position: relative;
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+  }
+
+  .viewer {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--bg-soft);
+    cursor: ew-resize;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    box-shadow:
+      0 0 0 1px var(--line),
+      0 40px 100px -20px rgba(0,0,0,0.8),
+      0 20px 50px -10px rgba(0,0,0,0.6);
+  }
+
+  .img-layer {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--bg-soft);
+  }
+
+  .img-after {
+    z-index: 1;
+  }
+
+  .img-before {
+    z-index: 2;
+    clip-path: inset(0 50% 0 0);
+    will-change: clip-path;
+  }
+
+  .img-before.smooth {
+    transition: clip-path 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Empty state */
+  .placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    color: var(--ink-soft);
+    z-index: 3;
+  }
+
+  .placeholder.hidden { display: none; }
+
+  .placeholder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    width: 100%;
+    height: 100%;
+  }
+
+  .drop-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    padding: 40px;
+  }
+
+  .drop-zone:hover, .drop-zone.dragover {
+    background: rgba(217, 180, 134, 0.04);
+  }
+
+  .drop-zone .icon {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+  }
+
+  .drop-zone:hover .icon, .drop-zone.dragover .icon {
+    border-color: var(--accent);
+    transform: scale(1.05);
+  }
+
+  .drop-zone svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--ink-soft);
+    transition: stroke 0.3s ease;
+  }
+
+  .drop-zone:hover svg, .drop-zone.dragover svg {
+    stroke: var(--accent);
+  }
+
+  .drop-label {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+
+  .drop-hint {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .placeholder-divider {
+    background: var(--line);
+  }
+
+  /* Labels on the viewer */
+  .label {
+    position: absolute;
+    top: 32px;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--ink);
+    z-index: 5;
+    padding: 8px 16px;
+    background: rgba(10, 10, 10, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(245, 235, 220, 0.1);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.3s;
+  }
+
+  .label.visible { opacity: 1; }
+
+  .label-before { left: 32px; }
+  .label-after  { right: 32px; }
+
+  .label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .label-before::before { left: -22px; }
+  .label-after::before  { right: -22px; }
+
+  /* Divider line and handle */
+  .divider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--ink);
+    z-index: 4;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    opacity: 0;
+  }
+
+  .divider.visible {
+    opacity: 1;
+    transition: opacity 0.6s ease 0.5s;
+  }
+
+  .divider.smooth {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease 0.5s;
+  }
+
+  .handle {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ew-resize;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    z-index: 6;
+  }
+
+  .handle.scaled {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+
+  .handle:hover, .handle.active {
+    background: rgba(217, 180, 134, 0.15);
+    border-color: var(--accent);
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+
+  .handle::before, .handle::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+  .handle::before {
+    border-right: 6px solid var(--ink);
+    left: 18px;
+  }
+
+  .handle::after {
+    border-left: 6px solid var(--ink);
+    right: 18px;
+  }
+
+  .handle:hover::before, .handle.active::before { border-right-color: var(--accent); }
+  .handle:hover::after, .handle.active::after { border-left-color: var(--accent); }
+
+  /* Ripple effect on the handle's vertical line */
+  .divider-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom,
+      transparent,
+      rgba(217, 180, 134, 0.3) 30%,
+      rgba(217, 180, 134, 0.3) 70%,
+      transparent);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    margin-left: -1.5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+  }
+
+  .viewer.has-images .divider-glow { opacity: 0.6; }
+
+  /* FOOTER controls */
+  .footer {
+    padding: 0 48px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    position: relative;
+  }
+
+  .hint {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hint .key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border: 1px solid var(--line-strong);
+    border-radius: 3px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0;
+  }
+
+  .controls {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    padding: 10px 18px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+  }
+
+  .btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .btn:disabled:hover {
+    border-color: var(--line-strong);
+    color: var(--ink);
+  }
+
+  /* Hidden file inputs */
+  input[type="file"] { display: none; }
+
+  /* Reveal animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stage > * {
+    animation: fadeIn 1s ease forwards;
+  }
+
+  .stage > *:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
+  .stage > *:nth-child(2) { animation-delay: 0.3s; opacity: 0; }
+  .stage > *:nth-child(3) { animation-delay: 0.5s; opacity: 0; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header, .footer { padding-left: 20px; padding-right: 20px; }
+    .viewer-wrap { padding: 20px; }
+    .label { font-size: 11px; padding: 6px 12px; }
+    .label-before { left: 16px; }
+    .label-after { right: 16px; }
+    .handle { width: 52px; height: 52px; }
+    .hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <header class="header">
+    <div class="brand">Before <span>&</span> After</div>
+    <div class="meta">
+      <span id="status">Drop two images to begin</span>
+      <span class="dot"></span>
+      <span id="position">50%</span>
+    </div>
+  </header>
+
+  <div class="viewer-wrap">
+    <div class="viewer" id="viewer">
+
+      <div class="img-layer img-after" id="imgAfter"></div>
+      <div class="img-layer img-before" id="imgBefore"></div>
+
+      <div class="placeholder" id="placeholder">
+        <div class="placeholder-grid">
+          <label class="drop-zone" id="dropBefore">
+            <div class="icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+              </svg>
+            </div>
+            <div class="drop-label">Before</div>
+            <div class="drop-hint">Click or drop image</div>
+            <input type="file" accept="image/*" id="fileBefore">
+          </label>
+
+          <div class="placeholder-divider"></div>
+
+          <label class="drop-zone" id="dropAfter">
+            <div class="icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+              </svg>
+            </div>
+            <div class="drop-label">After</div>
+            <div class="drop-hint">Click or drop image</div>
+            <input type="file" accept="image/*" id="fileAfter">
+          </label>
+        </div>
+      </div>
+
+      <div class="divider-glow"></div>
+      <div class="divider" id="divider">
+        <div class="handle" id="handle"></div>
+      </div>
+
+      <div class="label label-before" id="labelBefore">Before</div>
+      <div class="label label-after"  id="labelAfter">After</div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="hint">
+      <span>Drag the handle</span>
+      <span>·</span>
+      <span><span class="key">←</span> <span class="key">→</span> to nudge</span>
+    </div>
+    <div class="controls">
+      <button class="btn" id="btnSwap" disabled>
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
+        </svg>
+        Swap
+      </button>
+      <button class="btn" id="btnReset" disabled>
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+        </svg>
+        Reset
+      </button>
+      <button class="btn" id="btnFullscreen">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/>
+        </svg>
+        Present
+      </button>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const viewer = document.getElementById('viewer');
+  const imgBefore = document.getElementById('imgBefore');
+  const imgAfter = document.getElementById('imgAfter');
+  const divider = document.getElementById('divider');
+  const dividerGlow = document.querySelector('.divider-glow');
+  const handle = document.getElementById('handle');
+  const placeholder = document.getElementById('placeholder');
+  const labelBefore = document.getElementById('labelBefore');
+  const labelAfter = document.getElementById('labelAfter');
+  const positionEl = document.getElementById('position');
+  const statusEl = document.getElementById('status');
+  const btnReset = document.getElementById('btnReset');
+  const btnSwap = document.getElementById('btnSwap');
+  const btnFullscreen = document.getElementById('btnFullscreen');
+  const fileBefore = document.getElementById('fileBefore');
+  const fileAfter = document.getElementById('fileAfter');
+  const dropBefore = document.getElementById('dropBefore');
+  const dropAfter = document.getElementById('dropAfter');
+
+  let position = 50;
+  let pendingX = null;
+  let rafId = null;
+  let isDragging = false;
+  let beforeSrc = null;
+  let afterSrc = null;
+  let viewerRect = null;
+  let lastReportedPercent = -1;
+
+  function applyPosition(percent) {
+    position = percent < 0 ? 0 : percent > 100 ? 100 : percent;
+    // clip-path uses percentage of element width — still painted, but no transition = no lag
+    imgBefore.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
+    // transform is GPU-accelerated, much smoother than animating `left`
+    const px = (viewerRect.width * position) / 100;
+    divider.style.transform = `translate3d(${px}px, 0, 0)`;
+    dividerGlow.style.transform = `translate3d(${px}px, 0, 0)`;
+    // only update the readout if it actually changed (avoids DOM thrash)
+    const rounded = Math.round(position);
+    if (rounded !== lastReportedPercent) {
+      positionEl.textContent = `${rounded}%`;
+      lastReportedPercent = rounded;
+    }
+  }
+
+  function flush() {
+    rafId = null;
+    if (pendingX === null || !viewerRect) return;
+    const percent = ((pendingX - viewerRect.left) / viewerRect.width) * 100;
+    pendingX = null;
+    applyPosition(percent);
+  }
+
+  function schedule(clientX) {
+    pendingX = clientX;
+    if (rafId === null) rafId = requestAnimationFrame(flush);
+  }
+
+  function setPositionImmediate(percent) {
+    if (!viewerRect) viewerRect = viewer.getBoundingClientRect();
+    applyPosition(percent);
+  }
+
+  // Cache rect on resize so we don't call getBoundingClientRect() on every move
+  function refreshRect() {
+    viewerRect = viewer.getBoundingClientRect();
+  }
+  window.addEventListener('resize', refreshRect);
+  window.addEventListener('scroll', refreshRect, { passive: true });
+
+  // Pointer events — unified mouse/touch/pen, no jank from competing handlers
+  viewer.addEventListener('pointerdown', (e) => {
+    if (!beforeSrc || !afterSrc) return;
+    refreshRect();
+    isDragging = true;
+    handle.classList.add('active');
+    // Remove any easing during drag so movement is 1:1 with finger/mouse
+    imgBefore.classList.remove('smooth');
+    divider.classList.remove('smooth');
+    viewer.setPointerCapture(e.pointerId);
+    schedule(e.clientX);
+    e.preventDefault();
+  });
+
+  viewer.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    schedule(e.clientX);
+  });
+
+  function endDrag(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    handle.classList.remove('active');
+    if (e && e.pointerId !== undefined) {
+      try { viewer.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
+  }
+
+  viewer.addEventListener('pointerup', endDrag);
+  viewer.addEventListener('pointercancel', endDrag);
+
+  // Keyboard — use smooth easing since these are discrete jumps
+  document.addEventListener('keydown', (e) => {
+    if (!beforeSrc || !afterSrc) return;
+    refreshRect();
+    const step = e.shiftKey ? 10 : 2;
+    let next = position;
+    let handled = true;
+    if (e.key === 'ArrowLeft')  next = position - step;
+    else if (e.key === 'ArrowRight') next = position + step;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End')  next = 100;
+    else if (e.key === ' ') { e.preventDefault(); animateSlide(); return; }
+    else handled = false;
+
+    if (handled) {
+      imgBefore.classList.add('smooth');
+      divider.classList.add('smooth');
+      applyPosition(next);
+    }
+  });
+
+  // Animated reveal (press space) — JS-driven, no CSS transitions fighting it
+  function animateSlide() {
+    refreshRect();
+    imgBefore.classList.remove('smooth');
+    divider.classList.remove('smooth');
+    const start = position;
+    const target = position > 50 ? 0 : 100;
+    let startTime = null;
+    const duration = 1400;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+      applyPosition(start + (target - start) * eased);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // File handling
+  function handleFile(file, which) {
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (which === 'before') {
+        beforeSrc = e.target.result;
+        imgBefore.style.backgroundImage = `url(${beforeSrc})`;
+      } else {
+        afterSrc = e.target.result;
+        imgAfter.style.backgroundImage = `url(${afterSrc})`;
+      }
+      checkReady();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function checkReady() {
+    if (beforeSrc && afterSrc) {
+      placeholder.classList.add('hidden');
+      labelBefore.classList.add('visible');
+      labelAfter.classList.add('visible');
+      divider.classList.add('visible');
+      viewer.classList.add('has-images');
+      btnReset.disabled = false;
+      btnSwap.disabled = false;
+      statusEl.textContent = 'Drag to reveal';
+      refreshRect();
+      setPositionImmediate(50);
+    }
+  }
+
+  fileBefore.addEventListener('change', (e) => handleFile(e.target.files[0], 'before'));
+  fileAfter.addEventListener('change', (e) => handleFile(e.target.files[0], 'after'));
+
+  // Drag and drop
+  function setupDropZone(zone, which) {
+    zone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      zone.classList.add('dragover');
+    });
+    zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+    zone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      zone.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      handleFile(file, which);
+    });
+  }
+
+  setupDropZone(dropBefore, 'before');
+  setupDropZone(dropAfter, 'after');
+
+  // Allow drop anywhere on viewer once loaded
+  viewer.addEventListener('dragover', (e) => {
+    if (beforeSrc && afterSrc) e.preventDefault();
+  });
+
+  // Buttons
+  btnReset.addEventListener('click', () => {
+    beforeSrc = null;
+    afterSrc = null;
+    imgBefore.style.backgroundImage = '';
+    imgAfter.style.backgroundImage = '';
+    placeholder.classList.remove('hidden');
+    labelBefore.classList.remove('visible');
+    labelAfter.classList.remove('visible');
+    divider.classList.remove('visible');
+    viewer.classList.remove('has-images');
+    btnReset.disabled = true;
+    btnSwap.disabled = true;
+    statusEl.textContent = 'Drop two images to begin';
+    fileBefore.value = '';
+    fileAfter.value = '';
+    setPositionImmediate(50);
+  });
+
+  btnSwap.addEventListener('click', () => {
+    [beforeSrc, afterSrc] = [afterSrc, beforeSrc];
+    imgBefore.style.backgroundImage = `url(${beforeSrc})`;
+    imgAfter.style.backgroundImage = `url(${afterSrc})`;
+  });
+
+  btnFullscreen.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.();
+    } else {
+      document.exitFullscreen?.();
+    }
+  });
+
+  // Initialize
+  refreshRect();
+  setPositionImmediate(50);
+</script>
+
+</body>
+</html>
