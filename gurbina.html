@@ -1460,7 +1460,17 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   nav { padding: 14px 18px; }
   nav.scrolled { padding: 12px 18px; }
   nav.scrolled { padding: 10px 18px; background: rgba(248, 241, 234, 0.85); }
-  .nav-cta { display: none; }
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 100px;
+    margin-right: 8px;
+    min-height: 36px;
+    gap: 4px;
+  }
   .nav-burger { display: flex; }
   .nav-links {
     position: fixed;
@@ -2478,7 +2488,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 <div class="announce-bar" id="announceBar">
   <div class="announce-text" id="announceText">
     <span class="ab-dot">✿</span>
-    <span id="announceMsg">Summer 2026 bridal dates are filling fast — <a href="mailto:makeoversgurbina@gmail.com?subject=Bridal%20Booking%20Enquiry">book your consultation now</a></span>
+    <span id="announceMsg">Summer 2026 bridal dates are filling fast — <a href="book.html#bridal">book your consultation now</a></span>
   </div>
   <button class="ab-close" id="announceClose" aria-label="Close">×</button>
 </div>
@@ -2487,7 +2497,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 <div class="c-ring" id="cRing"></div>
 
 <!-- Old floating book becomes the mobile primary CTA -->
-<a href="mailto:makeoversgurbina@gmail.com?subject=Consultation%20Inquiry" class="floating-book" id="floatingBook">
+<a href="book.html" class="floating-book visible" id="floatingBook">
   <span>✿ Book a consultation</span>
   <span>→</span>
 </a>
@@ -2501,9 +2511,9 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     <a href="#availability">Dates</a>
     <a href="#about">About</a>
     <a href="#words">Reviews</a>
-    <a href="mailto:makeoversgurbina@gmail.com?subject=Consultation%20Inquiry" class="mobile-book-link">Book a consultation →</a>
+    <a href="book.html" class="mobile-book-link">Book a consultation →</a>
   </div>
-  <a href="mailto:makeoversgurbina@gmail.com?subject=Consultation%20Inquiry" class="nav-cta">Book →</a>
+  <a href="book.html" class="nav-cta">Book →</a>
   <button class="nav-burger" id="navBurger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -2545,7 +2555,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
       </div>
     </div>
     <div class="hero-ctas reveal">
-      <a href="mailto:makeoversgurbina@gmail.com?subject=Consultation%20Inquiry" class="cta primary" data-hover>
+      <a href="book.html" class="cta primary" data-hover>
         <span>Book a consultation</span>
         <span class="arrow">↗</span>
       </a>
@@ -3089,7 +3099,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
           <li>Touch-up kit included</li>
           <li>Travel within Lower Mainland</li>
         </ul>
-        <a href="mailto:makeoversgurbina@gmail.com?subject=Bridal%20Day%20Package%20Enquiry" class="pkg-cta">enquire now →</a>
+        <a href="book.html#bridal" class="pkg-cta">enquire now →</a>
       </div>
 
       <div class="pkg-card" data-hover>
@@ -3102,7 +3112,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
           <li>Coordinated styling</li>
           <li>Priority morning booking</li>
         </ul>
-        <a href="mailto:makeoversgurbina@gmail.com?subject=Wedding%20Party%20Package" class="pkg-cta">enquire now →</a>
+        <a href="book.html#bridal" class="pkg-cta">enquire now →</a>
       </div>
 
       <div class="pkg-card" data-hover>
@@ -3115,7 +3125,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
           <li>Soft party makeup</li>
           <li>Suitable for all ceremonies</li>
         </ul>
-        <a href="mailto:makeoversgurbina@gmail.com?subject=Mehndi%20Glam%20Package" class="pkg-cta">enquire now →</a>
+        <a href="book.html#bridal" class="pkg-cta">enquire now →</a>
       </div>
 
       <div class="pkg-card" data-hover>
@@ -3128,7 +3138,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
           <li>Blowout &amp; style</li>
           <li>Deep conditioning treatment</li>
         </ul>
-        <a href="mailto:makeoversgurbina@gmail.com?subject=Glow-Up%20Package" class="pkg-cta">enquire now →</a>
+        <a href="book.html#colour" class="pkg-cta">enquire now →</a>
       </div>
     </div>
 
@@ -3142,7 +3152,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         <h3 class="promo-title">Summer <span class="it">Bridal Special</span></h3>
         <p class="promo-body">Book any bridal package for a June–August 2026 wedding and receive a complimentary trial session (worth $75) — no extra charge, no conditions.</p>
         <p class="promo-body" style="font-size:12px; color: var(--ink-mute); margin-bottom:20px;">✦ Offer valid until May 31, 2026 · Limited dates</p>
-        <a href="mailto:makeoversgurbina@gmail.com?subject=Summer%20Bridal%20Special" class="promo-btn dark">Claim this offer →</a>
+        <a href="book.html#bridal" class="promo-btn dark">Claim this offer →</a>
       </div>
 
       <!-- Referral program — permanent -->
@@ -3312,7 +3322,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
   // Safe messages — text + optional link (never uses raw innerHTML from user input)
   const messages = [
-    { text: 'Summer 2026 bridal dates are filling fast — ', link: 'book your consultation', href: 'mailto:makeoversgurbina@gmail.com?subject=Bridal%20Booking%20Enquiry' },
+    { text: 'Summer 2026 bridal dates are filling fast — ', link: 'book your consultation', href: 'book.html#bridal' },
     { text: '✦ New client offer: complimentary trial session with any bridal package', link: null },
     { text: 'Refer a bride, you both get $50 off — ', link: 'see packages', href: '#packages' },
     { text: '💬 Prefer to chat? ', link: 'WhatsApp Gurbina directly', href: 'https://wa.me/17789993179?text=Hi%20Gurbina!', external: true },
@@ -3400,14 +3410,10 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     if (sy > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
 
-    // Floating book button (mobile only)
+    // Floating book button (mobile only) — always visible, hide at contact section
     if (isMobile && floatingBook) {
       const atContact = contact && contact.getBoundingClientRect().top < window.innerHeight;
-      if (sy > window.innerHeight * 0.6 && !atContact) {
-        floatingBook.classList.add('visible');
-      } else {
-        floatingBook.classList.remove('visible');
-      }
+      floatingBook.classList.toggle('visible', !atContact);
     }
 
     // Parallax section break (mobile only, skip if reduced motion)
