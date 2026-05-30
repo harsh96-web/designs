@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DAWN">
+<meta name="theme-color" content="#0a0612">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>DAWN</title>
+<style>
+  /* ============== ROOT ============== */
+  :root {
+    --bg-deepest: #050510;
+    --bg-night: #0a0a18;
+    --text: #f4ecd8;
+    --text-muted: #8a8580;
+    --crimson: #C0392B;
+    --crimson-deep: #8B1A1A;
+    --warm: #f4a23b;
+    --warm-bright: #ffd89c;
+    --sun-core: #fff8d8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg-deepest);
+    color: var(--text);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+    overscroll-behavior: none;
+    position: fixed;
+    inset: 0;
+  }
+
+  /* film grain overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,0.008) 2px, rgba(255,255,255,0.008) 3px);
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  #app {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .screen {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 10;
+  }
+  .screen.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  /* GAME screen — canvas only, no flex */
+  #game {
+    flex-direction: row;
+    padding: 0;
+    background: #000;
+  }
+  #game.active {
+    display: block;
+  }
+
+  /* ============== WELCOME ============== */
+  .welcome-content { max-width: 600px; }
+  .welcome-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--crimson);
+    margin-bottom: 24px;
+    animation: fadeIn 1s ease 0.2s both;
+  }
+  .welcome-title {
+    font-family: 'Georgia', serif;
+    font-size: clamp(80px, 14vw, 150px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    line-height: 1;
+    color: var(--text);
+    animation: fadeInGlow 1.5s ease 0.5s both;
+    text-shadow: 0 0 40px rgba(255, 200, 100, 0.15);
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fadeInGlow {
+    from { opacity: 0; text-shadow: 0 0 0 transparent; }
+    to { opacity: 1; text-shadow: 0 0 40px rgba(255, 200, 100, 0.15); }
+  }
+  .welcome-divider {
+    width: 80px; height: 2px;
+    background: var(--crimson);
+    margin: 0 auto 28px;
+    animation: expand 1s ease 1s both;
+  }
+  @keyframes expand { from { width: 0; } to { width: 80px; } }
+  .welcome-story {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+    animation: fadeIn 1s ease 1.4s both;
+  }
+  .welcome-rules {
+    display: flex;
+    justify-content: space-around;
+    gap: 24px;
+    margin-bottom: 36px;
+    animation: fadeIn 1s ease 1.8s both;
+  }
+  .rule { flex: 1; text-align: center; }
+  .rule-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+  .rule-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    margin-bottom: 4px;
+  }
+  .rule-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+  .begin-btn {
+    background: transparent;
+    border: 2px solid var(--crimson);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    font-style: italic;
+    padding: 16px 48px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeIn 1s ease 2.2s both;
+  }
+  .begin-btn:hover {
+    background: var(--crimson);
+    color: white;
+    box-shadow: 0 0 30px rgba(192, 57, 43, 0.4);
+  }
+  .begin-btn:active { transform: scale(0.98); }
+
+  /* ============== END SCREENS ============== */
+  .end-content { max-width: 500px; }
+  .end-title {
+    font-family: 'Georgia', serif;
+    font-size: clamp(48px, 8vw, 80px);
+    font-style: italic;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  #dead .end-title {
+    color: var(--crimson);
+    animation: fadeInGlow 0.8s ease;
+    text-shadow: 0 0 40px rgba(192, 57, 43, 0.5);
+  }
+  #won .end-title {
+    color: var(--warm-bright);
+    animation: fadeInGlow 0.8s ease;
+    text-shadow: 0 0 50px rgba(255, 200, 100, 0.5);
+  }
+  .end-divider {
+    width: 60px; height: 1px;
+    background: var(--crimson);
+    margin: 0 auto 24px;
+  }
+  #won .end-divider { background: var(--warm); }
+  .end-message {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    animation: fadeIn 1s ease 0.4s both;
+  }
+  .end-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 32px;
+    animation: fadeIn 1s ease 0.7s both;
+  }
+  .stat { text-align: center; }
+  .stat-value {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.5px;
+  }
+  .stat-value.best  { color: var(--warm); }
+  .stat-value.ember { color: #ffd87a; }
+  .stat-value.ember::before {
+    content: '✦';
+    font-size: 22px;
+    margin-right: 6px;
+    vertical-align: 0.14em;
+    opacity: 0.95;
+  }
+  .stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+  }
+  .end-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    animation: fadeIn 1s ease 1s both;
+  }
+  .end-btn {
+    background: transparent;
+    border: 2px solid var(--text-muted);
+    color: var(--text);
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    padding: 14px 32px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+  }
+  .end-btn:hover {
+    background: var(--text-muted);
+    color: var(--bg-deepest);
+  }
+  .end-btn.primary { border-color: var(--crimson); }
+  .end-btn.primary:hover {
+    background: var(--crimson);
+    color: white;
+    box-shadow: 0 0 30px rgba(192, 57, 43, 0.4);
+  }
+  #won .end-btn.primary { border-color: var(--warm); }
+  #won .end-btn.primary:hover { background: var(--warm); color: var(--bg-deepest); box-shadow: 0 0 30px rgba(255, 200, 100, 0.4); }
+
+  /* ============== GAME ============== */
+  #gameCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .sound-toggle {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background: rgba(20, 20, 28, 0.7);
+    border: 1px solid rgba(232, 230, 224, 0.2);
+    color: var(--text-muted);
+    width: 36px; height: 36px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 100;
+    transition: all 0.2s;
+  }
+  .sound-toggle:hover { color: var(--text); }
+
+  .fullscreen-toggle {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(20, 20, 28, 0.7);
+    border: 1px solid rgba(232, 230, 224, 0.2);
+    color: var(--text-muted);
+    width: 36px; height: 36px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 100;
+    transition: all 0.2s;
+  }
+  .fullscreen-toggle:hover { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .welcome-rules {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 12px;
+      margin-bottom: 24px;
+    }
+    .rule { text-align: center; }
+    .welcome-content { padding: 0 8px; }
+    .welcome-title { font-size: clamp(56px, 18vw, 90px); }
+    .welcome-story { font-size: 15px; margin-bottom: 24px; }
+    .welcome-tag { font-size: 10px; letter-spacing: 0.25em; margin-bottom: 16px; }
+    .screen { padding: 24px 16px; }
+    .rule-icon { font-size: 24px; margin-bottom: 4px; }
+    .rule-title { font-size: 12px; }
+    .rule-desc { font-size: 11px; }
+
+    /* iOS-only install hint at the bottom of welcome */
+    .ios-install-hint {
+      display: none;
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      opacity: 0.6;
+      margin: 22px auto 0;
+      max-width: 280px;
+      letter-spacing: 0.02em;
+      animation: fadeIn 1s ease 2.2s both;
+    }
+    .ios-install-hint.show { display: block; }
+
+    /* Bigger tap targets — iOS HIG 44x44 minimum */
+    .sound-toggle,
+    .fullscreen-toggle {
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+    }
+    /* Safe-area insets so HUD/buttons don't sit under notch or home indicator */
+    .sound-toggle {
+      bottom: max(16px, env(safe-area-inset-bottom));
+      right: max(16px, env(safe-area-inset-right));
+    }
+    .fullscreen-toggle {
+      bottom: max(16px, env(safe-area-inset-bottom));
+      left: max(16px, env(safe-area-inset-left));
+    }
+  }
+  @media (max-width: 380px) {
+    .welcome-title { font-size: 56px; }
+    .welcome-story { font-size: 13px; line-height: 1.6; }
+    .rule-icon { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ============== WELCOME ============== -->
+  <div class="screen active" id="welcome">
+    <div class="welcome-content">
+      <h1 class="welcome-title">DAWN</h1>
+      <div class="welcome-divider"></div>
+      <p class="welcome-story">
+        You're a small light running through the dark.<br>
+        The sun is rising.<br>
+        <em>Survive 30 seconds and you reach morning.</em>
+      </p>
+
+      <button class="begin-btn" id="beginBtn">Begin</button>
+
+      <p class="ios-install-hint" id="iosInstallHint">
+        For fullscreen — tap <strong>Share</strong>, then <em>Add to Home Screen</em>.
+      </p>
+    </div>
+  </div>
+
+  <!-- ============== GAME ============== -->
+  <div class="screen" id="game">
+    <canvas id="gameCanvas"></canvas>
+  </div>
+
+  <!-- ============== DEAD ============== -->
+  <div class="screen" id="dead">
+    <div class="end-content">
+      <h1 class="end-title">The dark won.</h1>
+      <div class="end-divider"></div>
+      <p class="end-message">
+        <span id="deathCause">Almost. The sun was right there.</span><br>
+        <em>Try again.</em>
+      </p>
+      <div class="end-stats">
+        <div class="stat">
+          <div class="stat-value" id="deadDistance">0m</div>
+          <div class="stat-label">distance</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value ember" id="deadEmbers">0</div>
+          <div class="stat-label">embers</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value best" id="deadBest">0m</div>
+          <div class="stat-label">best</div>
+        </div>
+      </div>
+      <div class="end-actions">
+        <button class="end-btn primary" id="deadRetryBtn">Try Again</button>
+        <button class="end-btn" id="deadMenuBtn">Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== WON ============== -->
+  <div class="screen" id="won">
+    <div class="end-content">
+      <h1 class="end-title">You reached dawn.</h1>
+      <div class="end-divider"></div>
+      <p class="end-message">
+        The sun is up. The dark is gone.<br>
+        <em>You made it.</em>
+      </p>
+      <div class="end-stats">
+        <div class="stat">
+          <div class="stat-value" id="wonDistance">0m</div>
+          <div class="stat-label">distance</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value ember" id="wonEmbers">0</div>
+          <div class="stat-label">embers</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value best" id="wonBest">0m</div>
+          <div class="stat-label">best</div>
+        </div>
+      </div>
+      <div class="end-actions">
+        <button class="end-btn primary" id="wonRetryBtn">Run Again</button>
+        <button class="end-btn" id="wonMenuBtn">Menu</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<button class="sound-toggle" id="soundBtn" title="Toggle sound">🔊</button>
+<button class="fullscreen-toggle" id="fullscreenBtn" title="Toggle fullscreen (F)">⛶</button>
+
+<script>
+'use strict';
+
+// ============================================================
+// CONFIG
+// ============================================================
+const CONFIG = {
+  GAME_DURATION: 30,            // seconds to survive
+  PLAYER_X_RATIO: 0.22,         // player horizontal position (% of canvas width)
+  GROUND_Y_RATIO: 0.72,         // ground line position (% of canvas height)
+  PLAYER_RADIUS: 9,
+  GRAVITY: 0.65,
+  JUMP_VELOCITY: -11.5,         // initial upward speed
+  JUMP_CUT_VELOCITY: -4,        // velocity capped at this if button released
+  BASE_SCROLL_SPEED: 4.5,       // pixels per frame at 60fps
+  SPEED_RAMP: 0.10,             // back to original aggressive ramp
+  MAX_SCROLL_SPEED: 8.5,        // back to original max — that intense late-game feel
+  OBSTACLE_MIN_GAP: 220,        // closest two obstacles can be
+  OBSTACLE_MAX_GAP: 420,        // furthest apart
+  GAP_NARROW: 0.25,             // softened gap narrow stays — keeps late-game reachable
+  TRAIL_LENGTH: 14,
+  STARS_COUNT: 60,
+  // EMBERS
+  EMBER_SPAWN_CHANCE: 0.55,     // chance to spawn ember(s) in a gap
+  EMBER_DOUBLE_CHANCE: 0.25,    // chance the spawn is a pair
+  EMBER_COLLECT_RADIUS: 16,     // generous pickup radius
+};
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  screen: 'welcome',
+  startTime: 0,
+  lastFrameTime: 0,
+  time: 0,
+  scrollSpeed: 0,
+  worldX: 0,
+  player: {
+    x: 0, y: 0, vy: 0,
+    onGround: true,
+    isJumping: false,    // currently in a held jump
+    trail: [],
+  },
+  obstacles: [],
+  particles: [],
+  embers: [],           // collectible light fragments in current run
+  emberCount: 0,        // collected this run
+  lastEmberTime: 0,     // timestamp of last pickup (for scale-pulse animation)
+  nextObstacleX: 0,
+  groundY: 0,
+  canvasWidth: 0,
+  canvasHeight: 0,
+  shake: 0,
+  flash: 0,             // 0-1 for white flash on win
+  audio: { ctx: null, enabled: true },
+  stars: [],            // pre-generated star field
+  shootingStars: [],    // rare cinematic streaks (phase-aware)
+  pressed: false,
+  best: parseInt(localStorage.getItem('dawn_best') || '0', 10) || 0,
+  deathCause: null,     // 'spike' | 'wall' | null
+  firstJump: false,     // has the player ever jumped this game?
+  // input timing
+  jumpStartTime: 0,
+};
+
+// ============================================================
+// CANVAS
+// ============================================================
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  // Cap DPR on mobile — DPR=3 phones would otherwise render 9x as many pixels as a DPR=1 desktop.
+  // Capping at 2 saves ~55% of pixel work on DPR=3 devices with near-imperceptible quality loss.
+  const isMobileViewport = window.innerWidth <= 600;
+  const dpr = Math.min(window.devicePixelRatio || 1, isMobileViewport ? 2 : 2.5);
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.scale(dpr, dpr);
+  state.canvasWidth = w;
+  state.canvasHeight = h;
+  state.groundY = h * CONFIG.GROUND_Y_RATIO;
+  state.player.x = w * CONFIG.PLAYER_X_RATIO;
+  // regenerate stars based on canvas size
+  generateStars();
+}
+
+function generateStars() {
+  state.stars = [];
+  for (let i = 0; i < CONFIG.STARS_COUNT; i++) {
+    state.stars.push({
+      x: Math.random() * state.canvasWidth,
+      y: Math.random() * state.groundY * 0.8,
+      size: 0.5 + Math.random() * 1.5,
+      twinkle: Math.random() * Math.PI * 2,
+    });
+  }
+}
+
+window.addEventListener('resize', resize);
+window.addEventListener('load', resize);
+resize();
+
+// ============================================================
+// AUDIO
+// ============================================================
+function getCtx() {
+  if (!state.audio.ctx) {
+    try { state.audio.ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+  }
+  return state.audio.ctx;
+}
+
+function tone({ freq=440, dur=0.15, vol=0.15, type='sine', attack=0.005 }) {
+  if (!state.audio.enabled) return;
+  const ac = getCtx();
+  if (!ac) return;
+  if (ac.state === 'suspended') ac.resume();
+  const osc = ac.createOscillator();
+  const gain = ac.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0.001, ac.currentTime);
+  gain.gain.exponentialRampToValueAtTime(vol, ac.currentTime + attack);
+  gain.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + dur);
+  osc.connect(gain);
+  gain.connect(ac.destination);
+  osc.start();
+  osc.stop(ac.currentTime + dur + 0.05);
+}
+
+function playJump() {
+  tone({ freq: 520, dur: 0.10, vol: 0.07, type: 'triangle' });
+  setTimeout(() => tone({ freq: 720, dur: 0.08, vol: 0.05, type: 'triangle' }), 25);
+}
+function playLand() { tone({ freq: 160, dur: 0.07, vol: 0.10, type: 'sine' }); }
+function playEmber() {
+  tone({ freq: 1320, dur: 0.08, vol: 0.06, type: 'sine' });
+  setTimeout(() => tone({ freq: 1760, dur: 0.06, vol: 0.04, type: 'sine' }), 35);
+}
+function playDeath() {
+  tone({ freq: 220, dur: 0.5, vol: 0.18, type: 'sawtooth' });
+  setTimeout(() => tone({ freq: 110, dur: 0.6, vol: 0.15, type: 'sawtooth' }), 80);
+  setTimeout(() => tone({ freq: 80, dur: 0.7, vol: 0.12, type: 'sine' }), 200);
+}
+function playWin() {
+  // ascending major chord
+  [262, 330, 392, 523, 659].forEach((f, i) => {
+    setTimeout(() => tone({ freq: f, dur: 0.7, vol: 0.10, type: 'triangle' }), i * 100);
+  });
+}
+function playClick() { tone({ freq: 1200, dur: 0.04, vol: 0.05, type: 'square' }); }
+
+// ============================================================
+// MUSIC — modern chiptune (D major), 32-step loop, tempo 100→160bpm with progress
+// triangle melody + sine sub-bass, no harsh squares (avoids the buzz problem)
+// ============================================================
+const music = {
+  active: false,
+  step: 0,
+  stepId: null,
+
+  // 32 sixteenth-note steps = 2 bars at 4/4. null = rest.
+  // Melody: D major, hopeful arc — climbs in bar 1, resolves in bar 2.
+  melody: [
+    // bar 1 — peaks at D5, dances around A4
+    587.33, null, 440.00, null, 369.99, null, 440.00, null,   // D5 _ A4 _ F#4 _ A4 _
+    587.33, null, 440.00, null, 493.88, null, 440.00, 369.99, // D5 _ A4 _ B4 _ A4 F#4
+    // bar 2 — descends to low tonic, breathes before loop
+    392.00, null, 329.63, null, 293.66, null, 329.63, null,   // G4 _ E4 _ D4 _ E4 _
+    369.99, null, 329.63, 293.66, null, null, null, null      // F#4 _ E4 D4 _ _ _ _
+  ],
+  // Bass: I - V - IV - I plagal motion, one note per half-bar
+  bass: [
+    146.83, null, null, null, null, null, null, null,  // D3 (I)
+    110.00, null, null, null, null, null, null, null,  // A2 (V)
+    98.00,  null, null, null, null, null, null, null,  // G2 (IV)
+    146.83, null, null, null, null, null, null, null   // D3 (I)
+  ],
+
+  start() {
+    if (this.active) return;
+    if (!state.audio.enabled) return;
+    const ac = getCtx();
+    if (!ac) return;
+    if (ac.state === 'suspended') ac.resume();
+    this.active = true;
+    this.step = 0;
+    // Half-second breath before the first note
+    this.stepId = setTimeout(() => this.tick(), 500);
+  },
+
+  tick() {
+    if (!this.active) return;
+    if (state.audio.enabled) {
+      const ac = getCtx();
+      if (ac) {
+        const t = ac.currentTime;
+        const mFreq = this.melody[this.step];
+        if (mFreq !== null) this.playNote(mFreq, 'triangle', 0.04, 0.35, t);
+        const bFreq = this.bass[this.step];
+        if (bFreq !== null) this.playNote(bFreq, 'sine', 0.05, 0.55, t);
+      }
+    }
+    this.step = (this.step + 1) % this.melody.length;
+    // Tempo from progress: 100bpm → 160bpm
+    const progress = Math.min(1, state.time / CONFIG.GAME_DURATION);
+    const bpm = 100 + progress * 60;
+    const stepMs = 60000 / bpm / 4; // sixteenth note
+    this.stepId = setTimeout(() => this.tick(), stepMs);
+  },
+
+  playNote(freq, type, vol, dur, t) {
+    const ac = getCtx();
+    if (!ac) return;
+    const osc = ac.createOscillator();
+    const gain = ac.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(vol, t + 0.005);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(gain);
+    gain.connect(ac.destination);
+    osc.start(t);
+    osc.stop(t + dur + 0.05);
+  },
+
+  update() { /* no per-frame work in this version */ },
+
+  stop() {
+    if (!this.active) return;
+    this.active = false;
+    if (this.stepId) clearTimeout(this.stepId);
+    this.stepId = null;
+    // Notes already in flight finish their decay naturally
+  },
+};
+
+// ============================================================
+// SCREEN ROUTING
+// ============================================================
+function show(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  setTimeout(() => {
+    const el = document.getElementById(name);
+    if (el) el.classList.add('active');
+    state.screen = name;
+  }, 60);
+}
+
+// ============================================================
+// LIFECYCLE
+// ============================================================
+function reset() {
+  state.player = {
+    x: state.canvasWidth * CONFIG.PLAYER_X_RATIO,
+    y: state.groundY - CONFIG.PLAYER_RADIUS,
+    vy: 0,
+    onGround: true,
+    isJumping: false,
+    landImpact: 0,
+    trail: [],
+  };
+  state.obstacles = [];
+  state.particles = [];
+  state.embers = [];
+  state.emberCount = 0;
+  state.shootingStars = [];
+  state.worldX = 0;
+  state.scrollSpeed = CONFIG.BASE_SCROLL_SPEED;
+  state.time = 0;
+  state.startTime = 0;
+  state.firstJump = false;
+  state.deathCause = null;
+  state.shake = 0;
+  state.flash = 0;
+  state.deathFlash = 0;
+  state.pressed = false;
+  // First obstacle a comfortable distance away
+  state.nextObstacleX = state.canvasWidth + 400;
+}
+
+function startGame() {
+  // On mobile-sized viewports, try to enter fullscreen (Android Chrome supports this; iOS Safari silently no-ops outside of PWA mode)
+  if (window.innerWidth <= 600 && !document.fullscreenElement && !document.webkitFullscreenElement) {
+    const elem = document.documentElement;
+    const req = elem.requestFullscreen || elem.webkitRequestFullscreen;
+    if (req) { try { req.call(elem).catch(() => {}); } catch(e) {} }
+  }
+  resize();
+  reset();
+  show('game');
+  // iOS Safari URL-bar collapse trick — gains ~80px of vertical play space
+  setTimeout(() => { window.scrollTo(0, 1); resize(); }, 50);
+  setTimeout(() => {
+    state.startTime = performance.now();
+    state.lastFrameTime = state.startTime;
+    music.start();
+    requestAnimationFrame(loop);
+  }, 80);
+}
+
+function die(cause) {
+  state.screen = 'dead';
+  state.shake = 15;
+  state.deathFlash = 1;
+  state.deathCause = cause || null;
+  music.stop();
+  playDeath();
+  // Death particles — slightly more, slightly more spread
+  for (let i = 0; i < 26; i++) {
+    state.particles.push({
+      x: state.player.x,
+      y: state.player.y,
+      vx: (Math.random() - 0.5) * 9,
+      vy: (Math.random() - 0.7) * 7,
+      life: 45,
+      maxLife: 45,
+      color: i < 13 ? 'rgba(255, 220, 130, alpha)' : 'rgba(192, 57, 43, alpha)',
+      size: 2 + Math.random() * 2.5,
+    });
+  }
+  // Save best score
+  const distance = Math.floor(state.worldX / 10);
+  if (distance > state.best) {
+    state.best = distance;
+    try { localStorage.setItem('dawn_best', String(state.best)); } catch(e) {}
+  }
+  // delay screen change so players SEE the impact (500ms, was 700)
+  setTimeout(() => {
+    document.getElementById('deadDistance').textContent = distance + 'm';
+    document.getElementById('deadEmbers').textContent = state.emberCount;
+    document.getElementById('deadBest').textContent = state.best + 'm';
+    // Death cause message
+    const causeEl = document.getElementById('deathCause');
+    if (cause === 'spike') causeEl.textContent = 'You hit a spike.';
+    else if (cause === 'wall') causeEl.textContent = 'You hit a wall.';
+    else causeEl.textContent = 'Almost. The sun was right there.';
+    show('dead');
+  }, 500);
+}
+
+function win() {
+  state.screen = 'won';
+  state.flash = 1;
+  music.stop();
+  playWin();
+  // Save best score
+  const distance = Math.floor(state.worldX / 10);
+  if (distance > state.best) {
+    state.best = distance;
+    try { localStorage.setItem('dawn_best', String(state.best)); } catch(e) {}
+  }
+  setTimeout(() => {
+    document.getElementById('wonDistance').textContent = distance + 'm';
+    document.getElementById('wonEmbers').textContent = state.emberCount;
+    document.getElementById('wonBest').textContent = state.best + 'm';
+    show('won');
+  }, 1000);
+}
+
+// ============================================================
+// INPUT
+// ============================================================
+function jumpStart() {
+  if (state.screen !== 'game') return;
+  if (state.player.onGround) {
+    state.player.vy = CONFIG.JUMP_VELOCITY;
+    state.player.onGround = false;
+    state.player.isJumping = true;
+    state.firstJump = true;
+    state.jumpStartTime = performance.now();
+    playJump();
+  }
+}
+
+function jumpRelease() {
+  if (state.screen !== 'game') return;
+  if (state.player.isJumping) {
+    state.player.isJumping = false;
+    // Cut jump short for variable jump height (tap = small, hold = full)
+    if (state.player.vy < CONFIG.JUMP_CUT_VELOCITY) {
+      state.player.vy = CONFIG.JUMP_CUT_VELOCITY;
+    }
+  }
+}
+
+function handlePressDown(e) {
+  if (state.screen === 'game') {
+    if (e) e.preventDefault();
+    jumpStart();
+  }
+}
+function handlePressUp(e) {
+  if (state.screen === 'game') {
+    jumpRelease();
+  }
+}
+
+document.addEventListener('keydown', e => {
+  // Any common key restarts on end screens
+  if ((state.screen === 'dead' || state.screen === 'won') &&
+      (e.code === 'Space' || e.code === 'Enter' || e.code === 'ArrowUp' ||
+       e.code === 'KeyW' || e.code === 'KeyR')) {
+    e.preventDefault();
+    if (e.repeat) return;
+    startGame();
+    return;
+  }
+  if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') {
+    e.preventDefault();
+    if (e.repeat) return;
+    if (state.screen === 'welcome') {
+      const ac = getCtx();
+      if (ac && ac.state === 'suspended') ac.resume();
+      startGame();
+    } else {
+      jumpStart();
+    }
+  }
+});
+
+document.addEventListener('keyup', e => {
+  if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') {
+    jumpRelease();
+  }
+});
+
+canvas.addEventListener('mousedown', handlePressDown);
+canvas.addEventListener('mouseup', handlePressUp);
+canvas.addEventListener('touchstart', e => { e.preventDefault(); jumpStart(); }, { passive: false });
+canvas.addEventListener('touchend', e => { e.preventDefault(); jumpRelease(); }, { passive: false });
+
+// iOS audio unlock — resume the audio context on the first touch anywhere
+function unlockAudio() {
+  const ac = getCtx();
+  if (ac && ac.state === 'suspended') ac.resume();
+  document.removeEventListener('touchstart', unlockAudio);
+  document.removeEventListener('touchend', unlockAudio);
+  document.removeEventListener('click', unlockAudio);
+}
+document.addEventListener('touchstart', unlockAudio, { passive: true });
+document.addEventListener('touchend', unlockAudio, { passive: true });
+document.addEventListener('click', unlockAudio);
+
+// Prevent iOS Safari from showing the long-press context menu on the canvas
+canvas.addEventListener('contextmenu', e => e.preventDefault());
+
+// ============================================================
+// GAME LOOP
+// ============================================================
+function loop(timestamp) {
+  if (state.screen !== 'game') return;
+  const rawDt = timestamp - state.lastFrameTime;
+  const dt = Math.min(rawDt, 33); // cap dt during tab switches
+  state.lastFrameTime = timestamp;
+  const dtFactor = dt / 16.67; // normalize to 60fps frame
+
+  state.time = (timestamp - state.startTime) / 1000;
+  music.update();
+
+  // Win condition
+  if (state.time >= CONFIG.GAME_DURATION) {
+    win();
+    return;
+  }
+
+  // Speed escalates
+  state.scrollSpeed = Math.min(
+    CONFIG.MAX_SCROLL_SPEED,
+    CONFIG.BASE_SCROLL_SPEED + state.time * CONFIG.SPEED_RAMP
+  );
+  state.worldX += state.scrollSpeed * dtFactor;
+
+  // Update player physics
+  updatePlayer(dt, dtFactor);
+
+  // Update shooting stars (uses sunrise progress for phase-aware spawning)
+  const progressForStars = state.time / CONFIG.GAME_DURATION;
+  updateShootingStars(progressForStars, dtFactor);
+
+  // Spawn new obstacles ahead of player
+  spawnObstacles();
+
+  // Cull off-screen obstacles
+  state.obstacles = state.obstacles.filter(o => o.x > state.worldX - 100);
+
+  // Cull off-screen embers
+  state.embers = state.embers.filter(e => e.x > state.worldX - 100);
+
+  // Ember collection (no fail state — just collect)
+  checkEmberCollection();
+
+  // Collision check
+  const hit = checkCollisions();
+  if (hit) {
+    die(hit);
+    return;
+  }
+
+  // Update particles
+  updateParticles(dt);
+
+  // Decay shake
+  if (state.shake > 0) state.shake = Math.max(0, state.shake - dt * 0.05);
+
+  // Render
+  render();
+
+  requestAnimationFrame(loop);
+}
+
+// ============================================================
+// PLAYER
+// ============================================================
+function updatePlayer(dt, dtFactor) {
+  const p = state.player;
+
+  // Apply gravity
+  p.vy += CONFIG.GRAVITY * dtFactor;
+  p.y += p.vy * dtFactor;
+
+  // Decay land impact (squash recovers smoothly)
+  if (p.landImpact > 0) {
+    p.landImpact *= Math.pow(0.82, dtFactor);
+    if (p.landImpact < 0.01) p.landImpact = 0;
+  }
+
+  // Ground collision
+  const groundLevel = state.groundY - CONFIG.PLAYER_RADIUS;
+  if (p.y >= groundLevel) {
+    if (!p.onGround && p.vy > 1) {
+      // just landed — dust + squash trigger
+      playLand();
+      p.landImpact = 1.0;
+      for (let i = 0; i < 5; i++) {
+        state.particles.push({
+          x: p.x + (Math.random() - 0.5) * 14,
+          y: state.groundY,
+          vx: (Math.random() - 0.5) * 1.5,
+          vy: -Math.random() * 1.5,
+          life: 25, maxLife: 25,
+          color: 'rgba(180, 170, 150, alpha)',
+          size: 1.5 + Math.random(),
+        });
+      }
+    }
+    p.y = groundLevel;
+    p.vy = 0;
+    p.onGround = true;
+    p.isJumping = false;
+  } else {
+    p.onGround = false;
+  }
+
+  // Trail
+  p.trail.unshift({ x: p.x, y: p.y, age: 0 });
+  if (p.trail.length > CONFIG.TRAIL_LENGTH) p.trail.pop();
+  for (const t of p.trail) t.age++;
+}
+
+// ============================================================
+// OBSTACLES
+// ============================================================
+function spawnObstacles() {
+  while (state.nextObstacleX < state.worldX + state.canvasWidth + 100) {
+    // Track gap start so we can spawn embers AFTER setting nextObstacleX
+    const gapStartX = state.nextObstacleX;
+
+    // Choose obstacle type and difficulty based on game time
+    const difficulty = Math.min(1, state.time / 25);
+    const type = Math.random() < 0.65 ? 'spike' : 'wall';
+
+    let obstacle;
+    if (type === 'spike') {
+      const r = Math.random();
+      let count = 1;
+      let height = 26;
+      if (r < 0.45) { count = 1; height = 26; }
+      else if (r < 0.75) { count = 1; height = 38; }
+      else if (r < 0.92) { count = 2; height = 26; }
+      else { count = 3; height = 26; }
+
+      obstacle = {
+        type: 'spike',
+        x: state.nextObstacleX,
+        height: height + (Math.random() - 0.5) * 4,
+        count,
+        width: 26 + (Math.random() - 0.5) * 2,
+        seed: Math.random(),
+      };
+    } else {
+      obstacle = {
+        type: 'wall',
+        x: state.nextObstacleX,
+        height: 32 + Math.random() * 25 + difficulty * 10,
+        width: 22 + (Math.random() - 0.5) * 2,
+        seed: Math.random(),
+      };
+    }
+    state.obstacles.push(obstacle);
+
+    const gapMul = 1 - difficulty * CONFIG.GAP_NARROW;
+    const minGap = CONFIG.OBSTACLE_MIN_GAP * gapMul;
+    const maxGap = CONFIG.OBSTACLE_MAX_GAP * gapMul;
+    state.nextObstacleX += minGap + Math.random() * (maxGap - minGap);
+    if (obstacle.count && obstacle.count > 1) {
+      state.nextObstacleX += (obstacle.count - 1) * 22;
+    }
+
+    // ===== Spawn EMBERS in the next gap =====
+    // The gap is between this obstacle (gapStartX) and the next (state.nextObstacleX).
+    // Place 1-2 embers somewhere safely inside that gap, at varied heights.
+    if (Math.random() < CONFIG.EMBER_SPAWN_CHANCE) {
+      const gapEnd = state.nextObstacleX;
+      const margin = 60;          // safe distance from obstacles
+      const lo = gapStartX + margin;
+      const hi = gapEnd - margin;
+      if (hi > lo + 20) {
+        const count = Math.random() < CONFIG.EMBER_DOUBLE_CHANCE ? 2 : 1;
+        for (let i = 0; i < count; i++) {
+          // Distribute embers across the gap if 2
+          const t = count === 1
+            ? Math.random()
+            : (i + 0.3 + Math.random() * 0.4) / count;
+          const ex = lo + t * (hi - lo);
+          // Weighted heights: 40% ground-level (easy), 35% mid-jump, 25% high-jump (risk/reward)
+          const r2 = Math.random();
+          let ey;
+          if (r2 < 0.40) ey = state.groundY - 14;
+          else if (r2 < 0.75) ey = state.groundY - 38;
+          else ey = state.groundY - 64;
+          state.embers.push({
+            x: ex,
+            baseY: ey,
+            collected: false,
+            phase: Math.random() * Math.PI * 2,
+          });
+        }
+      }
+    }
+  }
+}
+
+// ============================================================
+// COLLISIONS
+// ============================================================
+function checkCollisions() {
+  const p = state.player;
+  const pr = CONFIG.PLAYER_RADIUS;
+  // Forgiveness: shrink hitbox slightly so the game feels fair
+  const playerHitR = pr - 2;
+
+  for (const o of state.obstacles) {
+    const screenX = o.x - state.worldX;
+    if (screenX < -50 || screenX > state.canvasWidth + 50) continue;
+
+    if (o.type === 'spike') {
+      // Each spike in cluster
+      const count = o.count || 1;
+      for (let i = 0; i < count; i++) {
+        const sx = screenX + i * 22;
+        const left = sx - o.width / 2 + 3;
+        const right = sx + o.width / 2 - 3;
+        const top = state.groundY - o.height + 4;
+        const bottom = state.groundY;
+        if (p.x + playerHitR > left && p.x - playerHitR < right &&
+            p.y + playerHitR > top && p.y - playerHitR < bottom) {
+          return 'spike';
+        }
+      }
+    } else {
+      // Wall
+      const left = screenX - o.width / 2 + 2;
+      const right = screenX + o.width / 2 - 2;
+      const top = state.groundY - o.height + 2;
+      const bottom = state.groundY;
+      if (p.x + playerHitR > left && p.x - playerHitR < right &&
+          p.y + playerHitR > top && p.y - playerHitR < bottom) {
+        return 'wall';
+      }
+    }
+  }
+  return null;
+}
+
+// ============================================================
+// PARTICLES
+// ============================================================
+function updateParticles(dt) {
+  for (const p of state.particles) {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.18;
+    p.life--;
+  }
+  state.particles = state.particles.filter(p => p.life > 0);
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function render() {
+  const w = state.canvasWidth;
+  const h = state.canvasHeight;
+  const progress = Math.min(1, state.time / CONFIG.GAME_DURATION);
+
+  // Camera shake
+  ctx.save();
+  if (state.shake > 0) {
+    ctx.translate((Math.random() - 0.5) * state.shake, (Math.random() - 0.5) * state.shake);
+  }
+
+  // ===== SKY (3-phase: night → dawn → sunrise) =====
+  // 0 → 0.5 lerps night → dawn. 0.5 → 1 lerps dawn → sunrise.
+  // Two linear segments, smooth, no banding.
+  const sky3 = (a, b, c) =>
+    progress < 0.5
+      ? lerpColor(a, b, progress * 2)
+      : lerpColor(b, c, (progress - 0.5) * 2);
+
+  // Top of sky — stays dark longest (lifts last, like real sunrise)
+  const skyTop  = sky3([3,5,18],    [8,12,30],   [25,28,55]);
+  // High — gradual indigo → soft purple
+  const skyHigh = sky3([12,10,32],  [32,22,55],  [70,50,85]);
+  // Mid — main pink warm transition
+  const skyMid  = sky3([22,16,38],  [80,45,68],  [175,90,90]);
+  // Low (horizon) — warms FIRST (first to glow), ends rich orange
+  const skyLow  = sky3([35,22,42],  [150,80,68], [245,150,70]);
+
+  const skyGrad = ctx.createLinearGradient(0, 0, 0, state.groundY);
+  skyGrad.addColorStop(0,    skyTop);
+  skyGrad.addColorStop(0.30, skyHigh);
+  skyGrad.addColorStop(0.62, skyMid);
+  skyGrad.addColorStop(1,    skyLow);
+  ctx.fillStyle = skyGrad;
+  ctx.fillRect(0, 0, w, state.groundY);
+
+  // Sun warms the surrounding sky — radial (no edges = no bands)
+  const sunInfX = w * 0.82;
+  const sunInfY = state.groundY - 30;
+  const sunInfA = 0.10 + progress * 0.30;
+  const sunInfR = 320 + progress * 100;
+  const sunInf  = ctx.createRadialGradient(sunInfX, sunInfY, 0, sunInfX, sunInfY, sunInfR);
+  sunInf.addColorStop(0,   'rgba(255, 180, 110, ' + sunInfA + ')');
+  sunInf.addColorStop(0.5, 'rgba(255, 150, 90, '  + (sunInfA * 0.40) + ')');
+  sunInf.addColorStop(1,   'rgba(255, 130, 70, 0)');
+  ctx.fillStyle = sunInf;
+  ctx.fillRect(0, 0, w, state.groundY);
+
+  // ===== STARS (fade out as sky brightens) =====
+  const starAlpha = (1 - progress * 0.85);
+  if (starAlpha > 0.05) {
+    const t = performance.now();
+    for (const s of state.stars) {
+      // Slower, softer twinkle (was 0.002, now 0.0011)
+      const tw = 0.65 + 0.35 * Math.sin(t * 0.0011 + s.twinkle);
+      // Size-based brightness — bigger stars feel brighter, smaller ones dimmer
+      const brightness = 0.55 + (s.size / 2.0) * 0.45;
+      ctx.fillStyle = 'rgba(255, 248, 220, ' + (starAlpha * tw * brightness) + ')';
+      ctx.fillRect(s.x, s.y, s.size, s.size);
+    }
+  }
+
+  // ===== SHOOTING STARS (cinematic, additive blend, upper sky only) =====
+  drawShootingStars();
+
+  // ===== SUN =====
+  drawSun(progress);
+
+  // ===== DISTANT TERRAIN (parallax + fog) =====
+  drawTerrain(progress);
+
+  // ===== GROUND =====
+  // Filled below
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, state.groundY, w, h - state.groundY);
+
+  // Ground line — subtle highlight from sun
+  const lineColor = lerpColor([28,24,38], [120,55,30], progress);
+  ctx.strokeStyle = lineColor;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(0, state.groundY);
+  ctx.lineTo(w, state.groundY);
+  ctx.stroke();
+
+  // ===== OBSTACLES =====
+  drawObstacles();
+
+  // ===== EMBERS =====
+  drawEmbers(performance.now());
+
+  // ===== PARTICLES =====
+  for (const p of state.particles) {
+    const alpha = p.life / p.maxLife;
+    ctx.fillStyle = p.color.replace('alpha', alpha);
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size * alpha, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // ===== PLAYER =====
+  drawPlayer();
+
+  // ===== UI OVERLAY =====
+  drawUI(progress);
+
+  // ===== DEATH FLASH (red) =====
+  if (state.deathFlash > 0) {
+    ctx.fillStyle = 'rgba(180, 30, 30, ' + (state.deathFlash * 0.35) + ')';
+    ctx.fillRect(0, 0, w, h);
+    state.deathFlash *= 0.93;
+    if (state.deathFlash < 0.01) state.deathFlash = 0;
+  }
+
+  // ===== WIN FLASH =====
+  if (state.flash > 0) {
+    ctx.fillStyle = 'rgba(255, 240, 200, ' + state.flash + ')';
+    ctx.fillRect(0, 0, w, h);
+    state.flash *= 0.94;
+  }
+
+  ctx.restore();
+}
+
+// ============================================================
+// SHOOTING STARS — cinematic atmosphere (no gameplay impact)
+// Phase-aware: common at night, rare at dawn, none at sunrise.
+// Confined to upper sky only so eye stays on obstacles.
+// ============================================================
+function spawnShootingStar() {
+  const w = state.canvasWidth;
+  // Upper 40% of sky — never near ground/obstacles
+  const upperBound = state.groundY * 0.40;
+  const startX = Math.random() * w * 0.45 - 40;          // upper-left bias
+  const startY = Math.random() * upperBound * 0.55;       // top portion
+  // Diagonal descent ~25-40° below horizontal
+  const angle = Math.PI / 7 + Math.random() * Math.PI / 9;
+  const travel = 200 + Math.random() * 140;
+  const endX = startX + Math.cos(angle) * travel;
+  let endY = startY + Math.sin(angle) * travel;
+  // Hard cap — never enter lower sky / horizon area
+  endY = Math.min(endY, upperBound * 0.85);
+  state.shootingStars.push({
+    startX, startY, endX, endY,
+    age: 0,
+    maxAge: 55 + Math.random() * 15,  // ~0.9–1.2s at 60fps
+  });
+}
+
+function updateShootingStars(progress, dtFactor) {
+  // Phase-aware spawn probability (per normalized 60fps frame)
+  let chance = 0;
+  if (progress < 0.33)      chance = 0.005;  // night — most common
+  else if (progress < 0.66) chance = 0.0018; // dawn — rarer
+  // sunrise (>0.66) — none, sun is the only star
+  if (Math.random() < chance * dtFactor) spawnShootingStar();
+
+  // Age existing, remove finished
+  for (const s of state.shootingStars) s.age += dtFactor;
+  state.shootingStars = state.shootingStars.filter(s => s.age < s.maxAge);
+}
+
+function drawShootingStars() {
+  if (state.shootingStars.length === 0) return;
+  ctx.globalCompositeOperation = 'lighter';
+  for (const s of state.shootingStars) {
+    const t = s.age / s.maxAge;
+    if (t >= 1) continue;
+
+    const headX = s.startX + (s.endX - s.startX) * t;
+    const headY = s.startY + (s.endY - s.startY) * t;
+    const dx = s.endX - s.startX, dy = s.endY - s.startY;
+    const len = Math.sqrt(dx * dx + dy * dy) || 1;
+    // Tail length peaks at middle of life
+    const tailLen = 60 + Math.sin(t * Math.PI) * 50;
+    const tailX = headX - (dx / len) * tailLen;
+    const tailY = headY - (dy / len) * tailLen;
+
+    // Brightness curve: quick rise, gradual fade
+    let alpha;
+    if (t < 0.20) alpha = t / 0.20;
+    else          alpha = 1 - (t - 0.20) / 0.80;
+    alpha = Math.max(0, alpha);
+
+    // Streak — gradient stroke (transparent tail → bright head)
+    const grad = ctx.createLinearGradient(tailX, tailY, headX, headY);
+    grad.addColorStop(0,   'rgba(255, 240, 200, 0)');
+    grad.addColorStop(0.7, 'rgba(255, 245, 210, ' + (alpha * 0.35) + ')');
+    grad.addColorStop(1,   'rgba(255, 250, 220, ' + alpha + ')');
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(tailX, tailY);
+    ctx.lineTo(headX, headY);
+    ctx.stroke();
+
+    // Tiny bright head
+    ctx.fillStyle = 'rgba(255, 250, 220, ' + alpha + ')';
+    ctx.beginPath();
+    ctx.arc(headX, headY, 1.6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalCompositeOperation = 'source-over';
+}
+
+function drawSun(progress) {
+  const w = state.canvasWidth;
+  const now = performance.now();
+  const sunX = w * 0.82;
+
+  // Sun rises with progress + subtle floating motion (lives, not just translates)
+  const startY = state.groundY - 30;
+  const endY = state.groundY - 250;
+  const float = Math.sin(now * 0.0008) * 4;
+  const sunY = startY + (endY - startY) * progress + float;
+
+  // Subtle breathing pulse on radius (~2.5%)
+  const pulse = 1 + Math.sin(now * 0.0014) * 0.025;
+  const sunR = (55 + progress * 18) * pulse;
+
+  // Outer glow — stronger, larger, 4-stop falloff
+  const glow = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, 360);
+  glow.addColorStop(0,    'rgba(255, 215, 120, ' + (0.40 + progress * 0.40) + ')');
+  glow.addColorStop(0.30, 'rgba(255, 165, 90, '  + (0.25 + progress * 0.25) + ')');
+  glow.addColorStop(0.65, 'rgba(255, 120, 70, '  + (0.10 + progress * 0.12) + ')');
+  glow.addColorStop(1,    'rgba(255, 100, 50, 0)');
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(sunX, sunY, 360, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Sun disk
+  const diskGrad = ctx.createRadialGradient(sunX - 12, sunY - 12, 0, sunX, sunY, sunR);
+  diskGrad.addColorStop(0, '#fff8d8');
+  diskGrad.addColorStop(0.5, '#ffd89c');
+  diskGrad.addColorStop(1, '#f4a23b');
+  ctx.fillStyle = diskGrad;
+  ctx.beginPath();
+  ctx.arc(sunX, sunY, sunR, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawTerrain(progress) {
+  const w = state.canvasWidth;
+  const groundY = state.groundY;
+
+  // FAR mountains — 3-phase color matching sky (night → dawn → sunrise)
+  const mtn3 = (a, b, c) =>
+    progress < 0.5
+      ? [a[0]+(b[0]-a[0])*progress*2, a[1]+(b[1]-a[1])*progress*2, a[2]+(b[2]-a[2])*progress*2]
+      : [b[0]+(c[0]-b[0])*(progress-0.5)*2, b[1]+(c[1]-b[1])*(progress-0.5)*2, b[2]+(c[2]-b[2])*(progress-0.5)*2];
+  const farC = mtn3([45,32,58], [60,42,68], [85,55,70]);
+  ctx.fillStyle = 'rgba(' + Math.floor(farC[0]) + ',' + Math.floor(farC[1]) + ',' + Math.floor(farC[2]) + ',0.78)';
+  ctx.beginPath();
+  ctx.moveTo(0, groundY);
+  const farOffset = -(state.worldX * 0.10) % 280;
+  for (let x = farOffset; x <= w + 280; x += 280) {
+    const peakX = x + 140;
+    // Tiny secondary noise on each vertex — breaks perfect triangles
+    const peakY = groundY - (90 + Math.sin(x * 0.013) * 25 + Math.sin(x * 0.041) * 4 + Math.sin(x * 0.083) * 2);
+    const lShoulder = groundY - (50 + Math.sin(x * 0.019) * 3);
+    const rShoulder = groundY - (40 + Math.sin(x * 0.027) * 3);
+    ctx.lineTo(x + 30, lShoulder);
+    ctx.lineTo(peakX, peakY);
+    ctx.lineTo(x + 230, rShoulder);
+    ctx.lineTo(x + 280, groundY);
+  }
+  ctx.lineTo(w, groundY);
+  ctx.closePath();
+  ctx.fill();
+
+  // CLOSE hills — 3-phase color, lifted from near-black, catches sunrise warmth
+  const closeC = mtn3([18,13,28], [30,20,35], [55,32,40]);
+  ctx.fillStyle = 'rgba(' + Math.floor(closeC[0]) + ',' + Math.floor(closeC[1]) + ',' + Math.floor(closeC[2]) + ',0.96)';
+  ctx.beginPath();
+  ctx.moveTo(0, groundY);
+  const closeOffset = -(state.worldX * 0.55) % 180;
+  for (let x = closeOffset; x <= w + 180; x += 180) {
+    // Small noise on hill peak too
+    const closePeak = 55 + Math.sin(x * 0.025) * 3 + Math.sin(x * 0.071) * 1.5;
+    ctx.lineTo(x + 90, groundY - closePeak);
+    ctx.lineTo(x + 180, groundY);
+  }
+  ctx.lineTo(w, groundY);
+  ctx.closePath();
+  ctx.fill();
+}
+
+// Warm-side overlay — sun-side terrain picks up warm light (lighting cohesion)
+function drawWarmSide(progress) {
+  if (progress < 0.05) return;
+  const w = state.canvasWidth;
+  const intensity = Math.min(0.16, progress * 0.26);
+  const grad = ctx.createLinearGradient(w * 0.4, 0, w, 0);
+  grad.addColorStop(0, 'rgba(255, 180, 100, 0)');
+  grad.addColorStop(1, 'rgba(255, 150, 80, ' + intensity + ')');
+  ctx.fillStyle = grad;
+  ctx.fillRect(w * 0.4, state.groundY - 80, w * 0.6, 80);
+}
+
+// ============================================================
+// EMBERS — collectible light fragments
+// ============================================================
+function drawEmbers(now) {
+  ctx.globalCompositeOperation = 'lighter';
+  for (const e of state.embers) {
+    if (e.collected) continue;
+    const screenX = e.x - state.worldX;
+    if (screenX < -30 || screenX > state.canvasWidth + 30) continue;
+
+    // Gentle vertical float + pulse
+    const float = Math.sin(now * 0.003 + e.phase) * 3;
+    const ey = e.baseY + float;
+    const pulse = 0.70 + Math.sin(now * 0.005 + e.phase) * 0.30;
+
+    // Outer warm glow
+    const glow = ctx.createRadialGradient(screenX, ey, 0, screenX, ey, 18);
+    glow.addColorStop(0,   'rgba(255, 220, 130, ' + (0.55 * pulse) + ')');
+    glow.addColorStop(0.5, 'rgba(255, 185, 100, ' + (0.20 * pulse) + ')');
+    glow.addColorStop(1,   'rgba(255, 160, 80, 0)');
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(screenX, ey, 18, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Bright core
+    ctx.fillStyle = 'rgba(255, 245, 200, ' + pulse + ')';
+    ctx.beginPath();
+    ctx.arc(screenX, ey, 3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalCompositeOperation = 'source-over';
+}
+
+function checkEmberCollection() {
+  const p = state.player;
+  const r2 = CONFIG.EMBER_COLLECT_RADIUS * CONFIG.EMBER_COLLECT_RADIUS;
+  for (const e of state.embers) {
+    if (e.collected) continue;
+    const screenX = e.x - state.worldX;
+    if (screenX < -30 || screenX > state.canvasWidth + 30) continue;
+    const dx = p.x - screenX;
+    const dy = p.y - e.baseY;
+    if (dx * dx + dy * dy < r2) {
+      e.collected = true;
+      state.emberCount++;
+      state.lastEmberTime = performance.now();
+      playEmber();
+      // Small burst of warm particles at pickup point
+      for (let i = 0; i < 8; i++) {
+        state.particles.push({
+          x: screenX,
+          y: e.baseY,
+          vx: (Math.random() - 0.5) * 4,
+          vy: (Math.random() - 0.5) * 4 - 1,
+          life: 25,
+          maxLife: 25,
+          color: 'rgba(255, 220, 130, alpha)',
+          size: 1.5 + Math.random() * 1.5,
+        });
+      }
+    }
+  }
+}
+
+function drawObstacles() {
+  const now = performance.now();
+
+  for (const o of state.obstacles) {
+    const screenX = o.x - state.worldX;
+    if (screenX < -50 || screenX > state.canvasWidth + 50) continue;
+
+    if (o.type === 'spike') {
+      const count = o.count || 1;
+      for (let i = 0; i < count; i++) {
+        const sx = screenX + i * 22;
+        const baseY = state.groundY;
+        const topY = state.groundY - o.height;
+        const leftX = sx - o.width / 2;
+        const rightX = sx + o.width / 2;
+
+        // ===== BLACK SILHOUETTE BODY =====
+        ctx.fillStyle = '#000';
+        ctx.beginPath();
+        ctx.moveTo(leftX, baseY);
+        ctx.lineTo(rightX, baseY);
+        ctx.lineTo(sx, topY);
+        ctx.closePath();
+        ctx.fill();
+
+        // ===== NEON OUTLINE — 2-stroke tight glow (sharp at speed, mobile-cheap) =====
+        ctx.save();
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        // Tight inner glow — hugs the shape, doesn't bleed outward
+        ctx.strokeStyle = 'rgba(255, 190, 95, 0.35)';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(leftX, baseY);
+        ctx.lineTo(sx, topY);
+        ctx.lineTo(rightX, baseY);
+        ctx.closePath();
+        ctx.stroke();
+        // Bright core — crisp readable edge
+        ctx.strokeStyle = 'rgba(255, 225, 140, 1)';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+        ctx.restore();
+      }
+    } else {
+      // ===== WALL =====
+      const left = screenX - o.width / 2;
+      const right = screenX + o.width / 2;
+      const top = state.groundY - o.height;
+      const bottom = state.groundY;
+
+      // Black silhouette body
+      ctx.fillStyle = '#000';
+      ctx.fillRect(left, top, o.width, o.height);
+
+      // ===== NEON OUTLINE — 2-stroke tight glow (sharp at speed, mobile-cheap) =====
+      ctx.save();
+      ctx.lineJoin = 'round';
+      // Tight inner glow
+      ctx.strokeStyle = 'rgba(255, 190, 95, 0.35)';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(left, top, o.width, o.height);
+      // Bright core
+      ctx.strokeStyle = 'rgba(255, 225, 140, 1)';
+      ctx.lineWidth = 2.5;
+      ctx.strokeRect(left, top, o.width, o.height);
+      ctx.restore();
+    }
+  }
+}
+
+function drawPlayer() {
+  const p = state.player;
+  const now = performance.now();
+
+  // ===== GROUND GLOW (player emits light onto ground) =====
+  // Wider when on ground, smaller when in air. Always under the player.
+  const groundGlowWidth = p.onGround ? 28 : 14;
+  const groundGlowAlpha = p.onGround ? 0.15 : 0.07;
+  const groundGlowGrad = ctx.createRadialGradient(
+    p.x, state.groundY, 0,
+    p.x, state.groundY, groundGlowWidth
+  );
+  groundGlowGrad.addColorStop(0, 'rgba(255, 200, 110, ' + groundGlowAlpha + ')');
+  groundGlowGrad.addColorStop(1, 'rgba(255, 160, 80, 0)');
+  ctx.fillStyle = groundGlowGrad;
+  ctx.beginPath();
+  ctx.ellipse(p.x, state.groundY, groundGlowWidth, groundGlowWidth * 0.35, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // ===== BREATHING TRAIL (continuous flow via additive blending) =====
+  // 'lighter' composite melts overlapping segments into one glow.
+  ctx.globalCompositeOperation = 'lighter';
+  for (let i = p.trail.length - 1; i >= 0; i--) {
+    const t = p.trail[i];
+    const fade = 1 - t.age / CONFIG.TRAIL_LENGTH;
+    if (fade <= 0) continue;
+    const pulseScale = 1 + Math.sin(now * 0.005 + i * 0.7) * 0.10;
+    const breath     = 0.94 + Math.sin(now * 0.008 + i * 0.5) * 0.06;
+    // Larger base radius = strong overlap, no visible dots
+    const r = CONFIG.PLAYER_RADIUS * (1.20 + (1 - fade) * 0.65) * pulseScale;
+    // Linear fade (was squared) — tail visible far longer
+    // Lower per-segment alpha because additive accumulates
+    const alpha = fade * 0.45 * breath;
+    // 4-stop gradient — softer falloff, no perceptible silhouette edge
+    const trailGrad = ctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, r);
+    trailGrad.addColorStop(0,    'rgba(255, 220, 130, ' + alpha + ')');
+    trailGrad.addColorStop(0.35, 'rgba(255, 205, 115, ' + (alpha * 0.65) + ')');
+    trailGrad.addColorStop(0.70, 'rgba(255, 185, 95, '  + (alpha * 0.20) + ')');
+    trailGrad.addColorStop(1,    'rgba(255, 170, 80, 0)');
+    ctx.fillStyle = trailGrad;
+    ctx.beginPath();
+    ctx.arc(t.x, t.y, r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalCompositeOperation = 'source-over';
+
+  // ===== SQUASH / STRETCH =====
+  let sx = 1, sy = 1;
+  if (!p.onGround) {
+    // In air — stretch vertically with vy magnitude (subtle)
+    const vyAbs = Math.min(Math.abs(p.vy), 14);
+    const stretch = vyAbs * 0.018;
+    sy = 1 + stretch;
+    sx = 1 - stretch * 0.6;
+  } else if (p.landImpact > 0.02) {
+    // Just landed — squash flat, springs back
+    sy = 1 - 0.24 * p.landImpact;
+    sx = 1 + 0.18 * p.landImpact;
+  }
+
+  // ===== OUTER GLOW =====
+  const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, 36);
+  glow.addColorStop(0, 'rgba(255, 220, 130, 0.55)');
+  glow.addColorStop(0.5, 'rgba(255, 180, 100, 0.25)');
+  glow.addColorStop(1, 'rgba(255, 150, 80, 0)');
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, 36, 0, Math.PI * 2);
+  ctx.fill();
+
+  // ===== BODY (ellipse for squash/stretch) =====
+  const rx = CONFIG.PLAYER_RADIUS * sx;
+  const ry = CONFIG.PLAYER_RADIUS * sy;
+  ctx.fillStyle = '#fff8e0';
+  ctx.beginPath();
+  ctx.ellipse(p.x, p.y, rx, ry, 0, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawUI(progress) {
+  const w = state.canvasWidth;
+  const remaining = Math.max(0, CONFIG.GAME_DURATION - state.time);
+  const now = performance.now();
+
+  // Auxiliary label alpha: full first 4s, fades out by 6s
+  const labelAlpha = Math.max(0, 1 - Math.max(0, state.time - 4) / 2) * 0.5;
+
+  // Top-left: time remaining
+  ctx.font = 'bold 28px monospace';
+  ctx.fillStyle = '#fff8e0';
+  ctx.textAlign = 'left';
+  ctx.fillText(remaining.toFixed(1) + 's', 28, 48);
+
+  if (labelAlpha > 0.01) {
+    ctx.font = '10px sans-serif';
+    ctx.fillStyle = 'rgba(244, 236, 216, ' + labelAlpha + ')';
+    ctx.fillText('TIME', 28, 62);
+  }
+
+  // ===== Top-center: SUNRISE bar (upgraded) =====
+  const barWidth = Math.min(280, w * 0.32);
+  const barX = (w - barWidth) / 2;
+  const barY = 44;
+  const barH = 5;
+
+  // Label above
+  ctx.font = '10px sans-serif';
+  ctx.fillStyle = 'rgba(255, 220, 180, 0.65)';
+  ctx.textAlign = 'center';
+  ctx.fillText('SUNRISE', w / 2, barY - 8);
+
+  // Track (subtle dark base)
+  ctx.fillStyle = 'rgba(60, 50, 40, 0.55)';
+  ctx.fillRect(barX, barY, barWidth, barH);
+
+  // Fill — color-shifted gradient (purple → pink → orange, matches sky phases)
+  const fillW = barWidth * progress;
+  if (fillW > 0.5) {
+    const fillGrad = ctx.createLinearGradient(barX, 0, barX + barWidth, 0);
+    fillGrad.addColorStop(0,    'rgba(120, 55, 95, 0.85)');
+    fillGrad.addColorStop(0.5,  'rgba(220, 105, 80, 0.95)');
+    fillGrad.addColorStop(1,    'rgba(255, 175, 75, 1)');
+    ctx.fillStyle = fillGrad;
+    ctx.fillRect(barX, barY, fillW, barH);
+  }
+
+  // Phase markers — tiny ticks at 1/3 and 2/3 (night→dawn→sunrise boundaries)
+  ctx.fillStyle = 'rgba(255, 240, 200, 0.22)';
+  ctx.fillRect(barX + barWidth * 0.333, barY - 2, 1, barH + 4);
+  ctx.fillRect(barX + barWidth * 0.666, barY - 2, 1, barH + 4);
+
+  // Leading edge — pulsing sun dot with warm glow
+  if (fillW > 0.5) {
+    const pulse = 0.75 + Math.sin(now * 0.004) * 0.25;
+    const headX = barX + fillW;
+    const headY = barY + barH / 2;
+    // Soft outer glow
+    const glow = ctx.createRadialGradient(headX, headY, 0, headX, headY, 10);
+    glow.addColorStop(0, 'rgba(255, 220, 130, ' + (0.75 * pulse) + ')');
+    glow.addColorStop(1, 'rgba(255, 180, 100, 0)');
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(headX, headY, 10, 0, Math.PI * 2);
+    ctx.fill();
+    // Bright core
+    ctx.fillStyle = 'rgba(255, 245, 200, ' + pulse + ')';
+    ctx.beginPath();
+    ctx.arc(headX, headY, 2.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // BEST score — small, under the bar (only if you have one)
+  if (state.best > 0) {
+    ctx.font = '11px monospace';
+    ctx.fillStyle = 'rgba(255, 230, 180, 0.50)';
+    ctx.textAlign = 'center';
+    ctx.fillText('BEST  ' + state.best + 'm', w / 2, barY + barH + 16);
+  }
+
+  // Top-right: distance
+  ctx.font = 'bold 16px monospace';
+  ctx.fillStyle = '#fff8e0';
+  ctx.textAlign = 'right';
+  ctx.fillText(Math.floor(state.worldX / 10) + 'm', w - 28, 44);
+
+  if (labelAlpha > 0.01) {
+    ctx.font = '10px sans-serif';
+    ctx.fillStyle = 'rgba(244, 236, 216, ' + labelAlpha + ')';
+    ctx.fillText('DISTANCE', w - 28, 58);
+  }
+
+  // Top-right (below distance): ember count with scale-pulse on pickup
+  if (state.emberCount > 0) {
+    // Scale-pulse: 0–200ms after pickup, briefly 1.0 → 1.3 → 1.0
+    const sincePickup = now - (state.lastEmberTime || 0);
+    let scale = 1;
+    if (sincePickup < 220) {
+      scale = 1 + Math.sin((sincePickup / 220) * Math.PI) * 0.30;
+    }
+    ctx.save();
+    ctx.translate(w - 28, 82);
+    ctx.scale(scale, scale);
+    ctx.font = 'bold 14px monospace';
+    ctx.fillStyle = 'rgba(255, 220, 130, 0.95)';
+    ctx.textAlign = 'right';
+    ctx.fillText('✦ ' + state.emberCount, 0, 0);
+    ctx.restore();
+  }
+
+  ctx.textAlign = 'left';
+
+  // First-run hint — fades out after first jump
+  if (!state.firstJump && state.time < 4) {
+    const hintAlpha = Math.max(0, 1 - state.time / 4) * 0.85;
+    ctx.font = '14px sans-serif';
+    ctx.fillStyle = 'rgba(255, 230, 180, ' + hintAlpha + ')';
+    ctx.textAlign = 'center';
+    ctx.fillText('tap to jump  ·  hold longer to jump higher',
+                 w / 2, state.canvasHeight * 0.55);
+    ctx.textAlign = 'left';
+  }
+}
+
+// ============================================================
+// HELPERS
+// ============================================================
+function lerpColor(c1, c2, t) {
+  const r = Math.floor(c1[0] + (c2[0] - c1[0]) * t);
+  const g = Math.floor(c1[1] + (c2[1] - c1[1]) * t);
+  const b = Math.floor(c1[2] + (c2[2] - c1[2]) * t);
+  return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+// ============================================================
+// BUTTONS
+// ============================================================
+document.getElementById('beginBtn').addEventListener('click', () => {
+  const ac = getCtx();
+  if (ac && ac.state === 'suspended') ac.resume();
+  startGame();
+});
+document.getElementById('deadRetryBtn').addEventListener('click', startGame);
+document.getElementById('deadMenuBtn').addEventListener('click', () => show('welcome'));
+document.getElementById('wonRetryBtn').addEventListener('click', startGame);
+document.getElementById('wonMenuBtn').addEventListener('click', () => show('welcome'));
+
+document.getElementById('soundBtn').addEventListener('click', e => {
+  state.audio.enabled = !state.audio.enabled;
+  e.target.textContent = state.audio.enabled ? '🔊' : '🔇';
+  if (state.audio.enabled) playClick();
+  else music.stop();
+});
+
+function toggleFullscreen() {
+  const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement;
+  if (!isFullscreen) {
+    const elem = document.documentElement;
+    const req = elem.requestFullscreen || elem.webkitRequestFullscreen;
+    if (req) req.call(elem).catch(() => {});
+  } else {
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (exit) exit.call(document);
+  }
+}
+document.getElementById('fullscreenBtn').addEventListener('click', toggleFullscreen);
+window.addEventListener('keydown', e => {
+  if ((e.key === 'f' || e.key === 'F') && !e.repeat) toggleFullscreen();
+});
+
+console.log('DAWN — ready. Built for DGM 6400, Spring 2026.');
+
+// Show iOS install hint only when running in mobile Safari outside of standalone PWA mode
+(function() {
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isStandalone = window.navigator.standalone === true ||
+                       window.matchMedia('(display-mode: standalone)').matches ||
+                       window.matchMedia('(display-mode: fullscreen)').matches;
+  if (isIOS && !isStandalone) {
+    const hint = document.getElementById('iosInstallHint');
+    if (hint) hint.classList.add('show');
+  }
+})();
+
+// PWA service worker — silent failure if no sw.js present (works as standalone HTML too)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

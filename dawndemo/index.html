@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAWN — A 30-second one-button game · Harsh Kumar</title>
+<meta name="description" content="DAWN is a 30-second one-button auto-runner about running toward the light. A DGM 6400 Game Design Fundamentals capstone by Harsh Kumar.">
+<style>
+:root {
+  --bg-dark: #0A0612;
+  --bg-card: rgba(22, 16, 30, 0.7);
+  --bg-card-solid: #16101E;
+  --bg-card-hover: rgba(30, 22, 40, 0.85);
+  --text-warm: #F5E6D3;
+  --text-muted: #9D8E7A;
+  --text-dim: #5D5147;
+  --amber: #F2A02C;
+  --amber-bright: #FFB347;
+  --neon: #FFD27A;
+  --stroke: rgba(61, 46, 31, 0.6);
+  --stroke-bright: rgba(107, 74, 42, 0.8);
+  --red: #C0392B;
+  --blue: #5B7FB8;
+  --purple: #7B5BA8;
+  --green: #4A9D6E;
+
+  --serif: 'Georgia', 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', sans-serif;
+
+  --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-warm:   cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  color: var(--text-warm);
+  font-family: var(--sans);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(242, 160, 44, 0.18) 0%, transparent 50%),
+    linear-gradient(180deg,
+      #050308 0%, #0A0612 12%, #0D0820 30%, #140A1C 50%,
+      #1C0F1A 70%, #2A1410 88%, #3D1F0E 100%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* ================================ SCROLL PROGRESS BAR ================================ */
+.scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg,
+    #5B7FB8 0%, #7B5BA8 25%, #C0392B 55%, #F2A02C 85%, #FFB347 100%);
+  box-shadow: 0 0 14px rgba(242, 160, 44, 0.7), 0 0 28px rgba(242, 160, 44, 0.3);
+  z-index: 200;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+/* ================================ HORIZON LINE — bottom of viewport ================================ */
+.horizon-line {
+  position: fixed; bottom: 2.2rem; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(242, 160, 44, 0.12) 25%,
+    rgba(242, 160, 44, 0.4) 50%,
+    rgba(242, 160, 44, 0.12) 75%,
+    transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+  animation: horizonGlow 4s ease-in-out infinite;
+}
+@keyframes horizonGlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ================================ RUNNING PLAYER — fixed bottom-left ================================ */
+.running-player {
+  position: fixed;
+  bottom: 1.8rem; left: 2.5rem;
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+.player-trail {
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.player-trail span {
+  width: 3px; height: 3px;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow: 0 0 4px var(--amber);
+  animation: trailFade 1.4s linear infinite;
+}
+.player-trail span:nth-child(1) { animation-delay: 0s;   opacity: 0.08; }
+.player-trail span:nth-child(2) { animation-delay: 0.15s; opacity: 0.16; }
+.player-trail span:nth-child(3) { animation-delay: 0.3s;  opacity: 0.24; }
+.player-trail span:nth-child(4) { animation-delay: 0.45s; opacity: 0.36; }
+.player-trail span:nth-child(5) { animation-delay: 0.6s;  opacity: 0.5; }
+.player-trail span:nth-child(6) { animation-delay: 0.75s; opacity: 0.65; }
+@keyframes trailFade {
+  0%   { transform: translateX(-3px) scale(0.7); }
+  60%  { transform: translateX(2px)  scale(1); }
+  100% { transform: translateX(-3px) scale(0.7); }
+}
+.player-dot {
+  width: 14px; height: 14px;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow:
+    0 0 14px var(--amber),
+    0 0 28px rgba(242, 160, 44, 0.6),
+    0 0 48px rgba(242, 160, 44, 0.3);
+  animation: playerJump 0.85s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  will-change: transform;
+}
+@keyframes playerJump {
+  0%   { transform: translateY(0)    scaleX(1)    scaleY(1); }
+  10%  { transform: translateY(0)    scaleX(1.15) scaleY(0.85); }
+  35%  { transform: translateY(-22px) scaleX(0.9)  scaleY(1.1); }
+  60%  { transform: translateY(-22px) scaleX(0.9)  scaleY(1.1); }
+  85%  { transform: translateY(0)    scaleX(1.15) scaleY(0.85); }
+  100% { transform: translateY(0)    scaleX(1)    scaleY(1); }
+}
+@media (max-width: 700px) {
+  .running-player, .horizon-line { display: none; }
+}
+
+/* ================================ FLOATING EMBERS ================================ */
+.embers-layer {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1;
+  overflow: hidden;
+}
+.ember {
+  position: absolute;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--amber), 0 0 12px rgba(242, 160, 44, 0.5);
+  opacity: 0;
+  animation: drift linear infinite;
+  will-change: transform, opacity;
+}
+@keyframes drift {
+  0%   { transform: translate3d(0, 110vh, 0) scale(0.6); opacity: 0; }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.4; }
+  100% { transform: translate3d(35px, -10vh, 0) scale(1.1); opacity: 0; }
+}
+
+nav.topbar, section, footer { position: relative; z-index: 2; }
+
+/* ================================ NAV ================================ */
+nav.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.1rem 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: transparent;
+  transition: background 0.4s, backdrop-filter 0.4s, padding 0.3s;
+}
+nav.topbar.scrolled {
+  background: rgba(10, 6, 18, 0.7);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  padding: 0.75rem 2rem;
+}
+nav.topbar .logo {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--amber); letter-spacing: 0.08em;
+  text-shadow: 0 0 20px rgba(242, 160, 44, 0.4);
+}
+nav.topbar .play-btn {
+  font-family: var(--serif);
+  font-size: 11px; font-weight: 500;
+  color: rgba(242, 160, 44, 0.85);
+  background: rgba(242, 160, 44, 0.04);
+  padding: 8px 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(242, 160, 44, 0.32);
+  cursor: pointer;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.4s var(--ease-cinema),
+              background 0.4s var(--ease-cinema),
+              border-color 0.4s var(--ease-cinema),
+              letter-spacing 0.4s var(--ease-cinema);
+}
+nav.topbar .play-btn:hover {
+  color: var(--amber);
+  background: rgba(242, 160, 44, 0.1);
+  border-color: rgba(242, 160, 44, 0.55);
+  letter-spacing: 0.22em;
+}
+
+/* ================================ HERO ================================ */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  position: relative; overflow: hidden;
+  padding: 2vh 2rem 6vh; text-align: center;
+  background-image: url('dawn-hero-bg.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 55%, transparent 50%, rgba(5, 3, 8, 0.5) 100%);
+  pointer-events: none; z-index: 5;
+}
+
+.hero-stars { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.star {
+  position: absolute; background: var(--neon); border-radius: 50%;
+  opacity: 0; animation: twinkle ease-in-out infinite;
+  box-shadow: 0 0 3px var(--neon);
+}
+@keyframes twinkle {
+  0%, 100% { opacity: calc(var(--peak, 0.6) * 0.2); transform: scale(0.8); }
+  50%      { opacity: var(--peak, 0.7); transform: scale(1.1); }
+}
+
+/* Warm dust-mote particles inside the hero, above the bg image */
+.hero-particles {
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 2;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  background: rgba(255, 235, 195, 0.95);
+  border-radius: 50%;
+  box-shadow:
+    0 0 6px rgba(255, 210, 140, 0.9),
+    0 0 14px rgba(255, 180, 100, 0.5);
+  opacity: 0;
+  animation: particleDrift linear infinite;
+  will-change: transform, opacity;
+}
+@keyframes particleDrift {
+  0%   { transform: translate3d(0, 100vh, 0) scale(0.3); opacity: 0; }
+  15%  { opacity: 0.95; }
+  85%  { opacity: 0.75; }
+  100% { transform: translate3d(var(--drift-x, 30px), -10vh, 0) scale(1.1); opacity: 0; }
+}
+
+/* Mountains, sun and haze removed — replaced by hero bg image */
+
+.hero-sun, .hero-haze, .hero-mountains { display: none; }
+
+.hero-content { position: relative; z-index: 10; max-width: 900px; transform: translateY(-14vh); }
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--amber);
+  padding: 7px 18px;
+  border: 1px solid rgba(242, 160, 44, 0.3);
+  border-radius: 999px; margin-bottom: 1.25rem;
+  opacity: 0;
+  animation: eyebrowIn 1.2s var(--ease-cinema) 0.2s forwards;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+@keyframes eyebrowIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(58px, 13vw, 156px);
+  font-weight: 700; color: #FFFFFF;
+  letter-spacing: 0.06em; line-height: 1;
+  text-shadow: 0 0 60px rgba(242, 160, 44, 0.35), 0 0 120px rgba(242, 160, 44, 0.2);
+  perspective: 800px;
+}
+.hero-title .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100px) rotateX(60deg);
+  animation: letterRise 1.6s var(--ease-cinema) forwards;
+  transform-origin: 50% 100%;
+}
+.hero-title .letter:nth-child(1) { animation-delay: 0.9s; }
+.hero-title .letter:nth-child(2) { animation-delay: 1.05s; }
+.hero-title .letter:nth-child(3) { animation-delay: 1.2s; }
+.hero-title .letter:nth-child(4) { animation-delay: 1.35s; }
+@keyframes letterRise {
+  to { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+.hero-subtitle {
+  font-style: italic; font-family: var(--serif);
+  font-size: clamp(17px, 2.1vw, 22px);
+  color: #FBF5EC; margin-top: 2rem;
+  max-width: 700px; margin-left: auto; margin-right: auto;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.65),
+    0 4px 18px rgba(0, 0, 0, 0.55),
+    0 0 36px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: fadeUp 1.4s var(--ease-cinema) 2.2s forwards;
+}
+.hero-meta {
+  position: absolute;
+  bottom: 9rem;
+  left: 50%;
+  font-size: 12px; letter-spacing: 0.18em;
+  color: rgba(235, 220, 200, 0.95);
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.75),
+    0 0 16px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
+  animation: metaFadeUp 1.4s var(--ease-cinema) 2.6s forwards;
+}
+@keyframes metaFadeUp {
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+@media (max-width: 700px) {
+  .hero-meta { bottom: 7rem; font-size: 10px; letter-spacing: 0.14em; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.scroll-cue {
+  position: absolute; bottom: 4.5rem; left: 50%;
+  transform: translateX(-50%);
+  color: rgba(220, 205, 185, 0.85); font-size: 11px;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  animation: cueFadeIn 1s var(--ease-cinema) 3.5s forwards,
+             bounce 2.8s ease-in-out 4s infinite;
+  z-index: 10;
+}
+@keyframes cueFadeIn { to { opacity: 1; } }
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
+}
+.scroll-cue::after {
+  content: '↓'; display: block; font-size: 18px; margin-top: 8px;
+}
+
+/* ================================ SECTIONS ================================ */
+section.content {
+  padding: 8rem 2rem;
+  max-width: 1100px; margin: 0 auto;
+}
+.section-eyebrow {
+  font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.25em; color: var(--amber);
+  margin-bottom: 1.25rem; font-weight: 500;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700; color: var(--text-warm);
+  margin-bottom: 1.5rem; line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.section-intro {
+  font-size: 18px; color: var(--text-muted);
+  max-width: 700px; margin-bottom: 3rem; line-height: 1.7;
+}
+
+/* ================================ VISION ================================ */
+.vision-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-radius: 22px; padding: 3rem;
+  border: 0.5px solid var(--stroke);
+  position: relative; overflow: hidden;
+}
+.vision-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  opacity: 0.6;
+}
+.vision-grid {
+  display: grid; grid-template-columns: 90px 1fr;
+  gap: 1.4rem 2rem; font-size: 16px; line-height: 1.7;
+}
+.vision-grid dt {
+  font-weight: 600; color: var(--amber);
+  letter-spacing: 0.05em; font-size: 12px;
+  text-transform: uppercase; padding-top: 4px;
+}
+.vision-grid dd { color: var(--text-warm); }
+.vision-grid .product-name {
+  font-family: var(--serif); font-size: 24px; font-weight: 700;
+  color: var(--amber); letter-spacing: 0.04em;
+  text-shadow: 0 0 20px rgba(242, 160, 44, 0.3);
+}
+.vision-grid .that-list { list-style: none; }
+.vision-grid .that-list li {
+  padding: 5px 0; position: relative; padding-left: 1.3em;
+}
+.vision-grid .that-list li::before {
+  content: '—'; position: absolute; left: 0; color: var(--amber);
+}
+
+/* ================================ GAME EMBED ================================ */
+.game-frame {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-radius: 22px; padding: 1.5rem;
+  border: 0.5px solid var(--stroke);
+  overflow: hidden;
+  transition: box-shadow 0.6s var(--ease-cinema), border-color 0.6s;
+  position: relative;
+}
+.game-frame:hover {
+  box-shadow: 0 0 60px rgba(242, 160, 44, 0.15),
+              0 0 120px rgba(242, 160, 44, 0.08);
+  border-color: rgba(242, 160, 44, 0.3);
+}
+.game-frame .frame-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.game-frame .dots { display: flex; gap: 8px; }
+.game-frame .dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--stroke-bright);
+}
+.game-frame .dot.amber {
+  background: var(--amber);
+  box-shadow: 0 0 8px var(--amber);
+}
+.game-frame .frame-label {
+  font-size: 12px; color: var(--text-muted);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.game-frame iframe {
+  width: 100%; height: 600px;
+  border: none; border-radius: 10px;
+  background: #000; display: block;
+}
+.game-hint {
+  text-align: center; margin-top: 1.5rem;
+  color: var(--text-muted); font-size: 14px; font-style: italic;
+}
+.game-popout {
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 0.5px dotted rgba(242, 160, 44, 0.5);
+  margin-left: 10px;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  transition: color 0.3s, border-color 0.3s;
+}
+.game-popout:hover {
+  color: var(--amber-bright);
+  border-bottom-color: var(--amber-bright);
+}
+
+/* ================================ CARDS GRID ================================ */
+.cards-grid { display: grid; gap: 1rem; }
+.cards-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cards-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cards-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 900px) { .cards-grid.cols-4 { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 700px) {
+  .cards-grid.cols-2, .cards-grid.cols-3, .cards-grid.cols-4 { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 0.5px solid var(--stroke);
+  border-radius: 18px; padding: 1.75rem;
+  transition: transform 0.5s var(--ease-cinema),
+              border-color 0.4s, background 0.4s, box-shadow 0.5s;
+}
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(242, 160, 44, 0.4);
+  background: var(--bg-card-hover);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+              0 0 40px rgba(242, 160, 44, 0.1);
+}
+.card .card-num {
+  font-family: var(--serif);
+  font-size: 26px; font-weight: 700;
+  color: var(--amber); margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(242, 160, 44, 0.4);
+}
+.card .card-title {
+  font-family: var(--sans);
+  font-size: 17px; font-weight: 600;
+  color: var(--text-warm); margin-bottom: 0.5rem;
+}
+.card .card-desc {
+  font-size: 14px; color: var(--text-muted); line-height: 1.65;
+}
+.card.mechanic .mech-title {
+  font-family: var(--serif);
+  font-size: 24px; font-weight: 700;
+  color: var(--amber); margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+.card.mechanic .mech-desc {
+  font-size: 15px; color: var(--text-warm);
+}
+
+/* ================================ TRILOGY ================================ */
+.trilogy-intro {
+  text-align: center; max-width: 800px; margin: 0 auto 4rem;
+}
+.trilogy-wrap { position: relative; }
+
+.trilogy-line {
+  position: absolute; top: 50%; left: 5%; right: 5%;
+  height: 30px; transform: translateY(-50%);
+  pointer-events: none; z-index: 0;
+}
+.trilogy-line svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.trilogy-line .draw-path {
+  stroke-dasharray: 1000; stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 2.5s var(--ease-cinema);
+}
+.trilogy-wrap.is-visible .trilogy-line .draw-path { stroke-dashoffset: 0; }
+@media (max-width: 700px) { .trilogy-line { display: none; } }
+
+.trilogy-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; position: relative; z-index: 1;
+}
+@media (max-width: 700px) { .trilogy-grid { grid-template-columns: 1fr; } }
+.trilogy-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 0.5px solid var(--stroke);
+  border-radius: 18px; padding: 2rem; text-align: center;
+  transition: transform 0.5s var(--ease-cinema), border-color 0.4s, box-shadow 0.5s;
+}
+.trilogy-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(242, 160, 44, 0.5);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 40px rgba(242,160,44,0.1);
+}
+.trilogy-card .week {
+  font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 500;
+}
+.trilogy-card.t-red    .week, .trilogy-card.t-red    .num { color: var(--red); }
+.trilogy-card.t-blue   .week, .trilogy-card.t-blue   .num { color: var(--blue); }
+.trilogy-card.t-amber  .week, .trilogy-card.t-amber  .num { color: var(--amber); }
+.trilogy-card .num {
+  font-family: var(--serif); font-size: 14px; font-weight: 700;
+}
+.trilogy-card .game-title {
+  font-family: var(--serif); font-size: 30px; font-weight: 700;
+  color: var(--text-warm); margin: 1rem 0; letter-spacing: 0.01em;
+}
+.trilogy-card.t-amber .game-title {
+  color: var(--amber);
+  text-shadow: 0 0 30px rgba(242, 160, 44, 0.4);
+}
+.trilogy-card .descriptor {
+  font-style: italic; color: var(--text-muted);
+  margin-bottom: 1.25rem; font-size: 14px;
+}
+.trilogy-card .tagline {
+  color: var(--text-warm); font-size: 13px;
+  padding: 0.9rem;
+  background: rgba(0,0,0,0.4); border-radius: 10px;
+  font-family: var(--serif); font-style: italic;
+  line-height: 1.5;
+}
+.trilogy-card.t-amber {
+  background: linear-gradient(180deg, var(--bg-card) 0%, rgba(242,160,44,0.12) 100%);
+  border-color: rgba(242, 160, 44, 0.4);
+}
+.trilogy-punch {
+  text-align: center; margin-top: 4rem;
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(20px, 2.6vw, 28px);
+  color: var(--amber); max-width: 850px;
+  margin-left: auto; margin-right: auto; line-height: 1.5;
+  text-shadow: 0 0 30px rgba(242, 160, 44, 0.2);
+}
+
+/* ================================ SPECTRUM ================================ */
+.spectrum {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 10px; margin: 2rem 0;
+}
+@media (max-width: 700px) { .spectrum { grid-template-columns: repeat(2, 1fr); } }
+.spectrum-cell {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 0.5px solid var(--stroke);
+  border-radius: 14px; padding: 1.4rem 0.75rem;
+  text-align: center;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-muted);
+  transition: transform 0.4s var(--ease-cinema), border-color 0.4s;
+}
+.spectrum-cell:hover { transform: translateY(-3px); }
+.spectrum-cell .label {
+  display: block; margin-bottom: 0.5rem; color: var(--text-warm);
+}
+.spectrum-cell .example {
+  font-size: 11px; text-transform: none; letter-spacing: 0;
+  font-style: italic; color: var(--text-dim);
+}
+.spectrum-cell.active {
+  background: linear-gradient(135deg, rgba(242,160,44,0.2), rgba(242,160,44,0.06));
+  border-color: var(--amber); color: var(--amber);
+  animation: spectrumPulse 3s ease-in-out infinite;
+}
+.spectrum-cell.active .label { color: var(--amber); }
+.spectrum-cell.active .example {
+  color: var(--amber-bright); font-weight: 500; font-style: normal;
+}
+@keyframes spectrumPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(242, 160, 44, 0.4),
+                0 0 30px rgba(242, 160, 44, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(242, 160, 44, 0),
+                0 0 60px rgba(242, 160, 44, 0.4);
+  }
+}
+
+/* ================================ TECHNIQUES ================================ */
+.techniques-list {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem 2.5rem;
+}
+@media (max-width: 700px) { .techniques-list { grid-template-columns: 1fr; } }
+.tech-item {
+  padding: 1.1rem 0;
+  border-bottom: 0.5px solid var(--stroke);
+  transition: padding-left 0.3s, border-color 0.3s;
+}
+.tech-item:hover {
+  padding-left: 8px;
+  border-color: rgba(242, 160, 44, 0.4);
+}
+.tech-item .tech-name {
+  font-weight: 600; color: var(--amber);
+  font-size: 14px; margin-bottom: 5px; letter-spacing: 0.02em;
+}
+.tech-item .tech-detail {
+  font-size: 14px; color: var(--text-muted); line-height: 1.6;
+}
+
+/* ================================ PLAYTEST ================================ */
+.stat-block {
+  display: flex; align-items: baseline; gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: clamp(80px, 12vw, 140px);
+  font-weight: 700; color: var(--amber); line-height: 1;
+  text-shadow: 0 0 60px rgba(242, 160, 44, 0.5),
+               0 0 120px rgba(242, 160, 44, 0.3);
+}
+.stat-label {
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 500; color: var(--text-warm);
+}
+.stat-sub {
+  display: block; font-size: 14px; font-weight: 400;
+  color: var(--text-muted); margin-top: 6px; letter-spacing: 0.02em;
+}
+.findings {
+  display: flex; flex-direction: column; gap: 1.25rem;
+}
+.finding {
+  display: flex; gap: 1.25rem; padding: 1.4rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 0.5px solid var(--stroke);
+  border-radius: 14px;
+  transition: transform 0.4s var(--ease-cinema), border-color 0.4s;
+}
+.finding:hover {
+  transform: translateX(6px);
+  border-color: rgba(242, 160, 44, 0.4);
+}
+.finding .num {
+  font-family: var(--serif); font-size: 24px; color: var(--amber);
+  font-weight: 700; flex-shrink: 0; min-width: 32px;
+}
+.finding .text strong {
+  display: block; color: var(--text-warm);
+  font-size: 16px; margin-bottom: 4px; font-weight: 600;
+}
+.finding .text span {
+  color: var(--text-muted); font-size: 14px; line-height: 1.6;
+}
+.playtest-lesson {
+  margin-top: 3rem; padding: 2rem;
+  background: linear-gradient(135deg, rgba(91,127,184,0.15), transparent);
+  border-left: 3px solid var(--blue);
+  border-radius: 10px;
+  font-family: var(--serif); font-style: italic;
+  font-size: 18px; color: var(--text-warm); line-height: 1.6;
+}
+
+/* ================================ ARTICLES ================================ */
+.article-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 0.5px solid var(--stroke);
+  border-radius: 16px; padding: 1.75rem;
+  transition: transform 0.5s var(--ease-cinema), border-color 0.4s, box-shadow 0.5s;
+  display: flex; flex-direction: column;
+}
+.article-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(242, 160, 44, 0.4);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 30px rgba(242,160,44,0.08);
+}
+.article-card .a-num {
+  font-family: var(--serif); color: var(--amber);
+  font-size: 20px; font-weight: 700; margin-bottom: 0.5rem;
+  text-shadow: 0 0 15px rgba(242, 160, 44, 0.3);
+}
+.article-card .a-title {
+  font-size: 17px; font-weight: 600;
+  color: var(--text-warm); margin-bottom: 0.25rem; line-height: 1.35;
+}
+.article-card .a-source {
+  font-size: 13px; color: var(--text-muted);
+  font-style: italic; margin-bottom: 1rem;
+}
+.article-card .a-takeaway {
+  font-size: 14px; color: var(--text-warm); line-height: 1.65;
+  border-top: 0.5px solid var(--stroke); padding-top: 1rem; margin-top: auto;
+}
+.article-card .a-takeaway strong { color: var(--amber); font-weight: 600; }
+
+/* ================================ CTA — atmospheric end-card ================================ */
+section.cta {
+  text-align: center;
+  padding: 0 2rem;
+  min-height: 100vh;
+  position: relative; overflow: hidden; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.cta-sky {
+  position: absolute; top: 0; left: 0; right: 0; height: 70%;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%,
+    rgba(255, 200, 130, 0.32) 0%,
+    rgba(242, 160, 44, 0.16) 25%,
+    rgba(180, 90, 30, 0.07) 50%,
+    transparent 80%);
+  pointer-events: none;
+  filter: blur(6px);
+  z-index: 0;
+}
+.cta-haze {
+  position: absolute; bottom: 20%; left: -10%; right: -10%; height: 30%;
+  background: radial-gradient(ellipse 70% 100% at 50% 50%,
+    rgba(255, 170, 80, 0.14) 0%,
+    rgba(180, 100, 50, 0.06) 40%,
+    transparent 80%);
+  pointer-events: none;
+  filter: blur(18px);
+  z-index: 0;
+}
+.cta-mountains {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 18%;
+  pointer-events: none; z-index: 0;
+}
+.cta-mountains svg { width: 100%; height: 100%; display: block; }
+.cta-content { position: relative; z-index: 1; }
+.cta-line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 2.4vw, 26px);
+  color: rgba(245, 230, 211, 0.72);
+  margin-bottom: 2rem;
+  letter-spacing: 0.01em;
+}
+.cta-title {
+  font-family: var(--serif);
+  font-size: clamp(56px, 9vw, 130px);
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.04em;
+  text-shadow:
+    0 0 80px rgba(242, 160, 44, 0.4),
+    0 0 160px rgba(242, 160, 44, 0.2);
+  margin-bottom: 3rem;
+  line-height: 1;
+}
+.cta-link {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: 13px;
+  color: rgba(242, 160, 44, 0.7);
+  text-decoration: none;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 8px 4px;
+  border-bottom: 0.5px solid rgba(242, 160, 44, 0.3);
+  transition: color 0.4s, border-color 0.4s, letter-spacing 0.4s;
+}
+.cta-link:hover {
+  color: var(--amber);
+  border-color: var(--amber);
+  letter-spacing: 0.35em;
+}
+.thanks {
+  font-family: var(--serif); font-style: italic;
+  color: rgba(157, 142, 122, 0.6);
+  margin-top: 5rem; font-size: 16px; letter-spacing: 0.02em;
+}
+
+footer {
+  padding: 3rem 2rem 4rem; text-align: center;
+  font-size: 13px; color: var(--text-dim);
+  border-top: 0.5px solid var(--stroke);
+  max-width: 1100px; margin: 0 auto; letter-spacing: 0.03em;
+}
+
+/* ================================ REVEAL ================================ */
+.reveal {
+  opacity: 0; transform: translateY(50px);
+  transition: opacity 1.2s var(--ease-cinema), transform 1.2s var(--ease-cinema);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.48s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+@media print {
+  .topbar, .scroll-cue, .embers-layer, .hero-sun, .hero-stars { display: none; }
+  body { background: white; color: black; }
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="horizon-line" aria-hidden="true"></div>
+<div class="running-player" aria-hidden="true">
+  <div class="player-trail">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="player-dot"></div>
+</div>
+
+<div class="embers-layer" id="embers" aria-hidden="true"></div>
+
+<nav class="topbar" id="topbar">
+  <span></span>
+  <button class="play-btn" onclick="window.open('DAWN_LiveDemo.html', '_blank')">Play the game</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-stars" id="stars"></div>
+  <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">DGM 6400 · Capstone</span>
+    <h1 class="hero-title">
+      <span class="letter">D</span><span class="letter">A</span><span class="letter">W</span><span class="letter">N</span>
+    </h1>
+    <p class="hero-subtitle">A 30-second one-button game about running toward the light.</p>
+  </div>
+  <p class="hero-meta">HARSH KUMAR · GAME DESIGN FUNDAMENTALS · SPRING 2026</p>
+  <div class="scroll-cue">scroll to begin</div>
+</section>
+
+<section class="content" id="vision">
+  <div class="reveal">
+    <p class="section-eyebrow">The vision</p>
+    <h2 class="section-title">A small complete thing.</h2>
+    <p class="section-intro">Most games ask for hours. DAWN asks for thirty seconds — and gives you a complete sunrise back.</p>
+  </div>
+  <div class="vision-card reveal reveal-delay-1">
+    <dl class="vision-grid">
+      <dt>For</dt>
+      <dd>casual mobile players, students with five minutes to fill, and fans of small focused games like LIMBO or Alto's Adventure.</dd>
+      <dt>Who</dt>
+      <dd>want a short, focused game where every press counts — not a long one that takes hours.</dd>
+      <dt>The</dt>
+      <dd class="product-name">DAWN</dd>
+      <dt>Is a</dt>
+      <dd>30-second one-button game about running toward the light.</dd>
+      <dt>That</dt>
+      <dd>
+        <ul class="that-list">
+          <li>gives you a full night-to-sunrise journey in every run</li>
+          <li>uses just one button: tap to jump, hold longer to jump higher</li>
+          <li>speeds up the music as the game gets harder, so you feel the tension</li>
+          <li>adds optional embers to collect for a tougher challenge</li>
+        </ul>
+      </dd>
+      <dt>Unlike</dt>
+      <dd>Geometry Dash (long levels you have to memorize), Flappy Bird (no story, no progress), or Subway Surfers (busy screen, pushy ads).</dd>
+      <dt>Ours</dt>
+      <dd>is the only short one-button game with a full sunrise story in every run — and you can install it on your phone like a real app.</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="content" id="play">
+  <div class="reveal">
+    <p class="section-eyebrow">Try it</p>
+    <h2 class="section-title">Play DAWN.</h2>
+    <p class="section-intro">Press SPACE or tap to jump. Hold longer to jump higher. Survive 30 seconds and the sun rises. No tutorial needed — the game teaches itself.</p>
+  </div>
+  <div class="game-frame reveal reveal-delay-1">
+    <div class="frame-header">
+      <div class="dots">
+        <div class="dot"></div><div class="dot"></div><div class="dot amber"></div>
+      </div>
+      <div class="frame-label">dawn · live demo</div>
+    </div>
+    <iframe src="DAWN_LiveDemo.html" title="DAWN game" allow="autoplay; fullscreen"></iframe>
+  </div>
+  <p class="game-hint">
+    Click into the game first, then press SPACE.
+    <a href="DAWN_LiveDemo.html" target="_blank" rel="noopener" class="game-popout">Or open full-window for sound ↗</a>
+  </p>
+</section>
+
+<section class="content">
+  <div class="reveal">
+    <p class="section-eyebrow">The loop</p>
+    <h2 class="section-title">Four rules. Thirty seconds.</h2>
+  </div>
+  <div class="cards-grid cols-4">
+    <div class="card mechanic reveal reveal-delay-1"><div class="mech-title">Tap</div><div class="mech-desc">to jump</div></div>
+    <div class="card mechanic reveal reveal-delay-2"><div class="mech-title">Hold longer</div><div class="mech-desc">to jump higher</div></div>
+    <div class="card mechanic reveal reveal-delay-3"><div class="mech-title">Survive 30s</div><div class="mech-desc">the sun rises</div></div>
+    <div class="card mechanic reveal reveal-delay-4"><div class="mech-title">Hit anything</div><div class="mech-desc">you lose</div></div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="reveal">
+    <p class="section-eyebrow">What makes DAWN different</p>
+    <h2 class="section-title">Built for feeling, not grinding.</h2>
+  </div>
+  <div class="cards-grid cols-2">
+    <div class="card reveal reveal-delay-1">
+      <div class="card-num">01</div>
+      <div class="card-title">Complete story in every run</div>
+      <div class="card-desc">Night, dawn, sunrise — three phases in thirty seconds. You don't have to play for hours to feel something.</div>
+    </div>
+    <div class="card reveal reveal-delay-2">
+      <div class="card-num">02</div>
+      <div class="card-title">Music that speeds up with you</div>
+      <div class="card-desc">The chiptune ramps from 100 to 160 BPM across the run. Tension you can hear, not just see.</div>
+    </div>
+    <div class="card reveal reveal-delay-3">
+      <div class="card-num">03</div>
+      <div class="card-title">Optional embers at three heights</div>
+      <div class="card-desc">Casual players ignore them. Skilled players chase the highest. A hidden second challenge inside the same 30 seconds.</div>
+    </div>
+    <div class="card reveal reveal-delay-4">
+      <div class="card-num">04</div>
+      <div class="card-title">Neon outlines for visibility</div>
+      <div class="card-desc">Playtesters couldn't see obstacles at night. Seeing what might kill you matters more than keeping the art pure.</div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="trilogy-intro reveal">
+    <p class="section-eyebrow">The journey</p>
+    <h2 class="section-title">DAWN didn't start as DAWN.</h2>
+    <p class="section-intro" style="margin-left:auto;margin-right:auto;">It's the third game in a trilogy — a designer's journey from building a game that wastes your time to one that gives time back.</p>
+  </div>
+  <div class="trilogy-wrap" id="trilogyWrap">
+    <div class="trilogy-line" aria-hidden="true">
+      <svg viewBox="0 0 1000 30" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="trilogy-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"  stop-color="#C0392B"/>
+            <stop offset="50%" stop-color="#5B7FB8"/>
+            <stop offset="100%" stop-color="#F2A02C"/>
+          </linearGradient>
+        </defs>
+        <path class="draw-path" d="M 0 15 L 1000 15"
+          stroke="url(#trilogy-gradient)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="trilogy-grid">
+      <div class="trilogy-card t-red reveal reveal-delay-1">
+        <div class="week"><span class="num">01</span> · Week 3</div>
+        <div class="game-title">Endless Waiting</div>
+        <div class="descriptor">a game built to waste your time</div>
+        <div class="tagline">"What if every mechanic was designed to keep you stuck?"</div>
+      </div>
+      <div class="trilogy-card t-blue reveal reveal-delay-2">
+        <div class="week"><span class="num">02</span> · Week 5</div>
+        <div class="game-title">MDA Analysis</div>
+        <div class="descriptor">analyzing why bad games keep us</div>
+        <div class="tagline">"Understanding the trap before designing the cure."</div>
+      </div>
+      <div class="trilogy-card t-amber reveal reveal-delay-3">
+        <div class="week"><span class="num">03</span> · Week 6</div>
+        <div class="game-title">DAWN</div>
+        <div class="descriptor">a game built to give time back</div>
+        <div class="tagline">"Thirty seconds. Every press counts. Then the sun rises."</div>
+      </div>
+    </div>
+  </div>
+  <p class="trilogy-punch reveal reveal-delay-4">
+    The trilogy started by designing a game to waste your time.<br>
+    It ended with one built to give it back.
+  </p>
+</section>
+
+<section class="content">
+  <div class="reveal">
+    <p class="section-eyebrow">Skill, not luck</p>
+    <h2 class="section-title">You can't get lucky in DAWN. You can only be ready.</h2>
+    <p class="section-intro">Every outcome is decided by player input — timing, hold, reaction. Randomness shapes variety, but never decides the win.</p>
+  </div>
+  <div class="spectrum reveal reveal-delay-1">
+    <div class="spectrum-cell"><span class="label">Pure luck</span><span class="example">Roulette</span></div>
+    <div class="spectrum-cell"><span class="label">Mostly luck</span><span class="example">Slots</span></div>
+    <div class="spectrum-cell"><span class="label">Balanced</span><span class="example">Hearthstone</span></div>
+    <div class="spectrum-cell active"><span class="label">★ Mostly skill</span><span class="example">DAWN</span></div>
+    <div class="spectrum-cell"><span class="label">Pure skill</span><span class="example">Chess, Tetris</span></div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="reveal">
+    <p class="section-eyebrow">Design decisions</p>
+    <h2 class="section-title">Balancing techniques applied.</h2>
+    <p class="section-intro">Every detail was chosen so players feel a fair, focused, satisfying 30 seconds.</p>
+  </div>
+  <div class="techniques-list reveal reveal-delay-1">
+    <div class="tech-item">
+      <div class="tech-name">Tuning by feel</div>
+      <div class="tech-detail">Scroll speed grows from 4.5 to 8.5 across a run. Gap-narrowing softened from 35% to 25% so the late game stays beatable.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Forgiveness margin</div>
+      <div class="tech-detail">Visual radius 9px, hit radius 7px. A 2-pixel buffer makes close calls feel fair.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">No hard stuff early</div>
+      <div class="tech-detail">Multi-spike clusters and tall walls only appear after the first 5 seconds.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Easy common, hard rare</div>
+      <div class="tech-detail">~75% of spikes are singles. Triple clusters appear only 8% of the time.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Different jumps, different obstacles</div>
+      <div class="tech-detail">Spikes need a quick tap, walls need a long hold. The player stays sharp.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Music that speeds up</div>
+      <div class="tech-detail">Chiptune ramps 100 → 160 BPM by sunrise. Rising tension is felt, not just seen.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Tell the player how they died</div>
+      <div class="tech-detail">The death screen says "You hit a spike" or "You hit a wall." Failure feels clear, not random.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Neon outlines for visibility</div>
+      <div class="tech-detail">Switched from procedural rim lighting to warm neon. Clarity over aesthetic purism when readability is gameplay-critical.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Performance is fairness</div>
+      <div class="tech-detail">Replaced expensive shadowBlur with multi-stroke glow + capped mobile rendering at 2× resolution. A laggy game cannot be fair.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Less on the welcome</div>
+      <div class="tech-detail">Removed the 4-card tutorial. The in-game first-run hint covers what's left. A 30-second game teaches itself.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Optional embers</div>
+      <div class="tech-detail">Three heights to collect. Skilled players chase the highest — a hidden second skill curve.</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-name">Cross-platform</div>
+      <div class="tech-detail">Installable as a PWA. Phone players get the same game as desktop players.</div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="reveal">
+    <p class="section-eyebrow">Playtest evidence</p>
+    <h2 class="section-title">What 10 classmates revealed.</h2>
+  </div>
+  <div class="stat-block reveal reveal-delay-1">
+    <span class="stat-num" id="counter">10</span>
+    <div>
+      <span class="stat-label">classmates</span>
+      <span class="stat-sub">OVER MULTIPLE SESSIONS</span>
+    </div>
+  </div>
+  <div class="findings reveal reveal-delay-2">
+    <div class="finding">
+      <div class="num">01</div>
+      <div class="text">
+        <strong>Players kept asking to play again</strong>
+        <span>The biggest signal. For a 30-second game, that's the only thing that really matters.</span>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="num">02</div>
+      <div class="text">
+        <strong>Tap-to-jump understood instantly</strong>
+        <span>No explanation needed. Confirmed it was safe to remove the welcome screen tutorial cards.</span>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="num">03</div>
+      <div class="text">
+        <strong>Visibility issue → led to neon outlines</strong>
+        <span>Players couldn't see obstacles at night. I never noticed — because I knew what they looked like before I rendered them.</span>
+      </div>
+    </div>
+  </div>
+  <div class="playtest-lesson reveal reveal-delay-3">
+    Letting other people test catches what you miss in your own design.
+  </div>
+</section>
+
+<section class="content">
+  <div class="reveal">
+    <p class="section-eyebrow">Reading</p>
+    <h2 class="section-title">Articles that shaped the design.</h2>
+  </div>
+  <div class="cards-grid cols-3">
+    <div class="article-card reveal reveal-delay-1">
+      <div class="a-num">01</div>
+      <div class="a-title">Balancing Multiplayer Competitive Games</div>
+      <div class="a-source">David Sirlin · sirlin.net</div>
+      <div class="a-takeaway"><strong>Takeaway:</strong> balance isn't about everything being equal — it's about every choice mattering. DAWN has just one button, but every press is a real decision: when, how long.</div>
+    </div>
+    <div class="article-card reveal reveal-delay-2">
+      <div class="a-num">02</div>
+      <div class="a-title">How to Make a Punishing Game Feel Fair</div>
+      <div class="a-source">Mark Brown · Game Maker's Toolkit</div>
+      <div class="a-takeaway"><strong>Takeaway:</strong> punishing games need three things: instant restart, clear cause of death, and a forgiveness margin. DAWN has all three.</div>
+    </div>
+    <div class="article-card reveal reveal-delay-3">
+      <div class="a-num">03</div>
+      <div class="a-title">Difficulty Modes and Dynamic Difficulty Adjustment</div>
+      <div class="a-source">Ernest Adams · Game Developer</div>
+      <div class="a-takeaway"><strong>Takeaway:</strong> difficulty should rise smoothly, not in sudden jumps. DAWN ramps speed by 0.10 px/frame each second of survival.</div>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="reveal">
+    <p class="section-eyebrow">Building forward</p>
+    <h2 class="section-title">Team I'd need to grow it.</h2>
+    <p class="section-intro">Three roles I can't fill alone.</p>
+  </div>
+  <div class="cards-grid cols-3">
+    <div class="card reveal reveal-delay-1">
+      <div class="card-num">01</div>
+      <div class="card-title">Composer</div>
+      <div class="card-desc">Expand the chiptune into themed chapters and dynamic music layers that respond to player state.</div>
+    </div>
+    <div class="card reveal reveal-delay-2">
+      <div class="card-num">02</div>
+      <div class="card-title">Visual artist</div>
+      <div class="card-desc">Design alternate worlds and seasons that keep the minimal aesthetic while adding visual variety.</div>
+    </div>
+    <div class="card reveal reveal-delay-3">
+      <div class="card-num">03</div>
+      <div class="card-title">Community manager</div>
+      <div class="card-desc">Run wider playtests with strangers, coordinate an app-store launch, and engage the audience.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-sky"></div>
+  <div class="cta-haze"></div>
+  <div class="cta-mountains" aria-hidden="true">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none">
+      <path fill="#221538" opacity="0.55" d="M0,200 L0,140 L100,120 L220,140 L340,100 L460,130 L580,95 L700,125 L820,105 L940,135 L1080,115 L1200,145 L1320,125 L1440,140 L1440,200 Z"/>
+      <path fill="#160A24" opacity="0.82" d="M0,200 L0,160 L120,150 L240,170 L360,140 L480,165 L600,135 L720,155 L840,130 L960,160 L1080,140 L1200,170 L1320,150 L1440,170 L1440,200 Z"/>
+      <path fill="#07030E" d="M0,200 L0,185 L100,180 L220,185 L340,175 L460,182 L580,178 L700,184 L820,176 L940,182 L1080,178 L1200,184 L1320,178 L1440,184 L1440,200 Z"/>
+    </svg>
+  </div>
+  <div class="cta-content">
+    <p class="cta-line">The sun rises in thirty seconds.</p>
+    <h2 class="cta-title">DAWN.</h2>
+    <a href="#play" class="cta-link">play again</a>
+    <p class="thanks">Thank you.</p>
+  </div>
+</section>
+
+<footer>
+  DAWN · A 30-second one-button game · Built by Harsh Kumar for DGM 6400 Game Design Fundamentals · Spring 2026
+</footer>
+
+<script>
+// Stars
+(function(){
+  const c = document.getElementById('stars');
+  for (let i = 0; i < 45; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const sz = Math.random() * 1.6 + 0.7;
+    s.style.width = sz + 'px'; s.style.height = sz + 'px';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDuration = (3 + Math.random() * 4) + 's';
+    s.style.animationDelay = (Math.random() * 3) + 's';
+    s.style.setProperty('--peak', (Math.random() * 0.5 + 0.3).toFixed(2));
+    c.appendChild(s);
+  }
+})();
+
+// Hero particles — warm dust drifting up across the image
+(function(){
+  const c = document.getElementById('heroParticles');
+  if (!c) return;
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const sz = Math.random() * 2.4 + 1.5;
+    p.style.width = sz + 'px';
+    p.style.height = sz + 'px';
+    p.style.left = Math.random() * 100 + '%';
+    const dur = 14 + Math.random() * 18;
+    p.style.animationDuration = dur + 's';
+    p.style.animationDelay = (-Math.random() * dur) + 's';
+    p.style.setProperty('--drift-x', (Math.random() * 80 - 40) + 'px');
+    c.appendChild(p);
+  }
+})();
+
+// Embers — continuous drift upward
+(function(){
+  const c = document.getElementById('embers');
+  for (let i = 0; i < 35; i++) {
+    const e = document.createElement('div');
+    e.className = 'ember';
+    const sz = Math.random() * 2.5 + 1.5;
+    e.style.width = sz + 'px'; e.style.height = sz + 'px';
+    e.style.left = Math.random() * 100 + 'vw';
+    const dur = 14 + Math.random() * 16;
+    e.style.animationDuration = dur + 's';
+    e.style.animationDelay = (-Math.random() * dur) + 's';
+    c.appendChild(e);
+  }
+})();
+
+// Topbar blur + scroll progress
+const topbar = document.getElementById('topbar');
+const scrollProgress = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  topbar.classList.toggle('scrolled', y > 80);
+  const max = document.body.scrollHeight - window.innerHeight;
+  const pct = max > 0 ? (y / max) * 100 : 0;
+  scrollProgress.style.width = pct + '%';
+}, { passive: true });
+
+// Reveal observer
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('is-visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Trilogy line draw
+const trilogyWrap = document.getElementById('trilogyWrap');
+const trilogyObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('is-visible');
+      trilogyObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+trilogyObs.observe(trilogyWrap);
+
+// Counter
+const counter = document.getElementById('counter');
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const tgt = 10, dur = 1400, start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        counter.textContent = Math.floor(eased * tgt);
+        if (t < 1) requestAnimationFrame(tick); else counter.textContent = tgt;
+      }
+      requestAnimationFrame(tick);
+      counterObs.unobserve(counter);
+    }
+  });
+}, { threshold: 0.5 });
+counterObs.observe(counter);
+
+// Parallax for hero sun and mountains removed — replaced by static cinematic image
+</script>
+
+</body>
+</html>
