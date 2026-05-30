@@ -1460,7 +1460,17 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   nav { padding: 14px 18px; }
   nav.scrolled { padding: 12px 18px; }
   nav.scrolled { padding: 10px 18px; background: rgba(248, 241, 234, 0.85); }
-  .nav-cta { display: none; }
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 100px;
+    margin-right: 8px;
+    min-height: 36px;
+    gap: 4px;
+  }
   .nav-burger { display: flex; }
   .nav-links {
     position: fixed;
@@ -2487,7 +2497,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 <div class="c-ring" id="cRing"></div>
 
 <!-- Old floating book becomes the mobile primary CTA -->
-<a href="book.html" class="floating-book" id="floatingBook">
+<a href="book.html" class="floating-book visible" id="floatingBook">
   <span>✿ Book a consultation</span>
   <span>→</span>
 </a>
@@ -3400,14 +3410,10 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     if (sy > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
 
-    // Floating book button (mobile only)
+    // Floating book button (mobile only) — always visible, hide at contact section
     if (isMobile && floatingBook) {
       const atContact = contact && contact.getBoundingClientRect().top < window.innerHeight;
-      if (sy > window.innerHeight * 0.6 && !atContact) {
-        floatingBook.classList.add('visible');
-      } else {
-        floatingBook.classList.remove('visible');
-      }
+      floatingBook.classList.toggle('visible', !atContact);
     }
 
     // Parallax section break (mobile only, skip if reduced motion)
