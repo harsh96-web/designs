@@ -1467,9 +1467,10 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     font-size: 12px;
     font-weight: 500;
     border-radius: 100px;
-    margin-right: 8px;
     min-height: 36px;
     gap: 4px;
+    margin-left: auto;  /* pin to the right, next to the burger */
+    margin-right: 8px;
   }
   .nav-burger { display: flex; }
   .nav-links {
@@ -2497,7 +2498,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 <div class="c-ring" id="cRing"></div>
 
 <!-- Old floating book becomes the mobile primary CTA -->
-<a href="book.html" class="floating-book visible" id="floatingBook">
+<a href="book.html" class="floating-book" id="floatingBook">
   <span>✿ Book a consultation</span>
   <span>→</span>
 </a>
@@ -3410,10 +3411,11 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     if (sy > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
 
-    // Floating book button (mobile only) — always visible, hide at contact section
+    // Floating book button (mobile only) — appears after scrolling past hero, hides at contact
     if (isMobile && floatingBook) {
       const atContact = contact && contact.getBoundingClientRect().top < window.innerHeight;
-      floatingBook.classList.toggle('visible', !atContact);
+      const pastHero = sy > window.innerHeight * 0.75;
+      floatingBook.classList.toggle('visible', pastHero && !atContact);
     }
 
     // Parallax section break (mobile only, skip if reduced motion)
