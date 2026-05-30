@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+<!-- ═══ SECURITY HEADERS ═══ -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com;
+  img-src 'self' data: https:;
+  connect-src 'self';
+  frame-ancestors 'none';
+  base-uri 'self';
+" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+<title>Service menu — Gurbina</title>
+<meta name="description" content="Service menu for Gurbina — bridal and editorial hairstylist in Surrey & Vancouver, BC. Hair, colour, bridal, brows & lashes." />
+<meta name="theme-color" content="#FFFFFF" />
+<meta name="author" content="Gurbina" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' x='5'%3E%E2%9C%BF%3C/text%3E%3C/svg%3E" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Service menu — Gurbina" />
+<meta property="og:description" content="The full service menu. Bridal, hair, colour, brows & lashes." />
+<meta property="og:locale" content="en_CA" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   WHITE MINIMAL — Elese-style
+═══════════════════════════════════════════════════════════ */
+:root {
+  --bg:        #FFFFFF;
+  --bg-soft:   #FAFAFA;
+  --placeholder: #E8E5E0;
+
+  --ink:       #0A0A0A;
+  --ink-mid:   #404040;
+  --ink-soft:  #6B6B6B;
+  --ink-mute:  #A3A3A3;
+
+  --line:      #E5E5E5;
+  --line-soft: #F0F0F0;
+
+  --accent:    #0A0A0A;
+
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  letter-spacing: -0.005em;
+}
+
+section, header {
+  overflow-x: clip;
+  max-width: 100vw;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; padding: 0; }
+::selection { background: var(--ink); color: var(--bg); }
+
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+}
+@media (max-width: 700px) { .wrap { padding: 0 22px; } }
+
+/* ═══════════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: all 0.3s var(--ease);
+}
+.logo {
+  font-family: var(--sans);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.logo .flower {
+  display: inline-block;
+  color: var(--ink-mid);
+  margin-right: 4px;
+  font-weight: 400;
+}
+
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-mid);
+  padding: 9px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  transition: all 0.25s var(--ease);
+}
+.nav-back:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--bg);
+  background: var(--ink);
+  padding: 10px 18px;
+  border-radius: 6px;
+  transition: all 0.25s var(--ease);
+}
+.nav-cta:hover {
+  background: var(--ink-mid);
+}
+
+@media (max-width: 700px) {
+  nav { padding: 14px 22px; }
+  .logo { font-size: 1.1rem; }
+  .nav-back .label { display: none; }
+  .nav-back { padding: 8px 12px; }
+  .nav-cta { font-size: 12px; padding: 9px 14px; }
+  .nav-cta .label-long { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════ */
+header.hero {
+  padding: 160px 0 80px;
+  border-bottom: 1px solid var(--line);
+}
+.hero-title {
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.hero-meta {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-mid);
+  letter-spacing: -0.005em;
+}
+.hero-meta .sep {
+  display: inline-block;
+  margin: 0 10px;
+  color: var(--ink-mute);
+}
+.hero-sub {
+  margin-top: 36px;
+  max-width: 600px;
+  font-size: 15.5px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+.hero-sub strong { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 700px) {
+  header.hero { padding: 120px 0 50px; }
+  .hero-sub { font-size: 15px; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   QUICKNAV — sticky
+═══════════════════════════════════════════════════════════ */
+.quicknav-wrap {
+  position: sticky;
+  top: 65px;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+.quicknav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 40px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.quicknav::-webkit-scrollbar { display: none; }
+.quicknav a {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-mid);
+  background: transparent;
+  border: 1px solid var(--line);
+  transition: all 0.2s var(--ease);
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+}
+.quicknav a:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.quicknav a.active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+@media (max-width: 700px) {
+  .quicknav { padding: 0 18px; }
+  .quicknav a { font-size: 12px; padding: 7px 12px; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CATEGORY SECTIONS
+═══════════════════════════════════════════════════════════ */
+.cat-block {
+  padding: 90px 0;
+  position: relative;
+  scroll-margin-top: 130px;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 700px) {
+  .cat-block { padding: 60px 0; }
+}
+
+.cat-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+.cat-head .meta {
+  flex: 1;
+  min-width: 240px;
+}
+.cat-title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.cat-tagline {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  max-width: 480px;
+  letter-spacing: -0.005em;
+}
+
+.book-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 36px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  transition: all 0.25s var(--ease);
+  flex-shrink: 0;
+  min-height: 48px;
+}
+.book-btn:hover {
+  background: var(--ink-mid);
+}
+
+/* Body: image | service list */
+.cat-body {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 70px;
+  align-items: start;
+}
+@media (max-width: 1000px) {
+  .cat-body { grid-template-columns: 1fr; gap: 50px; }
+}
+
+.cat-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  background: var(--placeholder);
+}
+.cat-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  filter: grayscale(0%) contrast(1.02);
+  transition: transform 0.8s var(--ease);
+}
+.cat-block:hover .cat-image img {
+  transform: scale(1.03);
+}
+@media (max-width: 1000px) {
+  .cat-image { aspect-ratio: 16/10; max-height: 380px; }
+  .cat-image img { object-position: center 35%; }
+}
+
+/* Service list */
+.svc-list {
+  display: flex;
+  flex-direction: column;
+}
+.svc {
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.svc:last-child { border-bottom: none; }
+.svc:first-child { padding-top: 0; }
+
+.svc-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 12px;
+  letter-spacing: -0.018em;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.svc-popular {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--ink-mid);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  padding: 3px 9px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.svc-desc {
+  font-size: 14.5px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  max-width: 640px;
+  font-weight: 400;
+  letter-spacing: -0.003em;
+}
+
+.svc-book {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  font-weight: 400;
+  padding: 4px 0;
+  transition: all 0.2s var(--ease);
+  cursor: pointer;
+  letter-spacing: -0.003em;
+}
+.svc-book .label {
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.svc-book .sep {
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+.svc-book .price {
+  color: var(--ink);
+  font-weight: 500;
+}
+.svc-book .price.varies { color: var(--ink-mid); font-weight: 400; }
+.svc-book .dur {
+  color: var(--ink-mid);
+  font-weight: 400;
+}
+.svc-book:hover {
+  transform: translateX(3px);
+}
+.svc-book:hover .label {
+  color: var(--ink-mid);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   POLICIES / FAQ
+═══════════════════════════════════════════════════════════ */
+.policies {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--line);
+}
+.policies-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .policies-grid { grid-template-columns: 1fr; gap: 60px; }
+  .policies { padding: 70px 0; }
+}
+.policies h3 {
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+
+.policy-list {
+  list-style: none;
+}
+.policy-list li {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line-soft);
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+}
+.policy-list li:last-child { border-bottom: none; }
+.policy-list li .num {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-mute);
+  letter-spacing: 0;
+}
+.policy-list li h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.policy-list li p {
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line-soft);
+  padding: 22px 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 0;
+  letter-spacing: -0.012em;
+}
+.faq-q::after {
+  content: "+";
+  font-size: 1.5rem;
+  color: var(--ink);
+  font-weight: 300;
+  transition: transform 0.25s var(--ease);
+  line-height: 1;
+}
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a {
+  font-size: 14px;
+  color: var(--ink-mid);
+  line-height: 1.65;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s var(--ease), margin-top 0.35s var(--ease);
+}
+.faq-item.open .faq-a {
+  max-height: 400px;
+  margin-top: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LOCATION & HOURS
+═══════════════════════════════════════════════════════════ */
+.location-block {
+  padding: 100px 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 900px) { .location-block { padding: 70px 0; } }
+
+.location-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 70px;
+  align-items: stretch;
+}
+@media (max-width: 900px) {
+  .location-grid { grid-template-columns: 1fr; gap: 50px; }
+}
+
+.location-info h3 {
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+
+.studio-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+.addr {
+  font-size: 14.5px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.addr a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s var(--ease);
+}
+.addr a:hover { color: var(--ink-mid); }
+
+.hours-table {
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 14.5px;
+}
+.hours-row .day {
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.hours-row .time {
+  color: var(--ink-mid);
+  font-weight: 400;
+}
+
+.map-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+/* Subtle grid pattern */
+.map-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(0deg, transparent 49%, var(--line) 49%, var(--line) 51%, transparent 51%),
+    linear-gradient(90deg, transparent 49%, var(--line) 49%, var(--line) 51%, transparent 51%);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.map-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 70% at center, transparent 0%, var(--bg) 95%);
+}
+.map-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+}
+.map-pin {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 20px;
+  background: var(--ink);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map-pin::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background: var(--bg);
+  border-radius: 50%;
+  transform: rotate(45deg);
+}
+.map-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+}
+.map-card p {
+  font-size: 13.5px;
+  color: var(--ink-mid);
+  line-height: 1.55;
+  margin-bottom: 22px;
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.map-card .directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.003em;
+  transition: all 0.25s var(--ease);
+}
+.map-card .directions:hover {
+  background: var(--ink-mid);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════════════════════════ */
+.final-cta {
+  padding: 100px 0;
+  text-align: center;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+}
+.final-cta h3 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.final-cta p {
+  font-size: 15.5px;
+  color: var(--ink-mid);
+  max-width: 460px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+.final-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.25s var(--ease);
+  letter-spacing: -0.003em;
+}
+.cta-pill.primary {
+  background: var(--ink);
+  color: var(--bg);
+}
+.cta-pill.primary:hover { background: var(--ink-mid); }
+.cta-pill.secondary {
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.cta-pill.secondary:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════ */
+footer {
+  padding: 50px 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--ink-mid);
+}
+footer a:hover { color: var(--ink); }
+footer .socials { display: flex; gap: 22px; }
+footer .socials a {
+  font-weight: 500;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav>
+  <a href="portfolio.html" class="logo"><span class="flower">✿</span>Gurbina</a>
+  <div class="nav-actions">
+    <a href="portfolio.html" class="nav-back">
+      <span>←</span>
+      <span class="label">Portfolio</span>
+    </a>
+    <a href="#" class="nav-cta" id="navEnquire">
+      <span class="label-long">Enquire on </span>WhatsApp
+    </a>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<header class="hero">
+  <div class="wrap">
+    <h1 class="hero-title">Service menu.</h1>
+    <div class="hero-meta">
+      Gurbina <span class="sep">·</span> Surrey · Vancouver, BC <span class="sep">·</span> Mobile + Studio
+    </div>
+    <p class="hero-sub">
+      Every service is consult-first. <strong>Tap "Book" on any line</strong> and I'll receive a WhatsApp message with your enquiry. I'll personally write back within 24 hours with availability and a quote.
+    </p>
+  </div>
+</header>
+
+<!-- ═══════════════ QUICK NAV ═══════════════ -->
+<div class="quicknav-wrap">
+  <nav class="quicknav" id="quickNav">
+    <a href="#hair">Hair · Cut &amp; Style</a>
+    <a href="#colour">Colour</a>
+    <a href="#bridal">Bridal &amp; Ceremony</a>
+    <a href="#brows">Brows &amp; Lashes</a>
+    <a href="#extras">Add-ons &amp; Extras</a>
+    <a href="#hours">Hours &amp; Location</a>
+  </nav>
+</div>
+
+<!-- ═══════════════ CATEGORY: BRIDAL & CEREMONY ═══════════════ -->
+<section class="cat-block" id="hair">
+  <div class="wrap">
+
+    <div class="cat-head">
+      <div class="meta">
+        <h2 class="cat-title">Hair · Cut &amp; Style</h2>
+        <p class="cat-tagline">Cuts, blowouts, treatments, extensions. Precision-first, never rushed.</p>
+      </div>
+      <button class="book-btn" data-cat="Hair Cut and Style">Book</button>
+    </div>
+
+    <div class="cat-body">
+      <div class="cat-image">
+        <img src="images/cut-styles-grid.png" alt="Layered cuts, waves, and blowouts — work samples" loading="lazy" style="object-position: center center;" />
+      </div>
+      <div class="svc-list">
+
+        <article class="svc">
+          <h3 class="svc-name">Precision Cut</h3>
+          <p class="svc-desc">Blunt bobs, French bobs, clavicle layers, long movement. Dry cut, point cut, slide cut — chosen for your hair, not a template.</p>
+          <a class="svc-book" data-svc="Precision Cut" data-dur="1 hr">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Blowout &amp; Style</h3>
+          <p class="svc-desc">Voluminous, Hollywood waves, sleek-and-shiny. Heat-protected, finished to hold all night.</p>
+          <a class="svc-book" data-svc="Blowout and Style" data-dur="45 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">45 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Event Styling</h3>
+          <p class="svc-desc">Red carpet, prom, sangeet, gala. Updos, set styles, structured blowouts that photograph.</p>
+          <a class="svc-book" data-svc="Event Styling" data-dur="1 hr 15 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr 15 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Keratin / Brazilian Smoothing</h3>
+          <p class="svc-desc">Anti-frizz, smoothing treatment with no harsh formaldehyde. Lasts 4–5 months with proper care. Adds a protective layer against humidity.</p>
+          <a class="svc-book" data-svc="Keratin / Brazilian Smoothing" data-dur="3 hrs">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">3 hrs</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Extensions / Tape-ins</h3>
+          <p class="svc-desc">Tape-ins, clip-ins, seamless blending and placement. Consultation required first — we discuss length, density, hair source, and pricing.</p>
+          <a class="svc-book" data-svc="Extensions / Tape-ins" data-dur="2 hrs">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">2 hrs</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Deep Conditioning Treatment</h3>
+          <p class="svc-desc">Bond-building, moisture-restoring treatment for stressed hair. Add-on to any service, or standalone.</p>
+          <a class="svc-book" data-svc="Deep Conditioning Treatment" data-dur="45 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">45 min</span>
+          </a>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cat-block" id="colour">
+  <div class="wrap">
+
+    <div class="cat-head">
+      <div class="meta">
+        <h2 class="cat-title">Colour</h2>
+        <p class="cat-tagline">Hand-painted balayage, foilage, correction. Eight-weeks-out beautiful.</p>
+      </div>
+      <button class="book-btn" data-cat="Colour">Book</button>
+    </div>
+
+    <div class="cat-body">
+      <div class="cat-image">
+        <img src="images/color-balayage.png" alt="Dimensional balayage with golden highlights" loading="lazy" style="object-position: center 40%;" />
+      </div>
+      <div class="svc-list">
+
+        <article class="svc">
+          <h3 class="svc-name">Dimensional Balayage <span class="svc-popular">Most booked</span></h3>
+          <p class="svc-desc">Hand-painted colour with soft grow-out. Sun-kissed, dimensional, and beautiful at every stage. Includes gloss and blowout.</p>
+          <a class="svc-book" data-svc="Dimensional Balayage" data-dur="4 hrs+">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">4 hrs+</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Highlights / Foilyage</h3>
+          <p class="svc-desc">Traditional foil work for brighter, lifted dimension. Full head or partial — we'll decide together based on your goals.</p>
+          <a class="svc-book" data-svc="Highlights / Foilyage" data-dur="3 hrs 30 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">3 hrs 30 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Colour Correction</h3>
+          <p class="svc-desc">Box-dye recoveries, banding fixes, brass removal. Consultation required first — every correction is different. Bring photos.</p>
+          <a class="svc-book" data-svc="Colour Correction" data-dur="4+ hrs">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">4+ hrs</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Root Touch-up</h3>
+          <p class="svc-desc">Gloss refresh, root retouch, toner. The eight-week maintenance for grown-in colour.</p>
+          <a class="svc-book" data-svc="Root Touch-up" data-dur="1 hr 30 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr 30 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Peek-a-boo / Statement Colour</h3>
+          <p class="svc-desc">Hidden pops of red, copper, or jewel-tone underneath — visible when you flip your hair, secret when you don't.</p>
+          <a class="svc-book" data-svc="Peek-a-boo / Statement Colour" data-dur="2 hrs">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">2 hrs</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Ombré Melt</h3>
+          <p class="svc-desc">Smooth gradient blend — silver, blonde, copper, custom. Hand-painted with no harsh lines.</p>
+          <a class="svc-book" data-svc="Ombré Melt" data-dur="4 hrs">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">4 hrs</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Colour Consultation</h3>
+          <p class="svc-desc">Required for first-time colour clients, box-dye history, or major changes. We talk goals, look at your hair in natural light, plan the path.</p>
+          <a class="svc-book" data-svc="Colour Consultation" data-dur="30 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">30 min</span>
+          </a>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cat-block" id="bridal">
+  <div class="wrap">
+
+    <div class="cat-head">
+      <div class="meta">
+        <h2 class="cat-title">Bridal &amp; Ceremony</h2>
+        <p class="cat-tagline">The wedding day, the trial, the floral crown. Every look held — sangeet through reception.</p>
+      </div>
+      <button class="book-btn" data-cat="Bridal &amp; Ceremony">Book</button>
+    </div>
+
+    <div class="cat-body">
+      <div class="cat-image">
+        <img src="images/bridal-hero.png" alt="South Asian bridal portrait — hair, makeup, and dupatta" loading="lazy" style="object-position: center 30%;" />
+      </div>
+      <div class="svc-list">
+
+        <article class="svc">
+          <h3 class="svc-name">South Asian Bridal Hair <span class="svc-popular">Most booked</span></h3>
+          <p class="svc-desc">Sikh, Punjabi, Hindu, Muslim — ceremony-specific looks that hold through sangeet, mehndi, and the wedding day. Dupatta and floral work included.</p>
+          <a class="svc-book" data-svc="South Asian Bridal Hair" data-dur="1 hr 30 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr 30 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Western Bridal Hair</h3>
+          <p class="svc-desc">Half-up cascades, soft updos, polished blowouts. Bridal consultation included.</p>
+          <a class="svc-book" data-svc="Western Bridal Hair" data-dur="1 hr 15 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr 15 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Bridal Makeup <span class="svc-popular">Most booked</span></h3>
+          <p class="svc-desc">Airbrush or HD foundation, custom-blended lip, lashes, and a 12-hour touch-up plan. Photo-finish, day-into-night.</p>
+          <a class="svc-book" data-svc="Bridal Makeup" data-dur="1 hr 30 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr 30 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Floral Placement</h3>
+          <p class="svc-desc">Rose buns, fresh flower crowns, baby's breath, gypsophila. Sourced fresh, each bloom placed with intention. Add-on for any bridal service.</p>
+          <a class="svc-book" data-svc="Floral Placement" data-dur="30 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">30 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Waterfall / Fishtail Braid</h3>
+          <p class="svc-desc">Woven crowns, cascading braids, butterfly fishtails. Balanced tension — comfortable enough to dance in.</p>
+          <a class="svc-book" data-svc="Waterfall / Fishtail Braid" data-dur="1 hr">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Bridal Trial Session</h3>
+          <p class="svc-desc">Full hair + makeup trial 2–4 weeks before your day. We test the floral placement, refine the look, finalise timing for the morning of.</p>
+          <a class="svc-book" data-svc="Bridal Trial Session" data-dur="2 hrs">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">2 hrs</span>
+          </a>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cat-block" id="brows">
+  <div class="wrap">
+
+    <div class="cat-head">
+      <div class="meta">
+        <h2 class="cat-title">Brows &amp; Lashes</h2>
+        <p class="cat-tagline">The finishing touches. Shape, tint, lift — for every face's perfect frame.</p>
+      </div>
+      <button class="book-btn" data-cat="Brows and Lashes">Book</button>
+    </div>
+
+    <div class="cat-body">
+      <div class="cat-image">
+        <img src="images/brows-lashes.png" alt="Brow shape and lash detail close-up" loading="lazy" style="object-position: center center;" />
+      </div>
+      <div class="svc-list">
+
+        <article class="svc">
+          <h3 class="svc-name">Brow Threading</h3>
+          <p class="svc-desc">Precise shaping with cotton thread. Every face's perfect arch.</p>
+          <a class="svc-book" data-svc="Brow Threading" data-dur="15 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">15 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Brow Tinting</h3>
+          <p class="svc-desc">Subtle dye to define and shape. Pairs with threading or lamination.</p>
+          <a class="svc-book" data-svc="Brow Tinting" data-dur="20 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">20 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Brow Lamination</h3>
+          <p class="svc-desc">Soft, fluffy, brushed-up brows for 6–8 weeks. Includes shaping and tint touch-up.</p>
+          <a class="svc-book" data-svc="Brow Lamination" data-dur="45 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">45 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Lash Tinting</h3>
+          <p class="svc-desc">Tinted lashes — wake up with defined eyes, no mascara needed.</p>
+          <a class="svc-book" data-svc="Lash Tinting" data-dur="20 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">20 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Strip Lash Application</h3>
+          <p class="svc-desc">Day-of strip lashes for events and weddings. Custom-trimmed to your eye shape.</p>
+          <a class="svc-book" data-svc="Strip Lash Application" data-dur="15 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">15 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Lash Lift</h3>
+          <p class="svc-desc">Lifted, curled natural lashes for 6 weeks. Pairs beautifully with lash tinting.</p>
+          <a class="svc-book" data-svc="Lash Lift" data-dur="45 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">45 min</span>
+          </a>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cat-block" id="extras">
+  <div class="wrap">
+
+    <div class="cat-head">
+      <div class="meta">
+        <h2 class="cat-title">Add-ons &amp; Extras</h2>
+        <p class="cat-tagline">Saree draping, touch-ups, mehndi hair, sangeet glam. The finishing notes.</p>
+      </div>
+      <button class="book-btn" data-cat="Add-ons and Extras">Book</button>
+    </div>
+
+    <div class="cat-body">
+      <div class="cat-image">
+        <img src="images/extras-styling.png" alt="Hair sectioned for cutting and styling" loading="lazy" style="object-position: center 30%;" />
+      </div>
+      <div class="svc-list">
+
+        <article class="svc">
+          <h3 class="svc-name">Soft Glam Makeup</h3>
+          <p class="svc-desc">Sangeet, mehndi, engagement glam. Buildable, photo-friendly, never heavy.</p>
+          <a class="svc-book" data-svc="Soft Glam Makeup" data-dur="1 hr">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Party / Reception Makeup</h3>
+          <p class="svc-desc">Full glam, lashes, contour, highlight. Photo-ready under flash.</p>
+          <a class="svc-book" data-svc="Party / Reception Makeup" data-dur="1 hr 15 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr 15 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Saree Draping</h3>
+          <p class="svc-desc">Pleated, pinned, perfect. Multiple regional styles available — Nivi, Bengali, Gujarati.</p>
+          <a class="svc-book" data-svc="Saree Draping" data-dur="20 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">20 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Dupatta Setting</h3>
+          <p class="svc-desc">For the lehenga, the suit, the whole look. Pinned to your hair and outfit so it stays.</p>
+          <a class="svc-book" data-svc="Dupatta Setting" data-dur="15 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">15 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Touch-up Visit</h3>
+          <p class="svc-desc">Mid-event refresh between ceremony and reception. Hair re-pinned, makeup touched, florals refreshed.</p>
+          <a class="svc-book" data-svc="Touch-up Visit" data-dur="30 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">30 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Mehndi-Day Hair</h3>
+          <p class="svc-desc">Loose braids, half-up with florals, sangeet-ready styles. Perfect for the day-before celebrations.</p>
+          <a class="svc-book" data-svc="Mehndi-Day Hair" data-dur="45 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">45 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Updo Practice Session</h3>
+          <p class="svc-desc">Walk-through where I teach you a hairstyle you can recreate yourself. For mothers of the bride, regulars, or anyone wanting to learn.</p>
+          <a class="svc-book" data-svc="Updo Practice Session" data-dur="1 hr">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr</span>
+          </a>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ POLICIES & FAQ ═══════════════ -->
+<section class="policies">
+  <div class="wrap">
+
+    <div class="policies-grid">
+
+      <div>
+        <h3>What to expect.</h3>
+        <ul class="policy-list">
+          <li>
+            <span class="num">01</span>
+            <div>
+              <h4>The enquiry</h4>
+              <p>Tap "Book" on any service. I'll receive a WhatsApp message and reply within 24 hours with availability and a quote.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <h4>The deposit</h4>
+              <p>Wedding-day bookings: 30% deposit secures the date. Everyday appointments: no deposit, just a confirmed slot.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <h4>The trial (bridal)</h4>
+              <p>For brides, we book a trial 2–4 weeks ahead. We test the full look, refine floral placement, and finalize timing.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <div>
+              <h4>The day</h4>
+              <p>I arrive early, set up calmly, and stay until the look is set. Touch-up kit included. Travel anywhere in the Lower Mainland.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Common questions.</h3>
+
+        <div class="faq-item">
+          <button class="faq-q">How do I get a quote?</button>
+          <div class="faq-a">Tap "Book" on any service — that opens a WhatsApp message with your selection pre-filled. I'll reply within 24 hours with a personalised quote based on your hair, the occasion, and any travel involved.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What's your cancellation policy?</button>
+          <div class="faq-a">Free reschedule up to 14 days before your date. For wedding-day cancellations within 14 days, the deposit is non-refundable but can be applied to a future booking within 12 months.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Do you travel?</button>
+          <div class="faq-a">Yes — anywhere in the Lower Mainland. Travel within 30 min of Surrey is included. Beyond that, a small travel fee applies (typically $30–80 depending on distance and timing).</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Can you accommodate a wedding party?</button>
+          <div class="faq-a">Absolutely — I've styled wedding parties up to 8 people on a single day. Let me know how many people and the venue timeline. For 5+ people I bring an assistant.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">Do you offer extensions or florals?</button>
+          <div class="faq-a">Both. I work with a hair extension supplier for tape-ins and clip-ins, and I source fresh flowers (baby's breath, gypsophila, roses, ranunculus, bougainvillea). Discussed at the trial.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">How early should I book?</button>
+          <div class="faq-a">Wedding-day: 6–12 months ahead is ideal. Peak season (May–September) fills quickly. Everyday appointments: 1–2 weeks is usually enough.</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ LOCATION & HOURS ═══════════════ -->
+<section class="location-block" id="hours">
+  <div class="wrap">
+    <div class="location-grid">
+
+      <div class="location-info">
+        <h3>Location and Hours</h3>
+
+        <div class="studio-name">Style &amp; Glow Studio by Gurbina</div>
+        <p class="addr">
+          Surrey, British Columbia<br/>
+          Address shared upon booking confirmation<br/>
+          <a href="tel:+17789993179">+1 (778) 999-3179</a><br/>
+          <a href="mailto:makeoversgurbina@gmail.com">makeoversgurbina@gmail.com</a>
+        </p>
+
+        <div class="hours-table">
+          <div class="hours-row">
+            <span class="day">Monday — Sunday</span>
+            <span class="time">By appointment only</span>
+          </div>
+        </div>
+        <p style="margin-top:18px;font-size:13.5px;color:var(--ink-soft);line-height:1.55;">All services by appointment — bridal, hair, colour, and brows. Reach out 1–2 weeks ahead for everyday appointments, 6–12 months ahead for wedding-day bookings.</p>
+      </div>
+
+      <div class="map-card">
+        <div class="map-content">
+          <div class="map-pin"></div>
+          <h4>Surrey · Vancouver · BC</h4>
+          <p>Studio in Surrey. Mobile across the Lower Mainland for weddings.</p>
+          <a href="https://www.google.com/maps/search/Surrey+BC" target="_blank" rel="noopener noreferrer" class="directions">
+            Get directions
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FINAL CTA ═══════════════ -->
+<section class="final-cta">
+  <div class="wrap">
+    <h3>Ready to begin?</h3>
+    <p>Tap below to send a quick WhatsApp message — or email if you prefer. I'll reply within 24 hours.</p>
+    <div class="final-actions">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina%21%0A%0AI%27d%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="cta-pill primary">
+        Enquire on WhatsApp
+      </a>
+      <a href="mailto:makeoversgurbina@gmail.com?subject=Booking%20Enquiry" class="cta-pill secondary">
+        Send an email
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="wrap">
+<footer>
+  <div>© 2026 Gurbina — Bridal Hairstylist</div>
+  <div class="socials">
+    <a href="portfolio.html">Portfolio</a>
+    <a href="https://www.instagram.com/stylendglow?igsh=MWswZDBpZDlxdjZ1bg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="mailto:makeoversgurbina@gmail.com">Email</a>
+    <a href="https://wa.me/17789993179" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  </div>
+</footer>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   HAPTIC
+═══════════════════════════════════════════════════════════ */
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function haptic(ms) {
+  if (navigator.vibrate && !reducedMotion) {
+    try { navigator.vibrate(ms || 8); } catch (e) {}
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BOOK ACTIONS — open WhatsApp pre-filled
+═══════════════════════════════════════════════════════════ */
+const PHONE = '17789993179';
+
+function openWhatsApp(text) {
+  const url = `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+// Individual service "Book now" links
+document.querySelectorAll('.svc-book').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    haptic(10);
+    const svc = el.dataset.svc;
+    const dur = el.dataset.dur;
+    const text =
+      `Hi Gurbina!\n\n` +
+      `I'd like to enquire about:\n` +
+      `• ${svc} (${dur})\n\n` +
+      `Could we chat about availability and pricing?\n\n` +
+      `Thank you!`;
+    openWhatsApp(text);
+  });
+});
+
+// Category-level "Book" buttons
+document.querySelectorAll('.book-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    haptic(10);
+    const cat = btn.dataset.cat;
+    const text =
+      `Hi Gurbina!\n\n` +
+      `I'd like to enquire about your ${cat} services.\n\n` +
+      `Could we chat about availability and pricing for what I have in mind?\n\n` +
+      `Thank you!`;
+    openWhatsApp(text);
+  });
+});
+
+// Nav "Enquire" CTA
+document.getElementById('navEnquire').addEventListener('click', (e) => {
+  e.preventDefault();
+  haptic(8);
+  const text =
+    `Hi Gurbina!\n\n` +
+    `I'd love to chat about your services. When you have a moment, could you let me know your availability?\n\n` +
+    `Thank you!`;
+  openWhatsApp(text);
+});
+
+/* ═══════════════════════════════════════════════════════════
+   FAQ ACCORDION
+═══════════════════════════════════════════════════════════ */
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q');
+  q.addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+    haptic(6);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════
+   QUICKNAV — highlight active section on scroll
+═══════════════════════════════════════════════════════════ */
+const sections = document.querySelectorAll('.cat-block, #hours');
+const quicknavLinks = document.querySelectorAll('.quicknav a');
+
+function updateQuickNav() {
+  const scrollPos = window.scrollY + 200;
+  let activeId = '';
+  sections.forEach(s => {
+    if (s.offsetTop <= scrollPos) {
+      activeId = s.id;
+    }
+  });
+  quicknavLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + activeId);
+  });
+}
+window.addEventListener('scroll', updateQuickNav, { passive: true });
+updateQuickNav();
+</script>
+
+</body>
+</html>
