@@ -857,7 +857,7 @@ footer .socials a {
   <div class="wrap">
     <h1 class="hero-title">Service menu.</h1>
     <div class="hero-meta">
-      Gurbina <span class="sep">·</span> Surrey · Vancouver, BC <span class="sep">·</span> Mobile + Studio
+      Gurbina <span class="sep">·</span> Surrey · Vancouver, BC <span class="sep">·</span> Mobile + Studio <span class="sep">·</span> 8+ years experience
     </div>
     <p class="hero-sub">
       Every service is consult-first. <strong>Tap "Book" on any line</strong> and I'll receive a WhatsApp message with your enquiry. I'll personally write back within 24 hours with availability and a quote.
@@ -889,9 +889,9 @@ footer .socials a {
       <button class="book-btn" data-cat="Colour">Book</button>
     </div>
 
-    <div class="offer-banner">
+    <div class="offer-banner" id="offerBanner">
       <span class="offer-banner-mark">✦</span>
-      <span><strong>Limited Offer</strong> — intro pricing on colour services. Expires soon.</span>
+      <span><strong>Limited Offer</strong> — intro pricing on colour services. <span id="offerCountdown">Ends soon.</span></span>
     </div>
 
     <div class="cat-body">
@@ -1595,6 +1595,56 @@ function updateQuickNav() {
 }
 window.addEventListener('scroll', updateQuickNav, { passive: true });
 updateQuickNav();
+
+/* ═══════════════════════════════════════════════════════════
+   LAUNCH-OFFER COUNTDOWN
+   When the deadline passes, the offer banner + prices + badges
+   hide themselves and bookings revert to quote-based automatically.
+═══════════════════════════════════════════════════════════ */
+
+// ▼▼▼  CHANGE THIS DATE to set when the colour offer ends  ▼▼▼
+const OFFER_END = new Date('2026-06-30T23:59:59');
+// ▲▲▲  CHANGE THIS DATE  ▲▲▲
+
+(function initOfferCountdown() {
+  const banner = document.getElementById('offerBanner');
+  const countdownEl = document.getElementById('offerCountdown');
+  if (!banner || !countdownEl) return;
+
+  function fmtDate(d) {
+    return d.toLocaleDateString('en-CA', { month: 'long', day: 'numeric' });
+  }
+
+  function update() {
+    const diff = OFFER_END - new Date();
+
+    // Expired — revert the whole offer to quote-based, silently
+    if (diff <= 0) {
+      banner.style.display = 'none';
+      document.querySelectorAll('.svc-price').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.svc-offer').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.svc-book[data-price]').forEach(el => {
+        el.removeAttribute('data-price');
+        el.removeAttribute('data-was');
+      });
+      return;
+    }
+
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000) / 60000);
+
+    let left;
+    if (days >= 1)       left = days  + (days  === 1 ? ' day left'  : ' days left');
+    else if (hours >= 1) left = hours + (hours === 1 ? ' hr left'   : ' hrs left');
+    else                 left = mins  + (mins  === 1 ? ' min left'  : ' mins left');
+
+    countdownEl.textContent = 'Ends ' + fmtDate(OFFER_END) + ' · ' + left;
+  }
+
+  update();
+  setInterval(update, 60000); // refresh each minute — accurate, not frantic
+})();
 </script>
 
 </body>
