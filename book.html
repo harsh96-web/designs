@@ -389,6 +389,65 @@ header.hero {
   text-transform: uppercase;
 }
 
+/* Launch-offer badge — solid black so it pops against the muted "Most booked" */
+.svc-offer {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 3px 9px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* Was / now price display */
+.svc-price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.price-was {
+  font-size: 15px;
+  color: var(--ink-mute);
+  text-decoration: line-through;
+  font-weight: 400;
+}
+.price-now {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.price-now .save {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-mid);
+  letter-spacing: 0.04em;
+  margin-left: 4px;
+  text-transform: uppercase;
+}
+
+/* Slim launch-offer banner at top of a category */
+.offer-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink);
+  color: #FFFFFF;
+  padding: 14px 20px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+}
+.offer-banner-mark { font-size: 15px; flex-shrink: 0; }
+.offer-banner strong { font-weight: 700; }
+
 .svc-desc {
   font-size: 14.5px;
   color: var(--ink-mid);
@@ -809,8 +868,8 @@ footer .socials a {
 <!-- ═══════════════ QUICK NAV ═══════════════ -->
 <div class="quicknav-wrap">
   <nav class="quicknav" id="quickNav">
-    <a href="#hair">Hair · Cut &amp; Style</a>
     <a href="#colour">Colour</a>
+    <a href="#hair">Hair · Cut &amp; Style</a>
     <a href="#bridal">Bridal &amp; Ceremony</a>
     <a href="#brows">Brows &amp; Lashes</a>
     <a href="#extras">Add-ons &amp; Extras</a>
@@ -818,7 +877,128 @@ footer .socials a {
   </nav>
 </div>
 
-<!-- ═══════════════ CATEGORY: BRIDAL & CEREMONY ═══════════════ -->
+<!-- ═══════════════ CATEGORY: COLOUR ═══════════════ -->
+<section class="cat-block" id="colour">
+  <div class="wrap">
+
+    <div class="cat-head">
+      <div class="meta">
+        <h2 class="cat-title">Colour</h2>
+        <p class="cat-tagline">Hand-painted balayage, foilage, correction. Eight-weeks-out beautiful.</p>
+      </div>
+      <button class="book-btn" data-cat="Colour">Book</button>
+    </div>
+
+    <div class="offer-banner">
+      <span class="offer-banner-mark">✦</span>
+      <span><strong>Limited Offer</strong> — intro pricing on colour services. Expires soon.</span>
+    </div>
+
+    <div class="cat-body">
+      <div class="cat-image">
+        <img src="images/color-balayage.png" alt="Dimensional balayage with golden highlights" loading="lazy" style="object-position: center 40%;" />
+      </div>
+      <div class="svc-list">
+
+        <article class="svc">
+          <h3 class="svc-name">Full Colour <span class="svc-offer">Limited Offer</span></h3>
+          <p class="svc-desc">All-over single-process colour, root to tip — grey coverage, a richer tone, or a full shade change. Includes gloss and blowout.</p>
+          <div class="svc-price">
+            <span class="price-was">$200</span>
+            <span class="price-now">$100<span class="save">· save $100</span></span>
+          </div>
+          <a class="svc-book" data-svc="Full Colour" data-dur="2 hrs" data-price="$100" data-was="$200">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">2 hrs</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Dimensional Balayage <span class="svc-popular">Most booked</span> <span class="svc-offer">Limited Offer</span></h3>
+          <p class="svc-desc">Hand-painted colour with soft grow-out. Sun-kissed, dimensional, and beautiful at every stage. Includes gloss and blowout.</p>
+          <div class="svc-price">
+            <span class="price-was">$250</span>
+            <span class="price-now">$150<span class="save">· save $100</span></span>
+          </div>
+          <a class="svc-book" data-svc="Dimensional Balayage" data-dur="2-3 hrs" data-price="$150" data-was="$250">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">2-3 hrs</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Highlights / Foilyage <span class="svc-offer">Limited Offer</span></h3>
+          <p class="svc-desc">Traditional foil work for brighter, lifted dimension. Full head or partial — we'll decide together based on your goals.</p>
+          <div class="svc-price">
+            <span class="price-was">$250</span>
+            <span class="price-now">$100<span class="save">· save $150</span></span>
+          </div>
+          <a class="svc-book" data-svc="Highlights / Foilyage" data-dur="2 hrs+" data-price="$100" data-was="$250">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">2 hrs+</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Colour Correction</h3>
+          <p class="svc-desc">Box-dye recoveries, banding fixes, brass removal. Consultation required first — every correction is different. Bring photos.</p>
+          <a class="svc-book" data-svc="Colour Correction" data-dur="2 hrs">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">2 hrs</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Root Touch-up</h3>
+          <p class="svc-desc">Gloss refresh, root retouch, toner. The eight-week maintenance for grown-in colour.</p>
+          <a class="svc-book" data-svc="Root Touch-up" data-dur="1 hr 30 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">1 hr 30 min</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Peek-a-boo / Statement Colour</h3>
+          <p class="svc-desc">Hidden pops of red, copper, or jewel-tone underneath — visible when you flip your hair, secret when you don't.</p>
+          <a class="svc-book" data-svc="Peek-a-boo / Statement Colour" data-dur="2 hrs">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">2 hrs</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Ombré Melt</h3>
+          <p class="svc-desc">Smooth gradient blend — silver, blonde, copper, custom. Hand-painted with no harsh lines.</p>
+          <a class="svc-book" data-svc="Ombré Melt" data-dur="2 hrs+">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">2 hrs+</span>
+          </a>
+        </article>
+
+        <article class="svc">
+          <h3 class="svc-name">Colour Consultation</h3>
+          <p class="svc-desc">Required for first-time colour clients, box-dye history, or major changes. We talk goals, look at your hair in natural light, plan the path.</p>
+          <a class="svc-book" data-svc="Colour Consultation" data-dur="30 min">
+            <span class="label">Book now</span>
+            <span class="sep">·</span>
+            <span class="dur">30 min</span>
+          </a>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ CATEGORY: HAIR · CUT & STYLE ═══════════════ -->
 <section class="cat-block" id="hair">
   <div class="wrap">
 
@@ -893,99 +1073,6 @@ footer .socials a {
             <span class="label">Book now</span>
             <span class="sep">·</span>
             <span class="dur">45 min</span>
-          </a>
-        </article>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="cat-block" id="colour">
-  <div class="wrap">
-
-    <div class="cat-head">
-      <div class="meta">
-        <h2 class="cat-title">Colour</h2>
-        <p class="cat-tagline">Hand-painted balayage, foilage, correction. Eight-weeks-out beautiful.</p>
-      </div>
-      <button class="book-btn" data-cat="Colour">Book</button>
-    </div>
-
-    <div class="cat-body">
-      <div class="cat-image">
-        <img src="images/color-balayage.png" alt="Dimensional balayage with golden highlights" loading="lazy" style="object-position: center 40%;" />
-      </div>
-      <div class="svc-list">
-
-        <article class="svc">
-          <h3 class="svc-name">Dimensional Balayage <span class="svc-popular">Most booked</span></h3>
-          <p class="svc-desc">Hand-painted colour with soft grow-out. Sun-kissed, dimensional, and beautiful at every stage. Includes gloss and blowout.</p>
-          <a class="svc-book" data-svc="Dimensional Balayage" data-dur="2-3 hrs">
-            <span class="label">Book now</span>
-            <span class="sep">·</span>
-            <span class="dur">2-3 hrs</span>
-          </a>
-        </article>
-
-        <article class="svc">
-          <h3 class="svc-name">Highlights / Foilyage</h3>
-          <p class="svc-desc">Traditional foil work for brighter, lifted dimension. Full head or partial — we'll decide together based on your goals.</p>
-          <a class="svc-book" data-svc="Highlights / Foilyage" data-dur="2 hrs+">
-            <span class="label">Book now</span>
-            <span class="sep">·</span>
-            <span class="dur">2 hrs+</span>
-          </a>
-        </article>
-
-        <article class="svc">
-          <h3 class="svc-name">Colour Correction</h3>
-          <p class="svc-desc">Box-dye recoveries, banding fixes, brass removal. Consultation required first — every correction is different. Bring photos.</p>
-          <a class="svc-book" data-svc="Colour Correction" data-dur="2 hrs">
-            <span class="label">Book now</span>
-            <span class="sep">·</span>
-            <span class="dur">2 hrs</span>
-          </a>
-        </article>
-
-        <article class="svc">
-          <h3 class="svc-name">Root Touch-up</h3>
-          <p class="svc-desc">Gloss refresh, root retouch, toner. The eight-week maintenance for grown-in colour.</p>
-          <a class="svc-book" data-svc="Root Touch-up" data-dur="1 hr 30 min">
-            <span class="label">Book now</span>
-            <span class="sep">·</span>
-            <span class="dur">1 hr 30 min</span>
-          </a>
-        </article>
-
-        <article class="svc">
-          <h3 class="svc-name">Peek-a-boo / Statement Colour</h3>
-          <p class="svc-desc">Hidden pops of red, copper, or jewel-tone underneath — visible when you flip your hair, secret when you don't.</p>
-          <a class="svc-book" data-svc="Peek-a-boo / Statement Colour" data-dur="2 hrs">
-            <span class="label">Book now</span>
-            <span class="sep">·</span>
-            <span class="dur">2 hrs</span>
-          </a>
-        </article>
-
-        <article class="svc">
-          <h3 class="svc-name">Ombré Melt</h3>
-          <p class="svc-desc">Smooth gradient blend — silver, blonde, copper, custom. Hand-painted with no harsh lines.</p>
-          <a class="svc-book" data-svc="Ombré Melt" data-dur="2 hrs+">
-            <span class="label">Book now</span>
-            <span class="sep">·</span>
-            <span class="dur">2 hrs+</span>
-          </a>
-        </article>
-
-        <article class="svc">
-          <h3 class="svc-name">Colour Consultation</h3>
-          <p class="svc-desc">Required for first-time colour clients, box-dye history, or major changes. We talk goals, look at your hair in natural light, plan the path.</p>
-          <a class="svc-book" data-svc="Colour Consultation" data-dur="30 min">
-            <span class="label">Book now</span>
-            <span class="sep">·</span>
-            <span class="dur">30 min</span>
           </a>
         </article>
 
@@ -1432,11 +1519,18 @@ document.querySelectorAll('.svc-book').forEach(el => {
     haptic(10);
     const svc = el.dataset.svc;
     const dur = el.dataset.dur;
+    const price = el.dataset.price;
+    const was = el.dataset.was;
+    let svcLine = `• ${svc} (${dur})`;
+    if (price) svcLine += ` — Limited Offer ${price}${was ? ` (was ${was})` : ''}`;
+    const closingLine = price
+      ? `Could we chat about availability? I'd love to lock in the offer price.`
+      : `Could we chat about availability and pricing?`;
     const text =
       `Hi Gurbina!\n\n` +
       `I'd like to enquire about:\n` +
-      `• ${svc} (${dur})\n\n` +
-      `Could we chat about availability and pricing?\n\n` +
+      `${svcLine}\n\n` +
+      `${closingLine}\n\n` +
       `Thank you!`;
     openWhatsApp(text);
   });
