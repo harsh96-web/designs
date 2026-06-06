@@ -873,8 +873,79 @@ footer .socials a {
 @media (prefers-reduced-motion: reduce) {
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* ═══ BRIDE REVIEWS ═══ */
+.reviews { padding: 92px 0; border-top: 1px solid var(--line); }
+.reviews-title {
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-bottom: 44px;
+}
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.review {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 30px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg);
+}
+.review .stars { font-size: 13px; letter-spacing: 3px; color: var(--ink); }
+.review p { font-size: 15px; line-height: 1.62; color: var(--ink); font-weight: 400; letter-spacing: -0.005em; }
+.review cite { font-style: normal; font-size: 12.5px; color: var(--ink-mid); font-weight: 600; letter-spacing: 0.01em; margin-top: auto; }
+@media (max-width: 760px) {
+  .reviews { padding: 62px 0; }
+  .reviews-title { margin-bottom: 28px; }
+  .reviews-grid { grid-template-columns: 1fr; gap: 14px; }
+  .review { padding: 24px 22px; }
+}
 </style>
 <script>document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Style & Glow Studio by Gurbina",
+  "image": "https://harsh96-web.github.io/images/00-hero-pink-rose-floral.webp",
+  "description": "Senior and licensed bridal & editorial hairstylist in Surrey and Vancouver, BC. South Asian and Western bridal hair, balayage, highlights, precision cuts, and colour correction. 8+ years experience.",
+  "telephone": "+1-778-999-3179",
+  "email": "makeoversgurbina@gmail.com",
+  "url": "https://harsh96-web.github.io/",
+  "priceRange": "$$",
+  "currenciesAccepted": "CAD",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Surrey",
+    "addressRegion": "BC",
+    "addressCountry": "CA"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Surrey" },
+    { "@type": "City", "name": "Vancouver" },
+    { "@type": "City", "name": "Burnaby" },
+    { "@type": "City", "name": "Delta" }
+  ],
+  "sameAs": [ "https://www.instagram.com/stylendglow" ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59",
+    "description": "By appointment only"
+  },
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "South Asian Bridal Hair" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Western Bridal Hair" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dimensional Balayage" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Highlights & Foilyage" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full Colour" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Precision Cut & Style" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brows & Lashes" } }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -918,7 +989,7 @@ footer .socials a {
 </div>
 
 <!-- ═══════════════ CATEGORY: COLOUR ═══════════════ -->
-<section class="cat-block reveal" id="colour">
+<section class="cat-block" id="colour">
   <div class="wrap">
 
     <div class="cat-head">
@@ -936,7 +1007,7 @@ footer .socials a {
 
     <div class="cat-body">
       <div class="cat-image">
-        <img src="images/color-balayage.png" alt="Dimensional balayage with golden highlights" loading="lazy" style="object-position: center 40%;" />
+        <img src="images/color-balayage.webp" alt="Dimensional balayage with golden highlights" loading="lazy" style="object-position: center 40%;" />
       </div>
       <div class="svc-list">
 
@@ -1052,7 +1123,7 @@ footer .socials a {
 
     <div class="cat-body">
       <div class="cat-image">
-        <img src="images/cut-styles-grid.png" alt="Layered cuts, waves, and blowouts — work samples" loading="lazy" style="object-position: center center;" />
+        <img src="images/cut-styles-grid.webp" alt="Layered cuts, waves, and blowouts — work samples" loading="lazy" style="object-position: center center;" />
       </div>
       <div class="svc-list">
 
@@ -1135,7 +1206,7 @@ footer .socials a {
 
     <div class="cat-body">
       <div class="cat-image">
-        <img src="images/bridal-hero.png" alt="South Asian bridal portrait — hair, makeup, and dupatta" loading="lazy" style="object-position: center 30%;" />
+        <img src="images/bridal-hero.webp" alt="South Asian bridal portrait — hair, makeup, and dupatta" loading="lazy" style="object-position: center 30%;" />
       </div>
       <div class="svc-list">
 
@@ -1218,7 +1289,7 @@ footer .socials a {
 
     <div class="cat-body">
       <div class="cat-image">
-        <img src="images/brows-lashes.png" alt="Brow shape and lash detail close-up" loading="lazy" style="object-position: center center;" />
+        <img src="images/brows-lashes.webp" alt="Brow shape and lash detail close-up" loading="lazy" style="object-position: center center;" />
       </div>
       <div class="svc-list">
 
@@ -1301,7 +1372,7 @@ footer .socials a {
 
     <div class="cat-body">
       <div class="cat-image">
-        <img src="images/extras-styling.png" alt="Hair sectioned for cutting and styling" loading="lazy" style="object-position: center 30%;" />
+        <img src="images/extras-styling.webp" alt="Hair sectioned for cutting and styling" loading="lazy" style="object-position: center 30%;" />
       </div>
       <div class="svc-list">
 
@@ -1382,6 +1453,30 @@ footer .socials a {
 </section>
 
 <!-- ═══════════════ POLICIES & FAQ ═══════════════ -->
+<!-- ═══════════════ BRIDE REVIEWS ═══════════════ -->
+<section class="reviews reveal">
+  <div class="wrap">
+    <h2 class="reviews-title">What brides say.</h2>
+    <div class="reviews-grid">
+      <blockquote class="review">
+        <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+        <p>"She built a rose bun into my hair with real bougainvillea and baby's breath, and it held twelve hours through the pheras, the pictures, and the first dance. Unreal."</p>
+        <cite>Simran K. · Bride, Surrey</cite>
+      </blockquote>
+      <blockquote class="review">
+        <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+        <p>"I booked Gurbina for my mehndi and loved it so much I moved my whole reception styling to her the next week. Calm hands, beautiful finish, on time every time."</p>
+        <cite>Jasleen P. · Bride, Burnaby</cite>
+      </blockquote>
+      <blockquote class="review">
+        <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+        <p>"The waterfall braid she did for my sister's sangeet was on Instagram by the end of the night. Three of my cousins booked her after seeing that one photo."</p>
+        <cite>Mehak L. · Vancouver</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
 <section class="policies reveal">
   <div class="wrap">
 
@@ -1711,8 +1806,10 @@ const OFFER_END = new Date('2026-06-30T23:59:59');
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
   els.forEach(el => obs.observe(el));
+  // Safety net — content can NEVER stay hidden, even if the observer misses
+  setTimeout(() => els.forEach(el => el.classList.add('in')), 2500);
 })();
 
 // Persistent WhatsApp CTA bar (mobile): show after hero, hide near location
