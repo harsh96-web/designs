@@ -25,7 +25,7 @@
 <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 <!-- ═══ END SECURITY HEADERS ═══ -->
 
-<title>Gurbina — Bridal Hairstylist · Vancouver BC</title>
+<title>Gurbina — Senior and Licensed Hairstylist · Vancouver BC</title>
 <meta name="description" content="Gurbina — bridal and editorial hairstylist in Vancouver, BC. Specializing in South Asian bridal, waterfall braids, floral placement, balayage, precision cuts, and keratin treatments." />
 <meta name="theme-color" content="#F8F1EA" />
 <meta name="author" content="Gurbina" />
@@ -35,16 +35,16 @@
 
 <!-- Open Graph (WhatsApp, Instagram DM, LinkedIn link preview) -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Gurbina — Bridal Hairstylist · Vancouver BC" />
+<meta property="og:title" content="Gurbina — Senior and Licensed Hairstylist · Vancouver BC" />
 <meta property="og:description" content="Bridal and editorial hairstylist in Vancouver, BC. Specializing in South Asian bridal, braids, floral placement, and dimensional colour." />
-<meta property="og:image" content="images/00-hero-pink-rose-floral.jpg" />
+<meta property="og:image" content="images/00-hero-pink-rose-floral.webp" />
 <meta property="og:locale" content="en_CA" />
 
 <!-- Twitter/X preview -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Gurbina — Bridal Hairstylist · Vancouver BC" />
+<meta name="twitter:title" content="Gurbina — Senior and Licensed Hairstylist · Vancouver BC" />
 <meta name="twitter:description" content="Bridal and editorial hairstylist in Vancouver, BC." />
-<meta name="twitter:image" content="images/00-hero-pink-rose-floral.jpg" />
+<meta name="twitter:image" content="images/00-hero-pink-rose-floral.webp" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1467,9 +1467,10 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     font-size: 12px;
     font-weight: 500;
     border-radius: 100px;
-    margin-right: 8px;
     min-height: 36px;
     gap: 4px;
+    margin-left: auto;  /* pin to the right, next to the burger */
+    margin-right: 8px;
   }
   .nav-burger { display: flex; }
   .nav-links {
@@ -2482,6 +2483,49 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   .reveal, .reveal-stagger > * { opacity: 1; transform: none; }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Style & Glow Studio by Gurbina",
+  "image": "https://harsh96-web.github.io/images/00-hero-pink-rose-floral.webp",
+  "description": "Senior and licensed bridal & editorial hairstylist in Surrey and Vancouver, BC. South Asian and Western bridal hair, balayage, highlights, precision cuts, and colour correction. 8+ years experience.",
+  "telephone": "+1-778-999-3179",
+  "email": "makeoversgurbina@gmail.com",
+  "url": "https://harsh96-web.github.io/",
+  "priceRange": "$$",
+  "currenciesAccepted": "CAD",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Surrey",
+    "addressRegion": "BC",
+    "addressCountry": "CA"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Surrey" },
+    { "@type": "City", "name": "Vancouver" },
+    { "@type": "City", "name": "Burnaby" },
+    { "@type": "City", "name": "Delta" }
+  ],
+  "sameAs": [ "https://www.instagram.com/stylendglow" ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59",
+    "description": "By appointment only"
+  },
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "South Asian Bridal Hair" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Western Bridal Hair" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dimensional Balayage" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Highlights & Foilyage" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Full Colour" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Precision Cut & Style" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brows & Lashes" } }
+  ]
+}
+</script>
 </head>
 <body class="has-announce">
 
@@ -2497,7 +2541,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 <div class="c-ring" id="cRing"></div>
 
 <!-- Old floating book becomes the mobile primary CTA -->
-<a href="book.html" class="floating-book visible" id="floatingBook">
+<a href="book.html" class="floating-book" id="floatingBook">
   <span>✿ Book a consultation</span>
   <span>→</span>
 </a>
@@ -2531,7 +2575,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   <div class="sparkle s4"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z"/></svg></div>
 
   <div class="hero-text">
-    <span class="eyebrow reveal">Bridal Hairstylist · Vancouver, BC</span>
+    <span class="eyebrow reveal">Senior and Licensed Hairstylist · Vancouver, BC</span>
     <h1 class="reveal">
       <span class="line">Every bride</span>
       <span class="line">deserves a <span class="it">crown<svg class="underline-svg" viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M2 8 Q 75 2, 150 7 T 298 6"/></svg></span></span>
@@ -2542,7 +2586,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     </p>
     <div class="hero-meta reveal">
       <div>
-        <span class="n"><span class="em">7</span>+</span>
+        <span class="n"><span class="em">8</span>+</span>
         <span class="l">Years Experience</span>
       </div>
       <div>
@@ -2568,10 +2612,10 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
   <div class="hero-visual reveal">
     <div class="hero-img main">
-      <img src="images/00-hero-pink-rose-floral.jpg" alt="Bridal half-up with pink rose floral crown and cascading curls" fetchpriority="high" />
+      <img src="images/00-hero-pink-rose-floral.webp" alt="Bridal half-up with pink rose floral crown and cascading curls" fetchpriority="high" />
     </div>
     <div class="hero-img accent">
-      <img src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped bun with baby's breath" fetchpriority="high" />
+      <img src="images/05-rose-bun-babybreath.webp" alt="Rose-shaped bun with baby's breath" fetchpriority="high" />
     </div>
 
     <div class="badge-circle">
@@ -2633,7 +2677,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     <!-- Signature featured piece — the pink rose floral crown -->
     <div class="bento-card featured" data-hover data-category="floral" data-look="Pink rose &amp; ranunculus crown">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CPink%20rose%20%26%20ranunculus%20crown%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
-      <img src="images/00-hero-pink-rose-floral.jpg" alt="Bridal half-up with pink rose floral crown" loading="lazy" decoding="async" />
+      <img src="images/00-hero-pink-rose-floral.webp" alt="Bridal half-up with pink rose floral crown" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Floral Crown</span>
         <h4>Pink rose &amp; ranunculus</h4>
@@ -2642,7 +2686,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="bento-card" data-hover data-category="floral" data-look="Rose bun with baby's breath">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CRose%20bun%20with%20baby%27s%20breath%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
-      <img src="images/05-rose-bun-babybreath.jpg" alt="Rose-shaped woven bun with baby's breath" loading="lazy" decoding="async" />
+      <img src="images/05-rose-bun-babybreath.webp" alt="Rose-shaped woven bun with baby's breath" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Rose Bun</span>
         <h4>Baby's breath &amp; bougainvillea</h4>
@@ -2651,7 +2695,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="bento-card" data-hover data-category="braid" data-look="Waterfall braid soft cascade">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CWaterfall%20braid%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
-      <img src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid with soft curls" loading="lazy" decoding="async" />
+      <img src="images/01-waterfall-braid-brunette.webp" alt="Waterfall braid with soft curls" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Bridal</span>
         <h4>Waterfall braid · soft cascade</h4>
@@ -2660,7 +2704,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="bento-card" data-hover data-category="floral" data-look="Pearl floral crown">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CPearl%20floral%20crown%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
-      <img src="images/02-pearl-floral-bridal.jpg" alt="Half-up bridal with pearl floral pins" loading="lazy" decoding="async" />
+      <img src="images/02-pearl-floral-bridal.webp" alt="Half-up bridal with pearl floral pins" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Pearls</span>
         <h4>Pearl floral crown</h4>
@@ -2669,7 +2713,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="bento-card" data-hover data-category="floral" data-look="Red rose crown">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CRed%20rose%20crown%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
-      <img src="images/06-red-roses-crown.jpg" alt="Red rose floral crown with gypsophila" loading="lazy" decoding="async" />
+      <img src="images/06-red-roses-crown.webp" alt="Red rose floral crown with gypsophila" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Florals</span>
         <h4>Red rose crown</h4>
@@ -2678,7 +2722,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="bento-card" data-hover data-category="braid" data-look="Butterfly fishtail">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CButterfly%20fishtail%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
-      <img src="images/03-butterfly-braid-mehndi.jpg" alt="Fishtail braid with butterflies" loading="lazy" decoding="async" />
+      <img src="images/03-butterfly-braid-mehndi.webp" alt="Fishtail braid with butterflies" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Mehndi</span>
         <h4>Butterfly fishtail</h4>
@@ -2687,7 +2731,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="bento-card" data-hover data-category="braid floral" data-look="Twin braids with pink florals">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CTwin%20braids%20%26%20pink%20florals%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
-      <img src="images/04-pink-floral-braids.jpg" alt="Twin braids with pink floral accents" loading="lazy" decoding="async" />
+      <img src="images/04-pink-floral-braids.webp" alt="Twin braids with pink floral accents" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Sangeet</span>
         <h4>Twin braids · pink bloom</h4>
@@ -2696,7 +2740,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="bento-card" data-hover data-category="curl" data-look="Balayage with crystal vine">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CBalayage%20%26%20crystal%20vine%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
-      <img src="images/07-balayage-crystal-vine.jpg" alt="Balayage with crystal hair vine" loading="lazy" decoding="async" />
+      <img src="images/07-balayage-crystal-vine.webp" alt="Balayage with crystal hair vine" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Colour</span>
         <h4>Balayage · crystal vine</h4>
@@ -2705,7 +2749,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="bento-card" data-hover data-category="curl" data-look="Ringlet cascade">
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20love%20the%20%E2%80%9CRinglet%20cascade%E2%80%9D%20look%20%E2%80%94%20could%20we%20discuss%20something%20like%20this%20for%20my%20wedding%3F" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Send this look on WhatsApp">💬</a>
-      <img src="images/08-cascade-curls-ringlets.jpg" alt="Sculpted ringlet cascade" loading="lazy" decoding="async" />
+      <img src="images/08-cascade-curls-ringlets.webp" alt="Sculpted ringlet cascade" loading="lazy" decoding="async" />
       <div class="bento-caption">
         <span class="tag">Styling</span>
         <h4>Ringlet cascade</h4>
@@ -2718,63 +2762,63 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     <span class="mobile-gallery-hint">Swipe</span>
     <div class="mobile-gallery-track" id="mobileGalleryTrack">
       <div class="mobile-slide">
-        <img src="images/00-hero-pink-rose-floral.jpg" alt="Pink rose floral crown bridal" loading="lazy" decoding="async" />
+        <img src="images/00-hero-pink-rose-floral.webp" alt="Pink rose floral crown bridal" loading="lazy" decoding="async" />
         <div class="mobile-slide-caption">
           <span class="tag">Signature</span>
           <h4>Pink rose &amp; ranunculus crown</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/05-rose-bun-babybreath.jpg" alt="Rose bun with baby's breath" loading="lazy" decoding="async" />
+        <img src="images/05-rose-bun-babybreath.webp" alt="Rose bun with baby's breath" loading="lazy" decoding="async" />
         <div class="mobile-slide-caption">
           <span class="tag">Rose Bun</span>
           <h4>Baby's breath &amp; bougainvillea</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/01-waterfall-braid-brunette.jpg" alt="Waterfall braid" loading="lazy" decoding="async" />
+        <img src="images/01-waterfall-braid-brunette.webp" alt="Waterfall braid" loading="lazy" decoding="async" />
         <div class="mobile-slide-caption">
           <span class="tag">Bridal</span>
           <h4>Waterfall braid · soft cascade</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/02-pearl-floral-bridal.jpg" alt="Pearl floral bridal" loading="lazy" decoding="async" />
+        <img src="images/02-pearl-floral-bridal.webp" alt="Pearl floral bridal" loading="lazy" decoding="async" />
         <div class="mobile-slide-caption">
           <span class="tag">Pearls</span>
           <h4>Pearl floral crown</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/06-red-roses-crown.jpg" alt="Red rose crown" loading="lazy" decoding="async" />
+        <img src="images/06-red-roses-crown.webp" alt="Red rose crown" loading="lazy" decoding="async" />
         <div class="mobile-slide-caption">
           <span class="tag">Florals</span>
           <h4>Red rose crown · gypsophila</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/03-butterfly-braid-mehndi.jpg" alt="Butterfly fishtail" loading="lazy" decoding="async" />
+        <img src="images/03-butterfly-braid-mehndi.webp" alt="Butterfly fishtail" loading="lazy" decoding="async" />
         <div class="mobile-slide-caption">
           <span class="tag">Mehndi</span>
           <h4>Butterfly fishtail</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/04-pink-floral-braids.jpg" alt="Pink floral braids" loading="lazy" decoding="async" />
+        <img src="images/04-pink-floral-braids.webp" alt="Pink floral braids" loading="lazy" decoding="async" />
         <div class="mobile-slide-caption">
           <span class="tag">Sangeet</span>
           <h4>Twin braids · pink bloom</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/07-balayage-crystal-vine.jpg" alt="Balayage with crystal vine" loading="lazy" decoding="async" />
+        <img src="images/07-balayage-crystal-vine.webp" alt="Balayage with crystal vine" loading="lazy" decoding="async" />
         <div class="mobile-slide-caption">
           <span class="tag">Colour</span>
           <h4>Balayage · crystal vine</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/08-cascade-curls-ringlets.jpg" alt="Ringlet cascade" loading="lazy" decoding="async" />
+        <img src="images/08-cascade-curls-ringlets.webp" alt="Ringlet cascade" loading="lazy" decoding="async" />
         <div class="mobile-slide-caption">
           <span class="tag">Styling</span>
           <h4>Ringlet cascade</h4>
@@ -2798,63 +2842,63 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   <!-- Desktop bento for colour/cuts -->
   <div class="bento bento-cuts reveal-stagger">
     <div class="bento-card featured" data-hover>
-      <img src="images/c03-balayage-caramel-chunks.jpg" alt="Black with caramel chunky highlights" loading="lazy" decoding="async"/>
+      <img src="images/c03-balayage-caramel-chunks.webp" alt="Black with caramel chunky highlights" loading="lazy" decoding="async"/>
       <div class="bento-caption">
         <span class="tag">Balayage</span>
         <h4>Caramel chunks · black base</h4>
       </div>
     </div>
     <div class="bento-card" data-hover>
-      <img src="images/c01-layered-cut-brunette.jpg" alt="Long layered brunette cut with bouncy curls" loading="lazy" decoding="async"/>
+      <img src="images/c01-layered-cut-brunette.webp" alt="Long layered brunette cut with bouncy curls" loading="lazy" decoding="async"/>
       <div class="bento-caption">
         <span class="tag">Layered Cut</span>
         <h4>Long layers · feathered finish</h4>
       </div>
     </div>
     <div class="bento-card" data-hover>
-      <img src="images/c04-silver-ombre-balayage.jpg" alt="Black to silver grey ombre balayage" loading="lazy" decoding="async"/>
+      <img src="images/c04-silver-ombre-balayage.webp" alt="Black to silver grey ombre balayage" loading="lazy" decoding="async"/>
       <div class="bento-caption">
         <span class="tag">Ombre</span>
         <h4>Silver smoke ombre</h4>
       </div>
     </div>
     <div class="bento-card" data-hover>
-      <img src="images/c05-blonde-ombre-balayage.jpg" alt="Black to blonde balayage" loading="lazy" decoding="async"/>
+      <img src="images/c05-blonde-ombre-balayage.webp" alt="Black to blonde balayage" loading="lazy" decoding="async"/>
       <div class="bento-caption">
         <span class="tag">Balayage</span>
         <h4>Black to blonde melt</h4>
       </div>
     </div>
     <div class="bento-card" data-hover>
-      <img src="images/c06-red-peekaboo.jpg" alt="Red peek-a-boo highlights on black" loading="lazy" decoding="async"/>
+      <img src="images/c06-red-peekaboo.webp" alt="Red peek-a-boo highlights on black" loading="lazy" decoding="async"/>
       <div class="bento-caption">
         <span class="tag">Statement</span>
         <h4>Red peek-a-boo</h4>
       </div>
     </div>
     <div class="bento-card" data-hover>
-      <img src="images/c07-copper-layers.jpg" alt="Copper layered cut with bouncy ends" loading="lazy" decoding="async"/>
+      <img src="images/c07-copper-layers.webp" alt="Copper layered cut with bouncy ends" loading="lazy" decoding="async"/>
       <div class="bento-caption">
         <span class="tag">Cut + Colour</span>
         <h4>Copper layers · '70s flick</h4>
       </div>
     </div>
     <div class="bento-card" data-hover>
-      <img src="images/c08-side-profile-highlights.jpg" alt="Layered cut with warm caramel highlights" loading="lazy" decoding="async"/>
+      <img src="images/c08-side-profile-highlights.webp" alt="Layered cut with warm caramel highlights" loading="lazy" decoding="async"/>
       <div class="bento-caption">
         <span class="tag">Highlights</span>
         <h4>Warm caramel ribbons</h4>
       </div>
     </div>
     <div class="bento-card" data-hover>
-      <img src="images/c02-layered-cut-caramel.jpg" alt="Long layered cut with subtle warm tones" loading="lazy" decoding="async"/>
+      <img src="images/c02-layered-cut-caramel.webp" alt="Long layered cut with subtle warm tones" loading="lazy" decoding="async"/>
       <div class="bento-caption">
         <span class="tag">Cut</span>
         <h4>Long layers · subtle warmth</h4>
       </div>
     </div>
     <div class="bento-card" data-hover>
-      <img src="images/c09-long-flowing-caramel.jpg" alt="Long flowing layered cut" loading="lazy" decoding="async"/>
+      <img src="images/c09-long-flowing-caramel.webp" alt="Long flowing layered cut" loading="lazy" decoding="async"/>
       <div class="bento-caption">
         <span class="tag">Blowout</span>
         <h4>Hollywood waves blowout</h4>
@@ -2867,63 +2911,63 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     <span class="mobile-gallery-hint">Swipe</span>
     <div class="mobile-gallery-track" id="mobileGalleryCutsTrack">
       <div class="mobile-slide">
-        <img src="images/c03-balayage-caramel-chunks.jpg" alt="Caramel balayage" loading="lazy" decoding="async"/>
+        <img src="images/c03-balayage-caramel-chunks.webp" alt="Caramel balayage" loading="lazy" decoding="async"/>
         <div class="mobile-slide-caption">
           <span class="tag">Balayage</span>
           <h4>Caramel chunks · black base</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/c01-layered-cut-brunette.jpg" alt="Layered cut" loading="lazy" decoding="async"/>
+        <img src="images/c01-layered-cut-brunette.webp" alt="Layered cut" loading="lazy" decoding="async"/>
         <div class="mobile-slide-caption">
           <span class="tag">Layered Cut</span>
           <h4>Long layers · feathered finish</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/c04-silver-ombre-balayage.jpg" alt="Silver ombre" loading="lazy" decoding="async"/>
+        <img src="images/c04-silver-ombre-balayage.webp" alt="Silver ombre" loading="lazy" decoding="async"/>
         <div class="mobile-slide-caption">
           <span class="tag">Ombre</span>
           <h4>Silver smoke ombre</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/c05-blonde-ombre-balayage.jpg" alt="Blonde balayage" loading="lazy" decoding="async"/>
+        <img src="images/c05-blonde-ombre-balayage.webp" alt="Blonde balayage" loading="lazy" decoding="async"/>
         <div class="mobile-slide-caption">
           <span class="tag">Balayage</span>
           <h4>Black to blonde melt</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/c06-red-peekaboo.jpg" alt="Red peek-a-boo" loading="lazy" decoding="async"/>
+        <img src="images/c06-red-peekaboo.webp" alt="Red peek-a-boo" loading="lazy" decoding="async"/>
         <div class="mobile-slide-caption">
           <span class="tag">Statement</span>
           <h4>Red peek-a-boo</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/c07-copper-layers.jpg" alt="Copper layers" loading="lazy" decoding="async"/>
+        <img src="images/c07-copper-layers.webp" alt="Copper layers" loading="lazy" decoding="async"/>
         <div class="mobile-slide-caption">
           <span class="tag">Cut + Colour</span>
           <h4>Copper layers · '70s flick</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/c08-side-profile-highlights.jpg" alt="Caramel highlights" loading="lazy" decoding="async"/>
+        <img src="images/c08-side-profile-highlights.webp" alt="Caramel highlights" loading="lazy" decoding="async"/>
         <div class="mobile-slide-caption">
           <span class="tag">Highlights</span>
           <h4>Warm caramel ribbons</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/c02-layered-cut-caramel.jpg" alt="Subtle layered cut" loading="lazy" decoding="async"/>
+        <img src="images/c02-layered-cut-caramel.webp" alt="Subtle layered cut" loading="lazy" decoding="async"/>
         <div class="mobile-slide-caption">
           <span class="tag">Cut</span>
           <h4>Long layers · subtle warmth</h4>
         </div>
       </div>
       <div class="mobile-slide">
-        <img src="images/c09-long-flowing-caramel.jpg" alt="Hollywood blowout" loading="lazy" decoding="async"/>
+        <img src="images/c09-long-flowing-caramel.webp" alt="Hollywood blowout" loading="lazy" decoding="async"/>
         <div class="mobile-slide-caption">
           <span class="tag">Blowout</span>
           <h4>Hollywood waves blowout</h4>
@@ -2936,7 +2980,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
 <!-- Full-bleed section break between Work and About -->
 <div class="section-break reveal">
-  <img src="images/06-red-roses-crown.jpg" alt="Red rose bridal work" loading="lazy" decoding="async" id="parallaxBreak1"/>
+  <img src="images/06-red-roses-crown.webp" alt="Red rose bridal work" loading="lazy" decoding="async" id="parallaxBreak1"/>
   <div class="section-break-caption">
     <span class="mark">every bride · every story</span>
     "The difference between a good look and one a girl keeps<br/>talking about is almost always in the finish."
@@ -2948,7 +2992,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   <div class="about">
     <div class="about-visual reveal">
       <div class="about-image">
-        <img src="images/gurbina-portrait.jpg" alt="Portrait of Gurbina" loading="lazy" decoding="async" />
+        <img src="images/gurbina-portrait.webp" alt="Portrait of Gurbina" loading="lazy" decoding="async" />
       </div>
       <div class="about-frame"></div>
       <div class="about-sparkle">✦</div>
@@ -2957,7 +3001,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
     <div class="about-text reveal">
       <span class="eyebrow">The Girl Behind the Braids</span>
-      <h2 class="section-title" style="margin-top: 18px;">Seven years of <span class="it">braids,</span> curls, and beautiful <span class="it">brides.</span></h2>
+      <h2 class="section-title" style="margin-top: 18px;">Eight years of <span class="it">braids,</span> curls, and beautiful <span class="it">brides.</span></h2>
       <p style="margin-top: 32px;">
         I trained formally in India, spent four years in a full-service salon outside Delhi where I learned the discipline — 25-client weeks, every bride's family watching over my shoulder, every strand counted — and relocated to Canada in 2020.
       </p>
@@ -3204,7 +3248,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   </div>
 
   <div class="quotes reveal-stagger">
-    <div class="quote" data-name="Simran K." data-role="Bride · Surrey · 2025" data-bg="images/02-pearl-floral-bridal.jpg">
+    <div class="quote" data-name="Simran K." data-role="Bride · Surrey · 2025" data-bg="images/02-pearl-floral-bridal.webp">
       <div class="quote-mark">❝</div>
       <p>She built a rose bun into my hair with real bougainvillea and baby's breath and it held for twelve hours through the pheras, the pictures, and the first dance. Unreal.</p>
       <div class="quote-author">
@@ -3215,7 +3259,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         </div>
       </div>
     </div>
-    <div class="quote" data-name="Jasleen P." data-role="Bride · Burnaby · 2025" data-bg="images/06-red-roses-crown.jpg">
+    <div class="quote" data-name="Jasleen P." data-role="Bride · Burnaby · 2025" data-bg="images/06-red-roses-crown.webp">
       <div class="quote-mark">❝</div>
       <p>I booked Gurbina for my mehndi and loved it so much I moved my entire reception styling to her the next week. Calm hands, beautiful finish, on time every time.</p>
       <div class="quote-author">
@@ -3226,7 +3270,7 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
         </div>
       </div>
     </div>
-    <div class="quote" data-name="Mehak L." data-role="Bride's sister · Vancouver · 2025" data-bg="images/04-pink-floral-braids.jpg">
+    <div class="quote" data-name="Mehak L." data-role="Bride's sister · Vancouver · 2025" data-bg="images/04-pink-floral-braids.webp">
       <div class="quote-mark">❝</div>
       <p>The waterfall braid she did for my sister's sangeet was on Instagram by the end of the night. Three of my cousins booked her after seeing that one photo.</p>
       <div class="quote-author">
@@ -3250,14 +3294,14 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
   </div>
 
   <div class="ig-grid reveal-stagger">
-    <a class="ig-tile" data-hover><img src="images/01-waterfall-braid-brunette.jpg" alt="" loading="lazy" decoding="async" /></a>
-    <a class="ig-tile" data-hover><img src="images/04-pink-floral-braids.jpg" alt="" loading="lazy" decoding="async" /></a>
-    <a class="ig-tile" data-hover><img src="images/06-red-roses-crown.jpg" alt="" loading="lazy" decoding="async" /></a>
-    <a class="ig-tile" data-hover><img src="images/08-cascade-curls-ringlets.jpg" alt="" loading="lazy" decoding="async" /></a>
-    <a class="ig-tile" data-hover><img src="images/02-pearl-floral-bridal.jpg" alt="" loading="lazy" decoding="async" /></a>
-    <a class="ig-tile" data-hover><img src="images/03-butterfly-braid-mehndi.jpg" alt="" loading="lazy" decoding="async" /></a>
-    <a class="ig-tile" data-hover><img src="images/07-balayage-crystal-vine.jpg" alt="" loading="lazy" decoding="async" /></a>
-    <a class="ig-tile" data-hover><img src="images/05-rose-bun-babybreath.jpg" alt="" loading="lazy" decoding="async" /></a>
+    <a class="ig-tile" data-hover><img src="images/01-waterfall-braid-brunette.webp" alt="" loading="lazy" decoding="async" /></a>
+    <a class="ig-tile" data-hover><img src="images/04-pink-floral-braids.webp" alt="" loading="lazy" decoding="async" /></a>
+    <a class="ig-tile" data-hover><img src="images/06-red-roses-crown.webp" alt="" loading="lazy" decoding="async" /></a>
+    <a class="ig-tile" data-hover><img src="images/08-cascade-curls-ringlets.webp" alt="" loading="lazy" decoding="async" /></a>
+    <a class="ig-tile" data-hover><img src="images/02-pearl-floral-bridal.webp" alt="" loading="lazy" decoding="async" /></a>
+    <a class="ig-tile" data-hover><img src="images/03-butterfly-braid-mehndi.webp" alt="" loading="lazy" decoding="async" /></a>
+    <a class="ig-tile" data-hover><img src="images/07-balayage-crystal-vine.webp" alt="" loading="lazy" decoding="async" /></a>
+    <a class="ig-tile" data-hover><img src="images/05-rose-bun-babybreath.webp" alt="" loading="lazy" decoding="async" /></a>
   </div>
 </section>
 
@@ -3298,11 +3342,11 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
 
 <div class="wrap">
 <footer>
-  <div>© 2026 <em style="font-family: var(--editorial); font-style: italic;">Gurbina</em> · Bridal Hairstylist</div>
+  <div>© 2026 <em style="font-family: var(--editorial); font-style: italic;">Gurbina</em> · Senior and Licensed Hairstylist</div>
   <div class="socials">
-    <a href="#" data-hover>Instagram</a>
-    <a href="#" data-hover>Email</a>
-    <a href="#" data-hover>LinkedIn</a>
+    <a href="https://www.instagram.com/stylendglow?igsh=MWswZDBpZDlxdjZ1bg%3D%3D&utm_source=qr" target="_blank" rel="noopener" data-hover>Instagram</a>
+    <a href="mailto:makeoversgurbina@gmail.com" data-hover>Email</a>
+    <a href="https://wa.me/17789993179?text=Hi%20Gurbina!" target="_blank" rel="noopener" data-hover>WhatsApp</a>
   </div>
   <div class="credit">designed with love ✿</div>
 </footer>
@@ -3410,10 +3454,11 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     if (sy > 40) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
 
-    // Floating book button (mobile only) — always visible, hide at contact section
+    // Floating book button (mobile only) — appears after scrolling past hero, hides at contact
     if (isMobile && floatingBook) {
       const atContact = contact && contact.getBoundingClientRect().top < window.innerHeight;
-      floatingBook.classList.toggle('visible', !atContact);
+      const pastHero = sy > window.innerHeight * 0.75;
+      floatingBook.classList.toggle('visible', pastHero && !atContact);
     }
 
     // Parallax section break (mobile only, skip if reduced motion)
@@ -3579,6 +3624,11 @@ footer .credit { font-family: var(--editorial); font-style: italic; color: var(-
     el.classList.add('visible');
     io.unobserve(el);
   });
+
+  // Safety net — force-reveal everything after a moment so content can never stay hidden
+  setTimeout(() => {
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => el.classList.add('visible'));
+  }, 2500);
 
   /* ---------- Sparkle cursor trail (desktop only) ---------- */
   if (isDesktop && !reducedMotion) {
