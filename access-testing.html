@@ -6,481 +6,521 @@
 <title>Accessibility Testing — Live Presentation</title>
 <style>
   :root{
-    --ink:#16181D; --ink2:#0E1014; --card:#20232B; --line:#2C2F38;
-    --amber:#F5A623; --amber2:#FFB020; --paper:#EDEDF0; --white:#FFFFFF;
-    --mute:#9CA0AA; --mute2:#6E727C; --blue:#6E93FF; --ghost:#26221A;
-    --focus:#1A56DB; --flag:#E5484D; --ok:#2E9E5B; --bad:#C4C4CB; --good:#15171C;
-    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+    --bg:#0F1115; --panel:#171A20; --card:#1A1E25; --line:#262B33;
+    --amber:#E3A43A; --amber-soft:rgba(227,164,58,.13);
+    --white:#fff; --body:#C8CCD2; --mute:#7E848E; --ghost:#1A1D24;
+    --red:#F0816B; --green:#5FBF7E; --blue:#7E97FF;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Courier New",monospace;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;height:100%;background:var(--ink);overflow:hidden;}
-  body{font-family:var(--sans);}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--white);font-family:var(--sans);overflow:hidden}
+  .deck{position:fixed;inset:0}
+  .slide{position:absolute;inset:0;padding:5vh 5vw;display:none;flex-direction:column;justify-content:center;opacity:0;transition:opacity .35s ease}
+  .slide.active{display:flex;opacity:1}
+  .eyebrow{font-family:var(--mono);font-size:clamp(11px,1.05vw,15px);letter-spacing:.22em;color:var(--amber);text-transform:uppercase}
+  .ghost{position:absolute;right:-2vw;top:50%;transform:translateY(-50%);font-weight:900;font-size:62vh;line-height:.8;color:var(--ghost);z-index:0;pointer-events:none;user-select:none;letter-spacing:-.03em}
+  .z{position:relative;z-index:1}
 
-  .stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;background:var(--ink);
-         transform:translate(-50%,-50%);transform-origin:center;overflow:hidden;}
+  /* title + closing */
+  .hero-title{font-weight:900;font-size:clamp(48px,8vw,120px);line-height:.95;letter-spacing:-.02em;margin-top:.35em}
+  .hero-title .am{color:var(--amber)}
+  .hero-sub{font-size:clamp(18px,2.1vw,28px);color:var(--body);margin-top:.7em}
+  .credits{position:absolute;left:5vw;bottom:7vh}
+  .credits .names{font-size:clamp(16px,1.8vw,24px);color:#AEB4BD}
+  .credits .course{font-family:var(--mono);font-size:clamp(10px,1vw,14px);letter-spacing:.16em;color:var(--mute);margin-top:.5em;text-transform:uppercase}
 
-  .slide{position:absolute;inset:0;display:none;flex-direction:column;padding:58px 64px;color:var(--white);}
-  .slide.active{display:flex;}
+  /* content head */
+  .head{display:flex;justify-content:space-between;align-items:flex-start;gap:2vw}
+  .h-title{font-weight:800;font-size:clamp(30px,5vw,68px);line-height:1.02;margin-top:.18em;letter-spacing:-.01em}
+  .h-sub{font-size:clamp(14px,1.5vw,21px);color:var(--body);margin-top:.7em;max-width:60ch}
+  .num{flex:0 0 auto;width:clamp(56px,7vw,104px);height:clamp(56px,7vw,104px);border:2.5px solid var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:clamp(26px,3.4vw,44px);color:var(--amber)}
 
-  .eyebrow{font-family:var(--mono);font-size:16px;letter-spacing:2px;color:var(--amber);}
-  .h1{font-family:var(--sans);font-weight:800;color:var(--white);font-size:46px;letter-spacing:-.5px;line-height:1.05;}
-  .ring{position:absolute;right:64px;top:50px;width:90px;height:90px;border:3px solid var(--amber);border-radius:50%;
-        display:grid;place-items:center;font-weight:800;color:var(--amber);font-size:46px;}
-  .ghost{position:absolute;right:-30px;top:50%;transform:translateY(-50%);font-weight:800;color:var(--ghost);
-         font-size:560px;line-height:1;letter-spacing:-20px;pointer-events:none;user-select:none;}
+  /* test slide */
+  .cols{display:grid;grid-template-columns:1.35fr .9fr;gap:4vw;margin-top:5vh;align-items:start}
+  .rows{display:flex;flex-direction:column;gap:3.2vh}
+  .row{display:grid;grid-template-columns:auto 1fr;gap:1.3vw;align-items:start}
+  .ic{width:clamp(44px,3.4vw,62px);height:clamp(44px,3.4vw,62px);border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .ic svg{width:52%;height:52%;fill:#141414}
+  .row h3{font-weight:800;font-size:clamp(18px,1.9vw,26px)}
+  .row p{font-size:clamp(13px,1.35vw,18px);color:var(--body);margin-top:.35em;line-height:1.45}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(20px,2.2vw,34px)}
+  .stat .big{font-weight:900;font-size:clamp(46px,5.2vw,74px);line-height:1}
+  .stat .big .am{color:var(--amber)} .stat .big .mid{font-size:.55em;color:var(--white)}
+  .stat .cap{font-size:clamp(15px,1.5vw,20px);color:var(--body);margin-top:.5em}
+  .stat .src{font-family:var(--mono);font-size:clamp(10px,1vw,13px);color:var(--mute);margin-top:.7em}
+  .teaser{margin-top:2.4vh;background:rgba(126,151,255,.07);border:1px solid rgba(126,151,255,.22);border-radius:14px;padding:clamp(14px,1.5vw,20px)}
+  .teaser .lbl{font-family:var(--mono);font-size:clamp(11px,1vw,14px);letter-spacing:.16em;color:var(--blue);text-transform:uppercase;display:flex;align-items:center;gap:.6em}
+  .teaser .lbl::before{content:"";width:.6em;height:.6em;border-radius:50%;background:var(--blue)}
+  .teaser p{color:var(--body);font-size:clamp(13px,1.3vw,17px);margin-top:.5em}
 
-  /* ---- title ---- */
-  #s0 .lockup{font-weight:800;font-size:84px;line-height:.98;letter-spacing:-1px;margin-top:120px;}
-  #s0 .lockup .a{color:var(--amber);}
-  #s0 .tag{font-size:25px;color:var(--paper);margin-top:34px;}
-  #s0 .names{font-size:20px;color:var(--mute);margin-top:auto;}
-  #s0 .foot{font-family:var(--mono);font-size:14px;letter-spacing:1.5px;color:var(--mute2);margin-top:14px;}
+  /* tools slide */
+  .tcols{display:grid;grid-template-columns:1.1fr .9fr;gap:4vw;margin-top:4vh;align-items:start}
+  .tcards{display:flex;flex-direction:column;gap:2.2vh}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,1.7vw,26px)}
+  .tcard h3{font-weight:800;font-size:clamp(17px,1.8vw,24px)}
+  .tcard p{color:var(--body);font-size:clamp(13px,1.3vw,17px);margin-top:.35em}
+  .tcard .u{font-family:var(--mono);color:var(--amber);font-size:clamp(12px,1.2vw,16px);margin-top:.6em}
+  .tright .chk{width:clamp(48px,4vw,72px);height:clamp(48px,4vw,72px)}
+  .tright .chk svg{width:100%;height:100%;fill:var(--amber)}
+  .tright .big{font-weight:800;font-size:clamp(28px,3.6vw,52px);line-height:1.02;color:var(--amber);margin-top:.5em;letter-spacing:-.01em}
+  .tright .note{font-family:var(--mono);font-size:clamp(11px,1.05vw,14px);color:var(--mute);margin-top:2.2vh;line-height:1.5}
 
-  .head{margin-bottom:6px;}
-  .head .eyebrow{display:block;margin-bottom:10px;}
-  .lead{font-size:18px;color:var(--paper);margin-top:10px;max-width:1000px;}
+  /* maintain grid */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:1.6vw;margin-top:4vh;flex:1;max-height:62vh}
+  .gcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,1.6vw,26px);display:flex;flex-direction:column;gap:1.2vh}
+  .gnum{width:clamp(40px,3vw,54px);height:clamp(40px,3vw,54px);border-radius:50%;background:var(--amber);color:#141414;font-weight:800;font-size:clamp(20px,2vw,26px);display:flex;align-items:center;justify-content:center}
+  .gcard p{font-size:clamp(14px,1.45vw,19px);color:var(--white);line-height:1.35}
 
-  /* ---- test rows ---- */
-  .rows{display:flex;flex-direction:column;gap:30px;margin-top:34px;}
-  .colsplit{display:grid;grid-template-columns:1fr 380px;gap:40px;flex:1;}
-  .row{display:flex;gap:20px;align-items:flex-start;}
-  .dot{flex:none;width:52px;height:52px;border-radius:50%;background:var(--amber);display:grid;place-items:center;}
-  .dot svg{width:26px;height:26px;}
-  .row h3{margin:0;font-size:23px;color:var(--white);font-weight:700;}
-  .row p{margin:6px 0 0;font-size:18px;color:var(--paper);line-height:1.35;}
+  /* ===== LIVE DEMO ===== */
+  .demo{padding:4.5vh 4vw}
+  .live-head{display:flex;align-items:center;gap:1.2vw}
+  .live-badge{font-family:var(--mono);font-size:clamp(11px,1.05vw,15px);letter-spacing:.2em;color:var(--amber)}
+  .live-head h2{font-weight:800;font-size:clamp(22px,3vw,40px)}
+  .live-controls{display:flex;flex-wrap:wrap;gap:.8vw;margin-top:2.6vh;align-items:center}
+  .seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}
+  .seg button{border:0;background:transparent;color:var(--body);font-family:var(--sans);font-weight:700;font-size:clamp(13px,1.2vw,16px);padding:.55em 1.3em;border-radius:999px;cursor:pointer}
+  .seg button.on{background:var(--amber);color:#141414}
+  .pill{border:1px solid var(--line);background:var(--card);color:var(--body);font-family:var(--sans);font-weight:700;font-size:clamp(13px,1.2vw,16px);padding:.6em 1.3em;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:.5em}
+  .pill .led{width:.7em;height:.7em;border-radius:50%;background:#3A4049}
+  .pill.on{border-color:var(--amber);color:var(--white)} .pill.on .led{background:var(--amber)}
+  .pill.primary{background:var(--amber);color:#141414;border-color:var(--amber);margin-left:auto}
+  .pill.primary[disabled]{opacity:.5;cursor:default}
+  .live-body{display:grid;grid-template-columns:1.4fr .85fr;gap:1.6vw;margin-top:2.8vh;align-items:start}
 
-  .panelcard{background:var(--card);border-radius:14px;padding:26px 28px;box-shadow:0 16px 40px rgba(0,0,0,.35);}
-  .stat{font-size:70px;font-weight:800;color:var(--amber);line-height:1;}
-  .stat-l{font-size:18px;color:var(--paper);margin-top:10px;}
-  .stat-s{font-family:var(--mono);font-size:13px;color:var(--mute2);margin-top:6px;}
-  .chip{background:var(--ink2);border-radius:14px;padding:22px 24px;margin-top:20px;box-shadow:0 16px 40px rgba(0,0,0,.35);}
-  .chip .k{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:14px;font-weight:700;color:var(--blue);letter-spacing:1px;}
-  .chip .k i{width:11px;height:11px;border-radius:50%;background:var(--blue);display:block;}
-  .chip p{margin:12px 0 0;font-size:17px;color:var(--paper);line-height:1.35;}
+  .browser{background:#fff;border-radius:14px;overflow:hidden;color:#1b1b1b;transition:filter .3s}
+  .browser.lowvis{filter:blur(1.4px) contrast(.72) brightness(1.04)}
+  .browser-bar{display:flex;align-items:center;gap:.6em;padding:.8em 1em;background:#ececec}
+  .browser-bar .dot{width:.7em;height:.7em;border-radius:50%;background:#cfcfcf}
+  .browser-bar .url{flex:1;background:#fff;border-radius:7px;padding:.4em .9em;font-family:var(--mono);font-size:clamp(12px,1.1vw,15px);color:#6a6a6a;margin-left:.6em}
+  .page{padding:clamp(16px,1.8vw,30px)}
+  .pnav{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding-bottom:1em}
+  .brand{display:flex;align-items:center;gap:.55em;font-weight:800;font-size:clamp(16px,1.6vw,22px)}
+  .brand .logo{width:1.5em;height:1.5em;border-radius:7px;background:#141414;color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.7em}
+  .pnav .lk{display:flex;gap:1.2em}
+  .ctl{position:relative}
+  .ctl a{color:#2f6df0;text-decoration:none;font-size:clamp(14px,1.3vw,17px);font-weight:600}
+  .ctl a:focus-visible,.ctl button:focus-visible,.ctl input:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+  .focused{outline:3px solid var(--amber)!important;outline-offset:3px;border-radius:4px}
+  .h1{font-weight:800;font-size:clamp(24px,2.6vw,38px);margin-top:.7em;color:#141414}
+  .lead{color:#666;font-size:clamp(14px,1.4vw,18px);margin-top:.4em;max-width:46ch}
+  .cta{margin-top:1.1em;border:0;border-radius:10px;padding:.8em 1.5em;font-weight:800;font-size:clamp(14px,1.35vw,18px);cursor:pointer;background:var(--amber);color:#141414}
+  .cta.ghost{background:#e4e4e4;color:#b4b4b4;cursor:default}
+  .balance{margin-top:1.4em;border:1px solid #e5e5e5;border-radius:12px;padding:clamp(14px,1.4vw,20px)}
+  .balance .bl{font-family:var(--mono);font-size:clamp(11px,1vw,13px);letter-spacing:.12em;color:#9a9a9a;text-transform:uppercase}
+  .field{display:flex;gap:.7em;margin-top:.8em;align-items:stretch}
+  .field label{position:absolute;left:-9999px}
+  .field label.show{position:static;left:auto;align-self:center;font-weight:700;color:#444;font-size:clamp(13px,1.2vw,16px);margin-right:.2em}
+  .field input{flex:1;border:1px solid #d6d6d6;border-radius:9px;padding:.75em 1em;font-size:clamp(14px,1.3vw,17px);color:#222}
+  .field .go{border:0;border-radius:9px;background:var(--amber);color:#141414;font-weight:800;width:3.2em;font-size:clamp(15px,1.4vw,19px);cursor:pointer}
+  .badge{position:absolute;top:-.6em;right:-.4em;font-family:var(--mono);font-size:11px;font-weight:700;padding:.25em .5em;border-radius:6px;white-space:nowrap;display:none;z-index:3}
+  .badge.bad{background:var(--red);color:#2a0f0a}
+  .badge.good{background:var(--green);color:#08210f}
+  .page.reveal .ctl .badge.show{display:block}
 
-  /* ---- tools ---- */
-  .toolwrap{display:grid;grid-template-columns:1fr 420px;gap:40px;flex:1;margin-top:30px;}
-  .tcards{display:flex;flex-direction:column;gap:18px;}
-  .tcard{background:var(--card);border-radius:12px;padding:18px 22px;box-shadow:0 14px 36px rgba(0,0,0,.32);}
-  .tcard h3{margin:0;font-size:21px;color:var(--white);font-weight:700;}
-  .tcard p{margin:7px 0 6px;font-size:17px;color:var(--paper);line-height:1.3;}
-  .tcard .url{font-family:var(--mono);font-size:14px;color:var(--amber);}
-  .quote{align-self:start;}
-  .quote svg{width:46px;height:46px;margin-bottom:16px;}
-  .quote .q{font-size:39px;font-weight:800;color:var(--amber);line-height:1.05;}
-  .quote .fn{font-family:var(--mono);font-size:14px;color:var(--mute2);margin-top:80px;line-height:1.4;}
+  .atv{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,1.7vw,26px);min-height:46vh}
+  .atv .t{font-weight:800;font-size:clamp(15px,1.45vw,20px);letter-spacing:.02em}
+  .atv .s{font-family:var(--mono);font-size:clamp(11px,1.05vw,14px);color:var(--mute);margin-top:.2em}
+  .atblock{margin-top:2.3vh}
+  .atlabel{font-family:var(--mono);font-size:clamp(10px,1vw,12px);letter-spacing:.16em;color:var(--mute);text-transform:uppercase}
+  .now{font-family:var(--mono);font-size:clamp(15px,1.5vw,21px);margin-top:.5em;line-height:1.3;color:var(--red);min-height:2.2em}
+  .now.read{color:var(--green)}
+  .now .dash{color:var(--mute)}
+  .reached{font-family:var(--mono);font-size:clamp(24px,2.6vw,38px);font-weight:700;margin-top:.4em}
+  .reached #reachedN{color:var(--amber)}
+  .reached.full #reachedN{color:var(--green)}
+  .resetbtn{margin-top:.7em;border:1px solid var(--line);background:transparent;color:var(--body);font-family:var(--sans);font-weight:700;border-radius:9px;padding:.5em 1.1em;cursor:pointer;font-size:clamp(12px,1.1vw,15px)}
+  .heard{list-style:none;margin-top:.6em;display:flex;flex-direction:column;gap:.35em;max-height:16vh;overflow:auto}
+  .heard li{font-family:var(--mono);font-size:clamp(12px,1.15vw,15px);color:var(--body);padding-left:.9em;position:relative}
+  .heard li::before{content:"›";position:absolute;left:0;color:var(--amber)}
+  .heard li.empty{color:var(--mute)} .heard li.empty::before{content:""}
+  .heard li.bad{color:var(--red)} .heard li.good{color:var(--green)}
 
-  /* ---- maintain grid ---- */
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px;flex:1;margin-top:26px;}
-  .gcard{background:var(--card);border-radius:12px;padding:22px;box-shadow:0 14px 36px rgba(0,0,0,.32);display:flex;flex-direction:column;gap:16px;}
-  .gnum{width:44px;height:44px;border-radius:50%;background:var(--amber);color:var(--ink);font-weight:800;font-size:20px;display:grid;place-items:center;}
-  .gcard p{margin:0;font-size:18px;color:var(--paper);line-height:1.3;}
-
-  /* ---- close ---- */
-  #s5 .kick{font-family:var(--mono);font-size:15px;letter-spacing:1.5px;color:var(--amber);margin-top:150px;}
-  #s5 .ty{font-size:88px;font-weight:800;color:var(--white);margin-top:24px;line-height:1;}
-  #s5 .sub{font-size:22px;color:var(--paper);margin-top:24px;}
-  #s5 .names{font-size:20px;color:var(--mute);margin-top:auto;}
-  #s5 .foot{font-family:var(--mono);font-size:14px;letter-spacing:1.5px;color:var(--mute2);margin-top:14px;}
-
-  /* ===================== DEMO SLIDE ===================== */
-  #sDemo{padding:34px 40px;}
-  .demohead{display:flex;align-items:baseline;gap:18px;margin-bottom:12px;}
-  .demohead .eyebrow{font-size:15px;}
-  .demohead h2{margin:0;font-size:26px;font-weight:800;color:var(--white);}
-  .democtrls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
-  .seg{display:inline-flex;background:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:4px;}
-  .seg button{font-family:var(--sans);font-size:14px;font-weight:600;border:0;border-radius:999px;padding:8px 16px;cursor:pointer;background:transparent;color:#A7ABB5;}
-  .seg button[aria-pressed="true"]{background:var(--amber);color:#16110A;}
-  .pill{font-family:var(--sans);font-size:13.5px;font-weight:600;background:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;color:#C9CDD6;display:inline-flex;align-items:center;gap:7px;}
-  .pill .d{width:9px;height:9px;border-radius:50%;background:#4A4E58;}
-  .pill[aria-pressed="true"]{color:#fff;border-color:var(--amber);}
-  .pill[aria-pressed="true"] .d{background:var(--amber);}
-  .play{font-family:var(--sans);font-size:14px;font-weight:700;background:var(--amber);color:#16110A;border:0;border-radius:999px;padding:9px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-left:auto;}
-  .play .tri{width:0;height:0;border-left:9px solid #16110A;border-top:6px solid transparent;border-bottom:6px solid transparent;}
-  .seg button:focus-visible,.pill:focus-visible,.play:focus-visible{outline:3px solid var(--white);outline-offset:2px;}
-
-  .work{flex:1;display:grid;grid-template-columns:1fr 340px;gap:18px;min-height:0;}
-  .browser{background:#1B1E25;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;}
-  .cbar{display:flex;align-items:center;gap:7px;background:#ECECEF;padding:9px 12px;}
-  .cbar i{width:10px;height:10px;border-radius:50%;background:#CFCFD4;}
-  .cbar .url{flex:1;margin-left:8px;background:#fff;border-radius:5px;padding:4px 10px;font-size:12px;color:#8A8A90;font-family:var(--mono);}
-  .site{background:#fff;flex:1;overflow:auto;}
-  .site nav{display:flex;align-items:center;gap:20px;padding:14px 22px;border-bottom:1px solid #E4E4E8;}
-  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;color:#16181D;}
-  .brand .m{width:24px;height:24px;border-radius:6px;background:var(--ink);color:var(--amber);display:grid;place-items:center;font-size:13px;}
-  .site nav .nl{margin-left:auto;display:flex;gap:18px;}
-  .site a{color:#2A4ED6;text-decoration:none;font-weight:600;font-size:15px;}
-  .site a:hover{text-decoration:underline;}
-  .hero{padding:24px 22px 16px;}
-  .hero h1{font-size:30px;line-height:1.05;letter-spacing:-.4px;margin:0 0 10px;color:var(--good);font-weight:800;}
-  .hero p{font-size:15px;line-height:1.4;margin:0 0 16px;max-width:44ch;color:#3C4250;}
-  .cta{font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer;background:var(--ink);color:#fff;border:0;border-radius:9px;padding:11px 20px;}
-  .pcard{margin:6px 22px 22px;background:#F6F6F8;border:1px solid #E4E4E8;border-radius:12px;padding:16px 20px;}
-  .pcard h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;margin:0 0 12px;color:#52586A;}
-  .frow{display:flex;gap:10px;align-items:flex-end;}
-  .field{position:relative;}
-  .field label{display:block;font-size:14px;font-weight:600;margin:0 0 6px;color:var(--good);}
-  .site input{font-family:var(--sans);font-size:15px;padding:11px 12px;border:1px solid #C7C9D1;border-radius:8px;width:230px;background:#fff;color:#15171C;}
-  .submit{font-family:var(--sans);font-size:15px;font-weight:700;cursor:pointer;background:var(--amber);color:#16110A;border:0;border-radius:8px;padding:11px 18px;min-width:50px;}
-
-  .site[data-mode="good"] a:focus,.site[data-mode="good"] button:focus,.site[data-mode="good"] input:focus,
-  .site[data-mode="good"] a:focus-visible,.site[data-mode="good"] button:focus-visible,.site[data-mode="good"] input:focus-visible{
-    outline:3px solid var(--focus);outline-offset:3px;border-radius:5px;}
-  .site[data-mode="bad"] :focus{outline:none;}
-  .site[data-mode="bad"] :focus-visible{outline:none;}
-  .site[data-mode="bad"] .hero h1{color:#A9A9B2;font-weight:300;}
-  .site[data-mode="bad"] .hero p{color:var(--bad);font-weight:300;}
-  .site[data-mode="bad"] .pcard h2{color:#B7BBC6;font-weight:400;}
-  .site[data-mode="bad"] .field label{color:#BFC2CC;font-weight:400;}
-  .site[data-mode="bad"] a{color:#9aa6d6;font-weight:400;}
-  .site[data-mode="bad"] .cta{background:#EDEDF0;color:#BcBcC4;}
-  .site.lowvision{filter:blur(1.1px) contrast(.7) brightness(1.05);}
-
-  .flag{position:absolute;z-index:6;left:0;top:-10px;transform:translateY(-100%);font-family:var(--sans);font-size:11px;font-weight:600;line-height:1.3;background:var(--flag);color:#fff;padding:5px 9px;border-radius:7px;max-width:240px;box-shadow:0 6px 16px rgba(0,0,0,.25);display:none;}
-  .flag.ok{background:var(--ok);}
-  .flag::after{content:"";position:absolute;left:16px;bottom:-5px;width:9px;height:9px;background:inherit;transform:rotate(45deg);}
-  .site.reveal .flag{display:block;}
-  .flag.inline{position:static;transform:none;display:none;margin-left:7px;padding:2px 7px;box-shadow:none;vertical-align:middle;}
-  .flag.inline::after{display:none;}
-  .site.reveal .flag.inline{display:inline-block;}
-  .flagwrap{position:relative;display:inline-block;}
-  .flagwrap.block{display:block;max-width:44ch;}
-
-  .at{background:var(--ink2);border-radius:10px;display:flex;flex-direction:column;min-height:0;overflow:hidden;}
-  .at-h{padding:14px 16px;border-bottom:1px solid #1C1E24;}
-  .at-h h2{margin:0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#6E727C;font-weight:700;}
-  .at-h .sub{font-size:12px;color:#52555E;margin-top:4px;font-family:var(--mono);}
-  .now{padding:14px 16px;border-bottom:1px solid #1C1E24;}
-  .now .l{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#6E727C;margin-bottom:7px;}
-  .now .role{font-family:var(--mono);font-size:12px;color:var(--amber);}
-  .now .name{font-family:var(--mono);font-size:22px;color:var(--amber2);line-height:1.15;margin-top:3px;word-break:break-word;text-shadow:0 0 12px rgba(255,176,32,.25);}
-  .now .name.empty{color:var(--flag);text-shadow:none;}
-  .cnt{padding:13px 16px;border-bottom:1px solid #1C1E24;display:flex;align-items:center;justify-content:space-between;gap:8px;}
-  .cnt .l{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#6E727C;margin-bottom:5px;}
-  .cnt .big{font-family:var(--mono);font-size:24px;color:#fff;}
-  .cnt .big b{color:var(--amber);}
-  .cnt .note{font-size:10px;color:#6E727C;font-family:var(--mono);margin-top:3px;}
-  .cnt .reset{font-family:var(--sans);font-size:12px;font-weight:600;background:#15171C;border:1px solid #2E313A;color:#B7BBC6;border-radius:6px;padding:6px 10px;cursor:pointer;}
-  .log{flex:1;overflow:auto;padding:12px 16px;min-height:0;}
-  .log .l{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#6E727C;margin-bottom:8px;}
-  .log ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
-  .log li{font-family:var(--mono);font-size:12px;color:#C9CDD6;border-left:2px solid var(--amber);padding:2px 0 2px 9px;}
-  .log li.empty{color:var(--flag);border-left-color:var(--flag);}
-  .log .ph{font-family:var(--mono);font-size:12px;color:#4A4E58;}
-
-  /* ---- HUD ---- */
-  .hud{position:fixed;right:18px;bottom:16px;display:flex;align-items:center;gap:8px;z-index:50;font-family:var(--sans);}
-  .hud button{background:rgba(20,22,28,.9);border:1px solid #34373F;color:#C9CDD6;border-radius:8px;width:38px;height:34px;font-size:16px;cursor:pointer;display:grid;place-items:center;}
-  .hud .count{font-family:var(--mono);font-size:13px;color:var(--mute);padding:0 6px;min-width:54px;text-align:center;}
-  .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:50;font-family:var(--mono);font-size:13px;color:var(--mute2);background:rgba(14,16,20,.85);border:1px solid #2C2F38;border-radius:999px;padding:8px 16px;transition:opacity .6s;}
-  .hint.hide{opacity:0;pointer-events:none;}
-
-  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+  /* nav bar */
+  .nav{position:fixed;right:2.2vw;bottom:2.4vh;display:flex;align-items:center;gap:.7em;z-index:50}
+  .nav button{width:2.6em;height:2.6em;border:1px solid var(--line);background:rgba(26,30,37,.6);color:var(--white);border-radius:11px;font-size:1em;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .nav .count{font-family:var(--mono);font-size:.95em;color:var(--mute);padding:0 .4em}
+  .hint{position:fixed;left:2.2vw;bottom:2.4vh;font-family:var(--mono);font-size:11px;color:#4a4f57;z-index:50}
+  @media(max-width:860px){
+    .cols,.tcols,.live-body{grid-template-columns:1fr}
+    .grid{grid-template-columns:repeat(2,1fr);max-height:none}
+    .ghost{font-size:40vh}
+  }
 </style>
 </head>
 <body>
-<div class="stage" id="stage">
+<div class="deck" id="deck">
 
-  <!-- 0 TITLE -->
-  <section class="slide" id="s0">
+  <!-- 1 TITLE -->
+  <section class="slide active">
     <div class="ghost">56</div>
-    <div class="eyebrow">ACCESS ABILITY 2  ·  TOPIC 56  ·  DGM 6168</div>
-    <div class="lockup">ACCESSIBILITY<br><span class="a">TESTING</span></div>
-    <div class="tag">Finding the barriers before our users do.</div>
-    <div class="names">Harsh Kumar&nbsp;&nbsp;·&nbsp;&nbsp;Riley Lyles&nbsp;&nbsp;·&nbsp;&nbsp;Martín Vélez</div>
-    <div class="foot">DGM 6168  ·  USABILITY &amp; HUMAN INTERACTION</div>
+    <div class="z">
+      <div class="eyebrow">Access Ability 2&nbsp;&nbsp;·&nbsp;&nbsp;Topic 56&nbsp;&nbsp;·&nbsp;&nbsp;DGM 6168</div>
+      <h1 class="hero-title">ACCESSIBILITY<br><span class="am">TESTING</span></h1>
+      <p class="hero-sub">Finding the barriers before our users do.</p>
+    </div>
+    <div class="credits">
+      <div class="names">Harsh Kumar&nbsp;&nbsp;·&nbsp;&nbsp;Riley Lyles&nbsp;&nbsp;·&nbsp;&nbsp;Martín Vélez</div>
+      <div class="course">DGM 6168&nbsp;&nbsp;·&nbsp;&nbsp;Usability &amp; Human Interaction</div>
+    </div>
   </section>
 
-  <!-- 1 HOW WE TEST -->
-  <section class="slide" id="s1">
-    <div class="ring">1</div>
-    <div class="head">
-      <span class="eyebrow">HOW WE TEST   ·   ACCESS ABILITY 2 · p.56</span>
-      <div class="h1">How do we test accessibility?</div>
+  <!-- 2 HOW WE TEST -->
+  <section class="slide">
+    <div class="head z">
+      <div>
+        <div class="eyebrow">How we test&nbsp;&nbsp;·&nbsp;&nbsp;Access Ability 2&nbsp;&nbsp;·&nbsp;&nbsp;p.56</div>
+        <h2 class="h-title">How do we test accessibility?</h2>
+      </div>
+      <div class="num">1</div>
     </div>
-    <div class="colsplit">
+    <div class="cols z">
       <div class="rows">
         <div class="row">
-          <span class="dot"><svg viewBox="0 0 24 24" fill="#16181D"><circle cx="8.5" cy="8" r="3.2"/><path d="M2.5 19c0-3.3 2.7-5.2 6-5.2s6 1.9 6 5.2z"/><circle cx="17.2" cy="8.7" r="2.5"/><path d="M15.6 14.1c2.5.25 5.4 1.6 5.4 4.9h-3.6"/></svg></span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
           <div><h3>Test early and often, with diverse users</h3><p>Real people with disabilities, on their own tech and settings. Nothing else reveals the real barriers.</p></div>
         </div>
         <div class="row">
-          <span class="dot"><svg viewBox="0 0 24 24" fill="#16181D"><path d="M12 3l9 4.8-9 4.8-9-4.8z"/><path d="M3 12.2l9 4.8 9-4.8" fill="none" stroke="#16181D" stroke-width="2"/><path d="M3 16.6l9 4.8 9-4.8" fill="none" stroke="#16181D" stroke-width="2"/></svg></span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 1 8l11 6 9-4.91V17h2V8L12 2zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg></div>
           <div><h3>Test the pieces, apart and together</h3><p>Switch off images, scripts, and CSS one at a time to confirm each layer stays usable on its own.</p></div>
         </div>
         <div class="row">
-          <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2"><path d="M2 12s4-6.5 10-6.5S22 12 22 12s-4 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6" fill="#16181D" stroke="none"/></svg></span>
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5C21.27 7.61 17 4.5 12 4.5zM12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></div>
           <div><h3>See it the way your users do</h3><p>Run screen readers and low-vision simulators to experience the design, not just inspect it.</p></div>
         </div>
       </div>
       <div>
-        <div class="panelcard">
-          <div class="stat">1 in 6</div>
-          <div class="stat-l">people live with a disability</div>
-          <div class="stat-s">Source: WHO, 2025</div>
+        <div class="stat">
+          <div class="big"><span class="am">1</span><span class="mid"> in </span><span class="am">6</span></div>
+          <div class="cap">people live with a disability</div>
+          <div class="src">Source: WHO, 2023</div>
         </div>
-        <div class="chip">
-          <div class="k"><i></i>LIVE DEMO — NEXT SLIDE</div>
+        <div class="teaser">
+          <div class="lbl">Live demo — next slide</div>
           <p>We Tab through a real page on screen, then flip it from broken to accessible.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 2 LIVE DEMO -->
-  <section class="slide" id="sDemo">
-    <div class="demohead">
-      <span class="eyebrow">LIVE</span>
-      <h2>Testing a real page with the keyboard</h2>
-    </div>
-    <div class="democtrls">
-      <div class="seg" role="group" aria-label="Page version">
-        <button id="modeBad" aria-pressed="true">Inaccessible</button>
-        <button id="modeGood" aria-pressed="false">Accessible</button>
+  <!-- 3 LIVE DEMO -->
+  <section class="slide demo">
+    <div class="live-head"><span class="live-badge">LIVE</span><h2>Testing a real page with the keyboard</h2></div>
+    <div class="live-controls">
+      <div class="seg" id="seg">
+        <button data-mode="inaccessible" class="on">Inaccessible</button>
+        <button data-mode="accessible">Accessible</button>
       </div>
-      <button class="pill" id="reveal" aria-pressed="false"><span class="d"></span>Reveal the issues</button>
-      <button class="pill" id="voice" aria-pressed="false"><span class="d"></span>Voice</button>
-      <button class="pill" id="lowvis" aria-pressed="false"><span class="d"></span>Low vision</button>
-      <button class="play" id="playBtn"><span class="tri"></span>Play the walk</button>
+      <button class="pill" id="btnReveal"><span class="led"></span>Reveal the issues</button>
+      <button class="pill" id="btnVoice"><span class="led"></span>Voice</button>
+      <button class="pill" id="btnLowVis"><span class="led"></span>Low vision</button>
+      <button class="pill primary" id="btnPlay">▶&nbsp; Play the walk</button>
     </div>
 
-    <div class="work">
-      <div class="browser">
-        <div class="cbar"><i></i><i></i><i></i><span class="url">transitcard.example</span></div>
-        <div class="site" id="site" data-mode="bad">
-          <nav>
-            <span class="brand"><span class="m">T</span>TransitCard</span>
-            <span class="nl">
-              <a href="#" class="track" id="lnkFares" data-good="Fares &amp; passes" data-bad="here" data-good-flag="Descriptive link text" data-bad-flag="Vague link — &lsquo;here&rsquo; says nothing">here</a><span class="flag inline" data-for="lnkFares"></span>
-              <a href="#" class="track" id="lnkHelp" data-good="Get help" data-bad="click here" data-good-flag="Descriptive link text" data-bad-flag="Vague link — &lsquo;click here&rsquo;">click here</a><span class="flag inline" data-for="lnkHelp"></span>
-            </span>
-          </nav>
-          <div class="hero">
-            <h1>Reload your card in seconds.</h1>
-            <div class="flagwrap block"><p id="heroSub" data-good-flag="Contrast passes (≥4.5:1)" data-bad-flag="Text contrast ~1.9:1 — fails WCAG 1.4.3">Top up your balance, check your trip history, and manage passes from any device.</p><span class="flag" data-for="heroSub"></span></div>
-            <span class="flagwrap"><button class="cta track" id="heroCta" data-good-flag="Keyboard-reachable, visible focus" data-bad-flag="tabindex=-1: keyboard can&rsquo;t reach it + no focus ring">Reload your card</button><span class="flag" data-for="heroCta"></span></span>
+    <div class="live-body">
+      <div class="browser" id="mock">
+        <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><div class="url">transitcard.example</div></div>
+        <div class="page" id="page">
+          <div class="pnav">
+            <div class="brand"><span class="logo">T</span>TransitCard</div>
+            <div class="lk">
+              <span class="ctl"><a href="#" id="lk1">here</a><span class="badge bad">2.4.4 Link Purpose</span><span class="badge good">Pass</span></span>
+              <span class="ctl"><a href="#" id="lk2">click here</a><span class="badge bad">2.4.4 Link Purpose</span><span class="badge good">Pass</span></span>
+            </div>
           </div>
-          <div class="pcard">
-            <h2>Quick balance check</h2>
-            <div class="frow">
-              <div class="field">
-                <label for="email" id="emailLabel">Email address</label>
-                <input type="email" id="email" class="track" placeholder="Email" data-good-flag="Has a text label" data-bad-flag="No label — announced with no name">
-                <span class="flag" data-for="email"></span>
-              </div>
-              <div class="field">
-                <button type="submit" class="submit track" id="submitBtn" data-good="Check balance" data-bad="&rarr;" data-good-flag="Clear, named button" data-bad-flag="Icon-only — no accessible name">&rarr;</button>
-                <span class="flag" data-for="submitBtn"></span>
-              </div>
+          <div class="h1">Reload your card in seconds.</div>
+          <p class="lead">Top up your balance, check your trip history, and manage passes from any device.</p>
+          <span class="ctl" style="display:inline-block">
+            <button class="cta ghost" id="cta" tabindex="-1">Reload your card</button>
+            <span class="badge bad">1.4.3 Contrast · not focusable</span><span class="badge good">Pass</span>
+          </span>
+          <div class="balance">
+            <div class="bl">Quick balance check</div>
+            <div class="field">
+              <label id="emLabel" for="email">Email address</label>
+              <span class="ctl" style="flex:1"><input id="email" type="email" placeholder="Email"><span class="badge bad" style="right:auto;left:0">3.3.2 No label</span><span class="badge good" style="right:auto;left:0">Pass</span></span>
+              <span class="ctl"><button class="go" id="go">→</button><span class="badge bad">1.1.1 No name</span><span class="badge good">Pass</span></span>
             </div>
           </div>
         </div>
       </div>
 
-      <aside class="at" aria-label="Assistive technology view">
-        <div class="at-h"><h2>Assistive tech view</h2><div class="sub">what a screen reader announces</div></div>
-        <div class="now" id="nowBox">
-          <div class="l">Now reading</div>
-          <div class="role" id="nowRole">—</div>
-          <div class="name empty" id="nowName">press Play, or Tab the page…</div>
+      <aside class="atv">
+        <div class="t">Assistive tech view</div>
+        <div class="s">what a screen reader announces</div>
+        <div class="atblock">
+          <div class="atlabel">Now reading</div>
+          <div class="now" id="now"><span class="dash">—</span><br>press Play, or Tab the page…</div>
         </div>
-        <div class="cnt">
-          <div><div class="l">Keyboard reached</div><div class="big"><b id="reached">0</b> of 5</div><div class="note" id="reNote"></div></div>
-          <button class="reset" id="resetBtn">Reset</button>
+        <div class="atblock">
+          <div class="atlabel">Keyboard reached</div>
+          <div class="reached" id="reached"><span id="reachedN">0</span> of <span id="reachedTotal">5</span></div>
+          <button class="resetbtn" id="btnReset">Reset</button>
         </div>
-        <div class="log"><div class="l">Heard so far</div><ol id="logList"><li class="ph">nothing yet</li></ol></div>
+        <div class="atblock">
+          <div class="atlabel">Heard so far</div>
+          <ul class="heard" id="heard"><li class="empty">nothing yet</li></ul>
+        </div>
       </aside>
     </div>
   </section>
 
-  <!-- 3 TOOLS -->
-  <section class="slide" id="s3">
-    <div class="ring">2</div>
-    <div class="head">
-      <span class="eyebrow">WHAT TOOLS   ·   ACCESS ABILITY 2 · p.58</span>
-      <div class="h1">What tools can we use?</div>
+  <!-- 4 TOOLS -->
+  <section class="slide">
+    <div class="head z">
+      <div>
+        <div class="eyebrow">What tools&nbsp;&nbsp;·&nbsp;&nbsp;Access Ability 2&nbsp;&nbsp;·&nbsp;&nbsp;p.58</div>
+        <h2 class="h-title">What tools can we use?</h2>
+      </div>
+      <div class="num">2</div>
     </div>
-    <div class="toolwrap">
+    <div class="tcols z">
       <div class="tcards">
-        <div class="tcard"><h3>Code validators</h3><p>Check that your HTML and CSS are valid and standards-compliant.</p><span class="url">validator.w3.org</span></div>
-        <div class="tcard"><h3>Colour Contrast Analyser</h3><p>Measures contrast against WCAG, with a built-in colour-blindness simulator.</p><span class="url">tpgi.com</span></div>
-        <div class="tcard"><h3>WAVE</h3><p>Flags many compliance issues right on the live page, in the browser.</p><span class="url">wave.webaim.org</span></div>
+        <div class="tcard"><h3>Code validators</h3><p>Check that your HTML and CSS are valid and standards-compliant.</p><div class="u">validator.w3.org</div></div>
+        <div class="tcard"><h3>Colour Contrast Analyser</h3><p>Measures contrast against WCAG, with a built-in colour-blindness simulator.</p><div class="u">tpgi.com</div></div>
+        <div class="tcard"><h3>WAVE</h3><p>Flags many compliance issues right on the live page, in the browser.</p><div class="u">wave.webaim.org</div></div>
       </div>
-      <div class="quote">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="2.4"><circle cx="9" cy="8" r="3.4"/><path d="M3 19c0-3.4 2.7-5.3 6-5.3 1.2 0 2.3.3 3.2.9"/><path d="M14.5 13.5l2.2 2.2 4-4.3"/></svg>
-        <div class="q">No tool replaces testing with real humans.</div>
-        <div class="fn">Checked against WCAG 2.2, the current standard (W3C 2023, ISO 2025).</div>
+      <div class="tright">
+        <div class="chk"><svg viewBox="0 0 24 24"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+        <div class="big">No tool replaces testing with real humans.</div>
+        <div class="note">Checked against WCAG 2.2, the current standard<br>(W3C 2023, now ISO/IEC 40500:2025).</div>
       </div>
     </div>
   </section>
 
-  <!-- 4 MAINTAIN -->
-  <section class="slide" id="s4">
-    <div class="ring">3</div>
-    <div class="head">
-      <span class="eyebrow">HOW WE MAINTAIN IT   ·   ACCESS ABILITY 2 · p.59</span>
-      <div class="h1">How do we keep it accessible?</div>
-      <div class="lead">Accessibility fades if you stop. Make upkeep part of the process, not an afterthought.</div>
+  <!-- 5 MAINTAIN -->
+  <section class="slide">
+    <div class="head z">
+      <div>
+        <div class="eyebrow">How we maintain it&nbsp;&nbsp;·&nbsp;&nbsp;Access Ability 2&nbsp;&nbsp;·&nbsp;&nbsp;p.59</div>
+        <h2 class="h-title">How do we keep it accessible?</h2>
+        <p class="h-sub">Accessibility fades if you stop. Make upkeep part of the process, not an afterthought.</p>
+      </div>
+      <div class="num">3</div>
     </div>
-    <div class="grid">
-      <div class="gcard"><span class="gnum">1</span><p>Talk about accessibility with stakeholders, from the start</p></div>
-      <div class="gcard"><span class="gnum">2</span><p>Choose dev tools and frameworks that support it</p></div>
-      <div class="gcard"><span class="gnum">3</span><p>Write a style guide that puts accessibility first</p></div>
-      <div class="gcard"><span class="gnum">4</span><p>Auto-update navigation as the site grows</p></div>
-      <div class="gcard"><span class="gnum">5</span><p>Give users an easy way to report issues</p></div>
-      <div class="gcard"><span class="gnum">6</span><p>Keep testing, always with real users</p></div>
+    <div class="grid z">
+      <div class="gcard"><div class="gnum">1</div><p>Talk about accessibility with stakeholders, from the start</p></div>
+      <div class="gcard"><div class="gnum">2</div><p>Choose dev tools and frameworks that support it</p></div>
+      <div class="gcard"><div class="gnum">3</div><p>Write a style guide that puts accessibility first</p></div>
+      <div class="gcard"><div class="gnum">4</div><p>Auto-update navigation as the site grows</p></div>
+      <div class="gcard"><div class="gnum">5</div><p>Give users an easy way to report issues</p></div>
+      <div class="gcard"><div class="gnum">6</div><p>Keep testing, always with real users</p></div>
     </div>
   </section>
 
-  <!-- 5 CLOSE -->
-  <section class="slide" id="s5">
+  <!-- 6 THANK YOU -->
+  <section class="slide">
     <div class="ghost">56</div>
-    <div class="kick">A PAGE ISN'T USABLE UNTIL EVERYONE CAN USE IT.</div>
-    <div class="ty">Thank you.</div>
-    <div class="sub">Hope you enjoyed, and happy designing.</div>
-    <div class="names">Harsh Kumar&nbsp;&nbsp;·&nbsp;&nbsp;Riley Lyles&nbsp;&nbsp;·&nbsp;&nbsp;Martín Vélez</div>
-    <div class="foot">TESTING FOR WEB ACCESSIBILITY  ·  TOPIC 56  ·  DGM 6168</div>
+    <div class="z">
+      <div class="eyebrow">A page isn't usable until everyone can use it.</div>
+      <h1 class="hero-title" style="font-size:clamp(56px,9vw,128px)">Thank you.</h1>
+      <p class="hero-sub">Hope you enjoyed, and happy designing.</p>
+    </div>
+    <div class="credits">
+      <div class="names">Harsh Kumar&nbsp;&nbsp;·&nbsp;&nbsp;Riley Lyles&nbsp;&nbsp;·&nbsp;&nbsp;Martín Vélez</div>
+      <div class="course">Testing for Web Accessibility&nbsp;&nbsp;·&nbsp;&nbsp;Topic 56&nbsp;&nbsp;·&nbsp;&nbsp;DGM 6168</div>
+    </div>
   </section>
 
 </div>
 
-<div class="hud">
+<div class="nav">
   <button id="prev" aria-label="Previous slide">‹</button>
   <span class="count" id="count">1 / 6</span>
   <button id="next" aria-label="Next slide">›</button>
-  <button id="fs" aria-label="Toggle full screen">⤢</button>
+  <button id="full" aria-label="Full screen">⤢</button>
 </div>
-<div class="hint" id="hint">←  →  to move   ·   F for full screen   ·   on the live slide, hit “Play the walk”</div>
+<div class="hint">← → to move&nbsp; · &nbsp;F for full screen&nbsp; · &nbsp;on the live slide, hit "Play the walk"</div>
 
 <script>
-/* ---------- fit stage to viewport ---------- */
-const stage = document.getElementById('stage');
-function fit(){
-  const s = Math.min(window.innerWidth/1280, window.innerHeight/720);
-  stage.style.transform = `translate(-50%,-50%) scale(${s})`;
-}
-window.addEventListener('resize', fit); fit();
-
-/* ---------- deck navigation ---------- */
-const slides = Array.from(document.querySelectorAll('.slide'));
-let idx = 0;
-const countEl = document.getElementById('count');
-function show(i){
-  idx = Math.max(0, Math.min(slides.length-1, i));
-  slides.forEach((s,k)=>s.classList.toggle('active', k===idx));
-  countEl.textContent = (idx+1)+' / '+slides.length;
-  if(slides[idx].id === 'sDemo') resetWalk();
-}
-function next(){ show(idx+1); }
-function prev(){ show(idx-1); }
-document.getElementById('next').onclick = next;
-document.getElementById('prev').onclick = prev;
-document.getElementById('fs').onclick = toggleFs;
-function toggleFs(){ if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){})  .call(document.documentElement); } else { document.exitFullscreen && document.exitFullscreen(); } }
-
-document.addEventListener('keydown', (e)=>{
-  const tag = (e.target.tagName||'').toUpperCase();
-  if(tag === 'INPUT') return;            // let the demo email field behave
-  if(e.key === 'ArrowRight' || e.key === 'PageDown'){ e.preventDefault(); next(); }
-  else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); prev(); }
-  else if(e.key === 'f' || e.key === 'F'){ e.preventDefault(); toggleFs(); }
-});
-const hint = document.getElementById('hint');
-setTimeout(()=>hint.classList.add('hide'), 4500);
-show(0);
-
-/* ---------- live demo logic ---------- */
-const site = document.getElementById('site');
-const state = { mode:'bad', reveal:false, voice:false, lowvis:false };
-let reached = {}, walkTimer = null;
-const TRACK = ['lnkFares','lnkHelp','heroCta','email','submitBtn'];
-
-function roleOf(el){
-  if(el.tagName==='A') return 'LINK';
-  if(el.tagName==='BUTTON') return 'BUTTON';
-  if(el.tagName==='INPUT'){ const t=el.type; return (t==='email'||t==='text')?'EDIT TEXT':t.toUpperCase(); }
-  return el.tagName;
-}
-function nameOf(el){
-  const a = el.getAttribute('aria-label'); if(a && a.trim()) return a.trim();
-  if(el.tagName==='INPUT'){
-    if(el.id){ const l=site.querySelector('label[for="'+el.id+'"]'); if(l && getComputedStyle(l).display!=='none' && l.textContent.trim()) return l.textContent.trim(); }
-    return '';
+(function(){
+  "use strict";
+  /* ---------- slide engine ---------- */
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0;
+  var count = document.getElementById('count');
+  function show(n){
+    i = Math.max(0, Math.min(slides.length-1, n));
+    slides.forEach(function(s,k){ s.classList.toggle('active', k===i); });
+    count.textContent = (i+1)+' / '+slides.length;
+    if(i!==2){ stopWalk(); }
   }
-  if(el.tagName==='IMG') return (el.getAttribute('alt')||'').trim();
-  return (el.textContent||'').trim();
-}
-function swap(id, good){ const el=document.getElementById(id); const t=good?el.getAttribute('data-good'):el.getAttribute('data-bad'); if(t!==null) el.innerHTML=t; }
-function updateFlags(){
-  const good = state.mode==='good';
-  site.querySelectorAll('.flag').forEach(f=>{
-    const src = document.getElementById(f.getAttribute('data-for'));
-    if(!src){ f.textContent=''; return; }
-    const msg = good?src.getAttribute('data-good-flag'):src.getAttribute('data-bad-flag');
-    f.innerHTML = (good?'✓ ':'! ')+(msg||''); f.classList.toggle('ok', good);
+  document.getElementById('prev').onclick = function(){ show(i-1); };
+  document.getElementById('next').onclick = function(){ show(i+1); };
+  document.getElementById('full').onclick = function(){
+    if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){})(); }
+    else if(document.exitFullscreen){ document.exitFullscreen(); }
+  };
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target.tagName||'').toLowerCase();
+    var typing = tag==='input' || tag==='textarea';
+    if(e.key==='ArrowRight'){ show(i+1); }
+    else if(e.key==='ArrowLeft'){ show(i-1); }
+    else if((e.key==='f'||e.key==='F') && !typing){ document.getElementById('full').click(); }
   });
-}
-function applyMode(){
-  site.setAttribute('data-mode', state.mode);
-  const good = state.mode==='good';
-  swap('lnkFares',good); swap('lnkHelp',good); swap('submitBtn',good);
-  const cta=document.getElementById('heroCta'); if(good) cta.removeAttribute('tabindex'); else cta.setAttribute('tabindex','-1');
-  document.getElementById('emailLabel').style.display = good?'block':'none';
-  document.getElementById('email').placeholder = good?'name@email.com':'Email';
-  const sub=document.getElementById('submitBtn'); if(good) sub.setAttribute('aria-label','Check balance'); else sub.removeAttribute('aria-label');
-  site.classList.toggle('lowvision', state.lowvis);
-  site.classList.toggle('reveal', state.reveal);
-  updateFlags();
-  resetWalk();
-}
-function announce(el){
-  const role=roleOf(el), name=nameOf(el);
-  document.getElementById('nowRole').textContent = role;
-  const nm=document.getElementById('nowName');
-  if(name){ nm.textContent=name; nm.classList.remove('empty'); } else { nm.textContent='(no accessible name)'; nm.classList.add('empty'); }
-  const list=document.getElementById('logList'); const ph=list.querySelector('.ph'); if(ph) ph.remove();
-  const li=document.createElement('li');
-  if(name){ li.textContent=role+' · '+name; } else { li.textContent=role+' · (no name)'; li.className='empty'; }
-  list.insertBefore(li, list.firstChild);
-  if(state.voice && 'speechSynthesis' in window){ window.speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(name?role.toLowerCase()+', '+name:role.toLowerCase()+', no label'); u.rate=1.08; window.speechSynthesis.speak(u); }
-}
-function bump(id){
-  if(reached[id]) return; reached[id]=true;
-  const n=Object.keys(reached).length;
-  document.getElementById('reached').textContent=n;
-  const note=document.getElementById('reNote');
-  if(state.mode==='bad' && n>=4){ note.textContent='✕ main button never reached'; note.style.color='#E5484D'; }
-  else if(state.mode==='good' && n>=5){ note.textContent='✓ every control reachable'; note.style.color='#2E9E5B'; }
-  else note.textContent='';
-}
-function resetWalk(){
-  if(walkTimer){ clearTimeout(walkTimer); walkTimer=null; }
-  reached={};
-  document.getElementById('reached').textContent='0';
-  document.getElementById('reNote').textContent='';
-  const list=document.getElementById('logList'); list.innerHTML='<li class="ph">nothing yet</li>';
-  document.getElementById('nowRole').textContent='—';
-  const nm=document.getElementById('nowName'); nm.textContent='press Play, or Tab the page…'; nm.className='name empty';
-  if(document.activeElement && site.contains(document.activeElement)) document.activeElement.blur();
-}
-site.addEventListener('focusin', (e)=>{ if(e.target===site) return; announce(e.target); if(e.target.classList.contains('track')) bump(e.target.id); });
 
-/* auto-play: focus each keyboard-reachable tracked control in order */
-function playWalk(){
-  resetWalk();
-  const els = TRACK.map(id=>document.getElementById(id)).filter(el=>el && el.getAttribute('tabindex')!=='-1');
-  let i=0;
-  (function step(){ if(i>=els.length) return; els[i].focus(); i++; walkTimer=setTimeout(step, 1100); })();
-}
-document.getElementById('playBtn').onclick = playWalk;
-document.getElementById('resetBtn').onclick = resetWalk;
-document.getElementById('modeBad').onclick = ()=>setMode('bad');
-document.getElementById('modeGood').onclick = ()=>setMode('good');
-function setMode(m){ state.mode=m; document.getElementById('modeBad').setAttribute('aria-pressed', m==='bad'); document.getElementById('modeGood').setAttribute('aria-pressed', m==='good'); applyMode(); }
-['reveal','voice','lowvis'].forEach(k=>{ const b=document.getElementById(k); b.onclick=()=>{ state[k]=!state[k]; b.setAttribute('aria-pressed', state[k]); if(k==='voice' && !state.voice && 'speechSynthesis' in window) window.speechSynthesis.cancel(); applyMode(); }; });
-applyMode();
+  /* ---------- live demo ---------- */
+  var page = document.getElementById('page');
+  var mock = document.getElementById('mock');
+  var nowEl = document.getElementById('now');
+  var heardEl = document.getElementById('heard');
+  var reachedN = document.getElementById('reachedN');
+  var reachedBox = document.getElementById('reached');
+  var TOTAL = 5;
+
+  // control config: id, good/bad accessible-name announcements, good visible text
+  var CTRL = {
+    lk1: { bad:'here, link',            good:'Top up balance, link',  goodText:'Top up balance', badText:'here' },
+    lk2: { bad:'click here, link',      good:'Trip history, link',    goodText:'Trip history',   badText:'click here' },
+    cta: { bad:'(skipped — not reachable by keyboard)', good:'Reload your card, button' },
+    email:{ bad:'edit text, blank — no label', good:'Email address, edit text' },
+    go:  { bad:'button', good:'Check balance, button' }
+  };
+  var mode = 'inaccessible';
+  var voiceOn = false;
+  var revealed = false;
+  var reached = {};
+  var walking = false, walkTimer = null, suppress = false;
+
+  function speak(t){
+    if(!voiceOn || !('speechSynthesis' in window)) return;
+    try{ window.speechSynthesis.cancel(); var u=new SpeechSynthesisUtterance(t); u.rate=1.05; window.speechSynthesis.speak(u);}catch(e){}
+  }
+
+  function applyMode(){
+    var acc = mode==='accessible';
+    // links
+    document.getElementById('lk1').textContent = acc ? CTRL.lk1.goodText : CTRL.lk1.badText;
+    document.getElementById('lk2').textContent = acc ? CTRL.lk2.goodText : CTRL.lk2.badText;
+    // cta
+    var cta = document.getElementById('cta');
+    cta.classList.toggle('ghost', !acc);
+    cta.setAttribute('tabindex', acc ? '0' : '-1');
+    // email label
+    var lab = document.getElementById('emLabel');
+    lab.classList.toggle('show', acc);
+    var em = document.getElementById('email');
+    if(acc){ em.setAttribute('aria-label','Email address'); } else { em.removeAttribute('aria-label'); }
+    // arrow btn
+    var go = document.getElementById('go');
+    if(acc){ go.setAttribute('aria-label','Check balance'); } else { go.removeAttribute('aria-label'); }
+    // badges (show good vs bad set)
+    page.querySelectorAll('.badge').forEach(function(b){ b.classList.remove('show'); });
+    if(revealed){
+      page.querySelectorAll('.badge.'+(acc?'good':'bad')).forEach(function(b){ b.classList.add('show'); });
+    }
+    page.classList.toggle('reveal', revealed);
+    resetWalk();
+  }
+
+  function announce(id){
+    var c = CTRL[id]; if(!c) return;
+    var acc = mode==='accessible';
+    var txt = acc ? c.good : c.bad;
+    nowEl.innerHTML = '';
+    nowEl.classList.toggle('read', acc);
+    nowEl.textContent = txt;
+    // heard log
+    var emptyLi = heardEl.querySelector('.empty'); if(emptyLi) emptyLi.remove();
+    var li = document.createElement('li');
+    li.className = acc ? 'good' : 'bad';
+    li.textContent = txt;
+    heardEl.appendChild(li);
+    heardEl.scrollTop = heardEl.scrollHeight;
+    // reached count
+    if(!reached[id]){ reached[id]=true; updateReached(); }
+    speak(txt);
+  }
+
+  function updateReached(){
+    var n = Object.keys(reached).length;
+    reachedN.textContent = n;
+    reachedBox.classList.toggle('full', n>=TOTAL);
+  }
+
+  function resetWalk(){
+    reached = {}; updateReached();
+    heardEl.innerHTML = '<li class="empty">nothing yet</li>';
+    nowEl.classList.remove('read');
+    nowEl.innerHTML = '<span class="dash">—</span><br>press Play, or Tab the page…';
+    page.querySelectorAll('.focused').forEach(function(el){ el.classList.remove('focused'); });
+  }
+
+  // real keyboard focus drives the panel
+  page.addEventListener('focusin', function(e){
+    if(suppress) return;
+    var id = e.target.id;
+    if(CTRL[id]){ announce(id); }
+  });
+
+  // mode switch
+  document.getElementById('seg').addEventListener('click', function(e){
+    var b = e.target.closest('button[data-mode]'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+    b.classList.add('on');
+    mode = b.getAttribute('data-mode');
+    applyMode();
+  });
+
+  document.getElementById('btnReveal').addEventListener('click', function(){
+    revealed = !revealed; this.classList.toggle('on', revealed); applyMode();
+  });
+  document.getElementById('btnVoice').addEventListener('click', function(){
+    voiceOn = !voiceOn; this.classList.toggle('on', voiceOn);
+    if(!voiceOn && 'speechSynthesis' in window){ window.speechSynthesis.cancel(); }
+  });
+  document.getElementById('btnLowVis').addEventListener('click', function(){
+    var on = mock.classList.toggle('lowvis'); this.classList.toggle('on', on);
+  });
+  document.getElementById('btnReset').addEventListener('click', function(){ resetWalk(); });
+
+  // play the walk: focus each reachable control in order
+  var playBtn = document.getElementById('btnPlay');
+  function order(){
+    var list = [];
+    ['lk1','lk2','cta','email','go'].forEach(function(id){
+      var el = document.getElementById(id);
+      var ti = el.getAttribute('tabindex');
+      if(ti!=='-1'){ list.push(el); }   // skip non-focusable (the broken CTA)
+    });
+    return list;
+  }
+  function stopWalk(){
+    walking=false; suppress=false; if(walkTimer){ clearTimeout(walkTimer); walkTimer=null; }
+    playBtn.removeAttribute('disabled'); playBtn.innerHTML='▶&nbsp; Play the walk';
+  }
+  playBtn.addEventListener('click', function(){
+    if(walking){ stopWalk(); return; }
+    resetWalk();
+    var list = order(), k = 0;
+    walking = true; suppress = true; playBtn.setAttribute('disabled','disabled'); playBtn.innerHTML='Walking…';
+    function step(){
+      if(!walking || k>=list.length){
+        stopWalk();
+        if(mode==='inaccessible'){
+          nowEl.classList.remove('read');
+          nowEl.textContent = 'Reached '+Object.keys(reached).length+' of '+TOTAL+'. One control was skipped entirely.';
+        } else {
+          nowEl.classList.add('read');
+          nowEl.textContent = 'All '+TOTAL+' reached, each announced clearly.';
+        }
+        return;
+      }
+      page.querySelectorAll('.focused').forEach(function(el){ el.classList.remove('focused'); });
+      var el = list[k];
+      el.classList.add('focused');
+      try{ el.focus({preventScroll:true}); }catch(e){ announce(el.id); }
+      announce(el.id);
+      k++;
+      walkTimer = setTimeout(step, 1150);
+    }
+    step();
+  });
+
+  applyMode();
+  show(0);
+})();
 </script>
 </body>
 </html>
