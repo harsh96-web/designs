@@ -22,7 +22,6 @@
   button{font-family:inherit}
   :focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:6px}
 
-  /* top bar */
   .top{position:sticky;top:0;z-index:20;background:rgba(250,247,243,.92);backdrop-filter:saturate(150%) blur(8px);border-bottom:1px solid var(--line)}
   .top-inner{max-width:1000px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:14px}
   .seal{flex:0 0 auto}
@@ -33,13 +32,11 @@
   .pct{font-family:var(--mono);font-weight:700;font-size:15px}
   .pct small{display:block;font-family:var(--sans);font-weight:600;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
 
-  /* level ribbon = progress */
   .ribbon{display:flex;gap:3px;max-width:1000px;margin:0 auto;padding:0 18px 10px}
   .lvl{height:8px;flex:1;border-radius:2px;opacity:.28;transition:opacity .3s ease,box-shadow .3s ease}
   .lvl.on{opacity:1}
   .lvl.cur{box-shadow:0 0 0 2px rgba(199,154,58,.5)}
 
-  /* nav */
   nav{display:flex;gap:4px;overflow-x:auto;padding:14px 0 6px;-webkit-overflow-scrolling:touch}
   nav button{white-space:nowrap;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);
     padding:8px 14px;border-radius:999px;font-weight:600;font-size:14px;cursor:pointer;transition:.15s}
@@ -52,7 +49,7 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
   h2.head{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:22px 0 4px}
-  .lede{color:var(--ink-soft);margin:0 0 18px;max-width:60ch}
+  .lede{color:var(--ink-soft);margin:0 0 18px;max-width:62ch}
 
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin:0 0 16px}
   .grid{display:grid;gap:14px}
@@ -62,7 +59,6 @@
   .fact .n{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1}
   .fact .l{font-size:12px;color:var(--ink-soft);margin-top:6px;letter-spacing:.02em}
 
-  /* blueprint bars */
   .bp-row{display:grid;grid-template-columns:1.6fr 3fr auto;gap:10px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
   .bp-row:last-child{border-bottom:0}
   .bp-name{font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;min-width:0}
@@ -75,7 +71,6 @@
   .pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
     padding:3px 9px;border-radius:999px;color:#fff}
 
-  /* plan */
   .week{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
   .week > summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:12px}
   .week > summary::-webkit-details-marker{display:none}
@@ -93,11 +88,10 @@
   .schedule{background:#fbf8f3;border:1px dashed var(--line-strong);border-radius:10px;padding:12px 14px;margin:6px 0 14px;font-size:13px}
   .schedule b{color:var(--ink)}
 
-  /* practice */
   .modebar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
   .chip{border:1px solid var(--line);background:var(--surface);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink-soft)}
   .chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .qmeta{display:flex;justify-content:space-between;align-items:center;color:var(--ink-soft);font-size:13px;margin-bottom:8px}
+  .qmeta{display:flex;justify-content:space-between;align-items:center;color:var(--ink-soft);font-size:13px;margin-bottom:8px;gap:8px;flex-wrap:wrap}
   .qmeta .score{font-family:var(--mono)}
   .qtext{font-size:18px;font-weight:700;margin:4px 0 14px;letter-spacing:-.01em}
   .opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--surface);
@@ -112,7 +106,7 @@
   .explain{border-left:3px solid var(--teal);background:#f1f7f7;padding:11px 14px;border-radius:0 10px 10px 0;font-size:14px;margin:6px 0 14px;display:none}
   .explain.show{display:block}
   .explain b{color:var(--teal)}
-  .qfoot{display:flex;gap:10px}
+  .qfoot{display:flex;gap:10px;flex-wrap:wrap}
   .btn{border:0;border-radius:11px;padding:11px 18px;font-weight:700;cursor:pointer;font-size:15px}
   .btn.primary{background:var(--seal);color:#fff}
   .btn.primary:hover{background:var(--seal-dark)}
@@ -120,7 +114,6 @@
   .resultbox{text-align:center;padding:22px}
   .resultbox .big{font-family:var(--mono);font-size:40px;font-weight:700}
 
-  /* flashcards */
   .fc-wrap{perspective:1200px;max-width:560px;margin:0 auto}
   .fc{position:relative;height:230px;cursor:pointer}
   .fc-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
@@ -136,7 +129,6 @@
   .fc-controls{display:flex;gap:10px;justify-content:center;margin-top:16px}
   .fc-progress{text-align:center;color:var(--ink-soft);font-size:13px;margin-top:10px;font-family:var(--mono)}
 
-  /* checklist */
   .check{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
   .check:last-child{border-bottom:0}
   .check input{margin-top:3px;width:19px;height:19px;accent-color:var(--good);flex:0 0 auto;cursor:pointer}
@@ -162,7 +154,7 @@
       </text>
     </svg>
     <div class="brand">
-      <span class="eyebrow">Exam Prep Hub</span>
+      <span class="eyebrow">Exam Prep Hub · Hard Mode</span>
       <span class="title">Hairstylist Red Seal</span>
     </div>
     <div class="top-right">
@@ -182,59 +174,55 @@
     <button data-tab="checklist">Readiness</button>
   </nav>
 
-  <!-- DASHBOARD -->
   <section class="tab show" id="dash">
     <h2 class="head">The exam at a glance</h2>
-    <p class="lede">120 multiple-choice questions. You need 70% to pass, which is 84 correct. Aim for 80%+ on mocks so exam-day nerves still leave a margin.</p>
+    <p class="lede">120 questions, 70% to pass (84 correct). You already clear 70%, so the target here is a steady 85%+ on hard, exam-style questions. That margin is what survives a bad-nerves day.</p>
     <div class="grid facts" style="margin-bottom:16px">
       <div class="fact"><div class="n">120</div><div class="l">questions, all multiple choice</div></div>
       <div class="fact"><div class="n">84</div><div class="l">to pass (70%)</div></div>
-      <div class="fact"><div class="n">75-85%</div><div class="l">are application questions</div></div>
-      <div class="fact"><div class="n">4</div><div class="l">attempts, within 24 months</div></div>
+      <div class="fact"><div class="n" id="bankN">0</div><div class="l">questions in this bank</div></div>
+      <div class="fact"><div class="n">85%+</div><div class="l">your mock target</div></div>
     </div>
 
     <div class="card">
       <h3 style="margin:0 0 4px">Where the questions live</h3>
-      <p style="margin:0 0 14px;color:var(--ink-soft);font-size:14px">Major Work Activities by share of the exam. Colour and cutting alone are 49 of 120, so weight your study the same way.</p>
+      <p style="margin:0 0 14px;color:var(--ink-soft);font-size:14px">Major Work Activities by share of the exam. Colour and cutting alone are 49 of 120, so the bank and the mocks are weighted the same way.</p>
       <div id="blueprint"></div>
     </div>
 
     <div class="grid two">
       <div class="card">
         <h3 style="margin:0 0 8px">Your weak spots</h3>
-        <p style="margin:0 0 8px;color:var(--ink-soft);font-size:13px">Updates as you practice. The real results letter scores you per topic, so close these gaps.</p>
+        <p style="margin:0 0 8px;color:var(--ink-soft);font-size:13px">Updates as you practice. Green is 80%+, amber 70-79%, red under 70%. Chase the red.</p>
         <div class="weakwrap" id="weak"><span>Answer some questions to see this.</span></div>
       </div>
       <div class="card">
         <h3 style="margin:0 0 8px">Don't forget the practical</h3>
-        <p style="margin:0;color:var(--ink-soft);font-size:14px">In BC, certification also requires a separate <b>practical assessment</b> alongside the written exam. Book both in the SkilledTradesBC Portal and keep your hands sharp on live work while you study theory.</p>
+        <p style="margin:0;color:var(--ink-soft);font-size:14px">BC certification also needs a separate practical assessment (about $500, booked through North Pacific). Book it alongside the written exam in the SkilledTradesBC Portal.</p>
       </div>
     </div>
   </section>
 
-  <!-- PLAN -->
   <section class="tab" id="plan">
-    <h2 class="head">6-week plan, about 90 minutes a day</h2>
-    <p class="lede">Six days on, one rest day. Each week ends with a mock exam. Check off days as you go and the progress ribbon fills up.</p>
+    <h2 class="head">6-week plan, harder load</h2>
+    <p class="lede">Since 70% is already in hand, this version raises the daily volume and difficulty and ends on two full 120-question simulations. Six days on, one rest. Check off days and the ribbon fills.</p>
     <div class="schedule">
-      <b>Daily 90-minute block:</b> 15 min flashcard warm-up · 35 min learn the day's topic · 30 min practice questions on it (review every explanation) · 10 min log misses into your review pile.
-      <br><b>Mock day:</b> sit a weighted mock, then spend the rest reviewing every wrong answer.
+      <b>Daily block (about 100 minutes):</b> 15 min flashcard warm-up plus your missed pile · 30 min deep-read the day's topic · 40 min hard practice, 25 to 35 questions, review every explanation and redo misses · 5 min log weak areas.
+      <br><b>Mock day:</b> sit the weighted mock, then review 100% of wrong answers and clear them from the Retry pile before moving on.
     </div>
     <div id="weeks"></div>
   </section>
 
-  <!-- PRACTICE -->
   <section class="tab" id="practice">
     <h2 class="head">Practice questions</h2>
-    <p class="lede">Pick a topic to drill, or sit a weighted mock that mirrors the real 120-question blueprint. Every question explains the answer.</p>
+    <p class="lede">Drill a topic, sit a weighted mock (30, 50, or a full 120 simulation), or grind down your missed pile. Every question is written exam-hard and explains the answer.</p>
     <div class="modebar" id="modebar"></div>
     <div class="card" id="quizCard"></div>
   </section>
 
-  <!-- FLASHCARDS -->
   <section class="tab" id="cards">
     <h2 class="head">Flashcards</h2>
-    <p class="lede">The numbers, terms, and definitions experienced stylists tend to do by feel but get tested on cold. Tap to flip.</p>
+    <p class="lede">The numbers, terms, chemistry, and definitions that experienced stylists do by feel but get tested on cold. Tap to flip.</p>
     <div class="modebar" id="deckbar"></div>
     <div class="fc-wrap">
       <div class="fc" id="fcard" tabindex="0" role="button" aria-label="flashcard, tap to flip">
@@ -251,12 +239,11 @@
     </div>
   </section>
 
-  <!-- CHECKLIST -->
   <section class="tab" id="checklist">
     <h2 class="head">Final readiness checklist</h2>
-    <p class="lede">Don't book the exam until most of these are true. This is the honest gate between "I've been studying" and "I'm ready."</p>
+    <p class="lede">Don't book until most of these are true. With the harder bank, the bar is 85%+, not a bare pass.</p>
     <div class="card" id="checks"></div>
-    <p class="note">Computer-based written exam. Bring valid ID, arrive early, and pace yourself: roughly 2 minutes per question leaves time to review flagged ones.</p>
+    <p class="note">Computer-based written exam. Bring valid ID, arrive early, pace at roughly 2 minutes per question, and flag-and-return on the hard ones instead of stalling.</p>
   </section>
 
   <div class="reset"><button id="resetBtn">Reset all progress</button></div>
@@ -277,183 +264,443 @@ var BLUEPRINT = [
 var TOTAL_Q = 120;
 
 var WEEKS = [
-  {t:"Foundations & how the exam thinks", s:"Science, analysis, safety, sanitation",
+  {t:"Science and safety, no shortcuts", s:"Structure, bonds, disorders, infection control",
    days:[
-    "How the exam works: 120 Q, 70% to pass, mostly application questions. Skim the official exam breakdown.",
-    "Hair structure: cuticle, cortex, medulla. Bonds: hydrogen, disulfide, salt. pH and the acid mantle.",
-    "Hair & scalp analysis: porosity, elasticity, density, texture. How each one changes a service.",
-    "Scalp & hair disorders: what to treat vs refer. Contagious vs non-contagious conditions.",
-    "Safety & infection control: sanitation vs disinfection vs sterilization, SDS/WHMIS, blood-spill protocol, PPE.",
-    "Mock exam 1 (foundations + safety), then review every miss."
+    "Hair structure and melanin: cuticle, cortex, medulla; eumelanin vs pheomelanin. Bonds: disulfide, hydrogen, salt, peptide, and what breaks each.",
+    "Growth cycle (anagen, catagen, telogen) and analysis: porosity, elasticity, density, texture, and how each one changes a formula or process.",
+    "Scalp and hair disorders by name: what you can service vs what you must refer. Contagious conditions.",
+    "pH in depth: the acid mantle, alkaline vs acidic products, and what pH does to the cuticle.",
+    "Infection control: sanitation vs disinfection vs sterilization, contact times, WHMIS/SDS, blood-spill protocol, PPE.",
+    "Mock exam 1 (40 questions, foundations and safety), then review and redo every miss."
    ]},
-  {t:"Hair colour, part 1", s:"Level, tone, developers, colour types",
+  {t:"Colour theory to the bone", s:"Level, tone, developers, mixing math",
    days:[
-    "Level vs tone. The 1-10 level system. Reading a colour like a formula.",
-    "Developer volumes 10/20/30/40 and what each one lifts. When to use which.",
-    "Colour types: temporary, semi, demi, permanent. Ammonia, developer, lift, fade.",
-    "The colour wheel and neutralizing: violet/yellow, blue/orange, green/red.",
-    "Underlying (contributing) pigment and the warm sequence exposed as you lighten.",
-    "Mock exam 2 (colour + foundations), then review."
+    "Level vs tone, the 1-10 system, and the underlying pigment sitting at each level.",
+    "Developer volumes and their percentages (10/3%, 20/6%, 30/9%, 40/12%), lift per volume, and mixing math.",
+    "Law of colour: primary, secondary, tertiary, and complementary neutralizing pairs.",
+    "Colour categories by ammonia, developer, lift, and fade: temporary, semi, demi, permanent, high-lift. Ammonia vs MEA.",
+    "Grey coverage: percentage grey, resistance, pre-softening, and choosing the right base.",
+    "Mock exam 2 (50 questions, colour plus foundations), then review."
    ]},
-  {t:"Lightening, toning & colour correction", s:"The highest-risk colour work",
+  {t:"Lightening, toning, correction", s:"The highest-risk colour work",
    days:[
-    "Decolorizing: the stages of lift, when to stop, condition limits.",
-    "Toners and how to choose a base to cancel unwanted warmth.",
-    "Double process vs single process. Fillers and porosity control.",
-    "Colour correction logic: going lighter, going darker, fixing bands and off-shades.",
-    "Metallic salts and incompatible products: why you strand-test first.",
-    "Mock exam 3 (colour-heavy), then review."
+    "Decolorizing stages and exactly when to stop for each target. On-scalp vs off-scalp volume limits.",
+    "Toners: matching the toner to the stage of lift, and neutralizing residual warmth.",
+    "Fillers and the going-darker-on-porous trap. Why lightened hair turns dull or green without a fill.",
+    "Colour does not lift colour: removers, correction logic for too-dark, too-light, and banded results.",
+    "Metallic salts and incompatible products: the strand test that comes first.",
+    "Mock exam 3 (50 questions, colour-heavy), then review."
    ]},
-  {t:"Chemical texture services", s:"Perms and relaxers, the chemistry",
+  {t:"Chemical texture chemistry", s:"Perms and relaxers, the real reactions",
    days:[
-    "Perm chemistry: reduction breaks disulfide bonds, neutralizer (oxidation) re-forms them.",
-    "Rod selection and wrapping: rod size vs curl size, base control, test curls.",
-    "Relaxer types and pH: sodium hydroxide (lye), no-lye, thio. Strengths and risks.",
-    "Scalp protection, basing, timing, and over-processing signs.",
-    "Safety, contraindications, and incompatible prior services.",
-    "Mock exam 4 (texture + colour review), then review."
+    "Cold wave vs acid wave: pH, exothermic vs endothermic, thio vs glyceryl monothioglycolate.",
+    "Reduction breaks disulfide bonds; the neutralizer re-forms them by oxidation. Test curls and processing.",
+    "Rod selection and base control: croquignole vs spiral, on-base vs off-base, curl size.",
+    "Relaxer chemistry: hydroxide (lanthionization, irreversible), no-lye guanidine, and thio. Base cream and neutralizing shampoo.",
+    "Over-processing vs under-processing signs, contraindications, and incompatible prior services.",
+    "Mock exam 4 (50 questions, texture plus colour review), then review."
    ]},
-  {t:"Cutting & styling", s:"The biggest practical block",
+  {t:"Cutting and styling under pressure", s:"The biggest practical block",
    days:[
-    "Elevation and guidelines: 0 blunt, ~45 graduation, 90 uniform layers. Stationary vs traveling guide.",
-    "Tension, sectioning, reference points, cross-checking. Cutting curly hair and cowlicks.",
-    "Tools and techniques: shears, razor on wet hair, clipper/scissor-over-comb, texturizing.",
-    "Facial and nape work; wet sets, pin curls, roller size and placement.",
-    "Thermal styling and finishing: blow-dry effects, irons, heat protection, volume.",
-    "Mock exam 5 (cutting + styling), then review."
+    "Elevation and its results: 0 blunt, ~45 graduation, 90 uniform layers, over 90 increasing length. Weight lines.",
+    "Guides and over-direction: stationary vs traveling guide, cross-checking, tension, reference points, growth patterns.",
+    "Tools and techniques: razor on wet hair, clipper and scissor over comb, point, slide, and notch cutting.",
+    "Wet sets and pin curls: base shapes, stem and mobility, roller base positions for volume.",
+    "Thermal work: blow-dry effects, hard vs soft pressing, irons, and heat protection.",
+    "Mock exam 5 (50 questions, cutting and styling), then review."
    ]},
-  {t:"Specialized, operations & full review", s:"Tie it together, simulate exam day",
+  {t:"Full simulation and correction", s:"Specialized, operations, then the real thing",
    days:[
-    "Specialized services: extension methods (fusion, tape, sew-in, micro-link), wigs, human vs synthetic.",
-    "Salon operations: client record cards, front desk, commission vs chair rental, basics of cost.",
-    "Tools/equipment + consultation & communication: weak-area cleanup from your stats.",
-    "Full weighted mock A (aim for a 60-question simulation), then review.",
-    "Full weighted mock B, then review. Walk through the readiness checklist.",
-    "Light review + exam-day logistics. Confirm written exam and practical are booked."
+    "Specialized services: extension methods (fusion, tape, sew-in, micro-link), wigs human vs synthetic, cap construction.",
+    "Salon operations: client record cards, commission vs chair rental vs salary, markup and cost, scope of practice.",
+    "Weak-area cleanup: work only your red topics and your missed pile.",
+    "Full weighted simulation A (120 questions), then review every wrong answer.",
+    "Full weighted simulation B (120 questions), then review. Walk the readiness checklist.",
+    "Light review and exam-day logistics. Confirm the written exam and practical are both booked."
    ]}
 ];
 
 var QUESTIONS = [
-  // A
-  {id:"A1",t:"A",q:"What is the term for the complete destruction of all microbial life, including bacterial spores?",o:["Sanitation","Disinfection","Sterilization","Decontamination"],a:2,e:"Sterilization destroys all microorganisms including spores. Disinfection kills most pathogens but not all spores; sanitation only reduces them."},
-  {id:"A2",t:"A",q:"A multi-use metal tool is contaminated with blood. What is the correct action before reuse?",o:["Wipe it with a dry towel","Rinse under warm water","Clean it, then immerse fully in an approved disinfectant for the labelled contact time","Set it aside to air dry"],a:2,e:"Clean off debris first, then immerse in a hospital-grade disinfectant for the full labelled contact time. Single-use items are discarded instead."},
-  {id:"A3",t:"A",q:"How long before an aniline-derivative (oxidation) tint should a predisposition (patch) test be done?",o:["Immediately before","24 to 48 hours before","One week before","It is not required"],a:1,e:"A patch test goes on 24 to 48 hours before to check for an allergic reaction to the tint."},
-  {id:"A4",t:"A",q:"Where would you find first aid measures, safe handling, and PPE requirements for a product?",o:["The price list","The Safety Data Sheet (SDS)","The client record card","The product warranty"],a:1,e:"The SDS, part of WHMIS, lists hazards, handling, first aid, and required PPE for each chemical product."},
-  {id:"A5",t:"A",q:"Which tool removes bulk and weight without shortening the overall length?",o:["Texturizing (thinning) shears","Clippers","A razor on dry hair","Straight (blunt) shears"],a:0,e:"Texturizing/thinning shears remove weight while keeping length, unlike straight shears which cut a clean line."},
-  {id:"A6",t:"A",q:"What must always be completed before beginning any chemical service?",o:["Retail the product","A consultation and hair/scalp analysis","Booking the next appointment","Cleaning the station"],a:1,e:"Consultation and analysis identify the client's needs, hair condition, contraindications, and the correct approach."},
-  // B
-  {id:"B1",t:"B",q:"Which layer of the hair contains melanin and is where most chemical services take place?",o:["Cuticle","Cortex","Medulla","Follicle"],a:1,e:"The cortex holds melanin and the bonds affected by colour, perms, and relaxers. The cuticle is the protective outer layer."},
-  {id:"B2",t:"B",q:"Which bonds are broken by water and re-formed as hair dries, making wet sets possible?",o:["Disulfide bonds","Hydrogen bonds","Peptide bonds","Salt bonds"],a:1,e:"Hydrogen bonds are temporary physical bonds broken by water or heat and re-formed on drying, which is how wet sets hold."},
-  {id:"B3",t:"B",q:"Hair that absorbs liquids quickly and is prone to over-processing has:",o:["Low porosity","High porosity","High density","Coarse texture"],a:1,e:"High porosity means a raised or damaged cuticle that absorbs and loses moisture and chemicals quickly, so it processes and fades faster."},
-  {id:"B4",t:"B",q:"Which scalp condition is contagious and means the service must be refused with a referral?",o:["Pityriasis (dandruff)","Tinea capitis (ringworm)","Mild dryness","Oily scalp"],a:1,e:"Tinea is a contagious fungal infection. Refer to a physician and do not service. Dandruff is non-contagious."},
-  {id:"B5",t:"B",q:"The natural pH of healthy hair and skin is approximately:",o:["2.0 to 3.0","4.5 to 5.5","7.0 (neutral)","8.5 to 9.5"],a:1,e:"Hair and skin sit slightly acidic at about 4.5 to 5.5, the acid mantle. Alkaline products raise pH and swell the cuticle."},
-  {id:"B6",t:"B",q:"Which factor describes how much hair can stretch and return without breaking?",o:["Porosity","Density","Elasticity","Texture"],a:2,e:"Elasticity is the ability to stretch and recover. Wet hair with good elasticity stretches about 50 percent; poor elasticity signals damage."},
-  // C
-  {id:"C1",t:"C",q:"Cutting hair at 0 degrees of elevation produces:",o:["Uniform layers","A blunt, one-length shape","Long layers","Heavy graduation"],a:1,e:"At 0 degrees all hair falls to one level, creating a blunt one-length cut with maximum weight."},
-  {id:"C2",t:"C",q:"Holding every section at 90 degrees of elevation produces:",o:["A blunt line","Graduation / stacking","Uniform (even) layers","One length"],a:2,e:"Cutting everything at 90 degrees to the head creates uniform layers of equal length throughout."},
-  {id:"C3",t:"C",q:"A traveling (mobile) guideline is used to create:",o:["A one-length cut","Layers or graduation","A blunt perimeter","Maximum weight"],a:1,e:"A traveling guide moves with each section to build layers or graduation. A stationary guide builds length or weight toward a fixed point."},
-  {id:"C4",t:"C",q:"When cutting curly hair or working around a cowlick, tension should be:",o:["Maximum and even","Reduced or minimal","Applied only with a comb","Increased at the ends"],a:1,e:"Curly hair and cowlicks spring up when dry, so reduced tension keeps the cut from ending up too short."},
-  {id:"C5",t:"C",q:"Why is a haircut cross-checked using partings opposite to those used to cut?",o:["To add texture","To check for evenness and balance","To remove weight","To set the style"],a:1,e:"Cross-checking with opposite partings reveals uneven lengths and confirms the cut is balanced."},
-  {id:"C6",t:"C",q:"A razor used for cutting should be applied to hair that is:",o:["Dry","Wet","Damp with product only","Freshly relaxed"],a:1,e:"A razor is used on wet hair. Razoring dry hair causes drag and splitting. Razor cutting gives softer, tapered ends."},
-  {id:"C7",t:"C",q:"Which technique removes weight and creates softer, broken-up ends?",o:["Blunt cutting","Point (notch) cutting","Cutting at 0 degrees","Cross-checking"],a:1,e:"Point or notch cutting into the ends removes weight and softens the line, unlike a blunt cut which keeps a solid edge."},
-  {id:"C8",t:"C",q:"Graduation in a haircut is typically created by:",o:["0 degrees of elevation","Low to medium elevation building a weight line","180 degrees of elevation","Using no guideline"],a:1,e:"Graduation stacks length using low to medium elevation (often around 45 degrees), building a visible weight line."},
-  {id:"C9",t:"C",q:"The widest part of the head, where it starts to curve, is the:",o:["Apex","Occipital bone","Parietal ridge","Nape"],a:2,e:"The parietal ridge (crest) is the widest area of the head and a key reference for shape and weight placement."},
-  {id:"C10",t:"C",q:"Which method best tapers hair very short at the nape or around the ears?",o:["Blunt scissor cutting at 0 degrees","Clipper-over-comb or scissor-over-comb","Razor rotation","Free-hand slicing"],a:1,e:"Clipper-over-comb (or scissor-over-comb) blends very short lengths and tapers necklines and edges smoothly."},
-  // D
-  {id:"D1",t:"D",q:"What is the effect of blow-drying hair with a round brush?",o:["It flattens the hair","It aids in curling the hair","It protects the scalp","It breaks the hair"],a:1,e:"A round brush adds curl and volume during blow-drying. This mirrors an official Red Seal sample question."},
-  {id:"D2",t:"D",q:"Which part of a pin curl determines the amount of movement?",o:["The base","The stem","The circle (curl)","The pivot"],a:1,e:"The stem connects base to circle and controls mobility. A longer stem gives more movement; no stem gives tight, firm curl."},
-  {id:"D3",t:"D",q:"Compared with a small roller, a larger roller produces:",o:["A tighter curl","A looser, wider curl with base volume","No curl at all","More frizz"],a:1,e:"Larger rollers create looser, wider curl and more base volume. Smaller rollers create tighter curl."},
-  {id:"D4",t:"D",q:"A wet (cohesion) set holds because it temporarily changes:",o:["Disulfide bonds","Hydrogen bonds","Peptide bonds","Melanin"],a:1,e:"Wet sets and thermal styling work on hydrogen bonds, a temporary physical change that reverts with water or humidity."},
-  {id:"D5",t:"D",q:"What should be applied before using flat irons or curling irons?",o:["A clarifying shampoo","A thermal (heat) protectant","A permanent colour","An alkaline relaxer"],a:1,e:"A heat/thermal protectant shields the cuticle and reduces moisture loss and damage from high-heat tools."},
-  {id:"D6",t:"D",q:"Backcombing (teasing) at the base is used mainly to:",o:["Smooth the cuticle","Create volume and lift","Add shine","Set a permanent wave"],a:1,e:"Backcombing pushes hair toward the scalp to build volume and lift at the base."},
-  // E
-  {id:"E1",t:"E",q:"In permanent waving, the waving lotion (e.g. ammonium thioglycolate) changes hair by:",o:["Oxidizing and hardening the bonds","Reducing and breaking disulfide bonds","Adding melanin","Closing the cuticle"],a:1,e:"The alkaline waving lotion is a reducing agent that breaks disulfide bonds so hair can take the shape of the rod."},
-  {id:"E2",t:"E",q:"What does the neutralizer (often hydrogen peroxide) do at the end of a perm?",o:["Breaks the disulfide bonds","Re-forms disulfide bonds by oxidation","Lifts the colour","Relaxes the curl"],a:1,e:"The neutralizer oxidizes the hair, re-forming disulfide bonds in their new curled position to lock in the result."},
-  {id:"E3",t:"E",q:"Which rod size creates the tightest curl?",o:["The largest rod","The smallest rod","A straight large rod","Rod size has no effect"],a:1,e:"Smaller rods wrap more times and create tighter curls; larger rods create wider, looser waves."},
-  {id:"E4",t:"E",q:"Which relaxer has the highest pH and is called a 'lye' relaxer?",o:["Ammonium thioglycolate","Sodium hydroxide","Guanidine hydroxide (no-lye)","Hydrogen peroxide"],a:1,e:"Sodium hydroxide (lye) relaxers have a very high pH (about 12 to 14), are the strongest, and need careful scalp protection."},
-  {id:"E5",t:"E",q:"Before a hydroxide relaxer, the scalp is usually protected by:",o:["Shampooing vigorously first","Applying a protective base cream","Misting with water","Applying a toner"],a:1,e:"A protective base cream on the scalp and hairline reduces irritation and burning from the strong alkaline relaxer."},
-  {id:"E6",t:"E",q:"During a perm, a test curl (S-test) is taken to:",o:["Check the colour result","See whether the desired curl has formed","Measure porosity only","Set the neutralizer time"],a:1,e:"Test curls are unwound during processing to confirm the proper S-shaped curl has formed before neutralizing."},
-  {id:"E7",t:"E",q:"Very porous hair will generally process a chemical texture service:",o:["More slowly","Faster, with greater risk of damage","Exactly the same","Only with heat"],a:1,e:"Porous hair absorbs chemicals quickly, so it processes faster and is more prone to over-processing."},
-  // F
-  {id:"F1",t:"F",q:"In hair colour, the term 'level' refers to:",o:["The warmth or coolness of a shade","The degree of lightness or darkness","The amount of ammonia","The brand of colour"],a:1,e:"Level is lightness/darkness on a 1 (darkest) to 10 (lightest) scale. Tone refers to warmth or coolness."},
-  {id:"F2",t:"F",q:"Which developer volume gives about one to two levels of lift and standard grey coverage?",o:["10 volume","20 volume","30 volume","40 volume"],a:1,e:"20 volume (6%) is the standard for 1 to 2 levels of lift and full grey coverage. 10 mainly deposits; 30 and 40 lift more."},
-  {id:"F3",t:"F",q:"Which colour neutralizes unwanted orange tones?",o:["Green","Blue","Violet","Red"],a:1,e:"On the colour wheel, blue is opposite orange and cancels it. Violet cancels yellow; green cancels red."},
-  {id:"F4",t:"F",q:"To cancel unwanted yellow in lightened hair, a toner should have which base?",o:["Gold","Violet","Copper","Red"],a:1,e:"Violet is opposite yellow on the colour wheel, so a violet-based toner neutralizes yellow for a cleaner blonde."},
-  {id:"F5",t:"F",q:"As natural dark hair is lightened, which sequence shows the warm pigment exposed?",o:["Yellow, orange, red","Red, orange, yellow","Green, blue, violet","Blue, red, yellow"],a:1,e:"Lift moves through warm stages: red, then red-orange/orange, then yellow-orange, then yellow, then pale yellow."},
-  {id:"F6",t:"F",q:"Which colour type uses a low-volume developer, deposits without lifting, and blends grey well?",o:["Temporary colour","Semi-permanent colour","Demi-permanent colour","High-lift permanent colour"],a:2,e:"Demi-permanent uses a low-volume developer to deposit (no lift) and blends grey while fading without a harsh regrowth line."},
-  {id:"F7",t:"F",q:"Which colour contains an alkalizer and a developer, can lift and deposit, and works in the cortex?",o:["Temporary","Semi-permanent","Permanent (oxidative)","A colour rinse"],a:2,e:"Permanent oxidative colour uses an alkalizer to open the cuticle plus a developer to lift natural pigment and deposit colour in the cortex."},
-  {id:"F8",t:"F",q:"How do you avoid off-shades when blending grey hair with a semi-permanent colour?",o:["Add warmth to the formula","Add natural (N) to the formula","Pre-lighten first","Use 40 volume developer"],a:1,e:"Adding a natural base gives grey enough underlying depth to hold the tone evenly. This mirrors an official sample question."},
-  {id:"F9",t:"F",q:"A strand test before a colour service mainly helps to:",o:["Check for scalp disease","Predict the colour result and timing","Replace the patch test","Measure density"],a:1,e:"A strand test previews the final colour and timing on that client's hair. It does not replace the allergy patch test."},
-  {id:"F10",t:"F",q:"Taking a level 4 to pale blonde usually needs a double process, meaning:",o:["One application of permanent colour","Lightening, then toning","Two coats of the same toner","A perm then colour"],a:1,e:"A double process first lightens to the needed stage, then applies a separate toner to reach the target shade."},
-  {id:"F11",t:"F",q:"A client may have used a box colour with metallic salts. Before a chemical service you should:",o:["Proceed normally","Do a metallic-salt test (e.g. a 1:1 peroxide/ammonia strand test)","Apply relaxer first","Skip the strand test"],a:1,e:"Metallic salts can react dangerously with peroxide (heat, breakage, discolouration). Test a strand before any oxidative service."},
-  // G
-  {id:"G1",t:"G",q:"Which extension method uses a heat-activated keratin protein bond?",o:["Tape-in","Sew-in (weave)","Fusion","Micro-link (bead)"],a:2,e:"Fusion attaches extensions with a heated keratin tip. Tape-in uses adhesive strips, sew-in uses thread on braids, micro-link uses beads."},
-  {id:"G2",t:"G",q:"Compared with human-hair wigs, synthetic wigs generally:",o:["Take any tint","Cannot tolerate high heat or standard hair colour","Last far longer than human hair","Need oxidative colour to maintain"],a:1,e:"Most synthetic fibres melt under high heat and will not take standard hair colour, unlike human-hair wigs."},
-  // H
-  {id:"H1",t:"H",q:"The main purpose of keeping a client service/record card is to:",o:["Set retail prices","Record formulas, timings, and results for safe, consistent future services","Track staff hours","Replace the consultation"],a:1,e:"Service records let you reproduce successful formulas, avoid past reactions, and keep results consistent over time."},
-  {id:"H2",t:"H",q:"Under a chair (booth) rental arrangement, the stylist usually:",o:["Is a salaried employee","Pays the salon a fixed fee and runs their own client business","Earns only owner-set commission","Cannot set their own prices"],a:1,e:"In chair rental the stylist pays rent for the space and operates independently, unlike commission or salaried employment."}
+{id:"A1",t:"A",q:"Which process is the only one that destroys bacterial spores?",o:["Sanitation","Disinfection","Sterilization","Antisepsis"],a:2,e:"Only sterilization (for example an autoclave) destroys all microbial life including spores. Disinfection and sanitation do not."},
+{id:"A2",t:"A",q:"An autoclave achieves sterilization by using:",o:["Ultraviolet light","Steam under pressure","Alcohol immersion","Dry heat alone"],a:1,e:"An autoclave uses pressurized steam at high temperature, the salon-relevant true sterilization method."},
+{id:"A3",t:"A",q:"For non-porous salon implements, the disinfectant must be:",o:["Any household cleaner","A hospital-grade, government-registered disinfectant","Rubbing alcohol only","Hot soapy water"],a:1,e:"Implements need a hospital-grade (EPA or Health Canada registered) disinfectant used per its label, not a general cleaner."},
+{id:"A4",t:"A",q:"Before an implement is placed in disinfectant, it must first be:",o:["Rinsed in hot water only","Cleaned to remove all visible debris","Air dried","Wiped with a dry towel"],a:1,e:"Disinfectants do not work through debris, so cleaning to remove hair and residue always comes before disinfection."},
+{id:"A5",t:"A",q:"A tool contacts blood. The disinfectant used on it must specifically be effective against:",o:["Only fungi","HIV and hepatitis B","Only surface dust","Hard water minerals"],a:1,e:"After blood exposure the disinfectant must be tuberculocidal and effective against bloodborne viruses such as HIV and HBV; single-use items are discarded."},
+{id:"A6",t:"A",q:"Which item must be discarded after one client rather than disinfected?",o:["Metal shears","A porous single-use nail file or neck strip","Plastic combs","Clipper blades"],a:1,e:"Porous single-use items absorb fluids and cannot be reliably disinfected, so they are thrown out after each client."},
+{id:"A7",t:"A",q:"How far in advance is a predisposition (patch) test done before an aniline tint?",o:["Right before applying","24 to 48 hours before","Immediately after mixing","It is optional"],a:1,e:"A patch test goes on 24 to 48 hours before the tint to reveal an allergic reaction to the dye."},
+{id:"A8",t:"A",q:"Where do you find a product's required PPE and first aid measures?",o:["The retail label price","The Safety Data Sheet (SDS)","The appointment book","The warranty card"],a:1,e:"The SDS lists hazards, safe handling, first aid, and PPE. It is the go-to WHMIS document."},
+{id:"A9",t:"A",q:"A WHMIS pictogram showing a flame indicates the product is:",o:["Corrosive","Flammable","Oxidizing","An irritant"],a:1,e:"The flame pictogram marks flammable materials, which matters for aerosols and alcohol-based products."},
+{id:"A10",t:"A",q:"WHMIS 2015 was aligned to which international system?",o:["ISO 9001","The Globally Harmonized System (GHS)","NAFTA labelling","The metric system"],a:1,e:"WHMIS 2015 adopted the GHS, standardizing pictograms and the 16-section SDS format."},
+{id:"A11",t:"A",q:"A Safety Data Sheet is organized into how many standard sections?",o:["8","12","16","24"],a:2,e:"Under GHS-aligned WHMIS, every SDS has 16 standard sections in a fixed order."},
+{id:"A12",t:"A",q:"An antiseptic differs from a disinfectant because an antiseptic is used on:",o:["Non-living surfaces","Living skin and tissue","Metal tools only","Salon floors"],a:1,e:"Antiseptics are safe on skin; disinfectants are for non-living surfaces and implements."},
+{id:"A13",t:"A",q:"Used razor blades should be disposed of in:",o:["The regular trash","A puncture-proof sharps container","The recycling","A paper bag"],a:1,e:"Sharps go in a labelled puncture-resistant container to prevent injury and exposure."},
+{id:"A14",t:"A",q:"Dipping a used applicator back into the colour tub is unsafe because it:",o:["Wastes product","Contaminates the remaining product","Changes the pH","Cools the mixture"],a:1,e:"Double-dipping contaminates the bulk product; dispense with a clean spatula into a separate bowl instead."},
+{id:"A15",t:"A",q:"Which is the correct order of decontamination levels, lowest to highest?",o:["Disinfection, sanitation, sterilization","Sanitation, disinfection, sterilization","Sterilization, disinfection, sanitation","Sanitation, sterilization, disinfection"],a:1,e:"Sanitation reduces germs, disinfection kills most pathogens, sterilization destroys everything including spores."},
+{id:"A16",t:"A",q:"Texturizing (thinning) shears are used to:",o:["Create a blunt line","Remove weight without changing length","Shorten the perimeter","Cut wet hair only"],a:1,e:"Thinning shears remove bulk and weight while keeping the overall length, unlike straight shears."},
+{id:"A17",t:"A",q:"The most appropriate drape for a chemical service is a:",o:["Single cutting cape","Waterproof cape with a towel at the neckline","Paper drape alone","No drape"],a:1,e:"Chemical services use a waterproof cape plus a towel to protect skin and clothing from product."},
+{id:"A18",t:"A",q:"Proper stylist posture during a service mainly prevents:",o:["Colour fading","Repetitive strain and back injury","Static in the hair","Slow processing"],a:1,e:"Neutral posture and correct working height reduce musculoskeletal strain over a long career."},
+{id:"A19",t:"A",q:"A client release/consent form primarily serves to:",o:["Set the price","Document informed consent and service details","Replace the consultation","Advertise the salon"],a:1,e:"The form records that the client understood risks and agreed, and keeps a service record."},
+{id:"A20",t:"A",q:"An implement falls to the floor mid-service. You should:",o:["Wipe it on a towel and continue","Re-clean and disinfect it before reuse","Blow off the dust","Use it only on the ends"],a:1,e:"Anything that touches the floor is treated as contaminated and must be cleaned and disinfected again."},
+{id:"A21",t:"A",q:"When mixing a powder lightener, the main airborne hazard is controlled by:",o:["Working faster","Adequate ventilation and avoiding inhaling the dust","Warming the room","Adding more developer"],a:1,e:"Powder lightener creates fine dust; ventilation and careful handling protect the airway."},
+{id:"A22",t:"A",q:"Which is NOT an effective infection-control practice?",o:["Cleaning before disinfecting","Reusing a disposable file on the next client","Using a fresh towel per client","Disinfecting the workstation between clients"],a:1,e:"Reusing a disposable item is the unsafe choice; the other three are standard practice."},
+{id:"A23",t:"A",q:"A client shows an open, oozing lesion on the scalp. The correct action is to:",o:["Proceed carefully","Decline the service and refer to a physician","Cover it and continue","Disinfect it yourself"],a:1,e:"Broken or infected skin is outside scope; refuse the service and refer to a medical professional."},
+{id:"A24",t:"A",q:"The best consultation practice before any service is to:",o:["Assume the usual service","Ask questions, analyze the hair, and confirm expectations","Start immediately to save time","Copy the last client's formula"],a:1,e:"A real consultation with analysis and confirmation prevents mismatched expectations and errors."},
+{id:"A25",t:"A",q:"Clean towels in a salon should be:",o:["Shared between clients if dry","Used once, then laundered, and stored covered","Reused until visibly soiled","Left on the open station"],a:1,e:"A fresh laundered towel per client, stored in a closed cabinet, controls cross-contamination."},
+{id:"A26",t:"A",q:"When giving feedback to an apprentice, the most professional approach is to:",o:["Correct them in front of clients","Give clear, specific, respectful feedback privately","Ignore small errors","Only point out mistakes"],a:1,e:"Effective mentoring is specific, respectful, and delivered in a way that supports learning."},
+{id:"A27",t:"A",q:"Client information and service history should be treated as:",o:["Public marketing material","Confidential records","Optional notes","Shared with other clients"],a:1,e:"Client records are confidential; protecting privacy is part of professional conduct."},
+{id:"A28",t:"A",q:"The main reason to read the manufacturer's directions before a chemical service is that they:",o:["Are legally optional","Give tested mixing ratios, timing, and safety steps","Only list the price","Are the same for every brand"],a:1,e:"Directions carry brand-specific ratios, timing, and safety data that protect the client and the result."},
+{id:"A29",t:"A",q:"Which PPE is essential when applying an oxidative colour or lightener?",o:["Ear protection","Gloves","A hairnet","Steel-toe boots"],a:1,e:"Gloves protect the stylist's skin from sensitization and chemical contact during colour work."},
+{id:"A30",t:"A",q:"A dry (cabinet) sanitizer in the salon is used to:",o:["Sterilize tools","Store already-disinfected implements","Disinfect on its own","Clean debris"],a:1,e:"A covered dry cabinet stores implements that have already been cleaned and disinfected, keeping them sanitary until use."},
+{id:"A31",t:"A",q:"Which statement about disinfectant solutions is correct?",o:["They stay effective indefinitely","They must be mixed to the correct dilution and replaced as directed","Stronger than label is always better","They work instantly regardless of debris"],a:1,e:"Disinfectants need correct dilution and regular replacement, and cannot work through debris or beyond their effective life."},
+{id:"A32",t:"A",q:"The safest way to check water temperature before rinsing a client is to:",o:["Ask the client to test it","Test it on your own wrist or inner forearm first","Use the hottest setting","Skip testing to save time"],a:1,e:"Testing on your own skin first prevents scalding, especially important around chemical services."},
+{id:"A33",t:"A",q:"Which is the best example of working within your scope of practice?",o:["Diagnosing a skin disease","Recommending the client see a doctor for a suspected infection","Prescribing medication","Treating an infected lesion"],a:1,e:"Recognizing a problem and referring out is within scope; diagnosing or treating medical conditions is not."},
+{id:"A34",t:"A",q:"A WHMIS pictogram of a hand and surface being eaten away indicates:",o:["Flammable","Corrosive","Compressed gas","Environmental hazard"],a:1,e:"The corrosion pictogram marks corrosive products that can damage skin, eyes, or metal, such as strong relaxers."},
+{id:"A35",t:"A",q:"The primary purpose of a hair and scalp analysis before colour is to:",o:["Set retail goals","Determine condition, porosity, and suitability for the service","Choose the cape colour","Decide the price only"],a:1,e:"Analysis establishes whether the hair can take the service and guides the formula and timing."},
+{id:"A36",t:"A",q:"Which is the correct sequence for reusable implements?",o:["Disinfect, then clean","Clean, disinfect, then store covered","Store, then clean","Rinse and reuse"],a:1,e:"Clean off debris, disinfect for the labelled time, then store in a closed sanitary container."},
+{id:"B1",t:"B",q:"Roughly what share of the hair's weight is the cortex, and what happens there?",o:["About 10%, it protects the shaft","About 90%, it holds pigment and is where chemistry acts","About 50%, it is the core only","None, it is decorative"],a:1,e:"The cortex is roughly 90% of the hair, holding melanin, strength, and elasticity, and is where colour and texture services take effect."},
+{id:"B2",t:"B",q:"The medulla is often absent in:",o:["Coarse hair","Fine or naturally blonde hair","Chemically treated hair","Grey hair"],a:1,e:"The innermost medulla is frequently missing in very fine and naturally blonde hair."},
+{id:"B3",t:"B",q:"Hair is made mostly of the protein keratin, whose chains are held end to end by:",o:["Hydrogen bonds","Peptide (end) bonds","Salt bonds","Disulfide bonds"],a:1,e:"Peptide bonds join amino acids into polypeptide chains; breaking them permanently damages the hair."},
+{id:"B4",t:"B",q:"Disulfide bonds are strong because they contain:",o:["Oxygen","Sulfur (from cysteine)","Sodium","Water"],a:1,e:"Disulfide bonds are sulfur-to-sulfur links from the amino acid cysteine, targeted by perms and relaxers."},
+{id:"B5",t:"B",q:"Which bond is physical, broken by water or heat, and re-formed as hair dries?",o:["Disulfide","Hydrogen","Peptide","Lanthionine"],a:1,e:"Hydrogen bonds are temporary physical bonds, the basis of wet sets and thermal styling."},
+{id:"B6",t:"B",q:"Salt bonds are broken by:",o:["Water alone","Changes in pH (acids or alkalis)","Heat only","Cutting"],a:1,e:"Salt bonds are ionic and break when pH shifts, then re-form; they add to temporary hold."},
+{id:"B7",t:"B",q:"Which phase of the hair growth cycle accounts for about 90% of scalp hair?",o:["Catagen","Anagen","Telogen","Exogen"],a:1,e:"Anagen is the active growth phase and covers most scalp hair at any time; it can last years."},
+{id:"B8",t:"B",q:"Telogen is the:",o:["Growth phase","Transition phase","Resting and shedding phase","Colour phase"],a:2,e:"Telogen is the resting phase after which the hair sheds; catagen is the brief transition before it."},
+{id:"B9",t:"B",q:"Which melanin produces red and yellow tones?",o:["Eumelanin","Pheomelanin","Lanthionine","Keratin"],a:1,e:"Pheomelanin gives red and yellow; eumelanin gives brown and black. Their mix sets natural colour."},
+{id:"B10",t:"B",q:"Hair that resists penetration and processes slowly, needing more time or heat, has:",o:["High porosity","Low porosity","High density","Fine texture"],a:1,e:"Low porosity means a tight, compact cuticle that resists moisture and chemicals."},
+{id:"B11",t:"B",q:"Which best describes the difference between density and texture?",o:["They are the same thing","Density is hairs per area; texture is the diameter of one strand","Density is strand thickness; texture is colour","Density is porosity; texture is elasticity"],a:1,e:"Density counts how many hairs grow per area; texture measures how thick a single strand is."},
+{id:"B12",t:"B",q:"Coarse-textured hair, compared with fine hair, is generally:",o:["Faster to process chemically","More resistant and may need stronger or longer processing","Always damaged","Unable to hold colour"],a:1,e:"A larger diameter and more cuticle layers make coarse hair more resistant to chemical services."},
+{id:"B13",t:"B",q:"Healthy wet hair with good elasticity can stretch about:",o:["10%","20%","50%","90%"],a:2,e:"Wet hair with good elasticity stretches roughly 50% and returns; poor elasticity signals damage."},
+{id:"B14",t:"B",q:"Canities is the technical term for:",o:["Split ends","Grey hair","Dandruff","Excessive hair growth"],a:1,e:"Canities is loss of natural pigment, seen as grey or white hair."},
+{id:"B15",t:"B",q:"A client has red, scaly, ring-shaped patches with broken hairs (tinea capitis). You should:",o:["Shampoo with medicated product","Refuse the service and refer to a physician","Apply a mask","Cut around it"],a:1,e:"Tinea capitis is a contagious fungal infection; do not service and refer for medical treatment."},
+{id:"B16",t:"B",q:"Pediculosis capitis means the presence of:",o:["Dandruff","Head lice","Ringworm","Boils"],a:1,e:"Pediculosis capitis is head lice, a contagious infestation that requires referral, not a salon service."},
+{id:"B17",t:"B",q:"Scabies is caused by:",o:["A fungus","An itch mite burrowing into the skin","A bacterium on the shaft","Dry scalp"],a:1,e:"Scabies is a contagious mite infestation; refer the client and do not perform the service."},
+{id:"B18",t:"B",q:"Trichoptilosis is the technical term for:",o:["Beaded hair","Split ends","Knotted hair","Grey hair"],a:1,e:"Trichoptilosis is splitting of the hair ends, often from dryness or mechanical damage."},
+{id:"B19",t:"B",q:"Trichorrhexis nodosa refers to:",o:["Nodular swellings where hair breaks easily","Excess oil","A fungal infection","Beaded hair shaft"],a:0,e:"Trichorrhexis nodosa shows small nodes along the shaft where the hair is weak and snaps."},
+{id:"B20",t:"B",q:"Monilethrix is:",o:["Split ends","Beaded hair with alternating thick and thin sections","Ringworm","Oily dandruff"],a:1,e:"Monilethrix is a beaded-hair defect with regular thick and thin bands that break easily."},
+{id:"B21",t:"B",q:"Pityriasis capitis simplex is:",o:["Contagious dandruff","Dry, flaky, non-contagious dandruff","A bacterial infection","Head lice"],a:1,e:"This is common dry dandruff, non-contagious, and can be serviced with appropriate care."},
+{id:"B22",t:"B",q:"A client has well-defined silvery, scaly plaques (psoriasis) that are not broken or infected. You should:",o:["Refuse all service","Service gently without irritating the area, and refer if severe or broken","Scrub the plaques off","Apply a strong exfoliant"],a:1,e:"Psoriasis is non-contagious; you can work gently and avoid irritation, referring out if the skin is broken or severe."},
+{id:"B23",t:"B",q:"A furuncle (boil) on the scalp means you should:",o:["Drain it","Refuse the service and refer, as it is an infection","Massage it","Cover and continue"],a:1,e:"A furuncle is a localized bacterial infection; do not service and refer to a physician."},
+{id:"B24",t:"B",q:"A shampoo surfactant molecule works because it has:",o:["Only a water-loving end","A water-loving (hydrophilic) head and an oil-loving (lipophilic) tail","Only an oil-loving end","No charge at all"],a:1,e:"The dual-natured surfactant grabs oil and debris with its lipophilic tail while its hydrophilic head lets water rinse it away."},
+{id:"B25",t:"B",q:"An acid-balanced conditioner benefits the hair mainly by:",o:["Raising the pH to open the cuticle","Lowering the pH to smooth and close the cuticle","Bleaching the pigment","Breaking disulfide bonds"],a:1,e:"An acidic conditioner closes and smooths the cuticle, adding shine and reducing tangling."},
+{id:"B26",t:"B",q:"Hard water can interfere with salon services because it:",o:["Has no effect","Contains minerals that reduce lather and can leave buildup affecting colour","Is more acidic than needed","Removes all product"],a:1,e:"Mineral-heavy hard water cuts lather and deposits buildup that can dull hair and skew colour results."},
+{id:"B27",t:"B",q:"A clarifying shampoo is used to:",o:["Deposit protein","Remove product buildup, minerals, and residue","Neutralize a relaxer","Add moisture only"],a:1,e:"Clarifying shampoos strip accumulated buildup and minerals, often before a chemical service."},
+{id:"B28",t:"B",q:"The main benefit of a scalp massage during a service is that it:",o:["Colours the hair","Stimulates blood circulation and relaxes the client","Disinfects the scalp","Lifts the cuticle"],a:1,e:"Massage increases circulation to the scalp and adds to the client's comfort and experience."},
+{id:"B29",t:"B",q:"A protein (reconstructor) treatment is most appropriate for hair that is:",o:["Oily at the roots","Damaged, over-porous, and weak","Perfectly healthy","Freshly relaxed and strong"],a:1,e:"Protein reconstructors temporarily reinforce weak, porous, damaged hair by depositing substances into the cortex."},
+{id:"B30",t:"B",q:"Which analysis finding would most raise concern before a strong chemical service?",o:["Medium density","Poor elasticity and high porosity","Coarse healthy texture","A clean, intact cuticle"],a:1,e:"Poor elasticity with high porosity signals compromised, over-processed hair that may not survive further chemical work."},
+{id:"C1",t:"C",q:"Cutting all hair to a single length at 0 degrees of elevation produces:",o:["Uniform layers","A blunt, one-length shape with maximum weight","Long layers","Heavy interior texture"],a:1,e:"Zero elevation lets all hair fall to one level, giving a solid blunt line and the most weight."},
+{id:"C2",t:"C",q:"Which elevation retains the most weight in a cut?",o:["0 degrees","45 degrees","90 degrees","180 degrees"],a:0,e:"The lower the elevation, the more weight is kept; 0 degrees keeps the maximum."},
+{id:"C3",t:"C",q:"Cutting at about 45 degrees with a stationary guide classically creates:",o:["One length","Graduation with a weight line","Uniform layers","Increasing length"],a:1,e:"Around 45 degrees you build graduation, stacking length to form a weight line."},
+{id:"C4",t:"C",q:"Cutting the whole head at 90 degrees with a traveling guide produces:",o:["A blunt line","Graduation","Uniform layers","A weight line"],a:2,e:"Consistent 90-degree elevation with a moving guide gives layers of equal length throughout."},
+{id:"C5",t:"C",q:"Over-direction means:",o:["Cutting with maximum tension","Combing hair away from its natural fall to a held position","Elevating to 90 degrees","Using a razor"],a:1,e:"Over-direction moves hair away from where it naturally falls, increasing length in the direction it is combed."},
+{id:"C6",t:"C",q:"To create long layers that increase in length toward the ends, you typically:",o:["Cut at 0 degrees","Over-direct sections up to a stationary guide at the top","Use a blunt horizontal line","Reduce all elevation"],a:1,e:"Over-directing to a high stationary guide leaves the exterior longer, producing long, increasing layers."},
+{id:"C7",t:"C",q:"A stationary (fixed) guideline is used to build:",o:["Even layers everywhere","Length or weight toward a fixed point","Maximum interior texture","A uniform shape"],a:1,e:"With a stationary guide, each section is brought to one point, increasing length or weight there."},
+{id:"C8",t:"C",q:"A traveling (mobile) guideline is used to build:",o:["A one-length cut","A weight line only","Uniform layers or graduation","Maximum perimeter weight"],a:2,e:"A traveling guide moves with each new section, producing even layering or graduation."},
+{id:"C9",t:"C",q:"The weight line in a graduated cut is:",o:["The lightest interior area","The heaviest area where lengths build up","The top of the head","The part line"],a:1,e:"The weight line is the visible ridge of built-up length created by graduation."},
+{id:"C10",t:"C",q:"A horizontal cutting line is used mainly to:",o:["Remove weight","Build weight and a strong solid line","Create face-framing","Increase interior length"],a:1,e:"Horizontal lines build weight and are the basis of blunt and one-length shapes."},
+{id:"C11",t:"C",q:"A vertical cutting line is used mainly to:",o:["Build a blunt perimeter","Remove weight and create layers","Add a weight line","Keep one length"],a:1,e:"Vertical lines distribute and remove weight, the basis of layered shapes."},
+{id:"C12",t:"C",q:"A diagonal-forward cutting line is commonly used to:",o:["Stack the back","Create face-framing length toward the front","Remove all weight","Cut a straight blunt line"],a:1,e:"Diagonal-forward lines leave the front longer, framing the face; diagonal-back lines stack the back."},
+{id:"C13",t:"C",q:"Cross-checking a haircut means:",o:["Cutting twice as fast","Re-checking with partings opposite to how you cut","Using two mirrors","Wetting the hair again"],a:1,e:"Cross-checking with opposite partings exposes uneven lengths so you can balance the cut."},
+{id:"C14",t:"C",q:"If you cut using horizontal sections, you should cross-check using:",o:["Horizontal sections again","Vertical sections","No sections","Diagonal-forward only"],a:1,e:"Checking in the opposite direction (vertical) reveals inconsistencies the original sections hid."},
+{id:"C15",t:"C",q:"Maximum, even tension is most appropriate when cutting:",o:["A cowlick","Curly hair","A precise straight blunt line on straight hair","The fragile hairline"],a:2,e:"Full even tension gives clean precise lines on straight hair; curly hair, cowlicks, and hairlines need less."},
+{id:"C16",t:"C",q:"When cutting over a cowlick, you should:",o:["Use maximum tension","Use less tension and allow for the hair standing up","Cut it shortest","Wet it heavily and pull tight"],a:1,e:"Cowlicks lift and shift, so reduced tension and extra length prevent a too-short result."},
+{id:"C17",t:"C",q:"Tension along the perimeter hairline should generally be:",o:["Maximum","Reduced, cutting closer to natural fall","Irrelevant","The same as the interior"],a:1,e:"The hairline often grows irregularly, so lighter tension respects its natural fall."},
+{id:"C18",t:"C",q:"The parietal ridge is:",o:["The lowest point at the nape","The widest part of the head","The very top of the head","The front hairline"],a:1,e:"The parietal ridge (crest) is where the head is widest and is a key cutting reference."},
+{id:"C19",t:"C",q:"The apex of the head is:",o:["The nape","The highest point","The occipital area","The temple"],a:1,e:"The apex is the highest point of the head, found where a comb balances flat on top."},
+{id:"C20",t:"C",q:"The occipital refers to:",o:["The crown swirl","The bone at the lower back of the skull","The front hairline","The widest point"],a:1,e:"The occipital bone marks the back curve of the head near the top of the nape."},
+{id:"C21",t:"C",q:"The four corners of the head help a stylist:",o:["Choose colour","Establish the reference points that frame the shape","Set the perm timer","Pick a shampoo"],a:1,e:"The four corners mark where the head changes from flat to round and guide sectioning and shape."},
+{id:"C22",t:"C",q:"A strong whorl at the crown is best handled by:",o:["Cutting it extremely short","Leaving length and using low tension to allow for the movement","Ignoring the growth pattern","Pulling it tight when cutting"],a:1,e:"A crown whorl lifts unpredictably, so extra length and light tension prevent a hole or spike."},
+{id:"C23",t:"C",q:"When cutting a fringe over a widow's peak, you should:",o:["Cut it very short and tight","Leave enough length to account for the strong growth","Use maximum tension","Razor it dry"],a:1,e:"A widow's peak grows strongly forward; leaving length prevents a fringe that separates or sits too short."},
+{id:"C24",t:"C",q:"A razor produces its characteristic soft, tapered ends and must be used on:",o:["Dry hair","Wet hair","Chemically over-processed hair","Coarse resistant hair only"],a:1,e:"Razoring is done on wet hair for soft tapered ends; on dry or fragile hair it drags and damages."},
+{id:"C25",t:"C",q:"Point (notching) cutting into the ends is used to:",o:["Create a solid blunt line","Soften the line and remove weight at the ends","Increase overall length","Set a weight line"],a:1,e:"Cutting into the ends breaks up a hard line and removes bulk for a softer finish."},
+{id:"C26",t:"C",q:"Deeper notching (larger cuts into the ends) is used to create:",o:["A precise blunt edge","A chunkier, more textured, separated end","One uniform length","A stacked weight line"],a:1,e:"Larger notches remove bigger pieces for a bold, textured, piecey finish."},
+{id:"C27",t:"C",q:"Slide cutting (slithering) with partly open shears is used to:",o:["Create a blunt line","Remove length and bulk gradually along the strand","Add a weight line","Increase density"],a:1,e:"Sliding open shears down the strand thins and tapers length smoothly, reducing bulk."},
+{id:"C28",t:"C",q:"Clipper-over-comb is most useful for:",o:["Cutting a one-length bob","Blending and tapering very short lengths","Razoring soft ends","Creating long layers"],a:1,e:"Clipper-over-comb blends short areas such as tapers and necklines that shears alone cannot smooth."},
+{id:"C29",t:"C",q:"Compared with clipper-over-comb, scissor-over-comb offers:",o:["Faster bulk removal","More control for slightly longer, detailed blending","A closer cut than clippers","No blending ability"],a:1,e:"Scissor-over-comb gives finer control for detailed blending, often on slightly longer lengths."},
+{id:"C30",t:"C",q:"On clipper guards, a higher-numbered guard:",o:["Cuts closer to the scalp","Leaves more length","Removes the blade","Is only for wet hair"],a:1,e:"A larger guard number keeps the blade farther from the scalp, leaving more length."},
+{id:"C31",t:"C",q:"A blunt, one-length cut is often chosen on fine hair because it:",o:["Removes weight","Makes the hair look fuller and denser","Creates long layers","Thins the ends"],a:1,e:"Keeping all the weight in a blunt line gives fine hair the appearance of more density."},
+{id:"C32",t:"C",q:"To keep the perimeter one length while reducing interior bulk, you:",o:["Cut the perimeter at 90 degrees","Layer or texturize the interior only, leaving the perimeter intact","Point cut the whole perimeter","Over-direct everything forward"],a:1,e:"Working only the interior removes bulk while the untouched perimeter keeps the one-length line."},
+{id:"C33",t:"C",q:"Uniform layers depend on:",o:["A stationary guide and changing elevation","Consistent elevation and a traveling guide","0 degrees throughout","Maximum tension only"],a:1,e:"Even layers require the same elevation and a guide that travels, so every section is cut to equal length."},
+{id:"C34",t:"C",q:"Losing track of your guideline during a cut usually results in:",o:["A cleaner line","An uneven, inconsistent cut","More shine","Better graduation"],a:1,e:"The guide sets each new length, so losing it produces uneven, unpredictable results."},
+{id:"C35",t:"C",q:"Beveling the ends under creates a shape where the ends:",o:["Flip outward","Curve smoothly under","Stand straight up","Split evenly"],a:1,e:"An under-bevel rounds the ends inward, common on classic bobs and blowouts."},
+{id:"C36",t:"C",q:"The best way to soften an overly heavy blunt perimeter is to:",o:["Cut it shorter overall","Point cut or texturize the ends","Add more elevation to the interior","Wet it and re-blunt"],a:1,e:"Texturizing the ends breaks the solid line for a softer edge without changing the length much."},
+{id:"C37",t:"C",q:"Clean, deliberate sectioning before cutting mainly provides:",o:["Faster processing","Control and an even, accurate result","More shine","Extra weight"],a:1,e:"Sections keep the work organized so each part is cut accurately and consistently."},
+{id:"C38",t:"C",q:"When cutting curly hair, you must account for:",o:["Extra weight at the roots","Shrinkage, so lengths are cut longer than the target","Faster drying","Reduced density"],a:1,e:"Curly hair shrinks as it dries, so cutting to the finished length while wet leaves it too short."},
+{id:"C39",t:"C",q:"A razor is a poor choice on hair that is:",o:["Healthy and coarse","Fragile, damaged, or very weak","Thick and strong","Freshly washed"],a:1,e:"Razoring stresses the ends, so it is avoided on fragile or damaged hair that would split and break."},
+{id:"C40",t:"C",q:"For precise detail and outline work, you generally cut with:",o:["The full length of the blades","The tips (points) of the shears","A razor on dry hair","Clippers with no guard"],a:1,e:"Using the points gives control for detailed, accurate line and outline work."},
+{id:"C41",t:"C",q:"Safe shear handling means you should:",o:["Cut toward your holding fingers","Keep the cutting motion away from your fingers and control the thumb blade","Point the tips at the client","Cut with the shears closed"],a:1,e:"Controlling the thumb blade and cutting away from the fingers prevents injury to you and the client."},
+{id:"C42",t:"C",q:"Good body position and footwork while cutting help you:",o:["Colour faster","Keep a balanced, accurate line and reduce fatigue","Skip cross-checking","Increase tension"],a:1,e:"Staying square to your section improves accuracy and protects your body over a full day."},
+{id:"C43",t:"C",q:"The design line of a haircut is:",o:["The interior texture","The outer perimeter guideline that establishes the shape","The part line","The weight line only"],a:1,e:"The design (perimeter) line sets the overall shape that the rest of the cut works from."},
+{id:"C44",t:"C",q:"Tilting the client's head forward while cutting the nape tends to create:",o:["A one-length blunt nape","Graduation and length build at the nape","Long layers","Less weight"],a:1,e:"A forward head tilt shifts the fall so lengths stack, building graduation at the nape."},
+{id:"C45",t:"C",q:"Short, even layers over the whole head are produced by cutting:",o:["At 0 degrees with a stationary guide","At 90 degrees with a traveling guide","At 45 degrees with over-direction","With horizontal lines only"],a:1,e:"Ninety degrees plus a traveling guide gives uniform short layers throughout."},
+{id:"C46",t:"C",q:"Removing weight in the mid-lengths of thick hair while leaving ends intact mainly:",o:["Shortens the perimeter","Reduces bulk and can add support and lift","Creates a blunt line","Increases porosity"],a:1,e:"Internal weight removal thins bulk and can help the style sit better without changing the length."},
+{id:"C47",t:"C",q:"Carving with the shears is used to:",o:["Create a solid line","Create separation and directional movement","Blend a taper","Cut a blunt fringe"],a:1,e:"Carving cuts channels that create separation and guide the direction of the finished style."},
+{id:"C48",t:"C",q:"Clippers are the primary tool for:",o:["Long layered cuts","Very short cuts, tapers, fades, and outlines","Razoring soft ends","One-length bobs"],a:1,e:"Clippers excel at short work, tapering, fading, and clean outlines."},
+{id:"C49",t:"C",q:"A trimmer/edger is best suited to:",o:["Removing interior bulk","Clean outlines around the ears, neckline, and sideburns","Layering the crown","Cutting wet curly hair"],a:1,e:"Edgers create crisp detailed outlines at the hairline and around the ears."},
+{id:"C50",t:"C",q:"An A-line bob that is longer at the front uses which cutting line?",o:["Horizontal","Vertical","Diagonal forward","No guideline"],a:2,e:"A diagonal-forward line leaves the front longer than the back, producing the A-line."},
+{id:"C51",t:"C",q:"A stacked, graduated back is built using which cutting line?",o:["Diagonal back","Horizontal at 0 degrees","Vertical layering only","No elevation"],a:0,e:"A diagonal-back line stacks length in the back, creating graduation and a rounded stacked shape."},
+{id:"C52",t:"C",q:"To reduce bulk without changing the overall length, you use:",o:["Blunt cutting at 0 degrees","Thinning or texturizing techniques","A horizontal design line","Maximum tension"],a:1,e:"Texturizing and thinning remove interior weight while the length stays the same."},
+{id:"C53",t:"C",q:"The least suitable technique for making fine, limp hair look fuller is:",o:["A blunt one-length cut","Keeping weight in the perimeter","Heavy thinning of the ends","Precise clean lines"],a:2,e:"Thinning the ends removes the very weight fine hair needs to look full, so it is the wrong move."},
+{id:"C54",t:"C",q:"Over-directing the side sections back toward a stationary point creates:",o:["Shorter sides","Length increasing toward the back and connected length","A blunt fringe","Uniform layers"],a:1,e:"Bringing the sides to a back guide leaves them longer, connecting and increasing length toward the back."},
+{id:"C55",t:"C",q:"Increasing elevation beyond 90 degrees toward 180 tends to create:",o:["A stronger weight line","Increasing length toward the exterior (long layers)","A blunt perimeter","Maximum weight"],a:1,e:"Higher elevation with over-direction leaves the exterior longer, giving increasing long layers."},
+{id:"C56",t:"C",q:"The single most important habit for a balanced, even cut is:",o:["Cutting quickly","Keeping clean sections and following the guide with consistent tension and elevation","Using only clippers","Avoiding cross-checking"],a:1,e:"Consistency in sectioning, guide, tension, and elevation is what makes a cut even and repeatable."},
+{id:"C57",t:"C",q:"An intentional disconnection in a cut means:",o:["A mistake in the guideline","Two lengths deliberately left unblended for effect","Uneven tension","A missed section"],a:1,e:"Disconnection is a chosen design where areas are not blended, creating a strong contrast."},
+{id:"C58",t:"C",q:"The best time to confirm the final shape and balance is:",o:["While the hair is soaking wet","With the client sitting upright and the hair styled/dry in natural fall","Before any cutting","Only in a photo"],a:1,e:"Dry hair in natural fall shows the true finished shape, revealing anything that needs refining."},
+{id:"C59",t:"C",q:"When blending a short taper into longer top length, the goal is:",o:["A visible hard line between them","A smooth gradual transition with no ledge","Maximum weight at the join","Two disconnected lengths"],a:1,e:"A clean taper blends gradually so there is no harsh line where the lengths meet."},
+{id:"C60",t:"C",q:"Cutting with too much tension on wavy hair typically causes the finished length to be:",o:["Too long","Too short once it springs up","Perfectly on target","Unaffected"],a:1,e:"High tension stretches wavy hair, so it retracts shorter than intended after cutting."},
+{id:"D1",t:"D",q:"A wet (cohesion) set holds the style by temporarily changing:",o:["Disulfide bonds","Hydrogen bonds","Peptide bonds","Melanin"],a:1,e:"Wet sets rearrange hydrogen bonds, a physical change that lasts until water or humidity returns."},
+{id:"D2",t:"D",q:"Humidity drops a set quickly because water:",o:["Adds pigment","Re-forms hydrogen bonds in the hair's natural position","Breaks disulfide bonds","Raises the pH permanently"],a:1,e:"Moisture re-forms hydrogen bonds, so the hair reverts toward its natural shape."},
+{id:"D3",t:"D",q:"The three parts of a pin curl are the:",o:["Root, shaft, tip","Base, stem, and circle","Barrel, clip, comb","Ridge, hollow, crest"],a:1,e:"A pin curl has a base (at the scalp), a stem (connector), and the circle (the curl itself)."},
+{id:"D4",t:"D",q:"Which part of a pin curl determines the amount of movement?",o:["The base","The stem","The circle","The pin"],a:1,e:"The stem controls mobility: more stem gives more movement, no stem gives tight, firm curl."},
+{id:"D5",t:"D",q:"A no-stem pin curl produces:",o:["Maximum movement","Tight, firm curl with the least mobility","A loose wave","No curl"],a:1,e:"With no stem the curl sits directly on its base, giving strong, long-lasting, tight curl."},
+{id:"D6",t:"D",q:"A full-stem pin curl gives:",o:["The least movement","The greatest mobility and looser result","A tight firm curl","No wave at all"],a:1,e:"A full stem allows the most freedom of movement and a looser finished curl."},
+{id:"D7",t:"D",q:"An open-center pin curl produces:",o:["Waves that get smaller toward the ends","Uniform, even waves","No wave","A tight spiral"],a:1,e:"Open-center curls create smooth, even waves of consistent size."},
+{id:"D8",t:"D",q:"A closed-center pin curl produces:",o:["Even uniform waves","Waves that decrease in size, tighter at the ends","No curl","Only root volume"],a:1,e:"Closed-center curls give tighter curl at the ends with waves that diminish in size."},
+{id:"D9",t:"D",q:"Triangular-base pin curls are used along the hairline to:",o:["Add maximum volume","Prevent splits and blend a fringe smoothly","Create tight spirals","Remove weight"],a:1,e:"Triangular bases along the hairline avoid gaps and splits, giving a smooth fringe or facial line."},
+{id:"D10",t:"D",q:"A roller should generally be chosen:",o:["Smaller than the desired curl","One size larger than the desired curl","The same width every time","Only the smallest available"],a:1,e:"A larger roller gives a softer, wider curl and volume; smaller rollers give tighter curl."},
+{id:"D11",t:"D",q:"A roller placed on-base produces:",o:["The least volume","The most volume and lift at the scalp","A flat result","Only end curl"],a:1,e:"Sitting the roller on its own base directs the most lift and volume at the root."},
+{id:"D12",t:"D",q:"A roller placed off-base produces:",o:["Maximum volume","The least volume","Tight curl only","No curl"],a:1,e:"Off-base placement sits below the base, giving the least root volume."},
+{id:"D13",t:"D",q:"Backcombing at the base of a section is used to:",o:["Smooth the ends","Build volume and lift","Add shine","Set a permanent wave"],a:1,e:"Backcombing packs hair toward the scalp to create volume and support."},
+{id:"D14",t:"D",q:"Back-brushing (as opposed to backcombing) is mainly used to:",o:["Create hard volume at the base","Blend and connect the surface for a soft finish","Straighten the hair","Remove product"],a:1,e:"Back-brushing softly intermingles the surface hair to blend a style, with less density than backcombing."},
+{id:"D15",t:"D",q:"To smooth and straighten during a blow-dry, the best tool is a:",o:["Round brush","Flat or paddle brush","Vent brush for curl","Rat-tail comb only"],a:1,e:"A flat or paddle brush keeps the hair straight and smooth; a round brush adds curl and volume."},
+{id:"D16",t:"D",q:"A diffuser attachment is best used on:",o:["Straight hair to add shine","Curly hair to keep definition and reduce frizz","Wet sets","Pressed hair"],a:1,e:"A diffuser spreads airflow to dry curls gently, preserving curl pattern and limiting frizz."},
+{id:"D17",t:"D",q:"On a curling iron, the barrel size determines:",o:["The temperature","The size of the curl","The hold","The shine"],a:1,e:"A smaller barrel gives a tighter curl; a larger barrel gives a looser, wider curl."},
+{id:"D18",t:"D",q:"Pointing the blow-dryer nozzle down the length of the hair shaft:",o:["Roughens the cuticle","Smooths the cuticle for more shine","Adds frizz","Cools the scalp only"],a:1,e:"Directing airflow down the shaft lays the cuticle flat, increasing smoothness and shine."},
+{id:"D19",t:"D",q:"A hard press (thermal pressing) compared with a soft press:",o:["Removes less curl","Removes more curl using more heat and pressure, often a double pass","Adds curl","Is done on wet hair"],a:1,e:"A hard press applies more heat and pressure (often twice) to remove more curl than a soft or medium press."},
+{id:"D20",t:"D",q:"Thermal pressing with a pressing comb is:",o:["A permanent change","A temporary change that reverts with moisture or humidity","A chemical relaxer","A colour service"],a:1,e:"Pressing rearranges hydrogen bonds, so the straightening reverts when moisture returns."},
+{id:"D21",t:"D",q:"Which product gives firm hold and strong definition?",o:["Lightweight mousse","Gel","Shine serum","Leave-in conditioner"],a:1,e:"Gel provides firm hold and definition; mousse gives lighter volume-oriented hold."},
+{id:"D22",t:"D",q:"Mousse is most associated with:",o:["Heavy wax texture","Volume and light-to-medium hold","Removing frizz only","Firm sculpting hold"],a:1,e:"Mousse adds body and volume with a light to medium hold."},
+{id:"D23",t:"D",q:"Pomade or wax is chosen mainly for:",o:["Volume at the roots","Pliable texture and shine on shorter styles","Firm non-moving hold","Frizz-free straightening"],a:1,e:"Pomades and waxes add moldable texture and shine, popular on short and men's styles."},
+{id:"D24",t:"D",q:"A silicone serum or oil is used mainly to:",o:["Build volume","Add shine and control frizz","Provide firm hold","Lift the roots"],a:1,e:"Serums smooth the surface, boosting shine and taming frizz and flyaways."},
+{id:"D25",t:"D",q:"Hairspray is typically used to:",o:["Prep before rollers","Provide finishing hold","Deep condition","Lift the base"],a:1,e:"Hairspray sets the finished style in place as a final step."},
+{id:"D26",t:"D",q:"The most important product to apply before using hot tools is a:",o:["Clarifying shampoo","Thermal (heat) protectant","Firm gel","Volumizing powder"],a:1,e:"A heat protectant shields the cuticle and limits moisture loss and heat damage."},
+{id:"D27",t:"D",q:"Thermal and wet styling are physical changes because they affect:",o:["Disulfide bonds","Hydrogen bonds","Peptide bonds","Melanin"],a:1,e:"Both work on hydrogen bonds, which is why the style is temporary and reverts with water."},
+{id:"D28",t:"D",q:"Marcel waving is created with:",o:["Cold wave rods","Heated irons","Chemical relaxer","Rollers only"],a:1,e:"Marcel waving uses heated (marcel) irons to form waves and curls thermally."},
+{id:"D29",t:"D",q:"Finger waving is shaped using:",o:["A curling iron","Waving/shaping lotion and a comb to mold C-shapes","Hydroxide relaxer","Backcombing only"],a:1,e:"Finger waves are molded into S-shaped ridges and hollows using shaping lotion and a comb."},
+{id:"D30",t:"D",q:"The most common reason a roller set drops quickly is that the hair was:",o:["Cut too short","Not fully dry before the rollers were removed","Too clean","Over-conditioned"],a:1,e:"Removing rollers before the hair is completely dry lets hydrogen bonds re-form loose, so the set falls."},
+{id:"D31",t:"D",q:"The base direction of pin curls or rollers primarily controls:",o:["Curl tightness","The direction the finished wave or flow moves","The hold strength","The shine"],a:1,e:"Base direction sets which way the movement flows in the finished style."},
+{id:"D32",t:"D",q:"For maximum crown volume with a roller set, you place rollers:",o:["Off-base","On-base, sitting on their own base","Half-base only","Flat against the scalp with no lift"],a:1,e:"On-base placement lifts the hair fully off the scalp for the most volume."},
+{id:"D33",t:"D",q:"To preserve a curly client's natural definition, the best drying approach is:",o:["Rough-dry with a round brush","Diffuse on low or air dry, avoiding brushing when dry","High heat with a paddle brush","Flat iron while damp"],a:1,e:"Gentle diffusing or air drying and not disturbing dry curls keeps the pattern intact and frizz-free."},
+{id:"D34",t:"D",q:"Backcombing aggressively at the ends rather than the base risks:",o:["Better hold","Tangling and breakage","More shine","A smoother finish"],a:1,e:"The ends are the most fragile part, so heavy backcombing there causes matting and damage; keep it at the base."},
+{id:"D35",t:"D",q:"The safest way to check a hot iron's heat before use is to:",o:["Touch it to the client's scalp","Test on a paper/tissue or trust the temperature setting","Hold it to your palm firmly","Skip checking"],a:1,e:"Testing on paper or using the correct temperature setting avoids burning the client's scalp or skin."},
+{id:"D36",t:"D",q:"An updo generally lasts longer when it is built on a foundation of:",o:["Freshly washed, slippery clean hair","Prepped hair with some texture or product for grip","Soaking wet hair","Heavily oiled hair"],a:1,e:"A little texture or product gives the pins and structure something to hold, so the style stays put."},
+{id:"D37",t:"D",q:"To add lift at the roots of fine hair before blow-drying, you can:",o:["Apply heavy oil to the roots","Use a root volumizer and lift the section up and out with a round brush","Weigh it down with pomade","Point the nozzle straight down at the roots only"],a:1,e:"A light root volumizer plus lifting the section while drying builds base volume in fine hair."},
+{id:"D38",t:"D",q:"Rectangular-base pin curls are typically used at the side front to create:",o:["Tight spirals","A smooth, unbroken wave with no splits","Maximum root volume","A closed-center curl only"],a:1,e:"Rectangular bases produce a smooth upsweep or wave without splits at the hairline."},
+{id:"D39",t:"D",q:"Excess heat repeatedly applied to the same section during styling mainly risks:",o:["Better shine","Dryness, breakage, and cuticle damage","Faster curl formation","Improved elasticity"],a:1,e:"Over-passing with heat dehydrates and weakens the hair, damaging the cuticle and causing breakage."},
+{id:"D40",t:"D",q:"A closed-center curl is the better choice when you want:",o:["Uniform waves the whole length","A curl that stays tighter and springier at the ends","Only root volume","A straight finish"],a:1,e:"Closed-center curls keep more spring at the ends, useful for lasting curl and tighter finishes."},
+{id:"E1",t:"E",q:"A permanent wave works by breaking and re-forming which bonds?",o:["Hydrogen","Salt","Disulfide","Peptide"],a:2,e:"Perms break disulfide bonds with a reducing agent, then re-form them in the new curled shape."},
+{id:"E2",t:"E",q:"The waving (reducing) lotion breaks disulfide bonds by:",o:["Removing hydrogen","Adding hydrogen (reduction)","Adding oxygen","Raising the temperature only"],a:1,e:"Reduction adds hydrogen to break the disulfide bonds so the hair can take a new shape."},
+{id:"E3",t:"E",q:"The neutralizer re-forms disulfide bonds by:",o:["Reduction","Oxidation","Lowering the pH only","Adding water"],a:1,e:"The neutralizer oxidizes the hair, rebuilding disulfide bonds in the shape of the rod."},
+{id:"E4",t:"E",q:"A common chemical used in perm neutralizers is:",o:["Ammonium thioglycolate","Hydrogen peroxide","Sodium hydroxide","Guanidine"],a:1,e:"Perm neutralizers commonly use hydrogen peroxide (or sodium bromate) to oxidize and re-form bonds."},
+{id:"E5",t:"E",q:"The active reducing agent in a traditional cold (alkaline) wave is:",o:["Glyceryl monothioglycolate","Ammonium thioglycolate","Sodium hydroxide","Calcium hydroxide"],a:1,e:"Cold waves use ammonium thioglycolate at an alkaline pH."},
+{id:"E6",t:"E",q:"The pH of a typical cold (alkaline) wave is about:",o:["4.5 to 5.5","6.0 to 7.0","8.5 to 9.5","12 to 14"],a:2,e:"Alkaline cold waves sit around pH 8.5 to 9.5, which swells the hair and speeds processing."},
+{id:"E7",t:"E",q:"The reducing agent used in a true acid wave is:",o:["Ammonium thioglycolate","Glyceryl monothioglycolate (GMTG)","Sodium hydroxide","Hydrogen peroxide"],a:1,e:"Acid waves use GMTG at a lower pH, gentler than alkaline thio waves."},
+{id:"E8",t:"E",q:"Compared with an alkaline wave, a true acid wave is:",o:["More damaging and faster","Gentler, at a lower pH, and often needs added heat","Higher in pH","Neutralized by reduction"],a:1,e:"Acid waves are milder and lower pH, and true acid waves are endothermic, needing an outside heat source."},
+{id:"E9",t:"E",q:"A true acid wave is described as endothermic because it:",o:["Creates its own heat","Requires an outside heat source to process","Needs no neutralizer","Works only in sunlight"],a:1,e:"Endothermic acid waves absorb heat, so they are processed under a dryer or heat source."},
+{id:"E10",t:"E",q:"An exothermic wave differs in that it:",o:["Requires an outside heat source","Generates its own heat through a chemical reaction when mixed","Uses no reducing agent","Cannot be neutralized"],a:1,e:"Exothermic waves produce heat from an added activator, speeding processing without an external source."},
+{id:"E11",t:"E",q:"On a perm, the size of the rod primarily determines:",o:["The pH","The size of the curl","The neutralizer strength","The processing chemical"],a:1,e:"Smaller rods create tighter curls; larger rods create looser, wider curls."},
+{id:"E12",t:"E",q:"A croquignole wrap wraps the hair:",o:["From the scalp outward along the rod","From the ends toward the scalp in overlapping layers","In a spiral down the rod","Without end papers"],a:1,e:"Croquignole wrapping goes ends to scalp, giving a tighter curl at the ends and a looser one at the base."},
+{id:"E13",t:"E",q:"A spiral wrap is most useful for:",o:["Very short hair","Long hair needing uniform curl from root to end","A blunt result","Straightening"],a:1,e:"Spiral wrapping runs the hair along the length of the rod, giving even curl on long hair."},
+{id:"E14",t:"E",q:"A base section for an on-base perm rod should be about:",o:["Twice the rod's diameter","Equal to the rod's diameter","Half the rod's diameter","Unrelated to the rod"],a:1,e:"A base roughly equal to the rod diameter lets the rod sit on-base for good curl and volume."},
+{id:"E15",t:"E",q:"A test curl during a perm is taken to check:",o:["The final colour","Whether the curl (S shape) has processed enough","The scalp pH","The rod size"],a:1,e:"Unwinding a rod to see the S-shaped curl tells you if processing is complete before neutralizing."},
+{id:"E16",t:"E",q:"An over-processed perm typically looks:",o:["Loose and straight","Frizzy and weak, with damaged, limp curl","Perfectly springy","Unchanged"],a:1,e:"Over-processing damages the hair, giving frizzy, weak curl that often fails, especially near the scalp."},
+{id:"E17",t:"E",q:"An under-processed perm results in:",o:["Over-tight curl","Weak or loose curl, or nearly straight hair","Breakage at the roots","A perfect firm curl"],a:1,e:"Too little processing leaves the disulfide bonds largely intact, so the curl is weak or absent."},
+{id:"E18",t:"E",q:"Porous hair, compared with resistant hair, will generally:",o:["Process more slowly","Process faster and needs close timing","Not process at all","Need a stronger lotion"],a:1,e:"Porous hair absorbs product quickly and processes faster, so timing must be watched carefully."},
+{id:"E19",t:"E",q:"End papers are used during perm wrapping to:",o:["Add curl","Control the ends for a smooth, even wrap and avoid fishhooks","Neutralize the hair","Protect the scalp"],a:1,e:"End papers keep the ends smooth and evenly wrapped, preventing bent, crimped ends."},
+{id:"E20",t:"E",q:"A fishhook (bent end) on a permed curl is caused by:",o:["Correct wrapping","Ends folded or bunched under during wrapping","Too much neutralizer","Low pH"],a:1,e:"A fishhook forms when the ends are not wrapped smoothly, leaving a crimped, folded end."},
+{id:"E21",t:"E",q:"Chemical relaxers straighten hair permanently through a process called:",o:["Oxidation","Lanthionization (with hydroxide relaxers)","Reduction only","Hydration"],a:1,e:"Hydroxide relaxers break disulfide bonds and convert them to lanthionine bonds, an irreversible change."},
+{id:"E22",t:"E",q:"The strongest, highest-pH relaxer type is:",o:["Thio relaxer","No-lye (guanidine)","Sodium hydroxide (lye)","Ammonium thioglycolate"],a:2,e:"Sodium hydroxide (lye) relaxers have the highest pH and are the strongest and most potentially damaging."},
+{id:"E23",t:"E",q:"The pH of a sodium hydroxide relaxer is approximately:",o:["4.5 to 5.5","7 to 8","9 to 10","12 to 14"],a:3,e:"Lye relaxers are very alkaline, around pH 12 to 14, which is why scalp protection is essential."},
+{id:"E24",t:"E",q:"A no-lye relaxer is usually based on:",o:["Sodium hydroxide","Guanidine hydroxide (mixed on the spot)","Ammonium thioglycolate","Hydrogen peroxide"],a:1,e:"No-lye relaxers mix calcium hydroxide with guanidine carbonate to form guanidine hydroxide, gentler on the scalp."},
+{id:"E25",t:"E",q:"A known drawback of no-lye relaxers is:",o:["Very high pH burns","Calcium/mineral buildup that can dry the hair","No straightening effect","They are irreversible only sometimes"],a:1,e:"No-lye relaxers can leave calcium deposits, leading to dryness and dullness without proper clarifying."},
+{id:"E26",t:"E",q:"The mildest relaxer type is generally the:",o:["Sodium hydroxide relaxer","Thio (ammonium thioglycolate) relaxer","Potassium hydroxide relaxer","Lithium hydroxide relaxer"],a:1,e:"Thio relaxers are the gentlest of the common relaxer chemistries."},
+{id:"E27",t:"E",q:"Before applying a hydroxide relaxer, you should:",o:["Shampoo vigorously","Base the scalp and hairline with protective cream and not pre-shampoo","Apply peroxide","Wet the hair with hot water"],a:1,e:"Basing protects the scalp, and pre-shampooing is avoided because it can cause burning."},
+{id:"E28",t:"E",q:"A hydroxide relaxer is stopped and stabilized using:",o:["An oxidizing neutralizer like a perm","An acid-balanced neutralizing shampoo","More relaxer","Plain hot water"],a:1,e:"Hydroxide relaxers are neutralized by lowering the pH with a neutralizing shampoo, not by oxidation."},
+{id:"E29",t:"E",q:"On a virgin relaxer application, the product is generally applied first to the:",o:["Scalp area","Most resistant hair, kept off the scalp until later","Ends only","Hairline first"],a:1,e:"Applying to the most resistant sections and keeping product off the scalp early reduces irritation and evens processing."},
+{id:"E30",t:"E",q:"A relaxer retouch should be applied only to the:",o:["Entire strand each time","New growth since the last service","Ends","Scalp and ends"],a:1,e:"Overlapping onto previously relaxed hair causes breakage, so only the new growth is treated."},
+{id:"E31",t:"E",q:"Over-processing a relaxer most commonly causes:",o:["Extra curl","Breakage and scalp damage","Colour fading only","No change"],a:1,e:"Leaving a relaxer too long or overlapping weakens the hair to the point of breakage and can burn the scalp."},
+{id:"E32",t:"E",q:"During relaxer processing, smoothing should be done:",o:["By scraping the scalp hard","Gently, without abrading the scalp","With a fine-tooth comb under tension","Only after neutralizing"],a:1,e:"Gentle smoothing straightens the hair without scratching or irritating the scalp."},
+{id:"E33",t:"E",q:"A client with hydroxide-relaxed hair now wants a perm. You should:",o:["Perm over the relaxer","Refuse, because the two chemistries are incompatible and will cause breakage","Use a stronger lotion","Relax again first"],a:1,e:"Hydroxide-relaxed hair cannot be permed; combining the incompatible services leads to severe breakage."},
+{id:"E34",t:"E",q:"An elasticity and porosity test before a texture service confirms whether the hair:",o:["Is the right colour","Can withstand the chemical process","Needs a haircut","Is clean"],a:1,e:"Testing elasticity and porosity shows if the hair is strong enough to survive perming or relaxing."},
+{id:"E35",t:"E",q:"A soft-curl (curl re-forming) perm on very curly hair typically:",o:["Uses hydroxide to straighten permanently","Uses thio to soften, then rods, then neutralizes","Adds colour only","Requires no neutralizer"],a:1,e:"Curl re-forming softens the natural curl with thio, wraps on rods for a new curl, then neutralizes."},
+{id:"E36",t:"E",q:"The main safety hazard of hydroxide relaxers is that their high pH can:",o:["Fade colour","Cause chemical burns to skin, eyes, and scalp","Add unwanted curl","Lower porosity"],a:1,e:"The very high pH is caustic, so gloves, basing, and careful application are required to prevent burns."},
+{id:"E37",t:"E",q:"If a perm curl is too tight and frizzy after neutralizing, the likely cause was:",o:["Under-processing","Over-processing (too long or too strong)","Rods too large","Not enough neutralizer"],a:1,e:"Excessively tight, frizzy, damaged curl is a classic sign of over-processing."},
+{id:"E38",t:"E",q:"To achieve a firmer curl at the scalp with more volume, the rod should be placed:",o:["Off-base","On-base","Half-off-base","Underdirected"],a:1,e:"On-base placement lifts the hair and produces stronger curl and volume near the scalp."},
+{id:"E39",t:"E",q:"Thoroughly rinsing the waving lotion before neutralizing matters because leftover reducing agent can:",o:["Improve the curl","Interfere with neutralizing and damage the hair","Set the colour","Lower the pH safely"],a:1,e:"Residual reducing lotion keeps breaking bonds and disrupts oxidation, harming the curl and the hair."},
+{id:"E40",t:"E",q:"Coarse, resistant hair being permed generally needs:",o:["Less processing time","A shorter, weaker lotion","More time or a stronger formulation, with careful testing","No neutralizer"],a:2,e:"Resistant hair processes slowly, so it often needs stronger product or more time, always confirmed by test curls."},
+{id:"E41",t:"E",q:"The purpose of blocking (sectioning) before a perm is to:",o:["Speed up neutralizing","Ensure even, controlled rod placement for consistent curl","Add colour","Protect the scalp"],a:1,e:"Even blocking keeps rod size and placement consistent so the curl comes out uniform."},
+{id:"E42",t:"E",q:"Applying a perm to hair with unknown metallic buildup risks:",o:["A perfect curl","Uneven results, heat, breakage, or discolouration","Faster processing safely","Better shine"],a:1,e:"Metallic residues react unpredictably with perm chemicals, so a strand test or clarifying is needed first."},
+{id:"E43",t:"E",q:"After a relaxer is rinsed, using a normalizing/neutralizing shampoo repeatedly until the correct colour change appears confirms that the:",o:["Curl is set","Hair's pH has been returned toward normal","Colour has developed","Cuticle is open"],a:1,e:"The neutralizing shampoo lowers the pH; the indicated colour change signals the hair is back near a safe pH."},
+{id:"E44",t:"E",q:"The best first step when a client requests any chemical texture service is to:",o:["Mix the product","Analyze the hair, check for contraindications, and take a test where needed","Wrap the rods","Apply base cream everywhere"],a:1,e:"Analysis and testing come first to confirm the hair and scalp can safely take the service."},
+{id:"F1",t:"F",q:"In hair colour, the level refers to:",o:["The warmth or coolness","The lightness or darkness (1 to 10)","The developer strength","The amount of grey"],a:1,e:"Level is depth, from 1 (darkest) to 10 (lightest); tone is the warmth or coolness."},
+{id:"F2",t:"F",q:"The tone of a colour describes its:",o:["Depth on the level system","Warmth or coolness (the reflect)","Developer volume","Processing time"],a:1,e:"Tone is the reflect, such as ash, gold, or copper, sitting on top of the level."},
+{id:"F3",t:"F",q:"The underlying pigment exposed at a very light level (9 to 10) is:",o:["Red","Orange","Pale yellow / yellow","Blue"],a:2,e:"As hair lightens toward level 10 the remaining pigment is pale yellow."},
+{id:"F4",t:"F",q:"The underlying pigment typically exposed around level 6 is:",o:["Pale yellow","Orange","Blue-violet","Green"],a:1,e:"Mid-levels such as 6 sit in the orange range of underlying warmth."},
+{id:"F5",t:"F",q:"As dark hair is lightened, the underlying pigments are exposed in the order:",o:["Yellow, orange, red","Red, orange, yellow, pale yellow","Blue, green, yellow","Violet, blue, green"],a:1,e:"Lightening moves through red, red-orange, orange, yellow-orange, yellow, then pale yellow."},
+{id:"F6",t:"F",q:"10 volume developer is what percentage hydrogen peroxide?",o:["3%","6%","9%","12%"],a:0,e:"10 volume equals 3% hydrogen peroxide, used mainly for deposit."},
+{id:"F7",t:"F",q:"20 volume developer equals what percentage?",o:["3%","6%","9%","12%"],a:1,e:"20 volume is 6%, the standard for grey coverage and one to two levels of lift."},
+{id:"F8",t:"F",q:"30 volume developer equals what percentage?",o:["6%","9%","12%","15%"],a:1,e:"30 volume is 9%, giving roughly two to three levels of lift."},
+{id:"F9",t:"F",q:"40 volume developer equals what percentage?",o:["9%","12%","15%","20%"],a:1,e:"40 volume is 12%, the maximum lift, used carefully and usually off the scalp."},
+{id:"F10",t:"F",q:"For about two to three levels of lift with permanent colour, you choose:",o:["10 volume","20 volume","30 volume","5 volume"],a:2,e:"30 volume provides about two to three levels of lift."},
+{id:"F11",t:"F",q:"Standard grey coverage with one to two levels of lift usually uses:",o:["10 volume","20 volume","40 volume","No developer"],a:1,e:"20 volume is the workhorse for grey coverage and modest lift."},
+{id:"F12",t:"F",q:"Mixing equal parts of 20 volume and 40 volume developer yields approximately:",o:["20 volume","30 volume","40 volume","60 volume"],a:1,e:"Combining developers averages the volume, so equal parts of 20 and 40 give about 30 volume."},
+{id:"F13",t:"F",q:"You have only 10 vol and 30 vol developer. Equal parts give roughly:",o:["10 volume","20 volume","30 volume","40 volume"],a:1,e:"Averaging 10 and 30 in equal parts produces about 20 volume."},
+{id:"F14",t:"F",q:"The three primary colours are:",o:["Red, orange, yellow","Red, yellow, blue","Blue, green, violet","Orange, green, violet"],a:1,e:"Red, yellow, and blue are the primaries from which all other colours are mixed."},
+{id:"F15",t:"F",q:"The secondary colours are:",o:["Red, yellow, blue","Orange, green, violet","Red, orange, yellow","Blue, red, green"],a:1,e:"Mixing pairs of primaries makes the secondaries: orange, green, and violet."},
+{id:"F16",t:"F",q:"To neutralize unwanted orange, you use a colour based on:",o:["Red","Violet","Blue","Green"],a:2,e:"Blue is opposite orange on the wheel, so a blue base cancels orange brassiness."},
+{id:"F17",t:"F",q:"To neutralize unwanted yellow, you use:",o:["Blue","Green","Violet","Orange"],a:2,e:"Violet is opposite yellow, so violet-based products cancel yellow tones."},
+{id:"F18",t:"F",q:"To neutralize unwanted green (for example from over-ashing), you use:",o:["Blue","Violet","Red","Yellow"],a:2,e:"Red is opposite green, so a red or warm base counteracts a green cast."},
+{id:"F19",t:"F",q:"Combining a colour with its complement in equal strength produces:",o:["A brighter version","A neutral or brown (they cancel)","A lighter level","A metallic tone"],a:1,e:"Equal complements neutralize each other, dulling toward brown or neutral."},
+{id:"F20",t:"F",q:"A temporary colour:",o:["Lifts and deposits","Coats the surface and washes out in one shampoo","Needs 20 volume","Contains ammonia"],a:1,e:"Temporary colour sits on the cuticle and rinses out after one wash."},
+{id:"F21",t:"F",q:"A semi-permanent colour:",o:["Uses 40 volume","Uses no developer, only deposits, and fades gradually","Lifts two levels","Creates a hard regrowth line"],a:1,e:"Semi-permanent colour deposits without developer and fades over several shampoos."},
+{id:"F22",t:"F",q:"A demi-permanent colour:",o:["Lifts three levels","Uses a low-volume developer, deposits only, no lift","Contains strong ammonia","Washes out in one shampoo"],a:1,e:"Demi colour uses a low-volume developer to deposit tone without lifting the natural level."},
+{id:"F23",t:"F",q:"A permanent colour:",o:["Only coats the surface","Uses ammonia and developer to both lift and deposit","Deposits without developer","Fades in one wash"],a:1,e:"Permanent colour opens the cuticle, lifts natural pigment, and deposits new colour, leaving a regrowth line."},
+{id:"F24",t:"F",q:"A high-lift colour is a:",o:["Semi-permanent","Permanent colour with high developer, giving maximum lift and less deposit","Demi-permanent","Toner"],a:1,e:"High-lift tints use strong developer to lift several levels while depositing a soft tone."},
+{id:"F25",t:"F",q:"Which product will NOT lighten natural pigment?",o:["Permanent colour with developer","High-lift colour","Semi-permanent colour","Lightener"],a:2,e:"Semi-permanent colour only deposits; it has no developer and cannot lift natural pigment."},
+{id:"F26",t:"F",q:"The main role of ammonia in permanent colour is to:",o:["Deposit pigment","Raise the pH, swell the cuticle, and help activate the peroxide","Lower the pH","Condition the hair"],a:1,e:"Ammonia raises pH to open the cuticle and drive the oxidation reaction."},
+{id:"F27",t:"F",q:"Compared with ammonia, an MEA (ethanolamine) colour generally:",o:["Lifts more","Is ammonia-free with less odour and typically less lift","Deposits nothing","Has a higher pH"],a:1,e:"MEA is a lower-odour ammonia alternative that usually delivers less lift than ammonia."},
+{id:"F28",t:"F",q:"The developer (hydrogen peroxide) in oxidative colour:",o:["Only conditions","Oxidizes the dye precursors and lifts melanin","Lowers the pH","Coats the cuticle"],a:1,e:"Peroxide develops the dye and lifts natural pigment, which is why volume affects both tone and lift."},
+{id:"F29",t:"F",q:"Very resistant grey hair often processes better if you first:",o:["Use 40 volume","Pre-soften to open the cuticle","Apply a semi-permanent","Skip the developer"],a:1,e:"Pre-softening resistant grey opens the tight cuticle so colour can penetrate and hold."},
+{id:"F30",t:"F",q:"As the percentage of grey increases, the formula usually needs:",o:["Less deposit","More natural (N) base to ensure coverage and hold","Lower developer than 10 volume","No pigment"],a:1,e:"More grey means adding natural base tone so the colour covers fully and does not look translucent."},
+{id:"F31",t:"F",q:"The correct developer for a demi-permanent deposit-only service is:",o:["A low-volume developer supplied for demi colour","40 volume","No developer at all","30 volume for lift"],a:0,e:"Demi colour uses its own low-volume developer to deposit without lifting."},
+{id:"F32",t:"F",q:"For grey blending with no visible regrowth line, a good choice is:",o:["High-lift permanent","A demi or semi-permanent deposit-only colour","40 volume lightener","A hydroxide relaxer"],a:1,e:"Deposit-only colour blends grey and grows out softly with no hard demarcation."},
+{id:"F33",t:"F",q:"On-scalp lightening should use developer volumes that are:",o:["Always 40 volume","Lower, for safety on the skin","Above 40 volume","Irrelevant to safety"],a:1,e:"Lower volumes on the scalp reduce the risk of irritation and burns; high volumes are kept off-scalp."},
+{id:"F34",t:"F",q:"Off-scalp lightening (for example in foils) can use:",o:["Only 10 volume","Higher volumes, up to 40, since it is away from the skin","No developer","Only semi-permanent colour"],a:1,e:"Because foils keep product off the scalp, higher developer volumes can be used for more lift."},
+{id:"F35",t:"F",q:"During lightening, hair passes through the decolorizing stages roughly as:",o:["Yellow, orange, red, brown, black","Black, brown, red, orange, gold, pale yellow","Blue, green, yellow, white","Red, violet, blue, green"],a:1,e:"Lightening moves from black through brown, red, orange, gold/yellow, to pale yellow."},
+{id:"F36",t:"F",q:"To achieve a clean platinum with a toner, the hair must first be lifted to:",o:["Orange","Red-orange","Pale yellow","Gold"],a:2,e:"A platinum result needs the underlying pigment lifted to pale yellow before toning."},
+{id:"F37",t:"F",q:"If lightener is stopped while the hair is still orange, the hair is:",o:["Over-lifted","Under-lifted, with warmth remaining","At pale yellow","Ready for platinum toner"],a:1,e:"Orange means the lift is incomplete; toning now cannot fully neutralize that much warmth."},
+{id:"F38",t:"F",q:"The purpose of a toner is to:",o:["Lift several levels","Neutralize and refine tone on pre-lightened hair","Cover 100% grey with lift","Straighten the hair"],a:1,e:"Toners deposit tone to neutralize residual warmth and refine the final colour after lightening."},
+{id:"F39",t:"F",q:"A violet-based toner applied to hair still lifted only to orange will:",o:["Turn it clean platinum","Fail to fully neutralize, because there is too much warmth","Lift it further","Damage the toner"],a:1,e:"Toner cannot correct under-lifted hair; the orange warmth is too strong for a yellow-neutralizing violet toner."},
+{id:"F40",t:"F",q:"Before taking porous, over-lightened hair darker, you should pre-fill to:",o:["Remove all pigment","Replace the missing warm base pigment the target level needs","Lift the hair more","Lower the porosity permanently"],a:1,e:"Lightened hair lacks warm underlying pigment, so it must be filled with warmth or the result turns dull or green."},
+{id:"F41",t:"F",q:"Taking level 9 hair down to a natural level 6, the appropriate filler tone is:",o:["Blue-violet","Ash/green","Gold to red-orange (warm)","Pale yellow"],a:2,e:"A level 6 needs orange/gold underlying warmth, so you pre-fill with that warm tone before applying the target colour."},
+{id:"F42",t:"F",q:"Skipping the filler when darkening very porous hair most often causes a result that is:",o:["Too warm","Dull, ashy, or green","Too light","Perfectly balanced"],a:1,e:"Without replacing warm pigment, the cool tones dominate and the colour looks muddy, dull, or green."},
+{id:"F43",t:"F",q:"The principle that colour does not lift colour means:",o:["Any tint can lighten dyed hair","Oxidative tint cannot lighten previously coloured hair","Lightener cannot work","Semi colour lifts best"],a:1,e:"Permanent tint will not lift artificial pigment already in the hair; only a lightener or remover can."},
+{id:"F44",t:"F",q:"To make previously coloured hair lighter, you must:",o:["Apply a higher-level tint","Use a lightener or a colour remover, then re-tone","Add more developer to the tint","Use a demi colour"],a:1,e:"Artificial pigment must be removed with lightener or a dye remover before the hair can go lighter."},
+{id:"F45",t:"F",q:"Repeated permanent colour pulled through to the ends every time tends to make the ends:",o:["Lighter","Darker and build up unevenly","Grey","More porous but lighter"],a:1,e:"Overlapping colour onto already-coloured ends causes buildup, darkness, and uneven results, so retouch only new growth."},
+{id:"F46",t:"F",q:"An oxidative colour remover works by:",o:["Adding pigment","Removing or shrinking artificial dye molecules so they rinse away","Lifting natural pigment only","Depositing ash"],a:1,e:"Oxidative removers break down artificial pigment so it can be washed out, unlike lightener which targets melanin."},
+{id:"F47",t:"F",q:"The test for metallic salts uses:",o:["Plain water for 5 minutes","Equal parts 20 volume peroxide and ammonia on a strand for about 30 minutes","40 volume alone","A patch on the arm"],a:1,e:"A strand soaked in 1:1 20 volume peroxide and ammonia will heat, fizz, or break if metallic salts are present."},
+{id:"F48",t:"F",q:"If the metallic salt test is positive, you should:",o:["Proceed with permanent colour","Not perform an oxidative colour or perm service","Use 40 volume","Add more ammonia"],a:1,e:"Metallic salts react dangerously with oxidizers, so oxidative colour and perms must be avoided."},
+{id:"F49",t:"F",q:"A patch (predisposition) test checks for:",o:["Colour result","An allergic reaction to the product","Processing time","Porosity"],a:1,e:"The patch test, done 24 to 48 hours ahead, reveals sensitivity or allergy to the dye."},
+{id:"F50",t:"F",q:"A strand test is used to predict:",o:["Allergy","The colour result and the processing time","The client's pH","The developer percentage"],a:1,e:"A strand test shows how the formula will develop, so you can confirm result and timing before a full application."},
+{id:"F51",t:"F",q:"A single-process colour:",o:["Requires pre-lightening first","Lifts and deposits in one application","Only tones pre-lightened hair","Uses no developer"],a:1,e:"Single-process permanent colour lifts and deposits in one step."},
+{id:"F52",t:"F",q:"A double-process blonde involves:",o:["One tint application","Pre-lightening, then toning or colouring in a second step","Deposit only","No developer"],a:1,e:"Double-process means lightening first, then applying a toner or colour as a separate second step."},
+{id:"F53",t:"F",q:"On a virgin lightening application, product is usually applied first to the:",o:["Scalp area","Mid-lengths and ends, with the scalp area done last","Ends only, then rinsed","Entire strand at once starting at the roots"],a:1,e:"The scalp processes faster from body heat, so it is saved for last to keep the lift even."},
+{id:"F54",t:"F",q:"The scalp area processes faster during lightening because of:",o:["Higher porosity there","Body heat from the scalp","More melanin","The developer pooling"],a:1,e:"Warmth from the scalp speeds the reaction near the roots, which is why the scalp is applied last on virgin hair."},
+{id:"F55",t:"F",q:"Hot roots (roots lighter/warmer than the rest) most often result from:",o:["Applying colour to the ends first","Heat and applying lift at the scalp too soon or a wrong formula","Under-developing","Using a toner"],a:1,e:"Scalp heat can over-lift the roots, leaving them lighter and warmer than the mid-lengths and ends."},
+{id:"F56",t:"F",q:"A visible band of demarcation is caused by:",o:["Even application","Overlapping new colour onto previously coloured hair (or a gap)","Using a strand test","Correct retouch technique"],a:1,e:"A line forms where new product overlaps or fails to meet the previous colour; retouching only new growth prevents it."},
+{id:"F57",t:"F",q:"To correct a result that came out too dark, the usual approach is to:",o:["Add a darker tint","Gently remove artificial pigment, then re-tone to target","Apply more developer to the same colour","Do nothing"],a:1,e:"Because colour will not lift colour, you remove some artificial pigment and then re-balance the tone."},
+{id:"F58",t:"F",q:"A brassy, too-warm blonde is best corrected by:",o:["Adding warmth","Toning with the complementary cool tone","Lifting further with 40 volume","Applying a warm gold"],a:1,e:"Neutralizing the unwanted warmth with the complementary cool tone (violet or blue) corrects brassiness."},
+{id:"F59",t:"F",q:"Patchy, uneven colour uptake is most often due to:",o:["Even porosity","Uneven porosity across the hair","Correct filler use","A single-process formula"],a:1,e:"Variations in porosity make colour grab differently, so evening the porosity or using a filler first helps."},
+{id:"F60",t:"F",q:"For dependable coverage of 100% resistant grey, the best choice is:",o:["Semi-permanent with no base","Permanent colour with adequate deposit at 20 volume, pre-softening if needed","A violet toner","10 volume deposit only"],a:1,e:"Resistant grey needs permanent colour, enough natural deposit, 20 volume, and sometimes pre-softening to hold."},
+{id:"F61",t:"F",q:"Using a high-lift blonde on natural level 6 hair, you must account for the:",o:["Lack of any underlying pigment","Orange underlying warmth that will be exposed and may need neutralizing","Green base","Absence of developer"],a:1,e:"Lifting level 6 exposes orange, so the formula must control that warmth to avoid a brassy result."},
+{id:"F62",t:"F",q:"Porous ends grabbing darker or cooler than the rest are best managed by:",o:["Applying colour to the ends first and leaving longest","Using a filler and/or applying to the porous ends last, then watching timing","Using 40 volume on the ends","Skipping the strand test"],a:1,e:"Filling and controlling application and timing on porous ends evens the uptake so they do not go too dark or dull."},
+{id:"F63",t:"F",q:"A toner is essentially a:",o:["High-lift colour","Deposit-only colour used to refine tone on light hair","Strong lightener","Relaxer"],a:1,e:"Toners are deposit-only colours that adjust and neutralize tone on pre-lightened hair."},
+{id:"F64",t:"F",q:"The single most reliable way to predict how a colour formula will turn out on a specific client is a:",o:["Patch test","Strand test","Porosity guess","Consultation alone"],a:1,e:"A strand test on the client's own hair is the most reliable predictor of the actual result and timing."},
+{id:"F65",t:"F",q:"After rinsing a colour service, the recommended final step is to:",o:["Apply more ammonia","Use an acidic conditioner or treatment to close the cuticle and lock in tone","Re-lighten the ends","Leave the cuticle open"],a:1,e:"An acidic finish closes the cuticle, helping shine and colour retention."},
+{id:"F66",t:"F",q:"A client with previously henna-treated hair requests a permanent colour or perm. You should:",o:["Proceed normally","Be cautious and strand test, since some henna (especially with metallic salts) reacts unpredictably","Use 40 volume","Apply a relaxer first"],a:1,e:"Certain hennas, particularly compound or metallic types, react badly with oxidizers, so testing first is essential."},
+{id:"G1",t:"G",q:"Fusion (bonded) extensions are attached by:",o:["Adhesive tape","Heat-fused keratin bonds","Small clamped beads","Clips the client removes"],a:1,e:"Fusion extensions bond small strands with heated keratin tips."},
+{id:"G2",t:"G",q:"Tape-in extensions are attached with:",o:["Heated keratin","Adhesive tape wefts pressed to the natural hair","Sewn thread","Metal rings only"],a:1,e:"Tape-in wefts use a strong adhesive sandwiched around sections of natural hair."},
+{id:"G3",t:"G",q:"A sew-in (weft) extension is applied by:",o:["Gluing to the scalp","Sewing wefts onto a braided track (cornrow)","Heating keratin bonds","Clipping in temporarily"],a:1,e:"Sew-ins stitch wefts onto braids, keeping heat and glue off the hair."},
+{id:"G4",t:"G",q:"Micro-link (bead) extensions are secured by:",o:["Heat","Small beads clamped around the hair and strand, no heat or glue","Adhesive tape","Sewing"],a:1,e:"Micro-links clamp a small bead to attach strands without heat or adhesive."},
+{id:"G5",t:"G",q:"The most temporary extension method that the client can remove daily is:",o:["Fusion","Sew-in","Clip-in","Micro-link"],a:2,e:"Clip-in extensions attach and detach easily, making them the temporary option."},
+{id:"G6",t:"G",q:"A key limitation of synthetic hair is that it:",o:["Cannot be brushed","Will not tolerate high heat or standard colouring","Tangles less than human hair","Lasts longer than human hair"],a:1,e:"Synthetic fibre melts or damages with high heat and does not take normal hair colour."},
+{id:"G7",t:"G",q:"An advantage of human-hair extensions or wigs over synthetic is that they:",o:["Are always cheaper","Can be heat-styled and coloured like natural hair","Never tangle","Require no maintenance"],a:1,e:"Human hair behaves like the client's own, accepting heat styling and colour within limits."},
+{id:"G8",t:"G",q:"A lace-front wig is valued mainly because it:",o:["Is the cheapest cap","Creates a natural-looking hairline","Cannot be styled","Blocks all airflow"],a:1,e:"The sheer lace at the front mimics a natural hairline, allowing off-the-face styling."},
+{id:"G9",t:"G",q:"A monofilament cap is desirable because it:",o:["Has visible wefts","Gives the look of hair growing from the scalp with versatile parting","Cannot be parted","Is made of solid rubber"],a:1,e:"Hand-tied monofilament tops look like natural scalp and allow the part to move."},
+{id:"G10",t:"G",q:"A wefted (machine-made) cap generally offers:",o:["The most natural scalp look","More airflow and a lower cost","No structure","Hand-tied strands throughout"],a:1,e:"Wefted caps use rows of machine wefts, which are breathable and more affordable than hand-tied caps."},
+{id:"G11",t:"G",q:"Before fitting a wig, the first practical step is to:",o:["Colour it","Measure the client's head accurately","Cut it short","Ventilate new hair"],a:1,e:"Accurate head measurements ensure the wig fits securely and comfortably."},
+{id:"G12",t:"G",q:"Blocking a wig means:",o:["Cutting a blunt line","Securing it on a canvas block to work on it","Removing the lace","Colouring the base"],a:1,e:"The wig is pinned to a head-shaped canvas block so it can be cut, styled, or repaired."},
+{id:"G13",t:"G",q:"Ventilating a wig refers to:",o:["Airing it out","Hand-tying individual hairs into the base or lace","Washing it","Adding wefts by machine"],a:1,e:"Ventilating is the hand-knotting of hair into a foundation, used for natural, custom areas like lace fronts."},
+{id:"G14",t:"G",q:"Extensions applied under too much tension over time can cause:",o:["Faster growth","Traction alopecia (hair loss from pulling)","Increased density","Better scalp health"],a:1,e:"Constant tension on the roots can damage follicles, leading to traction alopecia."},
+{id:"G15",t:"G",q:"A synthetic wig should generally be cleaned with:",o:["Very hot water","Cool water and products made for synthetic hair","A clarifying shampoo and heat","Colour remover"],a:1,e:"Cool water and synthetic-specific care preserve the fibre, since heat and harsh products damage it."},
+{id:"G16",t:"G",q:"Fusion bonds are removed by:",o:["Cutting the natural hair","Using a bond remover that softens the keratin","Pulling them straight out","Applying heat only"],a:1,e:"A specialized remover breaks down the keratin bond so the extension slides off without damaging the hair."},
+{id:"H1",t:"H",q:"The main purpose of a client record (service) card is to:",o:["Advertise the salon","Record formulas, results, and any reactions so services are safe and repeatable","Set the retail price","Track staff hours"],a:1,e:"The record card lets you reproduce results and avoid past sensitivities, protecting the client over time."},
+{id:"H2",t:"H",q:"Working on commission usually means the stylist:",o:["Pays rent for a chair","Earns a percentage of the services they perform, as an employee","Owns the salon","Is paid a fixed salary only"],a:1,e:"Commission pays a share of service revenue, typically in an employer-employee arrangement."},
+{id:"H3",t:"H",q:"Chair (booth) rental means the stylist:",o:["Earns a set salary","Pays a fixed rent and runs their own independent business","Gets a commission percentage","Cannot set their own prices"],a:1,e:"A booth renter pays rent for the space and operates independently, keeping their own revenue."},
+{id:"H4",t:"H",q:"Retail revenue differs from service revenue because retail is income from:",o:["Performing services","Selling products to clients","Renting chairs","Booking appointments"],a:1,e:"Retail revenue comes from product sales, a separate income stream from services performed."},
+{id:"H5",t:"H",q:"Retail products are typically priced by:",o:["Charging the wholesale cost only","Adding a markup to the cost","Giving them away","Matching the service price"],a:1,e:"Retail pricing takes the product cost and adds a markup to make a profit."},
+{id:"H6",t:"H",q:"The cost of goods for a colour service refers to:",o:["The stylist's wage","The amount of product used to perform it","The rent","The retail markup"],a:1,e:"Cost of goods is the product expense consumed in delivering the service."},
+{id:"H7",t:"H",q:"Rebooking a client at the end of a visit mainly helps the business by:",o:["Reducing product use","Building client retention and a steadier income","Lowering prices","Avoiding consultations"],a:1,e:"Securing the next appointment keeps clients returning and stabilizes the stylist's schedule and income."},
+{id:"H8",t:"H",q:"Ethical retail recommendation means suggesting products that:",o:["Cost the most","Genuinely suit the client's hair and needs","Are overstocked","The client did not ask about and cannot use"],a:1,e:"Good retailing matches real client needs, which builds trust and repeat business."},
+{id:"H9",t:"H",q:"Good inventory control in a salon involves:",o:["Never reordering","Tracking product levels and reordering before running out","Buying only retail","Ignoring usage"],a:1,e:"Monitoring stock and reordering in time prevents shortages of both back-bar and retail products."},
+{id:"H10",t:"H",q:"If a client describes symptoms suggesting a medical scalp condition, the professional response is to:",o:["Diagnose and treat it","Refer them to a physician, staying within your scope","Sell them a medicated product as a cure","Ignore it"],a:1,e:"Recognizing and referring is within scope; diagnosing or treating disease is not."},
+{id:"H11",t:"H",q:"Client information kept in salon records should be treated as:",o:["Public","Confidential","Shared with other clients","Optional to protect"],a:1,e:"Client records are private and must be kept confidential as part of professional conduct."},
+{id:"H12",t:"H",q:"A risk of double-booking clients too tightly is:",o:["Higher service quality","Rushed service and longer client wait times","Better records","Lower product cost"],a:1,e:"Overbooking leads to rushed work and unhappy clients waiting, harming reputation."},
+{id:"H13",t:"H",q:"The best way to handle a client complaint is to:",o:["Argue your point","Listen, stay calm, and work toward a professional resolution","Ignore it","Blame the client"],a:1,e:"Listening and resolving the issue professionally protects the relationship and the salon's reputation."},
+{id:"H14",t:"H",q:"A thorough consultation with a new client mainly serves to:",o:["Fill time","Understand needs, set expectations, and build trust","Increase product cost","Avoid record keeping"],a:1,e:"A good consultation aligns expectations and starts a trusting professional relationship."},
+{id:"H15",t:"H",q:"A signed release/consent form before a strong chemical service documents that the client:",o:["Paid in advance","Was informed of the process and risks and agreed to proceed","Booked online","Bought retail"],a:1,e:"The consent form records informed agreement and the service details for the salon's protection."},
+{id:"H16",t:"H",q:"Keeping detailed colour records is most important because it lets you:",o:["Charge more","Safely reproduce the formula and avoid repeating a past reaction","Skip the strand test forever","Order less product"],a:1,e:"Accurate formula and reaction notes make future services consistent and safe."},
+{id:"H17",t:"H",q:"A professional appearance and clean workstation mainly affect:",o:["Product chemistry","The client's confidence and the salon's reputation","Developer volume","Cutting angles"],a:1,e:"Presentation and cleanliness shape the client's trust and the impression of the business."},
+{id:"H18",t:"H",q:"Compared with commission, a benefit of booth rental for an experienced stylist is:",o:["A guaranteed wage","More independence and control over pricing and schedule","No business responsibilities","Free products"],a:1,e:"Renting a chair trades security for autonomy over prices, hours, and how the business runs."},
+/*Q_INSERT*/
 ];
 
 var FLASHCARDS = [
-  {t:"B",f:"Three layers of the hair shaft (outer to inner)",b:"Cuticle (protective scales), cortex (pigment, strength, where chemistry happens), medulla (core)."},
-  {t:"B",f:"Hydrogen vs disulfide bonds",b:"Hydrogen: temporary, broken by water/heat (wet sets). Disulfide: permanent, broken by chemicals (perms, relaxers)."},
-  {t:"B",f:"Natural pH of hair and skin",b:"About 4.5 to 5.5 (the acid mantle). Alkaline raises pH and opens the cuticle."},
-  {t:"B",f:"Four analysis factors before a service",b:"Porosity, elasticity, density, texture."},
-  {t:"B",f:"High vs low porosity",b:"High: raised cuticle, absorbs/loses fast, over-processes and fades quickly. Low: tight cuticle, resists, processes slowly."},
-  {t:"B",f:"Elasticity quick rule",b:"Healthy wet hair stretches about 50%. Poor elasticity = damage and breakage risk."},
-  {t:"B",f:"Tinea capitis",b:"Contagious fungal infection (ringworm). Do not service; refer to a physician."},
-  {t:"A",f:"Sanitation vs disinfection vs sterilization",b:"Sanitation reduces germs. Disinfection kills most pathogens (not all spores). Sterilization destroys all, including spores."},
-  {t:"A",f:"Where to find chemical safety info",b:"The Safety Data Sheet (SDS), under WHMIS: hazards, handling, first aid, PPE."},
-  {t:"A",f:"Patch (predisposition) test timing",b:"24 to 48 hours before an aniline/oxidation tint, to check for allergy."},
-  {t:"A",f:"Blood on a multi-use tool",b:"Clean it, then immerse in approved disinfectant for full contact time. Single-use items get discarded."},
-  {t:"F",f:"Level vs tone",b:"Level = lightness/darkness (1 dark to 10 light). Tone = warmth or coolness."},
-  {t:"F",f:"Developer volumes and lift",b:"10 vol (3%) deposit. 20 vol (6%) 1-2 levels + grey coverage. 30 vol (9%) 2-3 levels. 40 vol (12%) max lift."},
-  {t:"F",f:"Neutralizing pairs (colour wheel)",b:"Violet cancels yellow. Blue cancels orange. Green cancels red."},
-  {t:"F",f:"Underlying pigment when lightening",b:"Dark to light: red, red-orange, orange, yellow-orange, yellow, pale yellow."},
-  {t:"F",f:"Colour types compared",b:"Temporary: coats, washes out. Semi: no developer, fades. Demi: low-vol developer, deposit only. Permanent: alkalizer + developer, lifts and deposits."},
-  {t:"F",f:"Demi-permanent best use",b:"Deposit only, no lift, blends grey, fades with no harsh regrowth line."},
-  {t:"F",f:"Single vs double process",b:"Single: one product/step. Double: lighten first, then tone (e.g. to platinum)."},
-  {t:"F",f:"Metallic salts warning",b:"Box dyes/henna may contain metallic salts that react with peroxide. Strand-test (1:1 peroxide/ammonia) before any oxidative service."},
-  {t:"F",f:"Strand test vs patch test",b:"Strand test predicts colour result and timing. Patch test checks for allergic reaction. Both are needed."},
-  {t:"E",f:"Perm chemistry in one line",b:"Waving lotion (reduction) breaks disulfide bonds; neutralizer (oxidation) re-forms them in the new shape."},
-  {t:"E",f:"Rod size vs curl",b:"Smaller rod = tighter curl. Larger rod = wider, looser wave."},
-  {t:"E",f:"Relaxer types and pH",b:"Sodium hydroxide (lye): highest pH ~12-14, strongest. No-lye (guanidine): gentler, can dry. Thio: milder."},
-  {t:"E",f:"Scalp prep for hydroxide relaxer",b:"Apply protective base cream to scalp and hairline; do not pre-shampoo a lye relaxer service."},
-  {t:"E",f:"Test curl (S-test)",b:"Unwind a rod during processing to confirm the S-shaped curl formed before neutralizing."},
-  {t:"C",f:"Elevation results",b:"0 degrees = blunt/one-length. ~45 = graduation. 90 = uniform layers."},
-  {t:"C",f:"Stationary vs traveling guide",b:"Stationary guide builds length/weight toward a fixed point. Traveling guide builds layers/graduation."},
-  {t:"C",f:"Cross-checking",b:"Re-check the cut using partings opposite to how you cut, to confirm evenness and balance."},
-  {t:"C",f:"Tension on curly hair / cowlicks",b:"Use reduced tension. They spring up when dry, so full tension cuts too short."},
-  {t:"C",f:"Razor cutting rule",b:"Razor on wet hair only. Gives soft, tapered ends; on dry hair it drags and splits."},
-  {t:"C",f:"Head reference points",b:"Apex (highest), parietal ridge (widest), occipital (back curve), nape (bottom hairline)."},
+  {t:"B",f:"Three layers of the hair shaft (outer to inner)",b:"Cuticle (protective scales), cortex (~90% of the hair, melanin, strength and elasticity, where chemistry happens), medulla (core, often absent in fine hair)."},
+  {t:"B",f:"Two types of melanin",b:"Eumelanin gives brown and black. Pheomelanin gives red and yellow. The mix sets natural colour."},
+  {t:"B",f:"Four bonds and what breaks them",b:"Disulfide: chemical (perms, relaxers). Hydrogen: water and heat. Salt: pH change. Peptide (end bonds): permanent damage when broken."},
+  {t:"B",f:"Hair growth cycle",b:"Anagen (growth, years, ~90% of hair), catagen (transition, weeks), telogen (rest and shed, months, ~10%)."},
+  {t:"B",f:"Natural pH of hair and skin",b:"About 4.5 to 5.5 (acid mantle). Alkaline raises pH and swells/opens the cuticle; acidic closes it."},
+  {t:"B",f:"Four analysis factors",b:"Porosity, elasticity, density, texture. Each one changes timing, product, or process."},
+  {t:"B",f:"Elasticity quick rule",b:"Healthy wet hair stretches about 50% and returns. Poor elasticity means damage and breakage risk."},
+  {t:"B",f:"Density vs texture",b:"Density is how many hairs per area (thin/medium/thick). Texture is the diameter of a single strand (fine/medium/coarse)."},
+  {t:"A",f:"Sanitation vs disinfection vs sterilization",b:"Sanitation reduces germs. Disinfection kills most pathogens on non-porous surfaces. Sterilization destroys all, including spores (autoclave)."},
+  {t:"A",f:"Blood on a tool",b:"Clean, then immerse in a hospital-grade disinfectant effective against HIV and HBV for the full contact time. Single-use items are discarded in the proper container."},
+  {t:"A",f:"Where chemical safety info lives",b:"The Safety Data Sheet (SDS) under WHMIS: hazards, safe handling, first aid, and required PPE. 16 standard sections."},
+  {t:"A",f:"Patch (predisposition) test",b:"Applied 24 to 48 hours before an aniline/oxidation tint to check for an allergic reaction."},
+  {t:"A",f:"Porous items in the salon",b:"Porous, single-use items (files, buffers, wooden sticks) cannot be disinfected reliably and must be discarded after one client."},
+  {t:"F",f:"Level vs tone",b:"Level = lightness/darkness (1 dark to 10 light). Tone = warmth or coolness (the reflect)."},
+  {t:"F",f:"Developer volumes and lift",b:"10 vol (3%) deposit/dark. 20 vol (6%) 1-2 levels + grey coverage. 30 vol (9%) 2-3 levels. 40 vol (12%) max lift, high-lift only."},
+  {t:"F",f:"Neutralizing pairs",b:"Violet cancels yellow. Blue cancels orange. Green cancels red. (Complementary colours on the wheel.)"},
+  {t:"F",f:"Underlying pigment when lightening",b:"Dark to light: red, red-orange, orange, yellow-orange, yellow, pale yellow. It is exposed, not added."},
+  {t:"F",f:"Law of colour",b:"Primaries: red, yellow, blue. Secondaries: orange, green, violet. Equal parts of a colour and its complement neutralize to brown."},
+  {t:"F",f:"Colour categories compared",b:"Temporary: coats, one wash. Semi: no developer, fades. Demi: low-vol developer, deposit only. Permanent: ammonia + developer, lifts and deposits."},
+  {t:"F",f:"Colour does not lift colour",b:"Oxidative tint will not lighten previously coloured hair. To go lighter you need a lightener or a colour remover, then re-tone."},
+  {t:"F",f:"Filler for going darker on porous hair",b:"Porous or over-lightened hair lacks warm base pigment, so it grabs cool and turns dull or green. Pre-fill with the warm tone the target level needs."},
+  {t:"F",f:"Grey coverage basics",b:"Resistant grey needs enough deposit and often 20 volume; add a natural (N) base for hold and pre-soften very resistant hair."},
+  {t:"F",f:"Metallic salt test",b:"Mix equal parts 20 vol peroxide and ammonia, add a strand, wait ~30 min. Heat, fizzing, or breakage means do not do an oxidative service."},
+  {t:"F",f:"Strand test vs patch test",b:"Strand test predicts colour result and timing. Patch test checks for allergy. Both are separate and both matter."},
+  {t:"E",f:"Perm chemistry in one line",b:"Reducing agent (thio or GMTG) breaks disulfide bonds; neutralizer (oxidation, often hydrogen peroxide) re-forms them in the new shape."},
+  {t:"E",f:"Cold wave vs acid wave",b:"Cold wave: ammonium thioglycolate, alkaline pH ~8.5-9.5. Acid wave: glyceryl monothioglycolate, lower pH, gentler, often heat-activated."},
+  {t:"E",f:"Rod size vs curl and base control",b:"Smaller rod = tighter curl. On-base = volume at the scalp; off-base = less volume. Croquignole wraps ends to scalp; spiral wraps along the rod."},
+  {t:"E",f:"Relaxer types and pH",b:"Hydroxide (lye) NaOH: highest pH ~12-14, strongest, irreversible lanthionization. No-lye (guanidine): gentler, can leave calcium buildup. Thio: mildest."},
+  {t:"E",f:"How relaxers are neutralized",b:"Hydroxide relaxers are stopped with an acid-balanced neutralizing shampoo (lowers pH), not an oxidizing neutralizer like a perm."},
+  {t:"E",f:"Scalp prep for a hydroxide relaxer",b:"Base the scalp and hairline with protective cream and do not pre-shampoo. Shampooing first can cause burning."},
+  {t:"C",f:"Elevation results",b:"0 degrees = blunt/one-length. ~45 = graduation (weight line). 90 = uniform layers. Over 90 = increasing length toward the exterior."},
+  {t:"C",f:"Stationary vs traveling guide",b:"Stationary guide builds length or weight toward a fixed point. Traveling guide moves with each section for layers or graduation."},
+  {t:"C",f:"Over-direction",b:"Combing hair away from its natural fall to a held position increases length in that area. Used for length build and softening corners."},
+  {t:"C",f:"Cross-checking",b:"Re-check using partings opposite to how you cut, to confirm the cut is even and balanced."},
+  {t:"C",f:"Tension rules",b:"Full even tension for precise straight lines. Reduced tension on curly hair and cowlicks, which spring up when dry."},
+  {t:"C",f:"Razor cutting",b:"Razor on wet hair only, for soft tapered ends. On dry hair it drags, splits, and damages."},
+  {t:"C",f:"Head reference points",b:"Apex (highest), parietal ridge (widest), occipital (back curve), four corners, nape (bottom hairline)."},
   {t:"D",f:"Round brush blow-dry effect",b:"Adds curl and volume."},
-  {t:"D",f:"Pin curl parts",b:"Base, stem, circle. The stem controls how much movement the curl has."},
-  {t:"D",f:"Roller size vs curl",b:"Larger roller = looser, wider curl + base volume. Smaller = tighter curl."},
-  {t:"D",f:"Before hot tools",b:"Apply a thermal/heat protectant to shield the cuticle and limit moisture loss."},
-  {t:"G",f:"Extension methods",b:"Fusion (heated keratin bond), tape-in (adhesive), sew-in (thread on braids), micro-link (beads)."},
-  {t:"G",f:"Synthetic wig limits",b:"Cannot take high heat or standard hair colour; human-hair wigs can."},
-  {t:"H",f:"Client record card purpose",b:"Reproduce formulas, avoid past reactions, keep results consistent and safe."},
-  {t:"H",f:"Commission vs chair rental",b:"Commission: percentage of services, usually as an employee. Chair rental: pay fixed rent, run your own business."}
+  {t:"D",f:"Pin curl parts and mobility",b:"Base, stem, circle. The stem controls movement: no-stem is firm, full-stem gives most mobility."},
+  {t:"D",f:"Roller base positions",b:"On-base (full volume), half-base (medium), off-base (least volume). Roller size sets curl width."},
+  {t:"D",f:"Before hot tools",b:"Apply a thermal protectant. Hard press vs soft press: hard removes more curl with more heat/pressure."},
+  {t:"G",f:"Extension methods",b:"Fusion (heated keratin bond), tape-in (adhesive), sew-in (thread on braided track), micro-link (beads), clip-in (temporary)."},
+  {t:"G",f:"Synthetic vs human-hair wigs",b:"Synthetic will not take high heat or standard colour. Human hair can be heat-styled and coloured. Cap types: lace front, monofilament, wefted."},
+  {t:"H",f:"Client record card purpose",b:"Reproduce formulas, avoid past reactions, keep results consistent and safe over time."},
+  {t:"H",f:"Commission vs chair rental",b:"Commission: percentage of services, usually as an employee. Chair rental: pay fixed rent, run your own independent business."}
 ];
 
 var CHECKS = [
-  "I score 80% or higher on full weighted mock exams, consistently",
-  "I can recall every developer volume and what it lifts",
-  "I can neutralize any unwanted tone using the colour wheel",
-  "I know the underlying pigment sequence when lightening dark hair",
-  "I can sort colour types by ammonia, developer, lift, and fade",
-  "I can explain perm and relaxer chemistry (reduction, oxidation, pH)",
-  "I know elevation and guideline effects for blunt, graduated, and layered cuts",
-  "I can identify scalp/hair conditions that require a referral",
-  "I know sterilization vs disinfection vs sanitation and the blood-spill protocol",
-  "I can read an SDS and list the right PPE for a service",
-  "I have completed all six weekly mock exams and reviewed every miss",
-  "I have reviewed every flashcard at least twice",
+  "I score 85% or higher on full weighted mock exams, consistently",
+  "I have completed at least two full 120-question simulations",
+  "I can do developer volume and mixing math quickly (percentages, combining volumes)",
+  "I can neutralize any unwanted tone and match a filler to the target level",
+  "I know the decolorizing stages and exactly when to stop for each target",
+  "I can explain why colour does not lift colour and what to do instead",
+  "I can sort colour categories by ammonia, developer, lift, and fade",
+  "I can explain perm chemistry (cold vs acid) and relaxer chemistry (lanthionization, no-lye, thio)",
+  "I know elevation and guide effects for blunt, graduated, layered, and length-increase cuts",
+  "I can name hair and scalp disorders and say which ones require a referral",
+  "I know disinfection contact times, WHMIS/SDS, and the blood-spill protocol",
+  "I can answer EXCEPT and best-answer questions without second-guessing",
+  "I have reviewed every flashcard at least twice and cleared my missed pile",
   "I can pace 120 questions in the time allowed (practised pacing)",
-  "I have booked both the written exam and the practical assessment in the Portal"
+  "I have booked both the written exam (Portal) and the practical assessment (North Pacific)"
 ];
 
-/* ---------- STORAGE (window.storage if present, else in-memory) ---------- */
+/* ---------- STORAGE ---------- */
 var MEM = {};
 var hasStore = (typeof window !== "undefined") && window.storage && typeof window.storage.get === "function";
 function sget(key){
@@ -464,13 +711,13 @@ function sset(key,val){
   if(hasStore){ return window.storage.set(key,val).catch(function(){}); }
   MEM[key]=val; return Promise.resolve();
 }
-var STATE = {planDone:{},stats:{},known:{},checks:{}};
-function saveState(){ return sset("rs_state", JSON.stringify(STATE)); }
+var STATE = {planDone:{},stats:{},known:{},checks:{},missed:{}};
+function saveState(){ return sset("rs_state_v2", JSON.stringify(STATE)); }
 function loadState(){
-  return sget("rs_state").then(function(v){
+  return sget("rs_state_v2").then(function(v){
     if(v){ try{ STATE = JSON.parse(v); }catch(e){} }
-    STATE.planDone = STATE.planDone||{}; STATE.stats = STATE.stats||{};
-    STATE.known = STATE.known||{}; STATE.checks = STATE.checks||{};
+    STATE.planDone=STATE.planDone||{}; STATE.stats=STATE.stats||{};
+    STATE.known=STATE.known||{}; STATE.checks=STATE.checks||{}; STATE.missed=STATE.missed||{};
   });
 }
 
@@ -478,18 +725,20 @@ function loadState(){
 function cssVar(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
 function colorFor(k){ var b=BLUEPRINT.filter(function(x){return x.k===k;})[0]; return b?cssVar(b.c):"#888"; }
 function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+function qById(id){ return QUESTIONS.filter(function(q){return q.id===id;})[0]; }
+function missedIds(){ return Object.keys(STATE.missed).filter(function(k){return STATE.missed[k];}); }
 
 /* ---------- PROGRESS ---------- */
 function overallPct(){
   var totalDays=0,doneDays=0;
   WEEKS.forEach(function(w,wi){ w.days.forEach(function(d,di){ totalDays++; if(STATE.planDone[wi+"-"+di]) doneDays++; }); });
-  var planPart = totalDays? doneDays/totalDays : 0;
-  var knownCount = Object.keys(STATE.known).filter(function(k){return STATE.known[k];}).length;
-  var cardPart = FLASHCARDS.length? Math.min(knownCount,FLASHCARDS.length)/FLASHCARDS.length : 0;
-  var chkCount = Object.keys(STATE.checks).filter(function(k){return STATE.checks[k];}).length;
-  var chkPart = CHECKS.length? chkCount/CHECKS.length : 0;
-  var attempted=0; for(var t in STATE.stats){ attempted += (STATE.stats[t].total||0); }
-  var qPart = Math.min(attempted, 200)/200;
+  var planPart=totalDays?doneDays/totalDays:0;
+  var knownCount=Object.keys(STATE.known).filter(function(k){return STATE.known[k];}).length;
+  var cardPart=FLASHCARDS.length?Math.min(knownCount,FLASHCARDS.length)/FLASHCARDS.length:0;
+  var chkCount=Object.keys(STATE.checks).filter(function(k){return STATE.checks[k];}).length;
+  var chkPart=CHECKS.length?chkCount/CHECKS.length:0;
+  var attempted=0; for(var t in STATE.stats){ attempted+=(STATE.stats[t].total||0); }
+  var qPart=Math.min(attempted,300)/300;
   return Math.round((planPart*0.30 + cardPart*0.20 + chkPart*0.25 + qPart*0.25)*100);
 }
 function renderRibbon(){
@@ -509,24 +758,25 @@ function renderBlueprint(){
   var html="";
   BLUEPRINT.forEach(function(b){
     var pc=Math.round(b.q/TOTAL_Q*100);
+    var have=QUESTIONS.filter(function(q){return q.t===b.k;}).length;
     html+='<div class="bp-row">'
       +'<div class="bp-name"><span class="tag" style="background:'+colorFor(b.k)+'"></span>'+b.k+' · '+b.name+'</div>'
       +'<div class="bar"><span style="width:'+(b.q/max*100)+'%;background:'+colorFor(b.k)+'"></span></div>'
-      +'<div class="bp-q"><b>'+b.q+'</b> Q · '+pc+'%</div></div>';
+      +'<div class="bp-q"><b>'+b.q+'</b> Q · '+pc+'% <span style="opacity:.6">('+have+' in bank)</span></div></div>';
   });
   document.getElementById("blueprint").innerHTML=html;
+  document.getElementById("bankN").textContent=QUESTIONS.length;
 }
 function renderWeak(){
-  var box=document.getElementById("weak");
-  var rows=[];
+  var box=document.getElementById("weak"); var rows=[];
   BLUEPRINT.forEach(function(b){
     var s=STATE.stats[b.k];
-    if(s&&s.total>0){ rows.push({k:b.k,name:b.name,acc:Math.round(s.correct/s.total*100),total:s.total}); }
+    if(s&&s.total>0){ rows.push({k:b.k,acc:Math.round(s.correct/s.total*100),total:s.total}); }
   });
   if(!rows.length){ box.innerHTML='<span>Answer some questions to see this.</span>'; return; }
   rows.sort(function(a,b){return a.acc-b.acc;});
   box.innerHTML=rows.map(function(r){
-    var col = r.acc>=80?"var(--good)": r.acc>=70?"var(--gold)":"var(--seal)";
+    var col=r.acc>=80?"var(--good)":r.acc>=70?"var(--gold)":"var(--seal)";
     return '<span style="border-color:'+col+';color:'+col+'">'+r.k+' '+r.acc+'% <small style="color:var(--ink-soft)">('+r.total+')</small></span>';
   }).join("");
 }
@@ -561,37 +811,51 @@ function renderWeeks(){
 }
 
 /* ---------- PRACTICE ---------- */
-var quiz={pool:[],idx:0,correct:0,answered:false,mode:"A"};
+var quiz={pool:[],idx:0,correct:0,answered:false,mode:"F"};
 function buildModebar(){
   var bar=document.getElementById("modebar"); bar.innerHTML="";
   BLUEPRINT.forEach(function(b){
     var c=document.createElement("button"); c.className="chip"+(quiz.mode===b.k?" active":"");
-    c.textContent=b.k+" · "+b.name; c.onclick=function(){startQuiz(b.k);}; bar.appendChild(c);
+    var have=QUESTIONS.filter(function(q){return q.t===b.k;}).length;
+    c.textContent=b.k+" · "+b.name+" ("+have+")"; c.onclick=function(){startQuiz(b.k);}; bar.appendChild(c);
   });
-  var m=document.createElement("button"); m.className="chip"+(quiz.mode==="MOCK"?" active":"");
-  m.style.borderColor="var(--seal)"; m.style.color=quiz.mode==="MOCK"?"#fff":"var(--seal)";
-  if(quiz.mode==="MOCK"){m.style.background="var(--seal)";}
-  m.textContent="★ Weighted mock (30)"; m.onclick=function(){startMock(30);}; bar.appendChild(m);
+  [["MOCK30","★ Mock (30)"],["MOCK50","★ Mock (50)"],["MOCK120","★ Full sim (120)"]].forEach(function(m){
+    var btn=document.createElement("button"); var on=(quiz.mode===m[0]);
+    btn.className="chip"+(on?" active":""); btn.style.borderColor="var(--seal)";
+    btn.style.color=on?"#fff":"var(--seal)"; if(on){btn.style.background="var(--seal)";}
+    btn.textContent=m[1]; btn.onclick=function(){startMock(parseInt(m[0].replace("MOCK",""),10));}; bar.appendChild(btn);
+  });
+  var mc=missedIds().length;
+  var rb=document.createElement("button"); var ron=(quiz.mode==="MISSED");
+  rb.className="chip"+(ron?" active":""); rb.style.borderColor="var(--gold)";
+  rb.style.color=ron?"#fff":"var(--gold)"; if(ron){rb.style.background="var(--gold)";}
+  rb.textContent="↻ Retry missed ("+mc+")"; rb.onclick=function(){ if(mc) startMissed(); }; bar.appendChild(rb);
 }
 function startQuiz(topic){
   quiz.mode=topic; quiz.pool=shuffle(QUESTIONS.filter(function(q){return q.t===topic;}));
   quiz.idx=0; quiz.correct=0; buildModebar(); renderQ();
 }
 function startMock(n){
-  quiz.mode="MOCK";
+  quiz.mode="MOCK"+n;
   var pool=[];
   BLUEPRINT.forEach(function(b){
-    var want=Math.max(1,Math.round(n*b.q/TOTAL_Q));
+    var want=(n>=TOTAL_Q)?b.q:Math.max(1,Math.round(n*b.q/TOTAL_Q));
     var avail=shuffle(QUESTIONS.filter(function(q){return q.t===b.k;}));
     pool=pool.concat(avail.slice(0,Math.min(want,avail.length)));
   });
   quiz.pool=shuffle(pool); quiz.idx=0; quiz.correct=0; buildModebar(); renderQ();
+}
+function startMissed(){
+  quiz.mode="MISSED";
+  quiz.pool=shuffle(missedIds().map(qById).filter(Boolean));
+  quiz.idx=0; quiz.correct=0; buildModebar(); renderQ();
 }
 function renderQ(){
   var card=document.getElementById("quizCard");
   if(quiz.idx>=quiz.pool.length){ renderResult(); return; }
   var q=quiz.pool[quiz.idx]; quiz.answered=false;
   var bp=BLUEPRINT.filter(function(x){return x.k===q.t;})[0];
+  var label=quiz.mode.indexOf("MOCK")===0?"Mock":(quiz.mode==="MISSED"?"Retry":bp.name);
   var html='<div class="qmeta"><span class="pill" style="background:'+colorFor(q.t)+'">'+q.t+' · '+bp.name+'</span>'
     +'<span class="score">Q '+(quiz.idx+1)+'/'+quiz.pool.length+' · score '+quiz.correct+'</span></div>'
     +'<div class="qtext">'+q.q+'</div><div id="opts">';
@@ -612,7 +876,8 @@ function answer(i,q){
   opts[q.a].classList.add("correct");
   var right=(i===q.a); if(!right) opts[i].classList.add("wrong"); else quiz.correct++;
   STATE.stats[q.t]=STATE.stats[q.t]||{correct:0,total:0};
-  STATE.stats[q.t].total++; if(right) STATE.stats[q.t].correct++; saveState();
+  STATE.stats[q.t].total++; if(right){ STATE.stats[q.t].correct++; if(STATE.missed[q.id]) delete STATE.missed[q.id]; } else { STATE.missed[q.id]=true; }
+  saveState();
   var ex=document.getElementById("explain");
   ex.innerHTML='<b>'+(right?"Correct.":"Not quite.")+'</b> '+q.e; ex.classList.add("show");
   document.getElementById("nextBtn").style.display="inline-block";
@@ -620,16 +885,20 @@ function answer(i,q){
 }
 function renderResult(){
   var pct=quiz.pool.length?Math.round(quiz.correct/quiz.pool.length*100):0;
-  var pass=pct>=70;
+  var pass=pct>=70, strong=pct>=85;
+  var msg=strong?"That is exam-ready. Keep it here.":pass?"Clears 70%, but aim for 85%+ before you book.":"Below the pass line. Review the misses and run the Retry pile.";
   document.getElementById("quizCard").innerHTML=
-    '<div class="resultbox"><div class="big" style="color:'+(pass?"var(--good)":"var(--seal)")+'">'+pct+'%</div>'
-    +'<p style="margin:8px 0 0">'+quiz.correct+' of '+quiz.pool.length+' correct. '
-    +(pass?"That clears the 70% bar. Push for 80%+ to be safe.":"Below the 70% pass line. Review the misses and run it again.")+'</p>'
+    '<div class="resultbox"><div class="big" style="color:'+(strong?"var(--good)":pass?"var(--gold)":"var(--seal)")+'">'+pct+'%</div>'
+    +'<p style="margin:8px 0 0">'+quiz.correct+' of '+quiz.pool.length+' correct. '+msg+'</p>'
     +'<div class="qfoot" style="justify-content:center;margin-top:16px">'
-    +'<button class="btn primary" id="againBtn">Run it again</button></div></div>';
+    +'<button class="btn primary" id="againBtn">Run it again</button>'
+    +(missedIds().length?'<button class="btn ghost" id="missBtn">Retry missed ('+missedIds().length+')</button>':'')+'</div></div>';
   document.getElementById("againBtn").addEventListener("click",function(){
-    if(quiz.mode==="MOCK") startMock(30); else startQuiz(quiz.mode);
+    if(quiz.mode.indexOf("MOCK")===0) startMock(parseInt(quiz.mode.replace("MOCK",""),10));
+    else if(quiz.mode==="MISSED") startMissed();
+    else startQuiz(quiz.mode);
   });
+  var mb=document.getElementById("missBtn"); if(mb) mb.addEventListener("click",startMissed);
 }
 
 /* ---------- FLASHCARDS ---------- */
@@ -652,12 +921,12 @@ function setDeck(f){
 function cardKey(c){ return c.t+"|"+c.f; }
 function showCard(){
   var fc=document.getElementById("fcard"); fc.classList.remove("flipped");
-  if(!deck.cards.length){ document.getElementById("fcFront").textContent="No cards in this deck."; document.getElementById("fcBack").textContent=""; document.getElementById("fcProg").textContent=""; return; }
+  if(!deck.cards.length){ document.getElementById("fcFront").textContent="No cards here."; document.getElementById("fcBack").textContent=""; document.getElementById("fcProg").textContent=""; return; }
   if(deck.idx>=deck.cards.length){
     var knownN=deck.cards.filter(function(c){return STATE.known[cardKey(c)];}).length;
     document.getElementById("fcFront").textContent="Deck complete — "+knownN+"/"+deck.cards.length+" marked known.";
     document.getElementById("fcBack").textContent="";
-    document.getElementById("fcProg").textContent="Tap a deck above to keep going.";
+    document.getElementById("fcProg").textContent="Pick a deck above to keep going.";
     return;
   }
   var c=deck.cards[deck.idx];
@@ -666,10 +935,7 @@ function showCard(){
   document.getElementById("fcProg").textContent="Card "+(deck.idx+1)+" / "+deck.cards.length;
 }
 function advanceCard(known){
-  if(deck.idx<deck.cards.length){
-    var c=deck.cards[deck.idx];
-    STATE.known[cardKey(c)]=!!known; saveState(); renderRibbon();
-  }
+  if(deck.idx<deck.cards.length){ var c=deck.cards[deck.idx]; STATE.known[cardKey(c)]=!!known; saveState(); renderRibbon(); }
   deck.idx++; showCard();
 }
 
@@ -701,23 +967,15 @@ function setupTabs(){
 
 /* ---------- INIT ---------- */
 function init(){
-  setupTabs();
-  renderBlueprint();
-  renderWeeks();
-  renderWeak();
-  startQuiz("F"); // open practice on colour, the biggest + riskiest block
-  setDeck("ALL");
-  renderChecks();
-  renderRibbon();
-
+  setupTabs(); renderBlueprint(); renderWeeks(); renderWeak();
+  startQuiz("F"); setDeck("ALL"); renderChecks(); renderRibbon();
   document.getElementById("fcard").addEventListener("click",function(){ this.classList.toggle("flipped"); });
   document.getElementById("fcard").addEventListener("keydown",function(e){ if(e.key===" "||e.key==="Enter"){e.preventDefault();this.classList.toggle("flipped");} });
   document.getElementById("fcKnow").addEventListener("click",function(){ advanceCard(true); });
   document.getElementById("fcReview").addEventListener("click",function(){ advanceCard(false); });
-
   document.getElementById("resetBtn").addEventListener("click",function(){
-    if(confirm("Reset all progress: plan, scores, flashcards, and checklist?")){
-      STATE={planDone:{},stats:{},known:{},checks:{}}; saveState();
+    if(confirm("Reset all progress: plan, scores, flashcards, missed pile, and checklist?")){
+      STATE={planDone:{},stats:{},known:{},checks:{},missed:{}}; saveState();
       renderWeeks(); renderWeak(); renderChecks(); renderRibbon(); buildModebar(); startQuiz("F"); setDeck("ALL");
     }
   });
