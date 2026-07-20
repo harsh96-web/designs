@@ -482,6 +482,85 @@ h2{
 .footer-grid b{display:block;font-weight:400;opacity:.5;font-size:9px;margin-bottom:3px;text-transform:uppercase}
 @media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr}.footer-grid div{border-bottom:1px solid var(--line-soft)}}
 
+/* ============ DRAFT-BOT CHAT ============ */
+.chat-fab{
+  position:fixed;right:22px;bottom:22px;z-index:90;
+  width:60px;height:60px;border-radius:50%;border:2px solid var(--red-deep);
+  background:var(--red);color:#fff;cursor:pointer;
+  box-shadow:0 6px 0 var(--red-deep), 0 10px 24px rgba(0,0,0,.25);
+  font-family:var(--mono);font-size:22px;line-height:1;
+  transition:transform .15s, box-shadow .15s;
+}
+.chat-fab:hover{transform:translateY(-2px)}
+.chat-fab:active{transform:translateY(2px);box-shadow:0 2px 0 var(--red-deep)}
+.chat-fab .x{display:none}
+.chat-fab[aria-expanded="true"] .o{display:none}
+.chat-fab[aria-expanded="true"] .x{display:inline}
+.chat{
+  position:fixed;right:22px;bottom:96px;z-index:90;
+  width:min(370px, calc(100vw - 32px));
+  max-height:min(560px, calc(100vh - 130px));
+  display:none;flex-direction:column;
+  background:var(--blue-deep);
+  border:1px solid var(--line-soft);
+  box-shadow:12px 12px 0 rgba(24,36,48,.25);
+}
+.chat.open{display:flex;animation:chatIn .25s cubic-bezier(.2,.7,.2,1) both}
+@keyframes chatIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.chat-head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:14px 16px;border-bottom:1px solid var(--line-soft);
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--linework);
+  background:
+    repeating-linear-gradient(to right, transparent 0 23px, var(--line-faint) 23px 24px),
+    var(--blue-deep);
+}
+.chat-head b{color:#fff;font-weight:500}
+.chat-head .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#5BD08A;margin-right:8px}
+.chat-log{
+  flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:12px;
+  background:
+    repeating-linear-gradient(to right, transparent 0 23px, var(--line-faint) 23px 24px),
+    repeating-linear-gradient(to bottom, transparent 0 23px, var(--line-faint) 23px 24px),
+    var(--blue);
+  min-height:220px;
+}
+.msg{max-width:86%;padding:11px 14px;font-size:14px;line-height:1.55}
+.msg.bot{
+  align-self:flex-start;background:var(--blue-deep);color:#D7E6F4;
+  border:1px solid var(--line-soft);border-left:3px solid var(--red);
+}
+.msg.bot a{color:#fff;text-decoration:underline;text-decoration-color:var(--red)}
+.msg.user{
+  align-self:flex-end;background:var(--paper);color:var(--ink);
+  border:1px solid var(--ink);
+}
+.msg.typing{font-family:var(--mono);letter-spacing:.3em;color:var(--linework)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px;background:var(--blue);border-top:0}
+.chips button{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;cursor:pointer;
+  background:transparent;color:var(--linework);border:1px solid var(--line-soft);
+  padding:7px 12px;transition:background .2s,color .2s,border-color .2s;
+}
+.chips button:hover{background:var(--red);border-color:var(--red);color:#fff}
+.chat-form{display:flex;border-top:1px solid var(--line-soft);background:var(--blue-deep)}
+.chat-form input{
+  flex:1;background:transparent;border:0;color:#fff;padding:14px 16px;
+  font-family:var(--body);font-size:14px;min-width:0;
+}
+.chat-form input::placeholder{color:rgba(168,203,232,.55)}
+.chat-form input:focus{outline:none;background:rgba(168,203,232,.06)}
+.chat-form button{
+  background:var(--red);color:#fff;border:0;cursor:pointer;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;padding:0 20px;
+  transition:background .2s;
+}
+.chat-form button:hover{background:#E24747}
+@media(max-width:860px){
+  .chat-fab{right:14px;bottom:14px}
+  .chat{right:14px;bottom:84px}
+}
+
 /* ============ REDUCED MOTION ============ */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{
@@ -903,8 +982,11 @@ h2{
       <p class="eyebrow">Sheet A-07 · Next revision</p>
       <h2>Let's draw up <em>yours.</em></h2>
       <p>A 20-minute call. No pitch deck, no pressure — bring your business, I'll bring questions. You'll leave with a clear plan whether we work together or not.</p>
-      <a class="btn btn-red" href="mailto:[your@email.com]?subject=New%20site%20—%20let%27s%20talk">Book a 20-minute call</a>
-      <p class="mono-note">// Or write directly: [your@email.com] — replies same business day.</p>
+      <div class="hero-actions" style="margin-top:0">
+        <a class="btn btn-red" href="mailto:marbellamotion@gmail.com?subject=New%20site%20—%20let%27s%20talk">Book a 20-minute call</a>
+        <a class="btn btn-ghost" href="https://wa.me/17052296995?text=Hi%20Harsh%2C%20I%20saw%20your%20portfolio%20and%20want%20to%20talk%20about%20a%20website." target="_blank" rel="noopener">WhatsApp me</a>
+      </div>
+      <p class="mono-note">// Or write directly: marbellamotion@gmail.com · Text/WhatsApp: 705-229-6995 — replies same business day.</p>
     </div>
   </div>
 </section>
@@ -919,6 +1001,28 @@ h2{
     <div><b>Sheet</b>A-01 · REV A · ISSUED</div>
   </div>
 </footer>
+
+<!-- ============ DRAFT-BOT ============ -->
+<button class="chat-fab" id="chatFab" aria-expanded="false" aria-controls="chatPanel" aria-label="Open chat with Harsh's site assistant">
+  <span class="o" aria-hidden="true">✎</span><span class="x" aria-hidden="true">×</span>
+</button>
+<div class="chat" id="chatPanel" role="dialog" aria-label="Site assistant chat" aria-modal="false">
+  <div class="chat-head">
+    <span><span class="dot" aria-hidden="true"></span><b>DRAFT-BOT</b> · SITE ASSISTANT</span>
+    <span>SHEET Q&amp;A</span>
+  </div>
+  <div class="chat-log" id="chatLog" aria-live="polite"></div>
+  <div class="chips" id="chatChips">
+    <button type="button" data-q="What do you charge?">Pricing</button>
+    <button type="button" data-q="How long does a site take?">Timeline</button>
+    <button type="button" data-q="How do you work?">Process</button>
+    <button type="button" data-q="How do I book a call?">Book a call</button>
+  </div>
+  <form class="chat-form" id="chatForm">
+    <input type="text" id="chatInput" placeholder="Ask about pricing, timing, anything…" autocomplete="off" aria-label="Type your question">
+    <button type="submit">SEND</button>
+  </form>
+</div>
 
 <script>
 (function(){
@@ -965,6 +1069,102 @@ h2{
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ===== DRAFT-BOT ===== */
+  var EMAIL='marbellamotion@gmail.com';
+  var WA='https://wa.me/17052296995?text=' + encodeURIComponent('Hi Harsh, I saw your portfolio and want to talk about a website.');
+  var CONTACT='<a href="'+WA+'" target="_blank" rel="noopener">WhatsApp me</a> or email <a href="mailto:'+EMAIL+'">'+EMAIL+'</a> — I reply the same business day.';
+
+  var BRAIN=[
+    {re:/(price|pricing|cost|charge|rate|budget|\$|how much|fee)/i,
+     a:'Three flat-rate packages: <b>Launch</b> from $900 (one sharp page, live in 2 weeks), <b>Grow</b> from $2,000 (up to six pages with booking, 4 weeks), and <b>Custom</b> — quoted and fixed before I write a line of code. Which sounds like your project?'},
+    {re:/(time|timeline|long|fast|quick|deadline|when|week)/i,
+     a:'Launch sites go live in about <b>2 weeks</b>, Grow in about <b>4</b>. You see a clickable draft of your real site within the first few days — no waiting a month for a big reveal.'},
+    {re:/(process|work|method|step|stage|start|how do you)/i,
+     a:'Four stages, every time: <b>Survey</b> (a 20-min call), <b>Draft</b> (working draft in your browser), <b>Build</b> (hand-coded, no plugins), <b>Handover</b> (files, domain, keys — all yours).'},
+    {re:/(book|call|contact|talk|meet|reach|appointment)/i,
+     a:'Easy — '},
+    {re:/(whatsapp|text|phone|number|message)/i,
+     a:'Text or WhatsApp me at <b>705-229-6995</b>: <a href="'+WA+'" target="_blank" rel="noopener">tap to open a chat</a>.'},
+    {re:/(email|mail)/i,
+     a:'Write me at <a href="mailto:'+EMAIL+'">'+EMAIL+'</a> — same-business-day replies.'},
+    {re:/(own|host|domain|wordpress|template|maintain|update)/i,
+     a:'No templates, no page-builders, no monthly ransom. I hand-code everything and you own the files and domain outright. Updates are quick because there\'s nothing bloated to fight with.'},
+    {re:/(seo|google|rank|found|search)/i,
+     a:'Every site ships with clean structure Google actually reads, and the Grow package includes tuning your Google Business Profile so locals find you.'},
+    {re:/(salon|gym|bakery|restaurant|cafe|coffee|detail|contractor|reno|trade)/i,
+     a:'That\'s exactly my lane — small local businesses. Scroll the work above: salon, gym, bakery, restaurant, roaster, contractor, detailer. Yours would be the next drawing on the board.'},
+    {re:/(hi|hello|hey|yo|sup)\b/i,
+     a:'Hey! I\'m the site assistant on Harsh\'s drafting desk. Ask me about pricing, timelines, or how a project runs — or skip straight to the human: '},
+    {re:/(thank|thanks|great|cool|nice|awesome)/i,
+     a:'Anytime. When you\'re ready to talk about your site: '}
+  ];
+  var FALLBACK='Good question — that one deserves the human. ';
+
+  var fab=d.getElementById('chatFab');
+  var panel=d.getElementById('chatPanel');
+  var log=d.getElementById('chatLog');
+  var form=d.getElementById('chatForm');
+  var input=d.getElementById('chatInput');
+  var chips=d.getElementById('chatChips');
+  var greeted=false;
+
+  function addMsg(html,who){
+    var m=d.createElement('div');
+    m.className='msg '+who;
+    if(who==='user'){ m.textContent=html; } else { m.innerHTML=html; }
+    log.appendChild(m);
+    log.scrollTop=log.scrollHeight;
+    return m;
+  }
+  function botReply(text){
+    var ans=null;
+    for(var i=0;i<BRAIN.length;i++){
+      if(BRAIN[i].re.test(text)){ ans=BRAIN[i].a; break; }
+    }
+    if(ans===null) ans=FALLBACK+CONTACT;
+    else if(/— $|: $/.test(ans)) ans+=CONTACT;
+    var t=addMsg('· · ·','bot typing');
+    var delay=reduce?10:650;
+    setTimeout(function(){
+      t.classList.remove('typing');
+      t.innerHTML=ans;
+      log.scrollTop=log.scrollHeight;
+    },delay);
+  }
+  function ask(text){
+    addMsg(text,'user');
+    botReply(text);
+  }
+  fab.addEventListener('click',function(){
+    var open=panel.classList.toggle('open');
+    fab.setAttribute('aria-expanded',open?'true':'false');
+    if(open){
+      if(!greeted){
+        greeted=true;
+        addMsg('Hey — DRAFT-BOT here, keeper of Harsh\'s drafting desk. Ask about <b>pricing</b>, <b>timelines</b>, or <b>how a project runs</b>. For everything else there\'s the human: '+CONTACT,'bot');
+      }
+      input.focus();
+    }
+  });
+  d.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&panel.classList.contains('open')){
+      panel.classList.remove('open');
+      fab.setAttribute('aria-expanded','false');
+      fab.focus();
+    }
+  });
+  chips.addEventListener('click',function(e){
+    var b=e.target.closest('button');
+    if(b) ask(b.getAttribute('data-q'));
+  });
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=input.value.trim();
+    if(!v) return;
+    input.value='';
+    ask(v);
+  });
 })();
 </script>
 </body>
