@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riptide Roasting Co. — Specialty Coffee · Vancouver</title>
+<meta name="description" content="Riptide Roasting Co. roasts specialty coffee in small batches in Vancouver. Beans, brew guides, and a café worth crossing town for.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+:root{
+  --cream:#F5F1E6;
+  --cobalt:#1A3FBF;
+  --cobalt-deep:#122E8E;
+  --tang:#F26430;
+  --inkc:#131A2E;
+  --disp:'Fraunces', Georgia, serif;
+  --sans:'Archivo', 'Helvetica Neue', sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+  --gut:clamp(20px,5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--inkc);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--tang);color:var(--cream)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--tang);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 var(--gut)}
+.skip{position:absolute;left:-9999px;background:var(--cobalt);color:#fff;padding:10px 16px;font-family:var(--mono);font-size:13px;z-index:99;text-decoration:none}
+.skip:focus{left:0;top:0}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px var(--gut);border-bottom:2px solid var(--inkc);font-family:var(--mono);font-size:12px;letter-spacing:.14em;background:var(--cream);position:sticky;top:0;z-index:30}
+.mark{font-family:var(--disp);font-weight:900;font-size:22px;letter-spacing:-.01em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark i{width:16px;height:16px;border-radius:50%;background:var(--cobalt);display:inline-block;position:relative}
+.mark i::after{content:"";position:absolute;left:7px;top:2px;bottom:2px;width:2px;background:var(--cream);border-radius:2px;transform:rotate(18deg)}
+.nav ul{display:flex;gap:26px;list-style:none}
+.nav a{text-decoration:none}
+.nav ul a:hover{color:var(--cobalt)}
+.nav .shop{background:var(--cobalt);color:#fff;padding:10px 20px;transition:background .2s}
+.nav .shop:hover{background:var(--cobalt-deep)}
+@media(max-width:820px){.nav ul{display:none}}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;border-bottom:2px solid var(--inkc);padding:clamp(60px,9vw,120px) 0 0}
+.hero h1{
+  font-family:var(--disp);font-weight:900;line-height:.92;letter-spacing:-.02em;
+  font-size:clamp(60px,11.5vw,150px);
+}
+.hero h1 .row{display:block;overflow:hidden}
+.hero h1 .row span{display:inline-block;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero h1 .row:nth-child(1) span{animation-delay:.15s}
+.hero h1 .row:nth-child(2) span{animation-delay:.3s;color:var(--cobalt)}
+@keyframes rise{from{transform:translateY(108%)}to{transform:translateY(0)}}
+.hero-sub{display:flex;justify-content:space-between;align-items:end;gap:30px;margin:34px 0 0;padding-bottom:50px;flex-wrap:wrap;animation:fade .8s .7s ease both}
+.hero-sub p{max-width:440px;font-size:19px}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.btn{display:inline-block;text-decoration:none;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:16px 28px;transition:transform .12s,background .2s,color .2s;border:2px solid var(--inkc)}
+.btn:active{transform:translateY(2px)}
+.btn-t{background:var(--tang);color:var(--inkc);box-shadow:4px 4px 0 var(--inkc)}
+.btn-t:hover{background:#FF7442}
+.btn-t:active{box-shadow:2px 2px 0 var(--inkc)}
+.btn-w{background:transparent}
+.btn-w:hover{background:var(--inkc);color:var(--cream)}
+/* rotating wave band */
+.wave{border-top:2px solid var(--inkc);background:var(--cobalt);color:var(--cream);overflow:hidden;white-space:nowrap;font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:11px 0}
+.wave-track{display:inline-block;animation:tick 24s linear infinite}
+.wave span{padding:0 30px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+section{padding:clamp(80px,10vw,130px) 0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--cobalt);margin-bottom:14px}
+h2{font-family:var(--disp);font-weight:900;letter-spacing:-.015em;font-size:clamp(38px,5.5vw,72px);line-height:1}
+.js .rev{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .rev.in{opacity:1;transform:none}
+
+/* ROASTS */
+.roasts{border-bottom:2px solid var(--inkc)}
+.roast-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:50px}
+.bag{
+  border:2px solid var(--inkc);background:#fff;display:flex;flex-direction:column;
+  transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s;box-shadow:6px 6px 0 var(--inkc);
+}
+.bag:hover{transform:translate(-3px,-5px);box-shadow:10px 12px 0 var(--inkc)}
+.bag-art{aspect-ratio:1/.72;border-bottom:2px solid var(--inkc);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.bag-art .bean{width:76px;height:104px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;position:relative}
+.bag-art .bean::after{content:"";position:absolute;left:50%;top:10%;bottom:10%;width:6px;margin-left:-3px;border-radius:6px;background:inherit;filter:brightness(.55)}
+.bag:nth-child(1) .bag-art{background:repeating-linear-gradient(45deg,var(--cream) 0 14px,#EAE4D3 14px 28px)}
+.bag:nth-child(1) .bean{background:var(--tang)}
+.bag:nth-child(2) .bag-art{background:repeating-linear-gradient(-45deg,#DDE4FA 0 14px,#CCD6F6 14px 28px)}
+.bag:nth-child(2) .bean{background:var(--cobalt)}
+.bag:nth-child(3) .bag-art{background:repeating-linear-gradient(90deg,#F3E3DC 0 14px,#EDD7CD 14px 28px)}
+.bag:nth-child(3) .bean{background:var(--inkc)}
+.bag-body{padding:24px 22px 26px;display:flex;flex-direction:column;flex:1}
+.bag .tag{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cobalt);margin-bottom:10px}
+.bag h3{font-family:var(--disp);font-weight:700;font-size:26px;letter-spacing:-.01em}
+.bag .notes{font-size:15px;color:#4A5164;margin:10px 0 18px;flex:1}
+.bag .row{display:flex;justify-content:space-between;align-items:center;border-top:2px solid var(--inkc);padding-top:16px;font-family:var(--mono);font-size:13px}
+.bag .row b{font-size:18px}
+@media(max-width:900px){.roast-grid{grid-template-columns:1fr;max-width:460px}}
+
+/* BREW CALCULATOR */
+.brew{background:var(--cobalt);color:var(--cream);border-bottom:2px solid var(--inkc)}
+.brew .eyebrow{color:var(--tang)}
+.brew-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:10px}
+.brew p.lede{margin-top:20px;font-size:18px;color:#C9D3F4;max-width:440px}
+.calc{border:2px solid var(--cream);background:var(--cobalt-deep);padding:34px 30px;box-shadow:8px 8px 0 rgba(0,0,0,.25)}
+.calc label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+.calc output{color:var(--tang)}
+.calc input[type=range]{width:100%;accent-color:var(--tang);margin-bottom:26px;cursor:pointer}
+.calc .method{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.calc .method button{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  background:transparent;color:var(--cream);border:2px solid var(--cream);padding:9px 14px;cursor:pointer;transition:background .2s,color .2s;
+}
+.calc .method button[aria-pressed="true"]{background:var(--tang);border-color:var(--tang);color:var(--inkc)}
+.calc .readout{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:2px solid var(--cream)}
+.calc .readout div{padding:18px 16px;background:var(--cobalt)}
+.calc .readout b{font-family:var(--disp);font-weight:900;font-size:clamp(28px,3vw,40px);display:block;line-height:1}
+.calc .readout span{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#C9D3F4}
+.calc .ratio-note{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:#C9D3F4;margin-top:16px}
+@media(max-width:900px){.brew-grid{grid-template-columns:1fr;gap:40px}}
+
+/* CAFE */
+.cafe .cols{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;margin-top:10px;align-items:start}
+.cafe p{margin-top:20px;font-size:18px;color:#4A5164;max-width:480px}
+.hours{border:2px solid var(--inkc);background:#fff;font-family:var(--mono);font-size:13px}
+.hours div{display:flex;justify-content:space-between;padding:14px 20px;border-bottom:2px solid var(--inkc)}
+.hours div:last-child{border-bottom:0}
+.hours b{font-weight:500}
+.hours .today{background:var(--tang)}
+@media(max-width:900px){.cafe .cols{grid-template-columns:1fr;gap:36px}}
+
+/* CTA */
+.cta{background:var(--inkc);color:var(--cream);text-align:center;border-top:2px solid var(--inkc)}
+.cta h2{font-size:clamp(44px,7vw,96px)}
+.cta h2 em{font-style:italic;color:var(--tang)}
+.cta p{max-width:460px;margin:22px auto 36px;color:#B9C0D4}
+footer{background:var(--inkc);color:#8B93AA;border-top:1px solid #2A3350;padding:24px var(--gut);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .wave-track{animation:none;transform:none}
+  .js .rev{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#roasts">Skip to the coffee</a>
+
+<nav class="nav" aria-label="Main">
+  <a class="mark" href="#"><i aria-hidden="true"></i>RIPTIDE</a>
+  <ul>
+    <li><a href="#roasts">ROASTS</a></li>
+    <li><a href="#brew">BREW GUIDE</a></li>
+    <li><a href="#cafe">CAFÉ</a></li>
+  </ul>
+  <a class="shop" href="#roasts">SHOP BEANS</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>
+      <span class="row"><span>Roasted against</span></span>
+      <span class="row"><span>the current.</span></span>
+    </h1>
+    <div class="hero-sub">
+      <p>Small-batch specialty coffee, roasted twice a week in Vancouver. We buy from farms we can name, roast lighter than you're used to, and stand behind every bag.</p>
+      <a class="btn btn-t" href="#roasts">Shop this week's roast</a>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true">
+    <div class="wave-track">
+      <span>Roasted Tue &amp; Fri</span><span>Free pickup at the café</span><span>Direct trade</span><span>Whole bean only — trust us</span>
+      <span>Roasted Tue &amp; Fri</span><span>Free pickup at the café</span><span>Direct trade</span><span>Whole bean only — trust us</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="roasts" id="roasts">
+  <div class="wrap">
+    <div class="rev">
+      <p class="eyebrow">On the shelf now</p>
+      <h2>Three roasts, zero filler.</h2>
+    </div>
+    <div class="roast-grid">
+      <div class="bag rev" style="--d:0s">
+        <div class="bag-art" aria-hidden="true"><div class="bean"></div></div>
+        <div class="bag-body">
+          <p class="tag">Ethiopia · Washed · Light</p>
+          <h3>Undertow</h3>
+          <p class="notes">Apricot, bergamot, honey finish. The bag we reach for on our own days off.</p>
+          <div class="row"><span>250g</span><b>$21</b></div>
+        </div>
+      </div>
+      <div class="bag rev" style="--d:.1s">
+        <div class="bag-art" aria-hidden="true"><div class="bean"></div></div>
+        <div class="bag-body">
+          <p class="tag">Colombia · Honey · Medium</p>
+          <h3>Slack Tide</h3>
+          <p class="notes">Caramel, red apple, cocoa. Balanced enough for pour-over, sweet enough for espresso.</p>
+          <div class="row"><span>250g</span><b>$19</b></div>
+        </div>
+      </div>
+      <div class="bag rev" style="--d:.2s">
+        <div class="bag-art" aria-hidden="true"><div class="bean"></div></div>
+        <div class="bag-body">
+          <p class="tag">Brazil + Guatemala · Dark-ish</p>
+          <h3>Breakwater</h3>
+          <p class="notes">Dark chocolate, hazelnut, brown sugar. Built for milk. Our espresso workhorse.</p>
+          <div class="row"><span>250g</span><b>$18</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="brew" id="brew">
+  <div class="wrap">
+    <div class="brew-grid">
+      <div class="rev">
+        <p class="eyebrow">Brew guide</p>
+        <h2>Dial it in.</h2>
+        <p class="lede">Pick your method, slide to how much coffee you want to end up with, and we'll do the arithmetic. Ratios straight from our bar recipes.</p>
+      </div>
+      <div class="calc rev" style="--d:.15s">
+        <div class="method" role="group" aria-label="Brew method">
+          <button type="button" data-ratio="16.5" data-name="V60" aria-pressed="true">V60</button>
+          <button type="button" data-ratio="15" data-name="French press" aria-pressed="false">French press</button>
+          <button type="button" data-ratio="16" data-name="AeroPress" aria-pressed="false">AeroPress</button>
+          <button type="button" data-ratio="2" data-name="Espresso" aria-pressed="false">Espresso</button>
+        </div>
+        <label for="water">Brew size <output id="waterOut">300 ml</output></label>
+        <input type="range" id="water" min="150" max="1000" step="10" value="300">
+        <div class="readout" aria-live="polite">
+          <div><b id="coffeeG">18 g</b><span>Coffee</span></div>
+          <div><b id="waterG">300 ml</b><span>Water</span></div>
+        </div>
+        <p class="ratio-note" id="ratioNote">// V60 · 1:16.5 · medium-fine grind · 2:45–3:15 total</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cafe" id="cafe">
+  <div class="wrap">
+    <div class="cols">
+      <div class="rev">
+        <p class="eyebrow">The café</p>
+        <h2>Come taste what we mean.</h2>
+        <p>Every roast on the shelf is on the bar. Ask for a taster before you buy a bag — if we're pouring it, we're proud of it. Corner of 4th &amp; Yew, Kitsilano.</p>
+        <p style="margin-top:14px"><a class="btn btn-w" href="mailto:hello@example.com">Wholesale? Talk to us</a></p>
+      </div>
+      <div class="hours rev" style="--d:.15s" role="table" aria-label="Café hours">
+        <div><b>Mon–Fri</b><span>7:00 – 17:00</span></div>
+        <div class="today"><b>Sat</b><span>8:00 – 18:00</span></div>
+        <div><b>Sun</b><span>8:00 – 16:00</span></div>
+        <div><b>Roast days</b><span>Tue &amp; Fri — it smells incredible</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap rev">
+    <h2>Never run out <em>again.</em></h2>
+    <p>A subscription that matches your pace — every week, two weeks, or month. Pause anytime, swap roasts anytime, free café pickup always.</p>
+    <a class="btn btn-t" href="#roasts">Start a subscription</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© 2026 Riptide Roasting Co.</span>
+  <span>Vancouver BC · Roasted against the current</span>
+  <span>Concept site — design: Harsh Kumar</span>
+</footer>
+
+<script>
+(function(){
+  var d=document;
+  d.documentElement.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveals */
+  var revs=[].slice.call(d.querySelectorAll('.rev'));
+  if(reduce||!('IntersectionObserver' in window)){
+    revs.forEach(function(el){el.classList.add('in');});
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+    revs.forEach(function(el){io.observe(el);});
+  }
+
+  /* brew calculator */
+  var water=d.getElementById('water');
+  var waterOut=d.getElementById('waterOut');
+  var coffeeG=d.getElementById('coffeeG');
+  var waterG=d.getElementById('waterG');
+  var note=d.getElementById('ratioNote');
+  var buttons=[].slice.call(d.querySelectorAll('.method button'));
+  var ratio=16.5, name='V60';
+  var tips={
+    'V60':'medium-fine grind · 2:45–3:15 total',
+    'French press':'coarse grind · 4:00 steep, then plunge',
+    'AeroPress':'medium grind · 1:30 steep · press slow',
+    'Espresso':'fine grind · 25–30s shot · 1:2 in the cup'
+  };
+  function fmtRatio(r){return (r % 1 === 0) ? r : r.toFixed(1);}
+  function update(){
+    var w=parseInt(water.value,10);
+    if(name==='Espresso'){
+      /* espresso: slider means beverage out; dose = out / 2 */
+      var dose=Math.round(w/ratio);
+      coffeeG.textContent=dose+' g';
+      waterG.textContent=w+' g out';
+      waterOut.textContent=w+' g in the cup';
+    }else{
+      coffeeG.textContent=Math.round(w/ratio)+' g';
+      waterG.textContent=w+' ml';
+      waterOut.textContent=w+' ml';
+    }
+    note.textContent='// '+name+' · 1:'+fmtRatio(ratio)+' · '+tips[name];
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click',function(){
+      buttons.forEach(function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');
+      ratio=parseFloat(b.getAttribute('data-ratio'));
+      name=b.getAttribute('data-name');
+      if(name==='Espresso'){water.min=30;water.max=120;water.step=2;water.value=60;}
+      else{water.min=150;water.max=1000;water.step=10;if(parseInt(water.value,10)<150)water.value=300;}
+      update();
+    });
+  });
+  water.addEventListener('input',update);
+  update();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harsh Kumar — Hand-coded websites for small business · Vancouver</title>
+<meta name="description" content="Freelance web designer and developer in Vancouver. Every site designed and hand-coded from scratch — fast, lightweight, and yours to keep.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap');
+
+/* ============ TOKENS ============ */
+:root{
+  --blue:#0E3557;        /* cyanotype field */
+  --blue-deep:#092743;   /* cyanotype shadow */
+  --linework:#A8CBE8;    /* pale drafting line */
+  --line-faint:rgba(168,203,232,.16);
+  --line-soft:rgba(168,203,232,.38);
+  --paper:#F1EFE8;       /* drafting vellum */
+  --paper-dim:#E8E5DC;
+  --ink:#182430;         /* graphite ink */
+  --ink-soft:#4B5A68;
+  --red:#D63B3B;         /* redline */
+  --red-deep:#B92E2E;
+  --display:'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
+  --mono:'IBM Plex Mono', 'Courier New', monospace;
+  --body:'Public Sans', 'Helvetica Neue', Arial, sans-serif;
+  --gutter:clamp(20px, 5vw, 72px);
+  --maxw:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--ink);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--red);color:#fff}
+a{color:inherit}
+:focus-visible{outline:2px dashed var(--red);outline-offset:4px}
+img,iframe{display:block}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--red);color:#fff;padding:10px 18px;
+  font-family:var(--mono);font-size:13px;text-decoration:none;
+}
+.skip:focus{left:0}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.mono{font-family:var(--mono)}
+
+/* ============ RULER (scroll progress) ============ */
+.ruler{
+  position:fixed;left:0;top:0;bottom:0;width:34px;z-index:60;
+  border-right:1px solid rgba(120,135,150,.25);
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 11px, rgba(120,135,150,.28) 11px 12px) right/8px 100% no-repeat,
+    repeating-linear-gradient(to bottom, transparent 0 47px, rgba(120,135,150,.28) 47px 48px) right/16px 100% no-repeat;
+  pointer-events:none;
+}
+.ruler-fill{
+  position:absolute;top:0;left:0;width:3px;height:100%;
+  background:var(--red);transform-origin:top;transform:scaleY(0);
+}
+.ruler-pct{
+  position:fixed;left:8px;bottom:14px;z-index:61;
+  font-family:var(--mono);font-size:10px;color:var(--red);
+  writing-mode:vertical-rl;letter-spacing:.08em;
+}
+@media(max-width:860px){.ruler,.ruler-pct{display:none}}
+
+/* ============ NAV ============ */
+.nav{
+  position:absolute;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px var(--gutter);
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;
+  color:var(--linework);
+}
+.nav-id{display:flex;align-items:baseline;gap:14px}
+.nav-id strong{font-weight:500;color:#fff;letter-spacing:.16em}
+.nav-id span{opacity:.6}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{text-decoration:none;opacity:.85;transition:opacity .2s, color .2s}
+.nav-links a:hover{opacity:1;color:#fff}
+.nav-cta{
+  text-decoration:none;border:1px solid var(--linework);padding:8px 16px;
+  color:#fff;transition:background .2s,color .2s,border-color .2s;
+}
+.nav-cta:hover{background:var(--red);border-color:var(--red)}
+@media(max-width:860px){
+  .nav-links{display:none}
+  .nav{padding:18px var(--gutter)}
+}
+
+/* ============ HERO / BLUEPRINT ============ */
+.hero{
+  position:relative;
+  min-height:100svh;
+  background:
+    linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 100%);
+  color:var(--linework);
+  overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hero::before{ /* minor + major drafting grid */
+  content:"";position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(to right, transparent 0 23px, var(--line-faint) 23px 24px),
+    repeating-linear-gradient(to bottom, transparent 0 23px, var(--line-faint) 23px 24px),
+    repeating-linear-gradient(to right, transparent 0 119px, var(--line-soft) 119px 120px),
+    repeating-linear-gradient(to bottom, transparent 0 119px, var(--line-soft) 119px 120px);
+  animation:gridIn 1.2s ease both;
+}
+@keyframes gridIn{from{opacity:0}to{opacity:1}}
+
+.hero-inner{
+  position:relative;z-index:2;
+  max-width:var(--maxw);margin:0 auto;width:100%;
+  padding:120px var(--gutter) 150px;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+  color:var(--linework);opacity:.85;margin-bottom:26px;
+  display:flex;align-items:center;gap:14px;
+  animation:inkIn .7s .35s ease both;
+}
+.hero-eyebrow::before{
+  content:"";width:44px;height:1px;background:var(--linework);
+  transform-origin:left;animation:lineDraw .6s .3s ease both;
+}
+h1{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(64px, 13.5vw, 176px);
+  line-height:.9;
+  letter-spacing:.005em;
+  text-transform:uppercase;
+  color:#fff;
+}
+h1 .row{display:block;overflow:hidden}
+h1 .row span{display:inline-block;animation:riseIn .8s cubic-bezier(.2,.7,.2,1) both}
+h1 .row:nth-child(1) span{animation-delay:.5s}
+h1 .row:nth-child(2) span{animation-delay:.66s;color:transparent;-webkit-text-stroke:2px var(--linework)}
+@keyframes riseIn{from{transform:translateY(110%)}to{transform:translateY(0)}}
+@keyframes inkIn{from{opacity:0}to{opacity:1}}
+@keyframes lineDraw{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* dimension line under headline */
+.dim{
+  display:flex;align-items:center;gap:10px;
+  margin:34px 0 30px;max-width:560px;
+  animation:inkIn .6s 1.15s ease both;
+}
+.dim .tick{width:1px;height:14px;background:var(--linework)}
+.dim .rail{flex:1;height:1px;background:var(--linework);position:relative}
+.dim .lbl{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+  white-space:nowrap;padding:0 4px;
+}
+.hero-sub{
+  max-width:520px;font-size:clamp(16px,1.6vw,19px);line-height:1.65;
+  color:#D7E6F4;animation:inkIn .7s 1.3s ease both;
+}
+.hero-actions{
+  display:flex;gap:16px;flex-wrap:wrap;margin-top:38px;
+  animation:inkIn .7s 1.45s ease both;
+}
+.btn{
+  display:inline-block;text-decoration:none;
+  font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  padding:16px 28px;border:1px solid transparent;
+  transition:transform .12s ease, box-shadow .12s ease, background .2s;
+}
+.btn:active{transform:translateY(2px)}
+.btn-red{
+  background:var(--red);color:#fff;
+  box-shadow:0 5px 0 var(--red-deep);
+}
+.btn-red:hover{background:#E24747}
+.btn-red:active{box-shadow:0 2px 0 var(--red-deep)}
+.btn-ghost{border-color:var(--linework);color:#fff}
+.btn-ghost:hover{background:rgba(168,203,232,.12)}
+.btn-ghost.dark{border-color:var(--ink);color:var(--ink)}
+.btn-ghost.dark:hover{background:rgba(24,36,48,.06)}
+
+/* stamp */
+.stamp{
+  position:absolute;
+  right:clamp(16px, 8vw, 130px);
+  top:clamp(96px, 17vh, 190px);
+  z-index:3;
+  font-family:var(--mono);font-weight:500;
+  color:var(--red);border:3px solid var(--red);
+  padding:12px 20px;letter-spacing:.24em;font-size:clamp(12px,1.4vw,16px);
+  text-transform:uppercase;
+  transform:rotate(-8deg);
+  border-radius:4px;
+  box-shadow:inset 0 0 0 1px rgba(214,59,59,.35);
+  background:
+    radial-gradient(circle at 30% 40%, rgba(214,59,59,.12), transparent 60%);
+  animation:stampIn .5s 1.7s cubic-bezier(.3,1.6,.5,1) both;
+}
+@keyframes stampIn{
+  0%{transform:rotate(-16deg) scale(2.4);opacity:0}
+  55%{transform:rotate(-7deg) scale(.94);opacity:1}
+  100%{transform:rotate(-8deg) scale(1);opacity:1}
+}
+
+/* title block */
+.titleblock{
+  position:absolute;right:0;bottom:0;z-index:4;
+  display:grid;grid-template-columns:repeat(3,auto);
+  border:1px solid var(--line-soft);border-right:0;border-bottom:0;
+  background:rgba(9,39,67,.72);
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  color:var(--linework);
+  animation:inkIn .8s 1.9s ease both;
+}
+.titleblock div{padding:9px 16px;border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+.titleblock b{display:block;font-weight:400;opacity:.55;font-size:9px;margin-bottom:2px}
+.titleblock span{color:#fff}
+@media(max-width:860px){
+  .titleblock{grid-template-columns:repeat(3,1fr);width:100%;font-size:9px}
+  .titleblock div{padding:7px 10px}
+  .stamp{top:64px;right:14px;padding:9px 14px;letter-spacing:.18em;border-width:2px}
+  .hero-inner{padding-bottom:170px}
+}
+
+.scrollcue{
+  position:absolute;left:var(--gutter);bottom:26px;z-index:4;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--linework);
+  display:flex;align-items:center;gap:12px;opacity:.8;
+  animation:inkIn .8s 2.1s ease both;
+}
+.scrollcue::after{
+  content:"";width:1px;height:34px;background:var(--linework);
+  animation:cueDrop 1.6s 2.4s ease-in-out infinite;
+  transform-origin:top;
+}
+@keyframes cueDrop{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+@media(max-width:860px){.scrollcue{display:none}}
+
+/* ============ ISSUE STRIP (marquee divider) ============ */
+.issue{
+  background:var(--red);color:#fff;overflow:hidden;
+  font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+  padding:11px 0;white-space:nowrap;
+  border-top:1px solid var(--red-deep);border-bottom:1px solid var(--red-deep);
+}
+.issue-track{display:inline-block;animation:ticker 26s linear infinite}
+.issue span{padding:0 34px}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============ SECTION SCAFFOLD ============ */
+section{position:relative}
+.sec{padding:clamp(80px,10vw,140px) 0}
+.sec-head{margin-bottom:clamp(40px,6vw,72px)}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--red);display:flex;align-items:center;gap:14px;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:44px;height:1px;background:var(--red)}
+h2{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(42px,6.5vw,84px);line-height:.95;letter-spacing:.005em;
+}
+.sec-head p{max-width:560px;margin-top:20px;color:var(--ink-soft);font-size:18px}
+
+/* scroll reveal */
+.js .rev{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .rev.in{opacity:1;transform:none}
+
+/* ============ WORK ============ */
+.work{background:var(--paper)}
+.project{margin-bottom:clamp(64px,9vw,120px)}
+.project:last-child{margin-bottom:0}
+.proj-meta{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 28px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);
+  border-top:1px solid var(--ink);padding-top:14px;margin-bottom:22px;
+}
+.proj-meta .no{color:var(--red);font-weight:500}
+.proj-meta h3{
+  font-family:var(--display);font-weight:700;font-size:clamp(24px,3vw,36px);
+  text-transform:uppercase;letter-spacing:.01em;color:var(--ink);margin-right:auto;
+}
+.proj-meta a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--red);padding-bottom:2px;transition:color .2s}
+.proj-meta a:hover{color:var(--red)}
+
+.frame{position:relative}
+.browser{
+  border:1px solid var(--ink);
+  background:#fff;
+  box-shadow:10px 10px 0 rgba(24,36,48,.12);
+  transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+}
+.frame:hover .browser{transform:translate(-3px,-5px);box-shadow:16px 18px 0 rgba(24,36,48,.16)}
+.browser-bar{
+  display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--ink);
+  padding:10px 14px;background:var(--paper-dim);
+}
+.browser-bar .dots{display:flex;gap:6px}
+.browser-bar .dots i{width:10px;height:10px;border-radius:50%;border:1px solid var(--ink);background:transparent}
+.browser-bar .dots i:nth-child(1){background:var(--red);border-color:var(--red)}
+.browser-bar .url{
+  font-family:var(--mono);font-size:11px;color:var(--ink-soft);
+  letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.viewport{
+  position:relative;width:100%;aspect-ratio:1440/900;overflow:hidden;background:var(--ink);
+}
+.viewport iframe{
+  width:1440px;min-width:1440px;max-width:1440px;height:920px;border:0;
+  transform:scale(var(--s,0.6));transform-origin:0 0;
+}
+/* dimension callouts appear on hover */
+.dims{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s}
+.frame:hover .dims{opacity:1}
+.dims .dtop{
+  position:absolute;top:-26px;left:0;right:0;height:1px;background:var(--red);
+}
+.dims .dtop::before,.dims .dtop::after{content:"";position:absolute;top:-6px;width:1px;height:13px;background:var(--red)}
+.dims .dtop::before{left:0}.dims .dtop::after{right:0}
+.dims .dtop b{
+  position:absolute;left:50%;top:-9px;transform:translateX(-50%);
+  background:var(--paper);padding:0 10px;
+  font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.2em;color:var(--red);
+}
+.proj-note{
+  margin-top:18px;font-size:15px;color:var(--ink-soft);max-width:640px;
+}
+@media(max-width:860px){
+  .dims{display:none}
+  .browser{box-shadow:6px 6px 0 rgba(24,36,48,.12)}
+}
+
+/* ============ PROCESS ============ */
+.process{background:var(--paper-dim);border-top:1px solid var(--ink)}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:1px solid var(--ink);background:var(--paper);
+}
+.step{
+  padding:30px 26px 36px;border-right:1px solid var(--ink);position:relative;
+}
+.step:last-child{border-right:0}
+.step .num{
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--red);
+  display:block;margin-bottom:46px;
+}
+.step .num::after{
+  content:"";display:block;width:1px;height:26px;background:var(--red);margin-top:10px;
+}
+.step h3{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:26px;letter-spacing:.02em;margin-bottom:12px;
+}
+.step p{font-size:15px;color:var(--ink-soft)}
+@media(max-width:1000px){.steps{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--ink)}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--ink)}.step:last-child{border-bottom:0}}
+
+/* ============ PRICING ============ */
+.pricing{background:var(--paper)}
+.sheets{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.sheet{
+  border:1px solid var(--ink);background:#fff;position:relative;
+  display:flex;flex-direction:column;
+  transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s;
+  box-shadow:8px 8px 0 rgba(24,36,48,.10);
+}
+.sheet:hover{transform:translate(-2px,-5px);box-shadow:12px 14px 0 rgba(24,36,48,.14)}
+.sheet-head{
+  border-bottom:1px solid var(--ink);padding:14px 22px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;
+}
+.sheet-body{padding:26px 22px 30px;display:flex;flex-direction:column;flex:1}
+.sheet h3{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;
+  font-size:34px;letter-spacing:.01em;
+}
+.price{
+  font-family:var(--display);font-weight:700;font-size:clamp(40px,4vw,54px);
+  color:var(--ink);margin:8px 0 4px;line-height:1;
+}
+.price small{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-soft);display:block;margin-top:8px;text-transform:uppercase}
+.sheet ul{list-style:none;margin:22px 0 28px;flex:1}
+.sheet li{
+  font-size:15px;padding:9px 0 9px 26px;border-bottom:1px dashed rgba(24,36,48,.2);position:relative;color:var(--ink-soft);
+}
+.sheet li::before{
+  content:"";position:absolute;left:2px;top:15px;
+  width:10px;height:6px;border-left:2px solid var(--red);border-bottom:2px solid var(--red);
+  transform:rotate(-45deg);
+}
+.sheet .btn{text-align:center}
+.sheet-stamp{
+  position:absolute;top:-14px;right:16px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:#fff;
+  background:var(--red);padding:7px 12px;transform:rotate(3deg);
+  box-shadow:0 3px 0 var(--red-deep);
+}
+.pricing-note{
+  margin-top:30px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);
+}
+@media(max-width:1000px){.sheets{grid-template-columns:1fr;max-width:520px}}
+
+/* ============ PROOF ============ */
+.proof{background:var(--paper-dim);border-top:1px solid var(--ink)}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.quote{
+  background:#fff;border:1px solid var(--ink);padding:28px 26px 24px;position:relative;
+  border-left:4px solid var(--red);
+}
+.quote p{font-size:16px;line-height:1.65}
+.quote footer{
+  margin-top:20px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  color:var(--ink-soft);text-transform:uppercase;
+}
+.quote footer b{color:var(--ink);font-weight:500;display:block}
+@media(max-width:1000px){.quotes{grid-template-columns:1fr;max-width:560px}}
+
+/* ============ ABOUT ============ */
+.about{background:var(--paper)}
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:start}
+.about-grid > div > p{margin-bottom:18px;font-size:18px;color:var(--ink-soft)}
+.about-grid > div > p strong{color:var(--ink);font-weight:600}
+.schedule{
+  border:1px solid var(--ink);font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  background:#fff;
+}
+.schedule caption{
+  text-align:left;border:1px solid var(--ink);border-bottom:0;
+  padding:10px 16px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);
+  background:var(--paper-dim);
+}
+.schedule{width:100%;border-collapse:collapse}
+.schedule td{border-bottom:1px solid rgba(24,36,48,.2);padding:11px 16px;vertical-align:top}
+.schedule tr:last-child td{border-bottom:0}
+.schedule td:first-child{color:var(--ink-soft);width:42%;text-transform:uppercase;font-size:10px;letter-spacing:.18em;padding-top:13px}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:40px}}
+
+/* ============ CONTACT (blueprint bookend) ============ */
+.contact{
+  background:linear-gradient(200deg, var(--blue) 0%, var(--blue-deep) 100%);
+  color:var(--linework);position:relative;overflow:hidden;
+}
+.contact::before{
+  content:"";position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(to right, transparent 0 23px, var(--line-faint) 23px 24px),
+    repeating-linear-gradient(to bottom, transparent 0 23px, var(--line-faint) 23px 24px);
+}
+.contact .wrap{position:relative;z-index:2}
+.contact .eyebrow{color:var(--linework)}
+.contact .eyebrow::before{background:var(--linework)}
+.contact h2{color:#fff;font-size:clamp(52px,8vw,110px)}
+.contact h2 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--linework)}
+.contact p{max-width:520px;margin:24px 0 40px;color:#D7E6F4;font-size:18px}
+.contact .mono-note{
+  margin-top:26px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--linework);opacity:.75;
+}
+
+/* ============ FOOTER ============ */
+.footer{
+  background:var(--blue-deep);color:var(--linework);
+  border-top:1px solid var(--line-soft);
+}
+.footer-grid{
+  display:grid;grid-template-columns:repeat(4,auto);gap:0;
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+}
+.footer-grid div{padding:14px 20px;border-right:1px solid var(--line-soft)}
+.footer-grid div:last-child{border-right:0}
+.footer-grid b{display:block;font-weight:400;opacity:.5;font-size:9px;margin-bottom:3px;text-transform:uppercase}
+@media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr}.footer-grid div{border-bottom:1px solid var(--line-soft)}}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+  .issue-track{animation:none;transform:none}
+  h1 .row span{animation:none;transform:none}
+  .js .rev{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to the work</a>
+
+<div class="ruler" aria-hidden="true"><div class="ruler-fill" id="rulerFill"></div></div>
+<div class="ruler-pct" aria-hidden="true" id="rulerPct">0%</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <nav class="nav" aria-label="Main">
+    <div class="nav-id">
+      <strong>HARSH KUMAR</strong>
+      <span>DESIGN · BUILD · VANCOUVER</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#work">WORK</a></li>
+      <li><a href="#process">PROCESS</a></li>
+      <li><a href="#pricing">PRICING</a></li>
+      <li><a href="#about">ABOUT</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">BOOK A CALL</a>
+  </nav>
+
+  <div class="hero-inner">
+    <p class="hero-eyebrow">SHEET A-01 · WEBSITES FOR SMALL BUSINESS</p>
+    <h1>
+      <span class="row"><span>Drawn by hand.</span></span>
+      <span class="row"><span>Built to sell.</span></span>
+    </h1>
+    <div class="dim" aria-hidden="true">
+      <span class="tick"></span>
+      <span class="rail"></span>
+      <span class="lbl">100% HAND-CODED · 0 TEMPLATES</span>
+      <span class="rail"></span>
+      <span class="tick"></span>
+    </div>
+    <p class="hero-sub">I design and hand-code websites for small businesses in Vancouver. No page-builders, no bloat — a fast site that looks like your business and belongs to you outright, from first sketch to launch day.</p>
+    <div class="hero-actions">
+      <a class="btn btn-red" href="#contact">Book a 20-minute call</a>
+      <a class="btn btn-ghost" href="#work">See the built work</a>
+    </div>
+  </div>
+
+  <div class="stamp" aria-hidden="true">No templates</div>
+
+  <div class="titleblock" aria-hidden="true">
+    <div><b>Project</b><span>PORTFOLIO</span></div>
+    <div><b>Drawn by</b><span>H. KUMAR</span></div>
+    <div><b>Location</b><span>VANCOUVER BC</span></div>
+    <div><b>Scale</b><span>1:1</span></div>
+    <div><b>Sheet</b><span>A-01</span></div>
+    <div><b>Rev</b><span>A</span></div>
+  </div>
+
+  <p class="scrollcue">SCROLL TO BUILD</p>
+</header>
+
+<!-- ============ ISSUE STRIP ============ -->
+<div class="issue" aria-hidden="true">
+  <div class="issue-track">
+    <span>Issued for construction</span><span>Rev A</span><span>Vancouver BC</span><span>Hand-coded HTML · CSS · JS</span><span>Loads in under a second</span><span>You own everything</span>
+    <span>Issued for construction</span><span>Rev A</span><span>Vancouver BC</span><span>Hand-coded HTML · CSS · JS</span><span>Loads in under a second</span><span>You own everything</span>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============ WORK ============ -->
+<section class="work sec" id="work" aria-label="Built work">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <p class="eyebrow">Sheet A-02 · Built work</p>
+      <h2>Live from production</h2>
+      <p>These aren't mockups. Each frame below is the client's real site, embedded straight from the web. Click around — everything works.</p>
+    </div>
+
+    <article class="project rev">
+      <div class="proj-meta">
+        <span class="no">DWG 001</span>
+        <h3>Style &amp; Glow Studio</h3>
+        <span>Sector: Salon</span>
+        <span>Scope: Design + build + booking</span>
+        <a href="https://harsh96-web.github.io/designs/f5.html" target="_blank" rel="noopener">Open live ↗</a>
+      </div>
+      <div class="frame">
+        <div class="dims" aria-hidden="true"><div class="dtop"><b>1440 × 900 · DESKTOP VIEW</b></div></div>
+        <div class="browser">
+          <div class="browser-bar" aria-hidden="true">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="url">harsh96-web.github.io/designs/f5.html</span>
+          </div>
+          <div class="viewport">
+            <iframe src="https://harsh96-web.github.io/designs/f5.html" title="Style and Glow Studio — live client site" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <p class="proj-note">An independent hairstylist with eight years behind the chair and a full Instagram DM inbox. The site turns that attention into booked appointments — services, gallery, and a booking path that works on a phone held in one hand.</p>
+    </article>
+
+    <article class="project rev">
+      <div class="proj-meta">
+        <span class="no">DWG 002</span>
+        <h3>Platinum Athletic Club</h3>
+        <span>Sector: Fitness</span>
+        <span>Scope: Design + build</span>
+        <a href="https://harsh96-web.github.io/designs/gym.html" target="_blank" rel="noopener">Open live ↗</a>
+      </div>
+      <div class="frame">
+        <div class="dims" aria-hidden="true"><div class="dtop"><b>1440 × 900 · DESKTOP VIEW</b></div></div>
+        <div class="browser">
+          <div class="browser-bar" aria-hidden="true">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="url">harsh96-web.github.io/designs/gym.html</span>
+          </div>
+          <div class="viewport">
+            <iframe src="https://harsh96-web.github.io/designs/gym.html" title="Platinum Athletic Club — live client site" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <p class="proj-note">A neighbourhood gym competing with franchise chains. The job: look bigger than the budget, load faster than the competition, and put class schedules and memberships one tap away.</p>
+    </article>
+
+    <article class="project rev">
+      <div class="proj-meta">
+        <span class="no">DWG 003</span>
+        <h3>Anna's Cake House</h3>
+        <span>Sector: Bakery</span>
+        <span>Scope: Design + build + orders</span>
+        <a href="https://harsh96-web.github.io/designs/cake2.html" target="_blank" rel="noopener">Open live ↗</a>
+      </div>
+      <div class="frame">
+        <div class="dims" aria-hidden="true"><div class="dtop"><b>1440 × 900 · DESKTOP VIEW</b></div></div>
+        <div class="browser">
+          <div class="browser-bar" aria-hidden="true">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="url">harsh96-web.github.io/designs/cake2.html</span>
+          </div>
+          <div class="viewport">
+            <iframe src="https://harsh96-web.github.io/designs/cake2.html" title="Anna's Cake House — live client site" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <p class="proj-note">A bakery whose product sells itself on sight. So the site stays out of the way: big photography, a clear menu, and custom-order enquiries that land in Anna's inbox with every detail she needs.</p>
+    </article>
+
+    <article class="project rev">
+      <div class="proj-meta">
+        <span class="no">DWG 004</span>
+        <h3>Kumo Izakaya</h3>
+        <span>Sector: Restaurant</span>
+        <span>Status: Concept build</span>
+        <a href="izakaya.html" target="_blank" rel="noopener">Open live ↗</a>
+      </div>
+      <div class="frame">
+        <div class="dims" aria-hidden="true"><div class="dtop"><b>1440 × 900 · DESKTOP VIEW</b></div></div>
+        <div class="browser">
+          <div class="browser-bar" aria-hidden="true">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="url">harsh96-web.github.io/designs/izakaya.html</span>
+          </div>
+          <div class="viewport">
+            <iframe src="izakaya.html" title="Kumo Izakaya — concept restaurant site" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <p class="proj-note">A concept on my own brief: a modern izakaya that feels like the room, not a menu PDF. Vertical Japanese type, a vermilion sun, and a daily menu the kitchen can actually keep current.</p>
+    </article>
+
+    <article class="project rev">
+      <div class="proj-meta">
+        <span class="no">DWG 005</span>
+        <h3>Riptide Roasting Co.</h3>
+        <span>Sector: Coffee</span>
+        <span>Status: Concept build</span>
+        <a href="roaster.html" target="_blank" rel="noopener">Open live ↗</a>
+      </div>
+      <div class="frame">
+        <div class="dims" aria-hidden="true"><div class="dtop"><b>1440 × 900 · DESKTOP VIEW</b></div></div>
+        <div class="browser">
+          <div class="browser-bar" aria-hidden="true">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="url">harsh96-web.github.io/designs/roaster.html</span>
+          </div>
+          <div class="viewport">
+            <iframe src="roaster.html" title="Riptide Roasting — concept coffee roaster site" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <p class="proj-note">A specialty roaster with a working brew-ratio calculator built in — pick V60, French press, AeroPress or espresso and it does the math from real bar recipes. Proof that a small-business site can be a tool, not a brochure.</p>
+    </article>
+
+    <article class="project rev">
+      <div class="proj-meta">
+        <span class="no">DWG 006</span>
+        <h3>NorthPeak Contracting</h3>
+        <span>Sector: Trades / Renovation</span>
+        <span>Status: Concept build</span>
+        <a href="contractor.html" target="_blank" rel="noopener">Open live ↗</a>
+      </div>
+      <div class="frame">
+        <div class="dims" aria-hidden="true"><div class="dtop"><b>1440 × 900 · DESKTOP VIEW</b></div></div>
+        <div class="browser">
+          <div class="browser-bar" aria-hidden="true">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="url">harsh96-web.github.io/designs/contractor.html</span>
+          </div>
+          <div class="viewport">
+            <iframe src="contractor.html" title="NorthPeak Contracting — concept renovation site" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <p class="proj-note">Built for the most underserved market on the web: trades. A draggable before-and-after slider does the selling, fixed-quote messaging does the trust. On a real project, the slider holds the contractor's own job photos.</p>
+    </article>
+
+    <article class="project rev">
+      <div class="proj-meta">
+        <span class="no">DWG 007</span>
+        <h3>Mirror South Detailing</h3>
+        <span>Sector: Auto detailing</span>
+        <span>Status: Concept build</span>
+        <a href="detailing.html" target="_blank" rel="noopener">Open live ↗</a>
+      </div>
+      <div class="frame">
+        <div class="dims" aria-hidden="true"><div class="dtop"><b>1440 × 900 · DESKTOP VIEW</b></div></div>
+        <div class="browser">
+          <div class="browser-bar" aria-hidden="true">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="url">harsh96-web.github.io/designs/detailing.html</span>
+          </div>
+          <div class="viewport">
+            <iframe src="detailing.html" title="Mirror South Detailing — concept mobile detailing site" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <p class="proj-note">A mobile detailer where the website closes the sale: pick your vehicle, pick your package, tick your add-ons — the price and time estimate update live, and the book button carries the whole order into the email. No quote forms, no phone tag.</p>
+    </article>
+
+    <article class="project rev">
+      <div class="proj-meta">
+        <span class="no">DWG 008</span>
+        <h3>Gurbina — Hair Artistry</h3>
+        <span>Sector: Salon</span>
+        <span>Scope: Design + build + booking</span>
+        <a href="https://harsh96-web.github.io/designs/gurbina.html" target="_blank" rel="noopener">Open live ↗</a>
+      </div>
+      <div class="frame">
+        <div class="dims" aria-hidden="true"><div class="dtop"><b>1440 × 900 · DESKTOP VIEW</b></div></div>
+        <div class="browser">
+          <div class="browser-bar" aria-hidden="true">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="url">harsh96-web.github.io/designs/gurbina.html</span>
+          </div>
+          <div class="viewport">
+            <iframe src="https://harsh96-web.github.io/designs/gurbina.html" title="Gurbina Hair Artistry — live client site" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <p class="proj-note">An independent stylist's full site — services, portfolio, and a booking path built for clients arriving straight from Instagram. Live in production and linked from the bio that sends them here.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process sec" id="process" aria-label="How it gets built">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <p class="eyebrow">Sheet A-03 · Method</p>
+      <h2>How it gets built</h2>
+      <p>Four stages, same order every time. You always know where your project is on the drawing board.</p>
+    </div>
+    <ol class="steps" style="list-style:none">
+      <li class="step rev" style="--d:0s">
+        <span class="num">STAGE 01</span>
+        <h3>Survey</h3>
+        <p>A 20-minute call. You talk, I take measurements: what you sell, who buys it, and the one thing the site has to do.</p>
+      </li>
+      <li class="step rev" style="--d:.1s">
+        <span class="num">STAGE 02</span>
+        <h3>Draft</h3>
+        <p>I design in the browser, not in static mockups. Within days you're clicking a working draft of your actual site on your actual phone.</p>
+      </li>
+      <li class="step rev" style="--d:.2s">
+        <span class="num">STAGE 03</span>
+        <h3>Build</h3>
+        <p>Hand-written HTML, CSS and JavaScript. No plugins to update, nothing to break, and pages that load in under a second.</p>
+      </li>
+      <li class="step rev" style="--d:.3s">
+        <span class="num">STAGE 04</span>
+        <h3>Handover</h3>
+        <p>You get the files, the domain, and the keys. It's yours — no monthly ransom. I stay on call for tweaks and updates.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="pricing sec" id="pricing" aria-label="Packages and pricing">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <p class="eyebrow">Sheet A-04 · Specifications</p>
+      <h2>Three ways to build</h2>
+      <p>Flat rates, agreed before a line of code is written. The price on the sheet is the price on the invoice.</p>
+    </div>
+    <div class="sheets">
+      <div class="sheet rev" style="--d:0s">
+        <div class="sheet-head"><span>SPEC 01</span><span>2 WEEKS</span></div>
+        <div class="sheet-body">
+          <h3>Launch</h3>
+          <p class="price">$900<small>From · One-time <!-- PRICE PLACEHOLDER --></small></p>
+          <ul>
+            <li>One sharp, fast page — everything a customer needs</li>
+            <li>Designed for phones first</li>
+            <li>Contact, map, hours, and a booking or call button</li>
+            <li>Your domain and hosting set up, in your name</li>
+          </ul>
+          <a class="btn btn-red" href="#contact">Start with Launch</a>
+        </div>
+      </div>
+      <div class="sheet rev" style="--d:.1s">
+        <span class="sheet-stamp">Most built</span>
+        <div class="sheet-head"><span>SPEC 02</span><span>4 WEEKS</span></div>
+        <div class="sheet-body">
+          <h3>Grow</h3>
+          <p class="price">$2,000<small>From · One-time <!-- PRICE PLACEHOLDER --></small></p>
+          <ul>
+            <li>Up to six pages: services, gallery, about, contact</li>
+            <li>Online booking wired to your calendar</li>
+            <li>Google Business Profile tuned so locals find you</li>
+            <li>Photo galleries that stay fast</li>
+            <li>Search-ready structure on every page</li>
+          </ul>
+          <a class="btn btn-red" href="#contact">Start with Grow</a>
+        </div>
+      </div>
+      <div class="sheet rev" style="--d:.2s">
+        <div class="sheet-head"><span>SPEC 03</span><span>SCOPED</span></div>
+        <div class="sheet-body">
+          <h3>Custom</h3>
+          <p class="price">Quote<small>Scoped together · Fixed before build</small></p>
+          <ul>
+            <li>Online ordering, menus, or memberships</li>
+            <li>Instagram-to-booking automation</li>
+            <li>Review generation that runs itself</li>
+            <li>Whatever the drawing calls for</li>
+          </ul>
+          <a class="btn btn-ghost dark" href="#contact">Scope it with me</a>
+        </div>
+      </div>
+    </div>
+    <p class="pricing-note">// Every package includes launch support and a walkthrough of how to update your own site.</p>
+  </div>
+</section>
+
+<!-- ============ PROOF ============ -->
+<section class="proof sec" aria-label="Client words">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <p class="eyebrow">Sheet A-05 · Field notes</p>
+      <h2>In the client's hand</h2>
+    </div>
+    <div class="quotes">
+      <blockquote class="quote rev" style="--d:0s">
+        <p>"[Testimonial — e.g. how the new site changed bookings, in the client's own words.]"</p>
+        <footer><b>[Client name]</b>[Business, City]</footer>
+      </blockquote>
+      <blockquote class="quote rev" style="--d:.1s">
+        <p>"[Testimonial — e.g. what working together was like, speed, communication.]"</p>
+        <footer><b>[Client name]</b>[Business, City]</footer>
+      </blockquote>
+      <blockquote class="quote rev" style="--d:.2s">
+        <p>"[Testimonial — e.g. a specific result: calls, orders, Google reviews.]"</p>
+        <footer><b>[Client name]</b>[Business, City]</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about sec" id="about" aria-label="About Harsh">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <p class="eyebrow">Sheet A-06 · Drawn by</p>
+      <h2>One person. Every pixel.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="rev">
+        <p>I'm <strong>Harsh Kumar</strong> — designer and developer, one person, Vancouver. Computer science degree, a master's in digital media, and a habit of measuring twice before cutting once.</p>
+        <p>Every site on this page was designed, written, and shipped by me. No agency handoffs, no subcontractors, no theme marketplace. When you call, the person who answers is the person who built your site.</p>
+        <p>I work with the businesses that make a neighbourhood worth living in — salons, gyms, bakeries, studios — and build them sites that punch far above their size.</p>
+      </div>
+      <table class="schedule rev" style="--d:.15s">
+        <caption>Schedule of particulars</caption>
+        <tr><td>Base</td><td>Vancouver, BC — works everywhere</td></tr>
+        <tr><td>Materials</td><td>HTML · CSS · JavaScript, written by hand</td></tr>
+        <tr><td>Load time</td><td>Under one second, or I keep working</td></tr>
+        <tr><td>Ownership</td><td>Yours. Files, domain, everything.</td></tr>
+        <tr><td>Response</td><td>Same business day</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact sec" id="contact" aria-label="Book a call">
+  <div class="wrap">
+    <div class="rev">
+      <p class="eyebrow">Sheet A-07 · Next revision</p>
+      <h2>Let's draw up <em>yours.</em></h2>
+      <p>A 20-minute call. No pitch deck, no pressure — bring your business, I'll bring questions. You'll leave with a clear plan whether we work together or not.</p>
+      <a class="btn btn-red" href="mailto:[your@email.com]?subject=New%20site%20—%20let%27s%20talk">Book a 20-minute call</a>
+      <p class="mono-note">// Or write directly: [your@email.com] — replies same business day.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" aria-label="Site information">
+  <div class="footer-grid">
+    <div><b>Project</b>© 2026 HARSH KUMAR</div>
+    <div><b>Drawn in</b>VANCOUVER BC</div>
+    <div><b>Built with</b>HTML · CSS · JS — NOTHING ELSE</div>
+    <div><b>Sheet</b>A-01 · REV A · ISSUED</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d = document;
+  d.documentElement.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Scale live-site iframes to fit their frames */
+  var viewports = [].slice.call(d.querySelectorAll('.viewport'));
+  function scaleFrames(){
+    viewports.forEach(function(v){
+      /* 2% overscale + height bleed: content always covers past right/bottom, crop clips it */
+      var s = (v.clientWidth / 1440) * 1.02;
+      var f = v.querySelector('iframe');
+      if (f) f.style.height = Math.ceil(v.clientHeight / s + 8) + 'px';
+      v.style.setProperty('--s', s.toFixed(4));
+    });
+  }
+  scaleFrames();
+  window.addEventListener('resize', scaleFrames);
+
+  /* Scroll reveals */
+  var revs = [].slice.call(d.querySelectorAll('.rev'));
+  if (reduce || !('IntersectionObserver' in window)) {
+    revs.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revs.forEach(function(el){ io.observe(el); });
+  }
+
+  /* Ruler scroll progress */
+  var fill = d.getElementById('rulerFill');
+  var pct = d.getElementById('rulerPct');
+  function onScroll(){
+    var h = d.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? h.scrollTop / max : 0;
+    if (fill) fill.style.transform = 'scaleY(' + p + ')';
+    if (pct) pct.textContent = Math.round(p * 100) + '% DRAWN';
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+</body>
+</html>

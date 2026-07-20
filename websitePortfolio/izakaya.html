@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUMO — Modern Izakaya · Vancouver</title>
+<meta name="description" content="KUMO is a modern izakaya in Vancouver. Small plates, rare sake, open late.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap');
+:root{
+  --char:#141210;      /* charcoal */
+  --char-2:#1D1A17;
+  --paperk:#F3EDE2;    /* washi */
+  --verm:#D8432C;      /* vermilion */
+  --gold:#C9A05A;
+  --serif:'Shippori Mincho', Georgia, serif;
+  --sans:'Zen Kaku Gothic New', 'Helvetica Neue', sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+  --gut:clamp(20px,5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--char);color:var(--paperk);font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+::selection{background:var(--verm);color:var(--paperk)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--verm);outline-offset:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 var(--gut)}
+.skip{position:absolute;left:-9999px;background:var(--verm);color:#fff;padding:10px 16px;font-family:var(--mono);font-size:13px;z-index:99;text-decoration:none}
+.skip:focus{left:0;top:0}
+
+/* NAV */
+.nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:26px var(--gut);font-family:var(--mono);font-size:12px;letter-spacing:.22em}
+.nav-mark{font-family:var(--serif);font-weight:800;font-size:20px;letter-spacing:.3em;text-decoration:none}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav a{text-decoration:none;opacity:.8;transition:opacity .2s,color .2s}
+.nav a:hover{opacity:1;color:var(--verm)}
+.nav .res{border:1px solid var(--gold);color:var(--gold);padding:9px 18px;opacity:1}
+.nav .res:hover{background:var(--gold);color:var(--char)}
+@media(max-width:820px){.nav ul{display:none}}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;
+  background:radial-gradient(1200px 800px at 80% 20%, #221E19 0%, var(--char) 55%)}
+.sun{
+  position:absolute;right:clamp(-80px,6vw,120px);top:50%;translate:0 -50%;
+  width:clamp(300px,42vw,620px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 42% 38%, #E85A3F 0%, var(--verm) 45%, #A32E1D 100%);
+  box-shadow:0 0 140px rgba(216,67,44,.35);
+  animation:sunrise 1.6s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes sunrise{from{translate:0 10%;opacity:0}to{translate:0 -50%;opacity:1}}
+.vtext{
+  position:absolute;right:clamp(18px,4vw,54px);top:110px;z-index:3;
+  writing-mode:vertical-rl;font-family:var(--serif);font-size:clamp(16px,2vw,24px);
+  letter-spacing:.5em;color:var(--paperk);opacity:0;animation:fade 1s 1.2s ease both;
+}
+@keyframes fade{to{opacity:.9}}
+.hero-inner{position:relative;z-index:4;padding:120px var(--gut)}
+.hero .kanji{
+  font-family:var(--serif);font-weight:800;line-height:1;
+  font-size:clamp(120px,24vw,340px);color:var(--paperk);
+  display:block;overflow:hidden;
+}
+.hero .kanji span{display:inline-block;animation:rise 1s .3s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{transform:translateY(105%)}to{transform:translateY(0)}}
+.hero h1{font-weight:500}
+.hero .romaji{
+  font-family:var(--mono);font-size:13px;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--gold);display:block;margin:18px 0 26px;animation:fade .8s 1s ease both;
+}
+.hero p{max-width:420px;color:#CFC6B8;animation:fade .8s 1.15s ease both}
+.hero-cta{display:flex;gap:14px;margin-top:36px;animation:fade .8s 1.3s ease both;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;padding:16px 28px;transition:transform .12s,background .2s,color .2s}
+.btn:active{transform:translateY(2px)}
+.btn-v{background:var(--verm);color:var(--paperk)}
+.btn-v:hover{background:#E2523A}
+.btn-o{border:1px solid rgba(243,237,226,.4)}
+.btn-o:hover{border-color:var(--paperk)}
+.hero-foot{position:absolute;bottom:24px;left:var(--gut);right:var(--gut);display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:#8B8172;animation:fade 1s 1.6s ease both}
+@media(max-width:820px){.hero-foot span:nth-child(2){display:none}}
+
+/* STRIP */
+.strip{background:var(--verm);color:var(--paperk);overflow:hidden;white-space:nowrap;font-family:var(--serif);font-size:15px;letter-spacing:.34em;padding:12px 0}
+.strip-track{display:inline-block;animation:tick 30s linear infinite}
+.strip span{padding:0 30px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:clamp(80px,10vw,140px) 0;position:relative}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--verm);margin-bottom:16px}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(38px,5.5vw,72px);line-height:1.1}
+.js .rev{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .rev.in{opacity:1;transform:none}
+
+/* PHILOSOPHY */
+.phil{border-top:1px solid rgba(243,237,226,.12)}
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.phil p{color:#CFC6B8;font-size:19px;margin-top:22px}
+.phil .big{font-family:var(--serif);font-size:clamp(26px,3vw,38px);line-height:1.4;color:var(--paperk)}
+@media(max-width:820px){.phil-grid{grid-template-columns:1fr;gap:30px}}
+
+/* MENU */
+.menu{background:var(--char-2);border-top:1px solid rgba(243,237,226,.12)}
+.menu-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:50px;gap:20px;flex-wrap:wrap}
+.menu-note{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:#8B8172;text-transform:uppercase}
+.dishes{border-top:1px solid rgba(243,237,226,.16)}
+.dish{
+  display:grid;grid-template-columns:auto 1fr auto;gap:8px 26px;align-items:baseline;
+  padding:24px 8px;border-bottom:1px solid rgba(243,237,226,.16);
+  transition:background .25s,padding .25s;
+}
+.dish:hover{background:rgba(216,67,44,.08);padding-left:20px}
+.dish .jp{font-family:var(--serif);font-size:15px;color:var(--gold);letter-spacing:.2em}
+.dish h3{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.4vw,28px)}
+.dish .desc{grid-column:2;color:#A99F8E;font-size:15px;max-width:520px}
+.dish .price{font-family:var(--mono);font-size:16px;color:var(--paperk);letter-spacing:.06em}
+@media(max-width:640px){.dish{grid-template-columns:1fr auto}.dish .jp{grid-column:1}.dish .desc{grid-column:1}}
+
+/* OMAKASE */
+.omakase{background:linear-gradient(140deg,#2A1511 0%, var(--char) 70%);border-top:1px solid rgba(243,237,226,.12);text-align:center}
+.omakase .enso{
+  width:110px;height:110px;margin:0 auto 30px;border-radius:50%;
+  border:3px solid var(--gold);border-left-color:transparent;transform:rotate(-40deg);
+}
+.omakase p{max-width:520px;margin:22px auto 34px;color:#CFC6B8}
+.omakase .price-line{font-family:var(--mono);font-size:13px;letter-spacing:.3em;color:var(--gold);margin-top:26px;text-transform:uppercase}
+
+/* VISIT */
+.visit{border-top:1px solid rgba(243,237,226,.12)}
+.visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(243,237,226,.2);margin-top:50px}
+.visit-cell{padding:34px 30px;border-right:1px solid rgba(243,237,226,.2)}
+.visit-cell:last-child{border-right:0}
+.visit-cell h3{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--verm);margin-bottom:16px}
+.visit-cell p{color:#CFC6B8;font-size:16px}
+.visit-cell strong{color:var(--paperk);font-weight:500}
+@media(max-width:820px){.visit-grid{grid-template-columns:1fr}.visit-cell{border-right:0;border-bottom:1px solid rgba(243,237,226,.2)}.visit-cell:last-child{border-bottom:0}}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(243,237,226,.12);padding:30px var(--gut);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:#8B8172;text-transform:uppercase}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .strip-track{animation:none;transform:none}
+  .js .rev{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#menu">Skip to menu</a>
+
+<header class="hero">
+  <nav class="nav" aria-label="Main">
+    <a class="nav-mark" href="#">KUMO</a>
+    <ul>
+      <li><a href="#menu">MENU</a></li>
+      <li><a href="#omakase">OMAKASE</a></li>
+      <li><a href="#visit">VISIT</a></li>
+    </ul>
+    <a class="res" href="#visit">RESERVE</a>
+  </nav>
+
+  <div class="sun" aria-hidden="true"></div>
+  <p class="vtext" aria-hidden="true">雲の下で乾杯</p>
+
+  <div class="hero-inner">
+    <h1>
+      <span class="kanji"><span>雲</span></span>
+      <span class="romaji">KUMO · MODERN IZAKAYA</span>
+    </h1>
+    <p>Small plates over binchotan charcoal, rare sake poured to the brim, and a room that gets louder as the night gets better. Under the cloud, everyone's a regular.</p>
+    <div class="hero-cta">
+      <a class="btn btn-v" href="#visit">Reserve a table</a>
+      <a class="btn btn-o" href="#menu">Tonight's menu</a>
+    </div>
+  </div>
+
+  <div class="hero-foot" aria-hidden="true">
+    <span>EST. 2026 — VANCOUVER</span>
+    <span>TUE–SUN · 5PM TIL LATE</span>
+    <span>PENDER × MAIN</span>
+  </div>
+</header>
+
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span>炭火</span><span>SUMIBI · CHARCOAL</span><span>酒</span><span>SAKE · POURED FULL</span><span>夜</span><span>OPEN TIL LATE</span>
+    <span>炭火</span><span>SUMIBI · CHARCOAL</span><span>酒</span><span>SAKE · POURED FULL</span><span>夜</span><span>OPEN TIL LATE</span>
+  </div>
+</div>
+
+<main>
+<section class="phil">
+  <div class="wrap phil-grid">
+    <div class="rev">
+      <p class="eyebrow">The idea</p>
+      <h2>An izakaya is not a restaurant.</h2>
+    </div>
+    <div class="rev" style="--d:.15s">
+      <p class="big">It's the third place — after work, before home — where the food arrives when it's ready and the glass never sits empty.</p>
+      <p>We cook over white charcoal, buy fish the morning we serve it, and keep a sake list our importer says is irresponsible. Come hungry, stay late.</p>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu-head rev">
+      <div>
+        <p class="eyebrow">献立 · The menu</p>
+        <h2>Tonight, from the coals</h2>
+      </div>
+      <p class="menu-note">Changes daily · This is a sample</p>
+    </div>
+    <div class="dishes">
+      <div class="dish rev" style="--d:0s">
+        <span class="jp">焼き鳥</span><h3>Chicken thigh yakitori</h3><span class="price">$4 / skewer</span>
+        <p class="desc">Tare-glazed, scallion, sanshō pepper. Order in pairs — you will anyway.</p>
+      </div>
+      <div class="dish rev" style="--d:.05s">
+        <span class="jp">刺身</span><h3>Sashimi of the morning</h3><span class="price">$24</span>
+        <p class="desc">Whatever was best at the dock. Five cuts, fresh wasabi, house shoyu.</p>
+      </div>
+      <div class="dish rev" style="--d:.1s">
+        <span class="jp">唐揚げ</span><h3>Karaage, double-fried</h3><span class="price">$14</span>
+        <p class="desc">Koji-brined, lemon, kewpie with yuzu koshō. The plate the table fights over.</p>
+      </div>
+      <div class="dish rev" style="--d:.15s">
+        <span class="jp">茄子</span><h3>Miso-torched eggplant</h3><span class="price">$12</span>
+        <p class="desc">Nasu dengaku, blistered skin, white sesame. For the vegetarians we love.</p>
+      </div>
+      <div class="dish rev" style="--d:.2s">
+        <span class="jp">〆</span><h3>Late-night tamago sando</h3><span class="price">$9</span>
+        <p class="desc">The closer. Milk bread, folded omelette, too much butter. After 10pm only.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="omakase" id="omakase">
+  <div class="wrap rev">
+    <div class="enso" aria-hidden="true"></div>
+    <p class="eyebrow">お任せ · Chef's choice</p>
+    <h2>Sit down. We'll take it from here.</h2>
+    <p>Nine courses decided that afternoon, paired with sake if you'll let us. Two seatings, twelve chairs, no menu. The kitchen's favourite way to cook.</p>
+    <a class="btn btn-v" href="#visit">Book the counter</a>
+    <p class="price-line">$95 per seat · Thu–Sat · 6:00 &amp; 8:30</p>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="rev">
+      <p class="eyebrow">ご案内 · Visit</p>
+      <h2>Under the cloud</h2>
+    </div>
+    <div class="visit-grid">
+      <div class="visit-cell rev" style="--d:0s">
+        <h3>Find us</h3>
+        <p><strong>200 Block, Pender × Main</strong><br>Chinatown, Vancouver BC<br>Look for the red lantern.</p>
+      </div>
+      <div class="visit-cell rev" style="--d:.1s">
+        <h3>Hours</h3>
+        <p><strong>Tue–Sun · 5pm til late</strong><br>Kitchen closes when the coals do.<br>Closed Mondays — even clouds rest.</p>
+      </div>
+      <div class="visit-cell rev" style="--d:.2s">
+        <h3>Reserve</h3>
+        <p><strong>Walk-ins always welcome.</strong><br>Groups of 5+ and omakase:<br><a href="mailto:hello@example.com">hello@example.com</a> · (604) 555-0126</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© 2026 KUMO IZAKAYA</span>
+  <span>雲の下で乾杯 — CHEERS UNDER THE CLOUD</span>
+  <span>CONCEPT SITE — DESIGN: HARSH KUMAR</span>
+</footer>
+
+<script>
+(function(){
+  var d=document;
+  d.documentElement.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revs=[].slice.call(d.querySelectorAll('.rev'));
+  if(reduce||!('IntersectionObserver' in window)){
+    revs.forEach(function(el){el.classList.add('in');});
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+    revs.forEach(function(el){io.observe(el);});
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mirror South Detailing — Mobile Auto Detailing · Surrey &amp; Vancouver</title>
+<meta name="description" content="Mirror South brings showroom-grade detailing to your driveway. Build your package, see the price, book in two minutes.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+:root{
+  --void:#0B0C0F;
+  --panel:#14161B;
+  --panel-2:#1B1E25;
+  --chrome-a:#F4F6FA;
+  --chrome-b:#8C95A6;
+  --fog:#A7AFC0;
+  --sig:#E32833;      /* signal red */
+  --sig-deep:#B71E27;
+  --disp:'Unbounded', 'Arial Black', sans-serif;
+  --sans:'Space Grotesk', 'Helvetica Neue', sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+  --gut:clamp(20px,5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:#EDEFF4;font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--sig);color:#fff}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sig);outline-offset:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--gut)}
+.skip{position:absolute;left:-9999px;background:var(--sig);color:#fff;padding:10px 16px;font-family:var(--mono);font-size:13px;z-index:99;text-decoration:none}
+.skip:focus{left:0;top:0}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px var(--gut);font-family:var(--mono);font-size:12px;letter-spacing:.16em;border-bottom:1px solid #23262E;position:sticky;top:0;background:rgba(11,12,15,.92);backdrop-filter:blur(8px);z-index:30}
+.mark{font-family:var(--disp);font-weight:900;font-size:15px;letter-spacing:.06em;text-decoration:none;text-transform:uppercase}
+.mark em{font-style:normal;color:var(--sig)}
+.nav ul{display:flex;gap:26px;list-style:none}
+.nav a{text-decoration:none;color:var(--fog);transition:color .2s}
+.nav ul a:hover{color:#fff}
+.nav .book{background:var(--sig);color:#fff;padding:10px 20px;transition:background .2s}
+.nav .book:hover{background:#F03540}
+@media(max-width:860px){.nav ul{display:none}}
+
+/* HERO */
+.hero{position:relative;padding:clamp(70px,10vw,140px) 0 clamp(60px,8vw,100px);overflow:hidden;
+  background:
+    radial-gradient(900px 420px at 75% 0%, rgba(227,40,51,.14), transparent 60%),
+    radial-gradient(700px 500px at 10% 100%, rgba(140,149,166,.10), transparent 65%);
+}
+.hero::before{ /* garage floor line sweep */
+  content:"";position:absolute;left:-10%;right:-10%;bottom:12%;height:1px;background:linear-gradient(90deg,transparent,#2C303B 30%,#2C303B 70%,transparent);
+}
+.hero-tag{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--sig);margin-bottom:22px;animation:fade .7s .1s ease both}
+h1{
+  font-family:var(--disp);font-weight:900;text-transform:uppercase;
+  font-size:clamp(38px,7.6vw,96px);line-height:1.02;letter-spacing:.005em;
+}
+h1 .row{display:block;overflow:hidden}
+h1 .row span{display:inline-block;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+h1 .row:nth-child(2) span{
+  animation-delay:.15s;
+  background:linear-gradient(175deg,var(--chrome-a) 20%,var(--chrome-b) 55%,#5E6673 70%,var(--chrome-a) 95%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+@keyframes rise{from{transform:translateY(110%)}to{transform:translateY(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.hero p.lede{max-width:480px;margin:26px 0 36px;font-size:18px;color:var(--fog);animation:fade .7s .55s ease both}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;animation:fade .7s .7s ease both}
+.btn{display:inline-block;text-decoration:none;font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;padding:16px 28px;transition:transform .12s,background .2s,border-color .2s;border:1px solid transparent;cursor:pointer}
+.btn:active{transform:translateY(2px)}
+.btn-r{background:var(--sig);color:#fff;box-shadow:0 5px 0 var(--sig-deep)}
+.btn-r:hover{background:#F03540}
+.btn-r:active{box-shadow:0 2px 0 var(--sig-deep)}
+.btn-o{border-color:#3A3F4B;color:#EDEFF4}
+.btn-o:hover{border-color:var(--fog)}
+.hero-stats{display:flex;gap:0;margin-top:56px;border:1px solid #23262E;max-width:640px;animation:fade .8s .9s ease both}
+.hero-stats div{flex:1;padding:18px 20px;border-right:1px solid #23262E}
+.hero-stats div:last-child{border-right:0}
+.hero-stats b{font-family:var(--disp);font-weight:700;font-size:clamp(18px,2.2vw,26px);display:block}
+.hero-stats span{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--fog)}
+@media(max-width:640px){.hero-stats{flex-direction:column}.hero-stats div{border-right:0;border-bottom:1px solid #23262E}.hero-stats div:last-child{border-bottom:0}}
+
+section{padding:clamp(76px,9vw,124px) 0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--sig);margin-bottom:14px}
+h2{font-family:var(--disp);font-weight:900;text-transform:uppercase;font-size:clamp(30px,4.6vw,58px);line-height:1.05}
+.js .rev{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .rev.in{opacity:1;transform:none}
+
+/* BUILDER */
+.builder{background:var(--panel);border-top:1px solid #23262E;border-bottom:1px solid #23262E}
+.builder .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start;margin-top:8px}
+.builder p.lede{margin-top:18px;color:var(--fog);max-width:440px;font-size:18px}
+.build-panel{border:1px solid #2C303B;background:var(--panel-2);padding:30px 28px}
+.group{margin-bottom:28px}
+.group-label{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--fog);margin-bottom:14px;display:block}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.opts button{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;color:#EDEFF4;border:1px solid #3A3F4B;padding:11px 16px;cursor:pointer;
+  transition:border-color .2s,background .2s,color .2s;
+}
+.opts button:hover{border-color:var(--fog)}
+.opts button[aria-pressed="true"]{background:var(--sig);border-color:var(--sig);color:#fff}
+.addons{list-style:none}
+.addons li{border-bottom:1px solid #2C303B}
+.addons li:last-child{border-bottom:0}
+.addons label{display:flex;align-items:center;gap:14px;padding:13px 2px;cursor:pointer;font-size:15px}
+.addons input{width:18px;height:18px;accent-color:var(--sig);cursor:pointer}
+.addons .price{margin-left:auto;font-family:var(--mono);font-size:13px;color:var(--fog)}
+.total{
+  display:flex;justify-content:space-between;align-items:end;
+  border:1px solid var(--sig);padding:22px 22px;margin-top:6px;
+  background:linear-gradient(160deg,rgba(227,40,51,.10),transparent 60%);
+}
+.total .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--fog)}
+.total b{font-family:var(--disp);font-weight:900;font-size:clamp(34px,4vw,48px);line-height:1;display:block;margin-top:6px}
+.total .time{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--fog);text-align:right}
+.build-panel .btn-r{width:100%;text-align:center;margin-top:22px;display:block}
+.build-note{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--fog);margin-top:14px}
+@media(max-width:940px){.builder .grid{grid-template-columns:1fr;gap:38px}}
+
+/* PACKAGES included list */
+.included{margin-top:34px;border:1px solid #2C303B}
+.included details{border-bottom:1px solid #2C303B}
+.included details:last-child{border-bottom:0}
+.included summary{
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;
+  padding:18px 20px;font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+}
+.included summary::-webkit-details-marker{display:none}
+.included summary::after{content:"+";font-size:18px;color:var(--sig)}
+.included details[open] summary::after{content:"–"}
+.included .body{padding:0 20px 20px;color:var(--fog);font-size:15px}
+
+/* PROOF STRIP */
+.strip{border-bottom:1px solid #23262E;overflow:hidden;white-space:nowrap;font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--fog);padding:13px 0}
+.strip-track{display:inline-block;animation:tick 26s linear infinite}
+.strip span{padding:0 30px}
+.strip b{color:var(--sig);font-weight:500}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* AREA */
+.area .cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.area p{color:var(--fog);margin-top:18px;max-width:440px;font-size:18px}
+.zones{list-style:none;border:1px solid #2C303B;font-family:var(--mono);font-size:13px}
+.zones li{display:flex;justify-content:space-between;padding:15px 20px;border-bottom:1px solid #2C303B;letter-spacing:.08em}
+.zones li:last-child{border-bottom:0}
+.zones .ok{color:#5BD08A}
+@media(max-width:860px){.area .cols{grid-template-columns:1fr;gap:34px}}
+
+/* CTA */
+.cta{text-align:center;background:
+  radial-gradient(700px 340px at 50% 100%, rgba(227,40,51,.16), transparent 65%)}
+.cta p{max-width:440px;margin:22px auto 34px;color:var(--fog)}
+footer{border-top:1px solid #23262E;color:#5E6673;padding:24px var(--gut);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .strip-track{animation:none;transform:none}
+  .js .rev{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#build">Skip to price builder</a>
+
+<nav class="nav" aria-label="Main">
+  <a class="mark" href="#">MIRROR<em>SOUTH</em></a>
+  <ul>
+    <li><a href="#build">BUILD YOUR DETAIL</a></li>
+    <li><a href="#area">SERVICE AREA</a></li>
+  </ul>
+  <a class="book" href="#build">GET MY PRICE</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="hero-tag">Mobile detailing · We come to you</p>
+    <h1>
+      <span class="row"><span>Your driveway.</span></span>
+      <span class="row"><span>Showroom finish.</span></span>
+    </h1>
+    <p class="lede">Full-service auto detailing at your home or office across Surrey and Metro Vancouver. Build your package below — the price you see is the price you pay.</p>
+    <div class="hero-cta">
+      <a class="btn btn-r" href="#build">Build your detail</a>
+      <a class="btn btn-o" href="#area">Check your area</a>
+    </div>
+    <div class="hero-stats" aria-label="Track record">
+      <div><b>500+</b><span>Cars detailed</span></div>
+      <div><b>4.9★</b><span>Google rating</span></div>
+      <div><b>0</b><span>Water used from your tap</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span><b>//</b> Interior steam clean</span><span><b>//</b> Paint decontamination</span><span><b>//</b> Ceramic coating</span><span><b>//</b> Pet hair? We've seen worse</span><span><b>//</b> Fully self-contained rig</span>
+    <span><b>//</b> Interior steam clean</span><span><b>//</b> Paint decontamination</span><span><b>//</b> Ceramic coating</span><span><b>//</b> Pet hair? We've seen worse</span><span><b>//</b> Fully self-contained rig</span>
+  </div>
+</div>
+
+<main>
+<section class="builder" id="build">
+  <div class="wrap">
+    <div class="grid">
+      <div class="rev">
+        <p class="eyebrow">No quote forms. No callbacks.</p>
+        <h2>Build your detail. See your price.</h2>
+        <p class="lede">Three taps and you know exactly what it costs and how long we'll be in your driveway. Lock it in and we'll confirm your slot by text.</p>
+        <div class="included">
+          <details>
+            <summary>What's in Refresh</summary>
+            <div class="body">Hand wash &amp; dry, wheels and tires dressed, interior vacuum, glass inside and out, dash and console wipe-down. The reset button.</div>
+          </details>
+          <details>
+            <summary>What's in Full Detail</summary>
+            <div class="body">Everything in Refresh, plus clay bar decontamination, machine polish (one stage), interior steam clean, leather conditioned, door jambs, six-month sealant.</div>
+          </details>
+          <details>
+            <summary>What's in Ceramic</summary>
+            <div class="body">Everything in Full Detail, plus two-stage paint correction and a professional-grade ceramic coating with a written 3-year warranty. Water beads for years, not weeks.</div>
+          </details>
+        </div>
+      </div>
+
+      <div class="build-panel rev" style="--d:.15s">
+        <div class="group">
+          <span class="group-label">01 · Your vehicle</span>
+          <div class="opts" role="group" aria-label="Vehicle size" id="vehOpts">
+            <button type="button" data-mult="1" aria-pressed="true">Coupe / Sedan</button>
+            <button type="button" data-mult="1.2" aria-pressed="false">SUV / Crossover</button>
+            <button type="button" data-mult="1.35" aria-pressed="false">Truck / Van</button>
+          </div>
+        </div>
+        <div class="group">
+          <span class="group-label">02 · Your package</span>
+          <div class="opts" role="group" aria-label="Package" id="pkgOpts">
+            <button type="button" data-base="129" data-hours="1.5" aria-pressed="false">Refresh</button>
+            <button type="button" data-base="289" data-hours="4" aria-pressed="true">Full Detail</button>
+            <button type="button" data-base="799" data-hours="8" aria-pressed="false">Ceramic</button>
+          </div>
+        </div>
+        <div class="group">
+          <span class="group-label">03 · Add-ons</span>
+          <ul class="addons">
+            <li><label><input type="checkbox" data-price="49"> Pet hair removal <span class="price">+$49</span></label></li>
+            <li><label><input type="checkbox" data-price="39"> Engine bay detail <span class="price">+$39</span></label></li>
+            <li><label><input type="checkbox" data-price="59"> Headlight restoration <span class="price">+$59</span></label></li>
+            <li><label><input type="checkbox" data-price="35"> Odour treatment <span class="price">+$35</span></label></li>
+          </ul>
+        </div>
+        <div class="total" aria-live="polite">
+          <div>
+            <span class="lbl">Your price</span>
+            <b id="totalOut">$347</b>
+          </div>
+          <div class="time">EST. TIME<br><span id="timeOut">≈ 4.5 hrs</span></div>
+        </div>
+        <a class="btn btn-r" id="bookBtn" href="mailto:hello@example.com?subject=Booking%20request">Book this detail</a>
+        <p class="build-note">// Price locked when you book. We bring water, power, everything.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="area" id="area">
+  <div class="wrap cols">
+    <div class="rev">
+      <p class="eyebrow">Where we roll</p>
+      <h2>If you're on this list, we come to you.</h2>
+      <p>Fully self-contained rig — our own water, our own power. Underground parkade? Strata rules? Text us the address and we'll make it work.</p>
+    </div>
+    <ul class="zones rev" style="--d:.15s" aria-label="Service areas">
+      <li>Surrey &amp; White Rock <span class="ok">SAME WEEK</span></li>
+      <li>Langley &amp; Cloverdale <span class="ok">SAME WEEK</span></li>
+      <li>Delta &amp; Richmond <span class="ok">SAME WEEK</span></li>
+      <li>Burnaby &amp; New West <span class="ok">2–4 DAYS</span></li>
+      <li>Vancouver <span class="ok">2–4 DAYS</span></li>
+      <li>North Shore <span>ASK US</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap rev">
+    <p class="eyebrow">Weekends book out fast</p>
+    <h2>Lock in your slot.</h2>
+    <p>Build your package above, hit book, and you'll get a confirmation text within the hour. That's the whole process.</p>
+    <a class="btn btn-r" href="#build">Get my price</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© 2026 Mirror South Detailing</span>
+  <span>Surrey → Metro Vancouver · By appointment</span>
+  <span>Concept site — design: Harsh Kumar</span>
+</footer>
+
+<script>
+(function(){
+  var d=document;
+  d.documentElement.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var revs=[].slice.call(d.querySelectorAll('.rev'));
+  if(reduce||!('IntersectionObserver' in window)){
+    revs.forEach(function(el){el.classList.add('in');});
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+    revs.forEach(function(el){io.observe(el);});
+  }
+
+  /* package builder */
+  var vehBtns=[].slice.call(d.querySelectorAll('#vehOpts button'));
+  var pkgBtns=[].slice.call(d.querySelectorAll('#pkgOpts button'));
+  var addons=[].slice.call(d.querySelectorAll('.addons input'));
+  var totalOut=d.getElementById('totalOut');
+  var timeOut=d.getElementById('timeOut');
+  var bookBtn=d.getElementById('bookBtn');
+  var mult=1, base=289, hours=4;
+  var vehName='Coupe / Sedan', pkgName='Full Detail';
+
+  function money(n){return '$'+Math.round(n);}
+  function update(){
+    var addonTotal=0, addonNames=[];
+    addons.forEach(function(a){
+      if(a.checked){
+        addonTotal+=parseFloat(a.getAttribute('data-price'));
+        addonNames.push(a.parentNode.textContent.trim().replace(/\s*\+\$\d+$/,''));
+      }
+    });
+    var total=base*mult+addonTotal;
+    var t=hours*(mult>1?mult*0.9:1)+addonNames.length*0.5;
+    totalOut.textContent=money(total);
+    timeOut.textContent='≈ '+(Math.round(t*2)/2)+' hrs';
+    var subject='Booking: '+pkgName+' · '+vehName+(addonNames.length?' · +'+addonNames.join(', '):'')+' · '+money(total);
+    bookBtn.href='mailto:hello@example.com?subject='+encodeURIComponent(subject);
+  }
+  function wire(btns,fn){
+    btns.forEach(function(b){
+      b.addEventListener('click',function(){
+        btns.forEach(function(x){x.setAttribute('aria-pressed','false');});
+        b.setAttribute('aria-pressed','true');
+        fn(b);
+        update();
+      });
+    });
+  }
+  wire(vehBtns,function(b){mult=parseFloat(b.getAttribute('data-mult'));vehName=b.textContent.trim();});
+  wire(pkgBtns,function(b){base=parseFloat(b.getAttribute('data-base'));hours=parseFloat(b.getAttribute('data-hours'));pkgName=b.textContent.trim();});
+  addons.forEach(function(a){a.addEventListener('change',update);});
+  update();
+})();
+</script>
+</body>
+</html>
