@@ -6,6 +6,30 @@
 <meta name="format-detection" content="telephone=no">
 <title>Harsh Kumar — Hand-coded websites for small business · Vancouver</title>
 <meta name="description" content="Freelance web designer and developer in Vancouver. Every site designed and hand-coded from scratch — fast, lightweight, and yours to keep.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%230E3557"/><rect x="8" y="18" width="48" height="28" rx="4" fill="none" stroke="%23D63B3B" stroke-width="5" transform="rotate(-8 32 32)"/><text x="32" y="39" font-family="monospace" font-size="14" font-weight="bold" fill="%23D63B3B" text-anchor="middle" transform="rotate(-8 32 32)">HK</text></svg>'>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Harsh Kumar — Hand-coded websites for small business">
+<meta property="og:description" content="Drawn by hand. Built to sell. Fast, template-free websites for salons, gyms, restaurants and trades across Metro Vancouver. From $900.">
+<meta property="og:url" content="https://harsh96-web.github.io/designs/index.html">
+<meta property="og:site_name" content="Harsh Kumar — Design + Build">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Harsh Kumar — Hand-coded websites for small business">
+<meta name="twitter:description" content="Drawn by hand. Built to sell. Template-free websites for Metro Vancouver small businesses.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Harsh Kumar — Web Design & Development",
+  "description": "Hand-coded websites for small businesses in Metro Vancouver. No templates, no page-builders.",
+  "areaServed": "Metro Vancouver, BC",
+  "email": "marbellamotion@gmail.com",
+  "founder": {"@type": "Person", "name": "Harsh Kumar", "jobTitle": "Web Designer & Developer"},
+  "priceRange": "$900+",
+  "url": "https://harsh96-web.github.io/designs/index.html"
+}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap');
 
@@ -337,6 +361,19 @@ h2{
 .proj-note{
   margin-top:18px;font-size:15px;color:var(--ink-soft);max-width:640px;
 }
+.buildnotes{
+  margin-top:14px;max-width:640px;border:1px solid var(--ink);background:#fff;
+}
+.buildnotes summary{
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;
+  padding:12px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);
+}
+.buildnotes summary::-webkit-details-marker{display:none}
+.buildnotes summary::after{content:"+";color:var(--red);font-size:16px}
+.buildnotes[open] summary::after{content:"–"}
+.buildnotes .bn{padding:0 16px 16px;font-size:14px;color:var(--ink-soft);line-height:1.7}
+.buildnotes .bn b{color:var(--red);font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;display:block;margin-top:10px}
+.buildnotes .bn b:first-child{margin-top:0}
 @media(max-width:860px){
   .dims{display:none}
   .browser{box-shadow:6px 6px 0 rgba(24,36,48,.12)}
@@ -749,6 +786,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
         </div>
       </div>
       <p class="proj-note">An independent hairstylist with eight years behind the chair and a full Instagram DM inbox. The site turns that attention into booked appointments — services, gallery, and a booking path that works on a phone held in one hand.</p>
+      <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Instagram followers were DMing to book; every reply was manual and half never converted.<b>Decision</b>Single-file vanilla build, booking CTA above the fold on mobile, WebP-compressed gallery, structured data so Google shows services directly.<b>Result</b>A one-tap path from IG bio to booked appointment, on a page that loads before the follower loses interest.</div></details>
     </article>
 
     <article class="project rev">
@@ -772,6 +810,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
         </div>
       </div>
       <p class="proj-note">A neighbourhood gym competing with franchise chains. The job: look bigger than the budget, load faster than the competition, and put class schedules and memberships one tap away.</p>
+      <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>A neighbourhood gym up against franchise marketing budgets and franchise websites.<b>Decision</b>High-contrast dark design that photographs well on phones, schedule and pricing pulled to the top of the page instead of buried in menus.<b>Result</b>A site that looks like a bigger operation than it is — which is the whole job.</div></details>
     </article>
 
     <article class="project rev">
@@ -795,6 +834,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
         </div>
       </div>
       <p class="proj-note">A bakery whose product sells itself on sight. So the site stays out of the way: big photography, a clear menu, and custom-order enquiries that land in Anna's inbox with every detail she needs.</p>
+      <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Custom cake enquiries arrived incomplete — no date, no size, no budget — and every one cost a back-and-forth.<b>Decision</b>Menu-first layout, and an enquiry flow that asks for the details up front so each email arrives decision-ready.<b>Result</b>Less phone tag, faster quotes, and photography doing the selling.</div></details>
     </article>
 
     <article class="project rev">
@@ -818,6 +858,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
         </div>
       </div>
       <p class="proj-note">A concept on my own brief: a modern izakaya that feels like the room, not a menu PDF. Vertical Japanese type, a vermilion sun, and a daily menu the kitchen can actually keep current.</p>
+      <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Restaurant sites die because menus rot in PDFs and stock photos say nothing.<b>Decision</b>Typography-led design with zero stock photography — vertical Japanese text, a CSS-drawn sun, and a menu as plain HTML the owner can edit in one place.<b>Result</b>Award-site atmosphere at small-restaurant maintenance cost.</div></details>
     </article>
 
     <article class="project rev">
@@ -841,6 +882,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
         </div>
       </div>
       <p class="proj-note">A specialty roaster with a working brew-ratio calculator built in — pick V60, French press, AeroPress or espresso and it does the math from real bar recipes. Proof that a small-business site can be a tool, not a brochure.</p>
+      <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Roasters all say “quality”; none give the customer a reason to return to the site weekly.<b>Decision</b>Built a brew-ratio calculator from real bar recipes — four methods, live gram math — as the page's centrepiece instead of another mission statement.<b>Result</b>A utility customers bookmark, which is retention no About page achieves.</div></details>
     </article>
 
     <article class="project rev">
@@ -864,6 +906,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
         </div>
       </div>
       <p class="proj-note">Built for the most underserved market on the web: trades. A draggable before-and-after slider does the selling, fixed-quote messaging does the trust. On a real project, the slider holds the contractor's own job photos.</p>
+      <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Homeowners don't believe renovation promises; every contractor claims “on time, on budget.”<b>Decision</b>A draggable before/after slider as the hero proof, backed by fixed-quote and warranty messaging. The accessible control is a real range input — keyboard and screen-reader safe.<b>Result</b>The visitor experiences the transformation instead of reading about it.</div></details>
     </article>
 
     <article class="project rev">
@@ -887,6 +930,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
         </div>
       </div>
       <p class="proj-note">A mobile detailer where the website closes the sale: pick your vehicle, pick your package, tick your add-ons — the price and time estimate update live, and the book button carries the whole order into the email. No quote forms, no phone tag.</p>
+      <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Detailing leads stall at “DM for pricing” — friction kills bookings, especially at 11pm when people actually browse.<b>Decision</b>A live package builder: vehicle size multipliers, add-ons, running total and time estimate, with the full order written into the booking email's subject line.<b>Result</b>Leads arrive pre-qualified with a price they already accepted.</div></details>
     </article>
 
     <article class="project rev">
@@ -910,6 +954,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
         </div>
       </div>
       <p class="proj-note">An independent stylist's full site — services, portfolio, and a booking path built for clients arriving straight from Instagram. Live in production and linked from the bio that sends them here.</p>
+      <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>An independent stylist whose entire funnel starts on Instagram — the site had to close what the feed opens.<b>Decision</b>IG-first design: fast on cellular, gallery filters, launch-offer countdown, and structured data for local search.<b>Result</b>The link in bio became the booking engine, not a dead end.</div></details>
     </article>
   </div>
 </section>
