@@ -561,6 +561,70 @@ h2{
   .chat{right:14px;bottom:84px}
 }
 
+/* ============ MOBILE MENU ============ */
+.menu-btn{
+  display:none;background:transparent;border:1px solid var(--linework);
+  width:44px;height:40px;cursor:pointer;padding:10px 11px;
+  flex-direction:column;justify-content:space-between;
+}
+.menu-btn i{display:block;height:2px;background:#fff;transition:transform .25s,opacity .25s}
+.menu-btn[aria-expanded="true"] i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] i:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mnav{
+  position:fixed;inset:0;z-index:45;display:none;flex-direction:column;justify-content:center;
+  padding:80px var(--gutter) 40px;gap:6px;
+  background:
+    repeating-linear-gradient(to right, transparent 0 23px, var(--line-faint) 23px 24px),
+    repeating-linear-gradient(to bottom, transparent 0 23px, var(--line-faint) 23px 24px),
+    linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 100%);
+}
+.mnav.open{display:flex;animation:inkIn .25s ease both}
+.mnav a{
+  font-family:var(--display);font-weight:800;text-transform:uppercase;text-decoration:none;
+  font-size:clamp(40px,11vw,56px);line-height:1.15;color:#fff;
+  border-bottom:1px solid var(--line-soft);padding:8px 0;
+}
+.mnav a:last-of-type{color:var(--red);-webkit-text-stroke:0}
+.mnav-foot{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--linework);margin-top:26px}
+@media(max-width:860px){
+  .menu-btn{display:flex}
+  .nav{z-index:50}
+  .nav .nav-id span{display:none}
+  .nav-cta{display:none}
+}
+
+/* ============ MOBILE BOTTOM BAR ============ */
+.mbar{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:80;
+  grid-template-columns:1fr 1fr;border-top:1px solid var(--red-deep);
+}
+.mbar a{
+  text-decoration:none;text-align:center;padding:16px 10px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+}
+.mbar .wa{background:var(--blue-deep);color:#fff;border-right:1px solid var(--red-deep)}
+.mbar .bk{background:var(--red);color:#fff}
+@media(max-width:860px){
+  .mbar{display:grid}
+  body{padding-bottom:52px}
+  .chat-fab{bottom:66px}
+  .chat{bottom:136px;max-height:min(520px, calc(100vh - 160px))}
+}
+
+/* ============ MOBILE POLISH ============ */
+@media(max-width:700px){
+  .viewport{aspect-ratio:390/660}
+}
+@media(max-width:560px){
+  h1{font-size:clamp(44px,14.5vw,60px)}
+  .hero-inner{padding-top:104px}
+  .hero-actions .btn{flex:1 1 100%;text-align:center}
+  .stamp{top:76px;font-size:11px}
+  .proj-meta{gap:6px 16px}
+  .proj-meta h3{width:100%}
+}
+
 /* ============ REDUCED MOTION ============ */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{
@@ -594,7 +658,19 @@ h2{
       <li><a href="#about">ABOUT</a></li>
     </ul>
     <a class="nav-cta" href="#contact">BOOK A CALL</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mnav" aria-label="Open menu">
+      <i></i><i></i><i></i>
+    </button>
   </nav>
+
+  <div class="mnav" id="mnav">
+    <a href="#work">Work</a>
+    <a href="#process">Process</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+    <a href="#contact">Book a call</a>
+    <p class="mnav-foot">MARBELLAMOTION@GMAIL.COM · WHATSAPP 705-229-6995</p>
+  </div>
 
   <div class="hero-inner">
     <p class="hero-eyebrow">SHEET A-01 · WEBSITES FOR SMALL BUSINESS</p>
@@ -1002,6 +1078,12 @@ h2{
   </div>
 </footer>
 
+<!-- ============ MOBILE ACTION BAR ============ -->
+<div class="mbar" aria-label="Quick contact">
+  <a class="wa" href="https://wa.me/17052296995?text=Hi%20Harsh%2C%20I%20saw%20your%20portfolio%20and%20want%20to%20talk%20about%20a%20website." target="_blank" rel="noopener">WhatsApp</a>
+  <a class="bk" href="#contact">Book a call</a>
+</div>
+
 <!-- ============ DRAFT-BOT ============ -->
 <button class="chat-fab" id="chatFab" aria-expanded="false" aria-controls="chatPanel" aria-label="Open chat with Harsh's site assistant">
   <span class="o" aria-hidden="true">✎</span><span class="x" aria-hidden="true">×</span>
@@ -1030,14 +1112,21 @@ h2{
   d.documentElement.classList.add('js');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Scale live-site iframes to fit their frames */
+  /* Scale live-site iframes: desktop view on desktop, near-native mobile view on phones */
   var viewports = [].slice.call(d.querySelectorAll('.viewport'));
   function scaleFrames(){
+    var VW = window.innerWidth <= 700 ? 390 : 1440;
+    var VH = window.innerWidth <= 700 ? 660 : 900;
     viewports.forEach(function(v){
       /* 2% overscale + height bleed: content always covers past right/bottom, crop clips it */
-      var s = (v.clientWidth / 1440) * 1.02;
+      var s = (v.clientWidth / VW) * 1.02;
       var f = v.querySelector('iframe');
-      if (f) f.style.height = Math.ceil(v.clientHeight / s + 8) + 'px';
+      if (f) {
+        f.style.width = VW + 'px';
+        f.style.minWidth = VW + 'px';
+        f.style.maxWidth = VW + 'px';
+        f.style.height = Math.ceil(Math.max(v.clientHeight, VH) / s + 8) + 'px';
+      }
       v.style.setProperty('--s', s.toFixed(4));
     });
   }
@@ -1069,6 +1158,23 @@ h2{
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ===== Mobile menu ===== */
+  var menuBtn=d.getElementById('menuBtn');
+  var mnav=d.getElementById('mnav');
+  function closeMenu(){
+    mnav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded','false');
+    d.body.style.overflow='';
+  }
+  menuBtn.addEventListener('click',function(){
+    var open=mnav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',open?'true':'false');
+    d.body.style.overflow=open?'hidden':'';
+  });
+  mnav.addEventListener('click',function(e){
+    if(e.target.closest('a')) closeMenu();
+  });
 
   /* ===== DRAFT-BOT ===== */
   var EMAIL='marbellamotion@gmail.com';
@@ -1148,10 +1254,15 @@ h2{
     }
   });
   d.addEventListener('keydown',function(e){
-    if(e.key==='Escape'&&panel.classList.contains('open')){
+    if(e.key!=='Escape') return;
+    if(panel.classList.contains('open')){
       panel.classList.remove('open');
       fab.setAttribute('aria-expanded','false');
       fab.focus();
+    }
+    if(mnav.classList.contains('open')){
+      closeMenu();
+      menuBtn.focus();
     }
   });
   chips.addEventListener('click',function(e){
