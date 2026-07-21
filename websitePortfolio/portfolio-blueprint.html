@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
 <title>Harsh Kumar — Hand-coded websites for small business · Vancouver</title>
 <meta name="description" content="Freelance web designer and developer in Vancouver. Every site designed and hand-coded from scratch — fast, lightweight, and yours to keep.">
 <style>
@@ -580,13 +581,15 @@ h2{
     linear-gradient(160deg, var(--blue) 0%, var(--blue-deep) 100%);
 }
 .mnav.open{display:flex;animation:inkIn .25s ease both}
-.mnav a{
+.mnav > a{
   font-family:var(--display);font-weight:800;text-transform:uppercase;text-decoration:none;
   font-size:clamp(40px,11vw,56px);line-height:1.15;color:#fff;
   border-bottom:1px solid var(--line-soft);padding:8px 0;
 }
-.mnav a:last-of-type{color:var(--red);-webkit-text-stroke:0}
-.mnav-foot{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--linework);margin-top:26px}
+.mnav > a:last-of-type{color:var(--red)}
+.mnav-foot{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--linework);margin-top:26px;line-height:2}
+.mnav-foot a{color:#fff;text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
+body.menu-open .chat-fab,body.menu-open .chat{display:none}
 @media(max-width:860px){
   .menu-btn{display:flex}
   .nav{z-index:50}
@@ -669,7 +672,7 @@ h2{
     <a href="#pricing">Pricing</a>
     <a href="#about">About</a>
     <a href="#contact">Book a call</a>
-    <p class="mnav-foot">MARBELLAMOTION@GMAIL.COM · WHATSAPP 705-229-6995</p>
+    <p class="mnav-foot"><a href="mailto:marbellamotion@gmail.com">MARBELLAMOTION@GMAIL.COM</a> · WHATSAPP <a href="https://wa.me/17052296995" target="_blank" rel="noopener">705&#8209;229&#8209;6995</a></p>
   </div>
 
   <div class="hero-inner">
@@ -1166,11 +1169,13 @@ h2{
     mnav.classList.remove('open');
     menuBtn.setAttribute('aria-expanded','false');
     d.body.style.overflow='';
+    d.body.classList.remove('menu-open');
   }
   menuBtn.addEventListener('click',function(){
     var open=mnav.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded',open?'true':'false');
     d.body.style.overflow=open?'hidden':'';
+    d.body.classList.toggle('menu-open',open);
   });
   mnav.addEventListener('click',function(e){
     if(e.target.closest('a')) closeMenu();
