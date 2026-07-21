@@ -665,6 +665,80 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
   .proj-meta h3{width:100%}
 }
 
+/* ============ EMBED GATE (no scroll traps) ============ */
+.viewport iframe{pointer-events:none}
+.viewport.live iframe{pointer-events:auto}
+.embed-gate{
+  position:absolute;inset:0;z-index:5;border:0;background:transparent;cursor:pointer;padding:0;
+  transition:background .2s;
+}
+.embed-gate:hover{background:rgba(24,36,48,.06)}
+.gate-chip{
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  background:var(--ink);color:var(--paper);white-space:nowrap;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  padding:10px 18px;box-shadow:0 4px 0 rgba(0,0,0,.25);
+  display:flex;align-items:center;gap:9px;transition:transform .2s;
+}
+.gate-chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
+.embed-gate:hover .gate-chip{transform:translateX(-50%) translateY(-3px)}
+.embed-release{
+  position:absolute;top:10px;right:10px;z-index:6;display:none;
+  background:var(--red);color:#fff;border:0;cursor:pointer;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;padding:8px 12px;
+  box-shadow:0 3px 0 var(--red-deep);
+}
+.viewport.live .embed-release{display:block}
+.viewport.live .embed-gate{display:none}
+
+/* ============ STICKY SUBNAV (desktop wayfinding) ============ */
+.subnav{
+  position:fixed;top:0;left:0;right:0;z-index:70;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  background:var(--paper);border-bottom:1px solid var(--ink);
+  padding:12px var(--gutter);
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  transform:translateY(-100%);transition:transform .3s cubic-bezier(.2,.7,.2,1);
+}
+.subnav.show{transform:translateY(0)}
+.subnav strong{font-weight:500;letter-spacing:.2em}
+.subnav ul{display:flex;gap:22px;list-style:none}
+.subnav a{text-decoration:none;color:var(--ink-soft);transition:color .2s}
+.subnav a:hover{color:var(--red)}
+.subnav .bk{color:#fff;background:var(--red);padding:8px 14px}
+.subnav .bk:hover{color:#fff;background:#E24747}
+@media(max-width:860px){.subnav{display:none}}
+section,.project{scroll-margin-top:70px}
+
+/* ============ DRAWING INDEX ============ */
+.dwg-index{
+  width:100%;border-collapse:collapse;border:1px solid var(--ink);background:#fff;
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  margin-bottom:clamp(48px,7vw,88px);
+}
+.dwg-index caption{
+  text-align:left;border:1px solid var(--ink);border-bottom:0;background:var(--paper-dim);
+  padding:11px 16px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);
+}
+.dwg-index th{
+  text-align:left;font-weight:400;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-soft);padding:10px 16px;border-bottom:1px solid var(--ink);
+}
+.dwg-index td{padding:0;border-bottom:1px solid rgba(24,36,48,.18)}
+.dwg-index tr:last-child td{border-bottom:0}
+.dwg-index td a{
+  display:block;padding:13px 16px;text-decoration:none;color:var(--ink);
+}
+.dwg-index tbody tr{transition:background .15s}
+.dwg-index tbody tr:hover{background:rgba(214,58,58,.07)}
+.dwg-index tbody tr:hover .go{color:var(--red)}
+.dwg-index .no{color:var(--red)}
+.dwg-index .st{color:var(--ink-soft);font-size:11px}
+.dwg-index .go{text-align:right;color:var(--ink-soft)}
+@media(max-width:640px){
+  .dwg-index .hide-m{display:none}
+}
+
 /* ============ REDUCED MOTION ============ */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{
@@ -746,6 +820,17 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
   <p class="scrollcue">SCROLL TO BUILD</p>
 </header>
 
+<nav class="subnav" id="subnav" aria-label="Section navigation">
+  <strong>HARSH KUMAR</strong>
+  <ul>
+    <li><a href="#work">WORK</a></li>
+    <li><a href="#process">PROCESS</a></li>
+    <li><a href="#pricing">PRICING</a></li>
+    <li><a href="#about">ABOUT</a></li>
+  </ul>
+  <a class="bk" href="#contact">BOOK A CALL</a>
+</nav>
+
 <!-- ============ ISSUE STRIP ============ -->
 <div class="issue" aria-hidden="true">
   <div class="issue-track">
@@ -765,7 +850,22 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
       <p>These aren't mockups. Each frame below is the client's real site, embedded straight from the web. Click around — everything works.</p>
     </div>
 
-    <article class="project rev">
+    <table class="dwg-index rev" aria-label="Index of drawings">
+      <caption>Index of drawings — tap to jump</caption>
+      <thead><tr><th>No.</th><th>Project</th><th class="hide-m">Sector</th><th class="hide-m">Status</th><th></th></tr></thead>
+      <tbody>
+        <tr><td><a class="no" href="#dwg-001">DWG 001</a></td><td><a href="#dwg-001">Style &amp; Glow Studio</a></td><td class="hide-m"><a href="#dwg-001">Salon</a></td><td class="hide-m"><a class="st" href="#dwg-001">Client — live</a></td><td><a class="go" href="#dwg-001" aria-label="Jump to Style &amp; Glow Studio">↓</a></td></tr>
+        <tr><td><a class="no" href="#dwg-002">DWG 002</a></td><td><a href="#dwg-002">Platinum Athletic Club</a></td><td class="hide-m"><a href="#dwg-002">Fitness</a></td><td class="hide-m"><a class="st" href="#dwg-002">Client — live</a></td><td><a class="go" href="#dwg-002" aria-label="Jump to Platinum Athletic Club">↓</a></td></tr>
+        <tr><td><a class="no" href="#dwg-003">DWG 003</a></td><td><a href="#dwg-003">Anna's Cake House</a></td><td class="hide-m"><a href="#dwg-003">Bakery</a></td><td class="hide-m"><a class="st" href="#dwg-003">Client — live</a></td><td><a class="go" href="#dwg-003" aria-label="Jump to Anna's Cake House">↓</a></td></tr>
+        <tr><td><a class="no" href="#dwg-004">DWG 004</a></td><td><a href="#dwg-004">Kumo Izakaya</a></td><td class="hide-m"><a href="#dwg-004">Restaurant</a></td><td class="hide-m"><a class="st" href="#dwg-004">Concept</a></td><td><a class="go" href="#dwg-004" aria-label="Jump to Kumo Izakaya">↓</a></td></tr>
+        <tr><td><a class="no" href="#dwg-005">DWG 005</a></td><td><a href="#dwg-005">Riptide Roasting Co.</a></td><td class="hide-m"><a href="#dwg-005">Coffee</a></td><td class="hide-m"><a class="st" href="#dwg-005">Concept</a></td><td><a class="go" href="#dwg-005" aria-label="Jump to Riptide Roasting Co.">↓</a></td></tr>
+        <tr><td><a class="no" href="#dwg-006">DWG 006</a></td><td><a href="#dwg-006">NorthPeak Contracting</a></td><td class="hide-m"><a href="#dwg-006">Trades</a></td><td class="hide-m"><a class="st" href="#dwg-006">Concept</a></td><td><a class="go" href="#dwg-006" aria-label="Jump to NorthPeak Contracting">↓</a></td></tr>
+        <tr><td><a class="no" href="#dwg-007">DWG 007</a></td><td><a href="#dwg-007">Mirror South Detailing</a></td><td class="hide-m"><a href="#dwg-007">Auto detailing</a></td><td class="hide-m"><a class="st" href="#dwg-007">Concept</a></td><td><a class="go" href="#dwg-007" aria-label="Jump to Mirror South Detailing">↓</a></td></tr>
+        <tr><td><a class="no" href="#dwg-008">DWG 008</a></td><td><a href="#dwg-008">Gurbina — Hair Artistry</a></td><td class="hide-m"><a href="#dwg-008">Salon</a></td><td class="hide-m"><a class="st" href="#dwg-008">Client — live</a></td><td><a class="go" href="#dwg-008" aria-label="Jump to Gurbina — Hair Artistry">↓</a></td></tr>
+      </tbody>
+    </table>
+
+    <article class="project rev" id="dwg-001">
       <div class="proj-meta">
         <span class="no">DWG 001</span>
         <h3>Style &amp; Glow Studio</h3>
@@ -782,6 +882,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
           </div>
           <div class="viewport">
             <iframe src="https://harsh96-web.github.io/designs/f5.html" title="Style and Glow Studio — live client site" loading="lazy"></iframe>
+            <button type="button" class="embed-gate" aria-label="Enable browsing this embedded live site"><span class="gate-chip">Click to browse — live site</span></button><button type="button" class="embed-release" aria-label="Stop browsing this embed">&#10005; Release</button>
           </div>
         </div>
       </div>
@@ -789,7 +890,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
       <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Instagram followers were DMing to book; every reply was manual and half never converted.<b>Decision</b>Single-file vanilla build, booking CTA above the fold on mobile, WebP-compressed gallery, structured data so Google shows services directly.<b>Result</b>A one-tap path from IG bio to booked appointment, on a page that loads before the follower loses interest.</div></details>
     </article>
 
-    <article class="project rev">
+    <article class="project rev" id="dwg-002">
       <div class="proj-meta">
         <span class="no">DWG 002</span>
         <h3>Platinum Athletic Club</h3>
@@ -806,6 +907,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
           </div>
           <div class="viewport">
             <iframe src="https://harsh96-web.github.io/designs/gym.html" title="Platinum Athletic Club — live client site" loading="lazy"></iframe>
+            <button type="button" class="embed-gate" aria-label="Enable browsing this embedded live site"><span class="gate-chip">Click to browse — live site</span></button><button type="button" class="embed-release" aria-label="Stop browsing this embed">&#10005; Release</button>
           </div>
         </div>
       </div>
@@ -813,7 +915,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
       <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>A neighbourhood gym up against franchise marketing budgets and franchise websites.<b>Decision</b>High-contrast dark design that photographs well on phones, schedule and pricing pulled to the top of the page instead of buried in menus.<b>Result</b>A site that looks like a bigger operation than it is — which is the whole job.</div></details>
     </article>
 
-    <article class="project rev">
+    <article class="project rev" id="dwg-003">
       <div class="proj-meta">
         <span class="no">DWG 003</span>
         <h3>Anna's Cake House</h3>
@@ -830,6 +932,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
           </div>
           <div class="viewport">
             <iframe src="https://harsh96-web.github.io/designs/cake2.html" title="Anna's Cake House — live client site" loading="lazy"></iframe>
+            <button type="button" class="embed-gate" aria-label="Enable browsing this embedded live site"><span class="gate-chip">Click to browse — live site</span></button><button type="button" class="embed-release" aria-label="Stop browsing this embed">&#10005; Release</button>
           </div>
         </div>
       </div>
@@ -837,7 +940,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
       <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Custom cake enquiries arrived incomplete — no date, no size, no budget — and every one cost a back-and-forth.<b>Decision</b>Menu-first layout, and an enquiry flow that asks for the details up front so each email arrives decision-ready.<b>Result</b>Less phone tag, faster quotes, and photography doing the selling.</div></details>
     </article>
 
-    <article class="project rev">
+    <article class="project rev" id="dwg-004">
       <div class="proj-meta">
         <span class="no">DWG 004</span>
         <h3>Kumo Izakaya</h3>
@@ -854,6 +957,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
           </div>
           <div class="viewport">
             <iframe src="izakaya.html" title="Kumo Izakaya — concept restaurant site" loading="lazy"></iframe>
+            <button type="button" class="embed-gate" aria-label="Enable browsing this embedded live site"><span class="gate-chip">Click to browse — live site</span></button><button type="button" class="embed-release" aria-label="Stop browsing this embed">&#10005; Release</button>
           </div>
         </div>
       </div>
@@ -861,7 +965,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
       <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Restaurant sites die because menus rot in PDFs and stock photos say nothing.<b>Decision</b>Typography-led design with zero stock photography — vertical Japanese text, a CSS-drawn sun, and a menu as plain HTML the owner can edit in one place.<b>Result</b>Award-site atmosphere at small-restaurant maintenance cost.</div></details>
     </article>
 
-    <article class="project rev">
+    <article class="project rev" id="dwg-005">
       <div class="proj-meta">
         <span class="no">DWG 005</span>
         <h3>Riptide Roasting Co.</h3>
@@ -878,6 +982,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
           </div>
           <div class="viewport">
             <iframe src="roaster.html" title="Riptide Roasting — concept coffee roaster site" loading="lazy"></iframe>
+            <button type="button" class="embed-gate" aria-label="Enable browsing this embedded live site"><span class="gate-chip">Click to browse — live site</span></button><button type="button" class="embed-release" aria-label="Stop browsing this embed">&#10005; Release</button>
           </div>
         </div>
       </div>
@@ -885,7 +990,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
       <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Roasters all say “quality”; none give the customer a reason to return to the site weekly.<b>Decision</b>Built a brew-ratio calculator from real bar recipes — four methods, live gram math — as the page's centrepiece instead of another mission statement.<b>Result</b>A utility customers bookmark, which is retention no About page achieves.</div></details>
     </article>
 
-    <article class="project rev">
+    <article class="project rev" id="dwg-006">
       <div class="proj-meta">
         <span class="no">DWG 006</span>
         <h3>NorthPeak Contracting</h3>
@@ -902,6 +1007,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
           </div>
           <div class="viewport">
             <iframe src="contractor.html" title="NorthPeak Contracting — concept renovation site" loading="lazy"></iframe>
+            <button type="button" class="embed-gate" aria-label="Enable browsing this embedded live site"><span class="gate-chip">Click to browse — live site</span></button><button type="button" class="embed-release" aria-label="Stop browsing this embed">&#10005; Release</button>
           </div>
         </div>
       </div>
@@ -909,7 +1015,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
       <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Homeowners don't believe renovation promises; every contractor claims “on time, on budget.”<b>Decision</b>A draggable before/after slider as the hero proof, backed by fixed-quote and warranty messaging. The accessible control is a real range input — keyboard and screen-reader safe.<b>Result</b>The visitor experiences the transformation instead of reading about it.</div></details>
     </article>
 
-    <article class="project rev">
+    <article class="project rev" id="dwg-007">
       <div class="proj-meta">
         <span class="no">DWG 007</span>
         <h3>Mirror South Detailing</h3>
@@ -926,6 +1032,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
           </div>
           <div class="viewport">
             <iframe src="detailing.html" title="Mirror South Detailing — concept mobile detailing site" loading="lazy"></iframe>
+            <button type="button" class="embed-gate" aria-label="Enable browsing this embedded live site"><span class="gate-chip">Click to browse — live site</span></button><button type="button" class="embed-release" aria-label="Stop browsing this embed">&#10005; Release</button>
           </div>
         </div>
       </div>
@@ -933,7 +1040,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
       <details class="buildnotes"><summary>Build notes — how &amp; why</summary><div class="bn"><b>Problem</b>Detailing leads stall at “DM for pricing” — friction kills bookings, especially at 11pm when people actually browse.<b>Decision</b>A live package builder: vehicle size multipliers, add-ons, running total and time estimate, with the full order written into the booking email's subject line.<b>Result</b>Leads arrive pre-qualified with a price they already accepted.</div></details>
     </article>
 
-    <article class="project rev">
+    <article class="project rev" id="dwg-008">
       <div class="proj-meta">
         <span class="no">DWG 008</span>
         <h3>Gurbina — Hair Artistry</h3>
@@ -950,6 +1057,7 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
           </div>
           <div class="viewport">
             <iframe src="https://harsh96-web.github.io/designs/gurbina.html" title="Gurbina Hair Artistry — live client site" loading="lazy"></iframe>
+            <button type="button" class="embed-gate" aria-label="Enable browsing this embedded live site"><span class="gate-chip">Click to browse — live site</span></button><button type="button" class="embed-release" aria-label="Stop browsing this embed">&#10005; Release</button>
           </div>
         </div>
       </div>
@@ -1206,6 +1314,26 @@ body.menu-open .chat-fab,body.menu-open .chat{display:none}
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ===== Embed gates: no scroll traps ===== */
+  [].slice.call(d.querySelectorAll('.embed-gate')).forEach(function(g){
+    g.addEventListener('click', function(){
+      g.parentNode.classList.add('live');
+    });
+  });
+  [].slice.call(d.querySelectorAll('.embed-release')).forEach(function(r){
+    r.addEventListener('click', function(){
+      r.parentNode.classList.remove('live');
+    });
+  });
+
+  /* ===== Sticky subnav after hero (desktop) ===== */
+  var subnav = d.getElementById('subnav');
+  function subnavToggle(){
+    if (subnav) subnav.classList.toggle('show', window.scrollY > window.innerHeight * 0.85);
+  }
+  subnavToggle();
+  window.addEventListener('scroll', subnavToggle, { passive: true });
 
   /* ===== Mobile menu ===== */
   var menuBtn=d.getElementById('menuBtn');
