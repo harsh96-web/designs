@@ -142,6 +142,19 @@
   .topic .wk-body{padding:14px 16px 18px}
   .topic-body h4{font-size:15px;font-weight:800;margin:18px 0 6px;letter-spacing:-.01em}
   .topic-body h4:first-child{margin-top:0}
+  .topic-body h5{font-size:13px;font-weight:700;margin:12px 0 4px;opacity:.85;letter-spacing:-.005em}
+  .opt.picked{border-color:var(--seal);background:#fbeef0}
+  .opt.picked .k{color:var(--seal)}
+  .exam-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .exam-timer{font-family:var(--mono);font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+  .exam-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(28px,1fr));gap:4px;margin:14px 0 4px}
+  .exam-cell{height:28px;border:1px solid var(--line);border-radius:6px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--surface);color:var(--ink-soft)}
+  .exam-cell.ans{background:var(--good);border-color:var(--good);color:#fff}
+  .exam-cell.flag{box-shadow:inset 0 0 0 2px var(--gold)}
+  .exam-cell.cur{outline:2px solid var(--seal);outline-offset:1px}
+  .rev-item{border-left:4px solid var(--line);background:var(--surface);border-radius:8px;padding:12px 14px;margin:10px 0}
+  .rev-item.good{border-left-color:var(--good)}
+  .rev-item.bad{border-left-color:var(--seal)}
   .topic-body p{margin:0 0 10px;font-size:14px;color:#3a352f}
   .topic-body ul{margin:0 0 12px;padding-left:20px}
   .topic-body li{font-size:14px;margin-bottom:5px;color:#3a352f}
@@ -219,6 +232,12 @@
         <h3 style="margin:0 0 8px">Don't forget the practical</h3>
         <p style="margin:0;color:var(--ink-soft);font-size:14px">BC certification also needs a separate practical assessment (about $500, booked through North Pacific). Book it alongside the written exam in the SkilledTradesBC Portal.</p>
       </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3 style="margin:0 0 4px">Your final stretch</h3>
+      <p style="margin:0 0 12px;color:var(--ink-soft);font-size:13px">Reads your real numbers and tells you the one thing to do next. Everything here runs inside this tool.</p>
+      <div id="finalstretch"><span style="color:var(--ink-soft);font-size:14px">Answer some questions and this fills in.</span></div>
     </div>
   </section>
 
@@ -329,6 +348,40 @@
           <li><b>Hypertrichosis / hirsutism</b>: excessive hair growth.</li>
         </ul>
         <div class="callout hy"><b>Quick differentials</b>Nits are cemented to the shaft and do not brush off; dandruff flakes are loose. Alopecia areata patches are smooth with no scaling; tinea patches are scaly with broken hairs. Dry dandruff flakes are white and dry; steatoides is greasy and waxy.</div>
+        <h4>Telling the look-alikes apart</h4>
+        <p>Most scalp questions are not "name the disorder." They give you a client, one or two clues, and ask what you do. The trap options are always the close cousin. Learn the one clue that separates each pair.</p>
+        <h5>Bald patches: the four that get confused</h5>
+        <ul>
+          <li><b>Alopecia areata</b>: round, <b>smooth</b> patch, no scaling, no broken hairs. Autoimmune, can regrow. Serviceable.</li>
+          <li><b>Tinea capitis</b>: <b>scaly</b>, ring-shaped, broken hairs, black dots. Fungal, contagious. Refer.</li>
+          <li><b>Traction alopecia</b>: thinning at the <b>hairline and temples</b>, history of tight styles. Reversible early. Advise looser styles.</li>
+          <li><b>Trichotillomania</b>: irregular patch, broken hairs of <b>uneven lengths</b>, a pulling habit. Behavioural.</li>
+        </ul>
+        <p>Fast rule: smooth = areata, scaly + broken = tinea (refer), hairline + tight styles = traction, uneven broken lengths + habit = trichotillomania.</p>
+        <h5>Red scaly scalp: the three that get confused</h5>
+        <ul>
+          <li><b>Psoriasis</b>: <b>thick silvery</b> scales, sharply bordered plaques, often past the hairline. Non-contagious, service gently.</li>
+          <li><b>Seborrheic dermatitis</b>: <b>greasy yellowish</b> red patches in oily zones (scalp, brows, sides of nose). Non-contagious.</li>
+          <li><b>Contact dermatitis</b>: red, itchy, weepy, appears <b>after a product</b> and sits where the product touched. Allergen or irritant.</li>
+        </ul>
+        <p>Fast rule: silvery and thick = psoriasis, greasy and yellow = seborrheic, "started after the colour" = contact dermatitis.</p>
+        <h5>Bumps and pustules: bacterial cluster</h5>
+        <ul>
+          <li><b>Folliculitis</b>: several inflamed follicles with small pustules.</li>
+          <li><b>Furuncle</b>: one painful boil around a single follicle.</li>
+          <li><b>Carbuncle</b>: a cluster of connected boils, the most severe.</li>
+        </ul>
+        <p>All three are bacterial infections. If it is pustular, painful, or infected, refer and do not service.</p>
+        <h5>Diffuse shedding vs patches</h5>
+        <p><b>Telogen effluvium</b> is diffuse shedding all over, usually two to four months after stress, illness, surgery, or childbirth, with no bald patches, and it is usually temporary. Do not confuse it with the defined patches of areata or the patterned thinning of androgenic alopecia.</p>
+        <h4>Proceed, service gently, or refer</h4>
+        <p>Every scalp scenario resolves to one of three answers. Learn which bucket each condition falls in and the questions answer themselves.</p>
+        <ul>
+          <li><b>Refer, do not service</b> (contagious, infected, or broken and inflamed): tinea capitis, favus, pediculosis, scabies, impetigo, folliculitis, furuncle, carbuncle, any open or oozing lesion.</li>
+          <li><b>Service gently with home-care advice</b> (non-contagious surface conditions): dry and greasy dandruff, seborrheic dermatitis, psoriasis, mild eczema, asteatosis. Refer out if severe, broken, or inflamed.</li>
+          <li><b>Service with care, manage the hair</b> (structural shaft defects, not scalp disease): split ends, trichorrhexis nodosa, monilethrix, brittle or fragile hair. Advise against harsh chemical services on very fragile hair.</li>
+        </ul>
+        <div class="callout trap"><b>The scenario trap</b>The wrong answer is almost always "proceed carefully" or "you treat it yourself" on a condition that should be referred. If it is contagious, infected, or broken and inflamed, the answer is refer, every time, no matter how the question is worded.</div>
         <h4>Scalp treatments</h4>
         <p>Massage boosts circulation: <b>effleurage</b> is gentle stroking to relax, <b>petrissage</b> is kneading to stimulate. Use clarifying or gentle exfoliation for buildup, moisturizing for a dry scalp, and balancing care for oily. Medicated and antifungal products are a referral, not a salon fix.</p>
         <div class="callout trap"><b>The one rule to never miss</b>Contagious, infected, or broken inflamed skin means refer and do not perform the service. Non-contagious dry, scaly, or structural conditions can be serviced gently with home-care advice, referring out if severe.</div>
@@ -413,6 +466,17 @@
           <li>40 volume = 12%, maximum lift, kept off the scalp.</li>
         </ul>
         <p>Mixing developers averages the volume, so equal parts 20 and 40 give about 30. Use lower volumes on the scalp and higher volumes off-scalp in foils.</p>
+        <h4>Worked math: developers and mixing</h4>
+        <p>The exam turns these into "you need X, which do you use" and "you mixed Y and Z, what did you get." Work them the same way every time.</p>
+        <h5>Volume to percentage</h5>
+        <p>Divide the volume by about 3.3, or just memorize the four pairs: <b>10 = 3%, 20 = 6%, 30 = 9%, 40 = 12%</b>. Each 10 volumes is roughly 3% peroxide. If a question gives you 6% and asks the volume, that is 20 volume.</p>
+        <h5>Averaging two developers</h5>
+        <p>Mixing equal parts averages the two volumes. Worked: equal parts <b>20 + 40</b> = (20 + 40) &divide; 2 = <b>30 volume</b>. Equal parts <b>10 + 30</b> = (10 + 30) &divide; 2 = <b>20 volume</b>. This only holds for equal parts; unequal ratios pull the result toward the larger share.</p>
+        <h5>Levels of lift to developer</h5>
+        <p>Match the lift you need to the volume: 1 level or grey coverage = <b>20 vol</b>, 2 to 3 levels = <b>30 vol</b>, maximum lift off-scalp = <b>40 vol</b>. Worked: natural level 6 going to level 9 is 3 levels, so choose <b>30 volume</b> on virgin hair, keeping 40 volume off-scalp only. Remember this is lift on natural pigment, not on artificial colour, because colour does not lift colour.</p>
+        <h5>Two-step correction, start to finish</h5>
+        <p><b>Case: level 4 box brown, client wants level 8 blonde.</b> Step 1, oxidative tint will not lift it, so lighten with a lightener and the right developer off-scalp, processing to the target stage (level 8 sits at yellow underlying pigment). Step 2, once lifted to a clean yellow, tone with a violet-based toner to cancel the remaining yellow and land the blonde. Skipping step 2 leaves it brassy; toning before the lift is complete does nothing because a toner cannot fix under-lifted orange.</p>
+        <p><b>Case: over-lightened ends, client wants to go to level 6 brown.</b> Step 1, pre-fill the porous ends with a warm (gold or copper) tone to replace the missing warm base pigment. Step 2, apply the level 6 target. Skipping the fill lets the cool pigment grab and turns the result dull or green.</p>
         <h4>Law of colour</h4>
         <p>Primaries are red, yellow, blue. Secondaries are orange, green, violet. To neutralize, use the complement: violet cancels yellow, blue cancels orange, green cancels red. Equal parts of a colour and its complement make a neutral brown.</p>
         <h4>Colour categories</h4>
@@ -481,7 +545,7 @@
 
   <section class="tab" id="practice">
     <h2 class="head">Practice questions</h2>
-    <p class="lede">Drill a topic, sit a weighted mock (30, 50, or a full 120 simulation), or grind down your missed pile. Every question is written exam-hard and explains the answer.</p>
+    <p class="lede">Drill a topic, sit a weighted mock (30, 50, or a full 120), fire the weak-area blitz, or grind the missed pile. When you want real conditions, Exam mode runs a timed 120 with no feedback until you submit, then a full review. Every question explains the answer.</p>
     <div class="modebar" id="modebar"></div>
     <div class="card" id="quizCard"></div>
   </section>
@@ -580,8 +644,8 @@ var WEEKS = [
     "Specialized services: extension methods (fusion, tape, sew-in, micro-link), wigs human vs synthetic, cap construction.",
     "Salon operations: client record cards, commission vs chair rental vs salary, markup and cost, scope of practice.",
     "Weak-area cleanup: work only your red topics and your missed pile.",
-    "Full weighted simulation A (120 questions), then review every wrong answer.",
-    "Full weighted simulation B (120 questions), then review. Walk the readiness checklist.",
+    "Full simulation A in Exam mode (120 questions, timed, no feedback until submit), then review every wrong answer.",
+    "Full simulation B in Exam mode (120 questions, timed), then review. Walk the readiness checklist.",
     "Light review and exam-day logistics. Confirm the written exam and practical are both booked."
    ]}
 ];
@@ -1092,7 +1156,81 @@ var QUESTIONS = [
 {id:"H31",t:"H",q:"Typical opening and closing duties include:",o:["Ignoring the station","Station sanitation and restocking supplies","Only counting cash","Colouring hair"],a:1,e:"Sanitizing stations and restocking keep the salon safe and ready."},
 {id:"H32",t:"H",q:"Client retention is best improved by:",o:["Constant deep discounts","Consistent results, rebooking, and good service","Never following up","Raising prices only"],a:1,e:"Reliable quality and rebooking keep clients returning better than discounts alone."},
 {id:"H33",t:"H",q:"Tips (gratuities) are:",o:["Part of the service price","Extra amounts clients give on top of the service charge","A tax","A product cost"],a:1,e:"Gratuities are additional and separate from the listed service price."},
+{id:"B71",t:"B",q:"A client presents with round, smooth, hairless patches, no scaling, no redness, and no broken hairs. Best assessment?",o:["Tinea capitis","Alopecia areata","Traction alopecia","Trichotillomania"],a:1,e:"Smooth patches with no scaling or broken hairs point to alopecia areata, an autoimmune condition that can regrow, not a fungal infection."},
+{id:"B72",t:"B",q:"A client has scaly, ring-shaped patches with broken hairs and small black dots at the scalp. You should:",o:["Proceed with a gentle scalp treatment","Decline the service and refer to a physician","Apply medicated shampoo yourself","Colour around the patches"],a:1,e:"Scaly ring patches with broken hairs and black dots indicate tinea capitis, a contagious fungal infection. Refer, do not service."},
+{id:"B73",t:"B",q:"A regular client's hairline and temples have thinned over two years of tight ponytails and braids, with no itching or scaling. Best guidance?",o:["Refer for a fungal infection","Explain traction alopecia and recommend looser styles","Tell her it is permanent and nothing helps","Recommend a relaxer"],a:1,e:"Thinning at stress points from tight styles is traction alopecia, often reversible if tension is reduced early."},
+{id:"B74",t:"B",q:"A client has irregular patches of broken hairs of varying lengths, no scaling, and mentions a pulling habit. This is most consistent with:",o:["Alopecia areata","Trichotillomania","Tinea capitis","Androgenic alopecia"],a:1,e:"Broken hairs of varied lengths with a pulling habit indicate trichotillomania, not the smooth patches of areata."},
+{id:"B75",t:"B",q:"You part a client's hair and see thick, silvery, layered scales on sharply bordered plaques extending past the hairline. Most likely:",o:["Dry dandruff","Seborrheic dermatitis","Psoriasis","Head lice"],a:2,e:"Thick silvery scales on well-defined plaques are classic psoriasis. It is non-contagious but service gently and refer if severe."},
+{id:"B76",t:"B",q:"A client has greasy, yellowish, red scaly patches at the scalp, eyebrows, and sides of the nose. Best classification:",o:["Psoriasis","Seborrheic dermatitis","Contact dermatitis","Tinea capitis"],a:1,e:"Greasy yellowish scaling in oil-rich areas is seborrheic dermatitis, distinct from the dry silvery plaques of psoriasis."},
+{id:"B77",t:"B",q:"A week after a colour service, a client returns with a red, itchy, weepy scalp exactly where product sat, with no prior history. This points to:",o:["Psoriasis","Allergic contact dermatitis","Seborrheic dermatitis","Androgenic alopecia"],a:1,e:"Onset after a specific product exposure, localized to contact areas, indicates allergic contact dermatitis."},
+{id:"B78",t:"B",q:"You see whitish specks firmly cemented to hair shafts about 1 cm from the scalp that do not slide off. Best action:",o:["Brush them out and continue","Recognize nits and refer, do not service","Apply conditioner and comb through","Treat it as dry dandruff"],a:1,e:"Cemented specks that resist sliding are nits (pediculosis), a contagious infestation. Refer and do not service."},
+{id:"B79",t:"B",q:"A client reports sudden diffuse shedding all over about three months after major surgery, with no bald patches. Most likely:",o:["Alopecia areata","Telogen effluvium","Traction alopecia","Tinea capitis"],a:1,e:"Diffuse shedding a few months after a physical stressor is telogen effluvium, usually temporary."},
+{id:"B80",t:"B",q:"A client has a single painful, raised, pus-filled lump around one follicle. You should:",o:["Massage it to help it drain","Decline the service and refer, it is a bacterial infection","Cover it and colour the rest","Exfoliate the scalp"],a:1,e:"A furuncle (boil) is a localized bacterial infection. Do not service and refer to a physician."},
+{id:"B81",t:"B",q:"To tell dandruff flakes from nits during analysis, remember that:",o:["Both slide freely off the shaft","Nits are cemented and resist sliding, flakes brush off","Flakes are cemented, nits are loose","Neither can be moved"],a:1,e:"Nits are glued to the shaft and resist moving, while dandruff flakes brush off easily."},
+{id:"B82",t:"B",q:"A client's scalp shows diffuse dry, white flaking with no redness or greasiness and mild itch. Most consistent with:",o:["Pityriasis steatoides","Pityriasis capitis simplex","Psoriasis","Tinea capitis"],a:1,e:"Dry, loose white flakes are pityriasis capitis simplex (dry dandruff), serviceable with gentle care."},
+{id:"B83",t:"B",q:"A male client shows gradual temple recession and crown thinning over years, with a family history of the same. Best classification:",o:["Alopecia areata","Androgenic alopecia","Telogen effluvium","Traction alopecia"],a:1,e:"Gradual patterned thinning with family history is androgenic (pattern) alopecia."},
+{id:"B84",t:"B",q:"Before a scalp massage you notice an open, oozing sore. The correct step is:",o:["Massage around it","Do not service that area and refer","Apply antiseptic and continue","Exfoliate the area first"],a:1,e:"Broken, oozing skin is outside scope. Do not service and refer."},
+{id:"B85",t:"B",q:"A client asks you to treat her ringworm with a salon scalp treatment. The correct response is:",o:["Sell her a scalp treatment package","Explain it is a medical fungal condition needing a physician, and reschedule after clearance","Apply antifungal shampoo in the salon","Do the service wearing gloves"],a:1,e:"Tinea is a contagious medical condition. Refer to a physician and reschedule after it clears, not a salon fix."},
+{id:"B86",t:"B",q:"A hair-shaft condition showing swollen nodes along the strand that snap easily is:",o:["Monilethrix","Trichorrhexis nodosa","Trichoptilosis","Pili annulati"],a:1,e:"Trichorrhexis nodosa forms weak nodes along the shaft that break. It is structural, not contagious."},
+{id:"B87",t:"B",q:"A client wants highlights but has beaded, brittle hair that breaks under light tension. Best next step:",o:["Proceed with 40 volume","Advise against the chemical service, recommend conditioning and gentle care, refer if concerned","Do a relaxer instead","Ignore it and continue"],a:1,e:"Fragile, beaded hair (monilethrix) breaks easily, so a lightening service risks severe damage. Advise gentle care."},
+{id:"B88",t:"B",q:"You notice honey-coloured, moist, spreading crusts around the hairline of a child with a client. This suggests:",o:["Eczema","Impetigo, contagious, refer","Dry dandruff","Psoriasis"],a:1,e:"Honey-coloured moist crusts indicate impetigo, a contagious bacterial infection. Refer."},
+{id:"B89",t:"B",q:"A client with very oily, waxy, yellowish scaling that clumps is best described as:",o:["Pityriasis capitis simplex","Pityriasis steatoides","Asteatosis","Alopecia areata"],a:1,e:"Greasy, waxy, clumping scale is pityriasis steatoides (greasy dandruff)."},
+{id:"B90",t:"B",q:"The single decision rule that keeps you compliant during any scalp analysis is:",o:["Always sell a treatment","If it is contagious, infected, or broken and inflamed, refer and do not service","Service everything as long as you wear gloves","Only refer visible bald patches"],a:1,e:"The compliance rule: contagious, infected, or broken inflamed skin means refer and do not perform the service."},
+{id:"F117",t:"F",q:"A client wants to go from a level 4 box-dyed brown to a level 8 blonde. A high-lift tint barely changes it. The reason and fix:",o:["The developer was too weak, use a 40 volume tint","Colour does not lift colour, use a lightener or colour remover then tone","She simply needs more tint","Add heat to force it lighter"],a:1,e:"Oxidative tint will not lighten previously coloured hair. Use a lightener or colour remover, then tone to target."},
+{id:"F118",t:"F",q:"You lightened a client to pale yellow for platinum, but a violet toner left it muddy and grey. Most likely cause:",o:["Under-lifted, still orange","Over-toned, too much violet deposited, reformulate lighter","Wrong developer volume","A filler was needed"],a:1,e:"Muddiness at a correct pale-yellow stage usually means the violet toner over-deposited. Relift lightly or use a softer toner."},
+{id:"F119",t:"F",q:"A client's mid-lengths lifted to yellow but the ends are still orange after processing. Toning now would:",o:["Fix everything evenly","Not correct the orange ends, which need more lifting first","Turn the ends violet","Only darken the roots"],a:1,e:"A toner cannot fix hair that is still under-lifted. Orange ends must be lightened further before toning."},
+{id:"F120",t:"F",q:"You are taking a client from over-lightened pale-yellow hair down to a level 6 brown. Skipping a filler will most likely cause:",o:["Hot roots","A dull, green, or ashy result from missing warm base pigment","Excess warmth","No visible effect"],a:1,e:"Over-lightened hair lacks warm pigment, so it grabs cool and turns dull or green. Pre-fill with warmth first."},
+{id:"F121",t:"F",q:"A retouch tint was overlapped onto previously coloured mid-lengths and left a darker line. The correct term and cause:",o:["Hot roots from scalp heat","A line of demarcation (band) from overlap","Under-processing","Filler failure"],a:1,e:"A darker line where new product overlapped old colour is a band, or line of demarcation, from overlap."},
+{id:"F122",t:"F",q:"A client's roots came out lighter and warmer than the rest after an all-over application close to the scalp. This is:",o:["A band from overlap","Hot roots from scalp heat over-lifting","Under-processing","The correct result"],a:1,e:"Scalp heat speeds processing, so roots can over-lift, giving hot roots that are lighter and warmer."},
+{id:"F123",t:"F",q:"A client with 80% resistant grey got poor coverage from a demi-permanent. Best reformulation:",o:["Use a lighter level","Use a permanent colour with 20 volume and enough natural (N) base, pre-soften if needed","Add more violet","Use 40 volume on the scalp"],a:1,e:"Resistant grey needs a permanent colour, adequate deposit with a natural base, 20 volume, and pre-softening when very resistant."},
+{id:"F124",t:"F",q:"A brassy orange band remains after highlights. To neutralize orange you tone with:",o:["Violet","Blue","Green","Red"],a:1,e:"Blue is the complement of orange, so a blue-based toner neutralizes an orange band."},
+{id:"F125",t:"F",q:"Yellow banding remains in a blonde. The neutralizing tone is:",o:["Blue","Green","Violet","Orange"],a:2,e:"Violet is the complement of yellow, so a violet toner neutralizes yellow."},
+{id:"F126",t:"F",q:"A previous henna or metallic-salt colour is suspected. Before any oxidative service you must:",o:["Do only a colour strand test","Do a metallic salt incompatibility test (equal parts 20 volume peroxide and ammonia) first","Skip testing and proceed","Apply high-lift tint immediately"],a:1,e:"Metallic salts react violently with peroxide. Test equal parts 20 volume and ammonia on a strand before any oxidative service."},
+{id:"F127",t:"F",q:"A client's colour turned too dark overall after a permanent application. Best correction approach:",o:["Add more of the same colour","Use a colour remover to reduce artificial pigment, then re-tone to target","Bleach the whole head at 40 volume","Do nothing and let it fade"],a:1,e:"Too-dark artificial colour is reduced with a colour remover, then re-toned to the target level."},
+{id:"F128",t:"F",q:"You need about 3 levels of lift in a single permanent colour application. The correct developer is:",o:["10 volume","20 volume","30 volume","40 volume"],a:2,e:"30 volume (9%) gives roughly 2 to 3 levels of lift, the standard choice for a 3-level permanent application."},
+{id:"F129",t:"F",q:"On a virgin lightening application to pale yellow, where do you apply first?",o:["The scalp first","Mid-lengths and ends first, scalp last","All sections at once","The ends only"],a:1,e:"Scalp heat processes faster, so apply mid-lengths and ends first and the scalp last for an even result."},
+{id:"F130",t:"F",q:"A client booked for all-over bleach has dark previously coloured ends. The safest expectation to set:",o:["One session to platinum","Multiple sessions may be needed, coloured ends resist and risk damage","40 volume on the scalp will fix it","No lightener is needed"],a:1,e:"Artificial colour on the ends resists lifting and risks damage, so plan for multiple gentle sessions."},
+{id:"F131",t:"F",q:"To keep a scalp application gentle while still lightening, you place higher-volume developer:",o:["On the scalp","Off-scalp in foils, with lower volume near the scalp","Everywhere at 40 volume","Only at the ends with 10 volume"],a:1,e:"Keep high volumes off-scalp in foils and lower volumes near the scalp to reduce discomfort and over-lift."},
+{id:"F132",t:"F",q:"Equal parts 20 volume and 40 volume developer give a mixed strength of about:",o:["20 volume","30 volume","40 volume","60 volume"],a:1,e:"Mixing developers averages the volume, so equal parts 20 and 40 give about 30."},
+{id:"F133",t:"F",q:"A demi-permanent was chosen to blend first greys and refresh mid-lengths with no regrowth line. This works because demi:",o:["Lifts and deposits","Deposits only with a low-volume developer, no lift, softer grow-out","Uses 40 volume","Washes out in one shampoo"],a:1,e:"Demi-permanent deposits only with a low-volume developer, adds no lift, and grows out softly with no hard regrowth line."},
+{id:"F134",t:"F",q:"A client wants a warm golden result but her over-porous ends keep grabbing ashy and dull. Best step before the target colour:",o:["Use even more ash","Pre-fill the porous ends with a warm tone to replace missing pigment","Use 40 volume","Skip conditioning to save time"],a:1,e:"Porous ends lack warm pigment and grab cool tones, so pre-fill with warmth before applying the target colour."},
+{id:"E69",t:"E",q:"A client had a hydroxide relaxer two weeks ago and now wants a perm. Best action:",o:["Perm over it carefully","Decline, the two services are incompatible and will cause breakage","Use a mild acid wave instead","Relax again first, then perm"],a:1,e:"A hydroxide relaxer and a thio perm on the same hair are incompatible and cause severe breakage. Decline."},
+{id:"E70",t:"E",q:"You are about to apply a hydroxide relaxer, but the client vigorously shampooed an hour ago and has scalp abrasions. You should:",o:["Proceed, shampoo helps the process","Reschedule, do not relax abraded scalp and never pre-shampoo before hydroxide","Use extra base cream and continue","Switch to 40 volume"],a:1,e:"Pre-shampooing and scalp abrasions cause burning with hydroxide relaxers. Reschedule until the scalp heals."},
+{id:"E71",t:"E",q:"During a perm, your test curl shows a firm, well-defined S-shape. The correct next step:",o:["Keep processing longer","Rinse thoroughly and apply neutralizer to re-form the bonds","Add more waving lotion","Remove the rods dry"],a:1,e:"A well-formed S means processing is complete. Rinse and neutralize to lock the new curl."},
+{id:"E72",t:"E",q:"A perm came out limp and nearly straight. Most likely cause:",o:["Over-processing","Under-processing or rods too large","Too much neutralizer","This is the correct result"],a:1,e:"Weak, loose curl usually means under-processing or rods that were too large for the target curl."},
+{id:"E73",t:"E",q:"A perm is frizzy and weak, and the curl breaks. Most likely cause:",o:["Under-processing","Over-processing","Rods too large","Not enough waving lotion"],a:1,e:"Frizzy, damaged, breaking curl is a sign of over-processing."},
+{id:"E74",t:"E",q:"For a virgin hydroxide relaxer, product should be applied:",o:["To the scalp first","Away from the scalp, on the most resistant hair first, keeping it off the scalp early","All over at once","Ends first"],a:1,e:"Apply to the most resistant hair first and keep product off the scalp early to reduce burning and even the result."},
+{id:"E75",t:"E",q:"On a relaxer retouch, applying only to new growth matters because:",o:["It saves product","Overlapping onto already-relaxed hair causes breakage","It processes faster","It adds curl"],a:1,e:"Overlapping relaxer onto previously relaxed hair over-processes it and causes breakage. Retouch new growth only."},
+{id:"E76",t:"E",q:"A hydroxide relaxer is neutralized with:",o:["An oxidizing neutralizer like a perm uses","An acid-balanced neutralizing shampoo that lowers the pH","Plain water only","More relaxer"],a:1,e:"Hydroxide relaxers are stopped with an acid-balanced neutralizing shampoo that lowers pH, not an oxidizer."},
+{id:"E77",t:"E",q:"A client wants a gentle perm and has a sensitive scalp with fine hair. The milder chemistry is:",o:["Alkaline cold wave (ammonium thioglycolate)","Acid wave (glyceryl monothioglycolate)","Hydroxide relaxer","No-lye relaxer"],a:1,e:"An acid wave uses glyceryl monothioglycolate at a lower pH, gentler than an alkaline cold wave."},
+{id:"E78",t:"E",q:"A no-lye (guanidine hydroxide) relaxer client complains of dryness and dullness over time. The likely reason:",o:["Too much lift","Calcium buildup left by the no-lye chemistry","Under-processing","Wrong neutralizer"],a:1,e:"No-lye relaxers can leave calcium buildup that causes dryness and dullness. A chelating or clarifying step helps."},
+{id:"E79",t:"E",q:"To create a tighter curl at the ends that loosens toward the scalp on shorter hair, use:",o:["A spiral wrap","A croquignole wrap","No end papers","On-base placement only"],a:1,e:"Croquignole wrapping goes ends to scalp, giving a tighter curl at the ends and a looser base."},
+{id:"E80",t:"E",q:"For long hair needing an even curl from scalp to ends, the wrapping method is:",o:["Croquignole","Spiral","Half-base","Backcombed"],a:1,e:"Spiral wrapping runs the hair along the rod for an even curl from scalp to ends on long hair."},
+{id:"E81",t:"E",q:"A client's ends show bent, crimped fishhooks after a perm. The cause:",o:["Over-processing","End papers not used or applied unevenly","Rods too small","Too much neutralizer"],a:1,e:"Fishhooks are bent ends from end papers that were missing or unevenly applied during wrapping."},
+{id:"E82",t:"E",q:"The strongest, highest-pH, irreversible relaxer that works by lanthionization is:",o:["Thio","No-lye guanidine","Hydroxide (lye, sodium hydroxide)","Acid wave"],a:2,e:"Hydroxide relaxers have the highest pH, are permanent through lanthionization, and are irreversible."},
+{id:"A55",t:"A",q:"A client wants an oxidative colour but reports a past allergic reaction to hair dye and has had no patch test with you. You should:",o:["Proceed after a colour strand test","Not perform the aniline colour, a prior reaction is a contraindication, and suggest medical advice or alternatives","Use a demi with no test","Lower the developer and continue"],a:1,e:"A reported prior allergic reaction to dye is a contraindication to oxidative (aniline) colour. Do not proceed."},
+{id:"A56",t:"A",q:"Mid-service a client mentions she is undergoing chemotherapy. For a chemical service the correct step is:",o:["Proceed as normal","Pause and recommend she get physician clearance before chemical services","Use 40 volume to be safe","Refuse all future services"],a:1,e:"Medical treatments can change how hair and scalp react, so get physician clearance before chemical services."},
+{id:"A57",t:"A",q:"You nick a client's scalp and there is minor bleeding. Blood-spill protocol is to:",o:["Continue and wipe it later","Stop, glove, clean and disinfect the area and any tools per protocol, and use single-use items","Apply tint over it","Ignore it"],a:1,e:"Stop the service, glove up, clean and disinfect the area and tools, and use single-use items to handle blood safely."},
+{id:"A58",t:"A",q:"A tool touched broken skin during a service. Before reuse it must be:",o:["Rinsed with water","Cleaned then immersed in a hospital-grade disinfectant effective against HIV and HBV for the full contact time","Wiped with a dry towel","Air-dried only"],a:1,e:"After contact with broken skin, clean the tool then disinfect with a hospital-grade product for its full contact time."},
+{id:"A59",t:"A",q:"A client requests a service her scalp condition contraindicates. Balancing service and safety, you should:",o:["Always do what the client asks","Decline the contraindicated service, explain why, and offer a safe alternative or referral","Do it with a signed waiver","Do only a patch test and proceed"],a:1,e:"When a condition contraindicates a service, decline it, explain the reason, and offer a safe alternative or referral."},
+{id:"A60",t:"A",q:"Before any oxidation tint or aniline product, the predisposition (patch) test is done:",o:["Right before the service","24 to 48 hours before the service","After the service","Only when an allergy is already known"],a:1,e:"A patch (predisposition) test is applied 24 to 48 hours before an aniline colour to check for an allergic reaction."},
+{id:"A61",t:"A",q:"A porous single-use item such as an emery board or wooden stick, after one client, should be:",o:["Disinfected and reused","Discarded, since it cannot be reliably disinfected","Wiped with alcohol and reused","Sterilized in an autoclave"],a:1,e:"Porous single-use items cannot be reliably disinfected and must be discarded after one client."},
+{id:"A62",t:"A",q:"A client with a contagious scalp condition asks you to just be quick. The compliant answer is:",o:["Do it quickly with gloves","Decline and refer, contagious conditions are outside scope regardless of speed","Charge extra for the risk","Cover the area and proceed"],a:1,e:"Contagious conditions are outside scope no matter how quick the service. Decline and refer."},
+{id:"C91",t:"C",q:"All of the following are done before making the first cut EXCEPT:",o:["Consulting on the desired result","Analyzing growth patterns and texture","Sectioning the hair cleanly","Cross-checking the finished shape"],a:3,e:"Cross-checking verifies the cut after it is made. Consultation, analysis, and sectioning all come before the first cut."},
+{id:"C92",t:"C",q:"The correct working order for a basic haircut is:",o:["Cut, consult, section, cross-check","Consult, shampoo, section, establish the guide, cut, cross-check","Section, cross-check, consult, cut","Shampoo, cut, consult, section"],a:1,e:"Consultation and analysis first, then shampoo, clean sections, establish the guide, cut, and cross-check to finish."},
+{id:"D56",t:"D",q:"All of the following build volume at the root EXCEPT:",o:["On-base roller placement","Backcombing at the base","Directing the blow-dryer to lift the root","Off-base roller placement"],a:3,e:"Off-base placement sits the roller below its base and gives the least lift. The other three all push volume at the root."},
+{id:"B91",t:"B",q:"A client complains of an itchy, flaking scalp and asks you to recommend a product. Your FIRST step is to:",o:["Sell a medicated shampoo","Examine the scalp under good light and ask about symptoms and history","Book a colour service","Apply a scalp treatment immediately"],a:1,e:"Analyze before you act. The look of the flaking and the history decide whether it is serviceable dandruff or a referral."},
+{id:"B92",t:"B",q:"All of the following require refusing the service and referring EXCEPT:",o:["Tinea capitis","Pediculosis capitis","Dry dandruff (pityriasis capitis simplex)","Impetigo"],a:2,e:"Dry dandruff is non-contagious and serviceable with gentle care. Ringworm, lice, and impetigo are contagious: refer."},
+{id:"E83",t:"E",q:"All of the following are signs of an over-processed perm EXCEPT:",o:["Frizzy, weak curl","Hair that breaks easily","A springy, well-defined S-pattern","Dry, damaged texture"],a:2,e:"A springy, defined S is the goal, the sign of correct processing. Frizz, weakness, and breakage all signal over-processing."},
+{id:"E84",t:"E",q:"The correct order for completing a cold wave after processing is:",o:["Neutralize, rinse, blot, unwrap","Rinse thoroughly, blot each rod, apply neutralizer, then remove rods","Unwrap dry, then rinse","Blot, rewrap, add more waving lotion"],a:1,e:"Rinse the waving lotion out (about 5 minutes), blot the rods dry, neutralize on the rods, then remove."},
+{id:"E85",t:"E",q:"Before starting a relaxer retouch, your FIRST check is:",o:["The client's shoe size","Scalp condition and a strand test of the regrowth","Which music is playing","The retail shelf"],a:1,e:"Inspect the scalp for abrasions and test the regrowth first. An irritated scalp or damaged hair changes or cancels the plan."},
+{id:"F135",t:"F",q:"All of the following speed up or increase lift when lightening EXCEPT:",o:["Higher developer volume","Heat","Fresh product on unprocessed hair","Using 10 volume developer"],a:3,e:"10 volume is the deposit-level developer and gives the least lift. Higher volumes, heat, and fresh product all push lift."},
+{id:"F136",t:"F",q:"A colour correction consultation should begin with:",o:["Mixing the remover right away","A full analysis of what is on the hair now, its condition, and a strand test","Promising the target in one visit","Booking the next appointment"],a:1,e:"Corrections start with knowing what you are correcting: existing artificial pigment, porosity, integrity, then a strand test."},
+{id:"F137",t:"F",q:"The correct order for taking a level 4 tinted brunette to a level 8 blonde is:",o:["Tone first, then lighten","Strand test, lighten or remove artificial colour, assess the stage, then tone","Apply high-lift tint over the level 4","Fill with warm, then do nothing"],a:1,e:"Test first, lift the artificial colour with a lightener or remover, check the exposed stage, then tone. Tint alone cannot lift it."},
+{id:"A63",t:"A",q:"The correct order for reprocessing a non-porous tool between clients is:",o:["Disinfect, then clean, then store open","Clean off debris, immerse in disinfectant for the full contact time, rinse and dry, store in a closed container","Rinse and reuse immediately","Store first, disinfect later"],a:1,e:"Clean always comes first, then full-contact-time disinfection, then dry storage in a closed, sanitary container."},
 /*Q_INSERT*/
+
+
 ];
 
 var FLASHCARDS = [
@@ -1140,7 +1278,21 @@ var FLASHCARDS = [
   {t:"G",f:"Extension methods",b:"Fusion (heated keratin bond), tape-in (adhesive), sew-in (thread on braided track), micro-link (beads), clip-in (temporary)."},
   {t:"G",f:"Synthetic vs human-hair wigs",b:"Synthetic will not take high heat or standard colour. Human hair can be heat-styled and coloured. Cap types: lace front, monofilament, wefted."},
   {t:"H",f:"Client record card purpose",b:"Reproduce formulas, avoid past reactions, keep results consistent and safe over time."},
-  {t:"H",f:"Commission vs chair rental",b:"Commission: percentage of services, usually as an employee. Chair rental: pay fixed rent, run your own independent business."}
+  {t:"H",f:"Commission vs chair rental",b:"Commission: percentage of services, usually as an employee. Chair rental: pay fixed rent, run your own independent business."},
+  {t:"B",f:"Alopecia areata vs tinea capitis",b:"Areata: round, smooth patch, no scaling, no broken hairs (autoimmune, serviceable). Tinea: scaly, ring-shaped, broken hairs, black dots (fungal, contagious, refer)."},
+  {t:"B",f:"Traction alopecia vs trichotillomania",b:"Traction: thinning at hairline and temples from tight styles, reversible early. Trichotillomania: irregular patch, broken hairs of uneven lengths, from a pulling habit."},
+  {t:"B",f:"Telogen effluvium",b:"Diffuse shedding all over, 2 to 4 months after stress, illness, surgery, or childbirth. No bald patches, usually temporary."},
+  {t:"B",f:"Psoriasis vs seborrheic dermatitis",b:"Psoriasis: thick silvery scales on sharply bordered plaques. Seborrheic: greasy, yellowish, red patches in oily zones (scalp, brows, nose)."},
+  {t:"B",f:"Contact dermatitis clue",b:"Red, itchy, weepy, appears after a product and sits where the product touched. Allergen or irritant reaction."},
+  {t:"B",f:"Nits vs dandruff",b:"Nits are cemented to the shaft and resist sliding. Dandruff flakes brush off freely."},
+  {t:"B",f:"Impetigo",b:"Contagious bacterial infection, honey-coloured moist crusts. Refer, do not service."},
+  {t:"B",f:"Scalp refer rule",b:"Contagious, infected, or broken and inflamed = refer, do not service. Non-contagious dry, scaly, or structural = service gently with home care."},
+  {t:"F",f:"Neutralizing brassy tones",b:"Orange band cancels with blue. Yellow band cancels with violet. Red cancels with green. Match the complement to the unwanted tone."},
+  {t:"F",f:"Hot roots vs band",b:"Hot roots: roots lighter and warmer from scalp heat over-lifting. Band (line of demarcation): darker line from overlapping onto coloured hair."},
+  {t:"F",f:"Averaging developers",b:"Equal parts averages the volume. 20 + 40 = ~30 vol. 10 + 30 = ~20 vol. Only for equal parts."},
+  {t:"F",f:"Levels of lift to developer",b:"1 level or grey coverage = 20 vol. 2 to 3 levels = 30 vol. Max lift off-scalp = 40 vol. Applies to natural pigment, not artificial colour."},
+  {t:"F",f:"Correcting too-dark colour",b:"Use a colour remover to reduce artificial pigment, then re-tone to target. Do not add more of the same colour."},
+  {t:"E",f:"Relaxer plus perm",b:"Incompatible. A hydroxide relaxer and a thio perm on the same hair cause severe breakage. Never combine."}
 ];
 
 var CHECKS = [
@@ -1158,7 +1310,8 @@ var CHECKS = [
   "I can answer EXCEPT and best-answer questions without second-guessing",
   "I have reviewed every flashcard at least twice and cleared my missed pile",
   "I can pace 120 questions in the time allowed (practised pacing)",
-  "I have booked both the written exam (Portal) and the practical assessment (North Pacific)"
+  "I have booked both the written exam (Portal) and the practical assessment (North Pacific)",
+  "I scored 85%+ on a full Exam mode sim: timed, no feedback until submit"
 ];
 
 /* ---------- STORAGE ---------- */
@@ -1241,8 +1394,61 @@ function renderWeak(){
     return '<span style="border-color:'+col+';color:'+col+'">'+r.k+' '+r.acc+'% <small style="color:var(--ink-soft)">('+r.total+')</small></span>';
   }).join("");
 }
-
-/* ---------- PLAN ---------- */
+function renderFinalStretch(){
+  var box=document.getElementById("finalstretch"); if(!box) return;
+  var attempted=0, weightedCorrect=0, weightedTotal=0;
+  BLUEPRINT.forEach(function(b){
+    var s=STATE.stats[b.k];
+    if(s&&s.total>0){ attempted+=s.total; weightedCorrect+=(s.correct/s.total)*b.q; weightedTotal+=b.q; }
+  });
+  if(!attempted){ box.innerHTML='<span style="color:var(--ink-soft);font-size:14px">Answer some questions and this fills in.</span>'; return; }
+  var readiness=weightedTotal?Math.round(weightedCorrect/weightedTotal*100):0;
+  var sB=STATE.stats["B"]; var bAcc=(sB&&sB.total>0)?Math.round(sB.correct/sB.total*100):null;
+  var bN=(sB&&sB.total)?sB.total:0;
+  var missed=missedIds().length;
+  var rCol=readiness>=85?"var(--good)":readiness>=70?"var(--gold)":"var(--seal)";
+  var steps=[];
+  // Step logic, in priority order
+  if(bAcc===null||bN<15){
+    steps.push({t:"Warm up your weak area",d:"You have barely tested scalp yet. Run the Weak-area blitz in Practice to get a real read on B, E and F.",a:"blitz"});
+  } else if(bAcc<80){
+    steps.push({t:"Scalp is still leaking marks ("+bAcc+"%)",d:"Run the Weak-area blitz until B holds 80%+, and reread the scalp deep dive in Learn between rounds.",a:"blitz"});
+  } else {
+    steps.push({t:"Scalp is holding ("+bAcc+"%)",d:"Keep it warm with an occasional blitz, but the weak area is no longer your bottleneck. Move to full sims.",a:"blitz"});
+  }
+  if(readiness>=80){
+    steps.push({t:"Sit full 120 simulations",d:"You are near the target. Run full sims to build stamina and pacing, then clear every miss.",a:"mock120"});
+  } else {
+    steps.push({t:"Build up with weighted mocks",d:"Work 50-question weighted mocks across all areas before stepping up to the full 120 sim.",a:"mock50"});
+  }
+  if(missed>0){
+    steps.push({t:"Clear the Retry pile ("+missed+" left)",d:"Grind the missed pile to zero. A question you got wrong once is the most likely to catch you again.",a:"missed"});
+  } else {
+    steps.push({t:"Retry pile is clear",d:"Nothing outstanding. Keep it that way by clearing misses the same day you make them.",a:null});
+  }
+  var readyLine='<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:14px">'
+    +'<span style="font-size:34px;font-weight:800;letter-spacing:-.02em;color:'+rCol+'">'+readiness+'%</span>'
+    +'<span style="color:var(--ink-soft);font-size:13px">blueprint-weighted readiness across '+attempted+' answered · target 85%+</span></div>';
+  var stepHtml=steps.map(function(s,i){
+    var btn=s.a?'<button class="btn ghost fs-go" data-go="'+s.a+'" style="margin-top:8px;padding:6px 12px;font-size:13px">Start</button>':'';
+    return '<div style="padding:12px 0;border-top:1px solid var(--line)">'
+      +'<div style="display:flex;gap:10px;align-items:flex-start">'
+      +'<span style="flex:none;width:22px;height:22px;border-radius:50%;background:var(--seal);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">'+(i+1)+'</span>'
+      +'<div><div style="font-weight:700;font-size:14px">'+s.t+'</div>'
+      +'<div style="color:var(--ink-soft);font-size:13px;margin-top:2px">'+s.d+'</div>'+btn+'</div></div></div>';
+  }).join("");
+  box.innerHTML=readyLine+stepHtml;
+  Array.prototype.forEach.call(box.querySelectorAll(".fs-go"),function(b){
+    b.addEventListener("click",function(){
+      var go=b.getAttribute("data-go");
+      document.querySelector('[data-tab="practice"]').click();
+      if(go==="blitz") startBlitz();
+      else if(go==="mock120") startMock(120);
+      else if(go==="mock50") startMock(50);
+      else if(go==="missed"){ if(missedIds().length) startMissed(); }
+    });
+  });
+}
 function renderWeeks(){
   var wrap=document.getElementById("weeks"); wrap.innerHTML="";
   WEEKS.forEach(function(w,wi){
@@ -1286,6 +1492,14 @@ function buildModebar(){
     btn.style.color=on?"#fff":"var(--seal)"; if(on){btn.style.background="var(--seal)";}
     btn.textContent=m[1]; btn.onclick=function(){startMock(parseInt(m[0].replace("MOCK",""),10));}; bar.appendChild(btn);
   });
+  var blz=document.createElement("button"); var blon=(quiz.mode==="BLITZ");
+  blz.className="chip"+(blon?" active":""); blz.style.borderColor="var(--B)";
+  blz.style.color=blon?"#fff":"var(--B)"; if(blon){blz.style.background="var(--B)";}
+  blz.textContent="⚡ Weak-area blitz (40)"; blz.title="Over-weighted to scalp, chemical texture, and colour"; blz.onclick=function(){startBlitz();}; bar.appendChild(blz);
+  var exb=document.createElement("button"); var exon=(quiz.mode==="EXAM");
+  exb.className="chip"+(exon?" active":""); exb.style.borderColor="var(--ink)"; exb.style.fontWeight="700";
+  exb.style.color=exon?"#fff":"var(--ink)"; if(exon){exb.style.background="var(--ink)";}
+  exb.textContent="🕐 Exam mode (120, timed)"; exb.title="Real conditions: 4-hour timer, no feedback until submit, flag and review"; exb.onclick=function(){startExam();}; bar.appendChild(exb);
   var mc=missedIds().length;
   var rb=document.createElement("button"); var ron=(quiz.mode==="MISSED");
   rb.className="chip"+(ron?" active":""); rb.style.borderColor="var(--gold)";
@@ -1293,10 +1507,12 @@ function buildModebar(){
   rb.textContent="↻ Retry missed ("+mc+")"; rb.onclick=function(){ if(mc) startMissed(); }; bar.appendChild(rb);
 }
 function startQuiz(topic){
+  if(!leaveExamGuard()) return;
   quiz.mode=topic; quiz.pool=shuffle(QUESTIONS.filter(function(q){return q.t===topic;}));
   quiz.idx=0; quiz.correct=0; buildModebar(); renderQ();
 }
 function startMock(n){
+  if(!leaveExamGuard()) return;
   quiz.mode="MOCK"+n;
   var pool=[];
   BLUEPRINT.forEach(function(b){
@@ -1306,7 +1522,138 @@ function startMock(n){
   });
   quiz.pool=shuffle(pool); quiz.idx=0; quiz.correct=0; buildModebar(); renderQ();
 }
+var BLITZ_MIX=[{k:"B",n:14},{k:"E",n:12},{k:"F",n:10},{k:"A",n:4}];
+function startBlitz(){
+  if(!leaveExamGuard()) return;
+  quiz.mode="BLITZ";
+  var pool=[];
+  BLITZ_MIX.forEach(function(m){
+    var avail=shuffle(QUESTIONS.filter(function(q){return q.t===m.k;}));
+    pool=pool.concat(avail.slice(0,Math.min(m.n,avail.length)));
+  });
+  quiz.pool=shuffle(pool); quiz.idx=0; quiz.correct=0; buildModebar(); renderQ();
+}
+var EXAM_MINUTES=240;
+function clearExamTimer(){ if(quiz.timerId){ clearInterval(quiz.timerId); quiz.timerId=null; } }
+function leaveExamGuard(){
+  if(quiz.mode==="EXAM"&&!quiz.done){
+    if(!confirm("Leave the exam sim? This attempt will be lost.")) return false;
+    clearExamTimer();
+  }
+  return true;
+}
+function fmtTime(ms){
+  var s=Math.max(0,Math.floor(ms/1000)),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),x=s%60;
+  function p(n){return (n<10?"0":"")+n;}
+  return h+":"+p(m)+":"+p(x);
+}
+function startExam(){
+  if(!leaveExamGuard()) return;
+  clearExamTimer();
+  quiz.mode="EXAM"; quiz.done=false;
+  var pool=[];
+  BLUEPRINT.forEach(function(b){
+    var avail=shuffle(QUESTIONS.filter(function(q){return q.t===b.k;}));
+    pool=pool.concat(avail.slice(0,Math.min(b.q,avail.length)));
+  });
+  quiz.pool=shuffle(pool);
+  quiz.answers=quiz.pool.map(function(){return null;});
+  quiz.flags=quiz.pool.map(function(){return false;});
+  quiz.idx=0; quiz.correct=0;
+  quiz.deadline=Date.now()+EXAM_MINUTES*60*1000;
+  quiz.timerId=setInterval(examTick,1000);
+  buildModebar(); renderExam();
+}
+function examTick(){
+  if(quiz.mode!=="EXAM"||quiz.done){ clearExamTimer(); return; }
+  var left=quiz.deadline-Date.now();
+  if(left<=0){ clearExamTimer(); alert("Time is up. Scoring what you have."); scoreExam(); return; }
+  var el=document.getElementById("examTimer");
+  if(el){ el.textContent=fmtTime(left); if(left<15*60*1000) el.style.color="var(--seal)"; }
+}
+function renderExam(){
+  var card=document.getElementById("quizCard");
+  var q=quiz.pool[quiz.idx], picked=quiz.answers[quiz.idx];
+  var answered=quiz.answers.filter(function(a){return a!==null;}).length;
+  var keys=["A","B","C","D"];
+  var html='<div class="exam-top">'
+    +'<span class="pill" style="background:var(--seal)">Exam mode · Q '+(quiz.idx+1)+'/'+quiz.pool.length+'</span>'
+    +'<span class="exam-timer" id="examTimer">'+fmtTime(quiz.deadline-Date.now())+'</span></div>'
+    +'<div class="qtext">'+q.q+'</div><div id="opts">';
+  q.o.forEach(function(opt,i){
+    html+='<button class="opt'+(picked===i?" picked":"")+'" data-i="'+i+'"><span class="k">'+keys[i]+'</span>'+opt+'</button>';
+  });
+  html+='</div><div class="qfoot" style="flex-wrap:wrap;gap:8px">'
+    +'<button class="btn ghost" id="exPrev"'+(quiz.idx===0?" disabled":"")+'>&#8592; Prev</button>'
+    +'<button class="btn ghost" id="exFlag" style="border-color:var(--gold);color:var(--gold)">'+(quiz.flags[quiz.idx]?"Unflag":"Flag for review")+'</button>'
+    +'<button class="btn ghost" id="exNext"'+(quiz.idx>=quiz.pool.length-1?" disabled":"")+'>Next &#8594;</button>'
+    +'<span style="flex:1"></span>'
+    +'<span style="color:var(--ink-soft);font-size:13px;align-self:center">'+answered+'/'+quiz.pool.length+' answered</span>'
+    +'<button class="btn primary" id="exSubmit">Submit exam</button></div>'
+    +'<div class="exam-strip" id="exStrip">';
+  quiz.pool.forEach(function(_,i){
+    var cls="exam-cell"+(quiz.answers[i]!==null?" ans":"")+(quiz.flags[i]?" flag":"")+(i===quiz.idx?" cur":"");
+    html+='<div class="'+cls+'" data-j="'+i+'">'+(i+1)+'</div>';
+  });
+  html+='</div><p style="margin:6px 0 0;color:var(--ink-soft);font-size:12px">Real conditions: no feedback until you submit. Green = answered, gold ring = flagged. Pace check: about 2 minutes per question.</p>';
+  card.innerHTML=html;
+  Array.prototype.forEach.call(card.querySelectorAll(".opt"),function(b){
+    b.addEventListener("click",function(){ quiz.answers[quiz.idx]=parseInt(b.getAttribute("data-i"),10); renderExam(); });
+  });
+  document.getElementById("exPrev").addEventListener("click",function(){ if(quiz.idx>0){quiz.idx--; renderExam();} });
+  document.getElementById("exNext").addEventListener("click",function(){ if(quiz.idx<quiz.pool.length-1){quiz.idx++; renderExam();} });
+  document.getElementById("exFlag").addEventListener("click",function(){ quiz.flags[quiz.idx]=!quiz.flags[quiz.idx]; renderExam(); });
+  document.getElementById("exSubmit").addEventListener("click",function(){
+    var un=quiz.answers.filter(function(a){return a===null;}).length;
+    if(un>0&&!confirm(un+" unanswered. Unanswered questions count as wrong. Submit anyway?")) return;
+    scoreExam();
+  });
+  Array.prototype.forEach.call(card.querySelectorAll(".exam-cell"),function(c){
+    c.addEventListener("click",function(){ quiz.idx=parseInt(c.getAttribute("data-j"),10); renderExam(); });
+  });
+}
+function scoreExam(){
+  clearExamTimer(); quiz.done=true;
+  var correct=0;
+  quiz.pool.forEach(function(q,i){
+    var right=quiz.answers[i]===q.a;
+    STATE.stats[q.t]=STATE.stats[q.t]||{correct:0,total:0};
+    STATE.stats[q.t].total++;
+    if(right){ correct++; STATE.stats[q.t].correct++; if(STATE.missed[q.id]) delete STATE.missed[q.id]; }
+    else { STATE.missed[q.id]=true; }
+  });
+  quiz.correct=correct; saveState();
+  renderWeak(); renderRibbon(); renderFinalStretch();
+  renderExamReview();
+}
+function renderExamReview(){
+  var n=quiz.pool.length, pct=n?Math.round(quiz.correct/n*100):0;
+  var pass=pct>=70, strong=pct>=85;
+  var msg=strong?"Exam-ready under real conditions. This is the number that counts.":pass?"Clears 70% under real conditions, but hold out for 85%+ before booking.":"Below the pass line under real conditions. Review every miss below, then clear the Retry pile.";
+  var keys=["A","B","C","D"];
+  var html='<div class="resultbox"><div class="big" style="color:'+(strong?"var(--good)":pass?"var(--gold)":"var(--seal)")+'">'+pct+'%</div>'
+    +'<p style="margin:8px 0 0">'+quiz.correct+' of '+n+' correct, timed, no feedback. '+msg+'</p>'
+    +'<div class="qfoot" style="justify-content:center;margin-top:16px">'
+    +'<button class="btn primary" id="exAgain">Run another exam sim</button>'
+    +(missedIds().length?'<button class="btn ghost" id="exMiss">Retry missed ('+missedIds().length+')</button>':'')
+    +'</div></div><h3 style="margin:18px 0 6px">Full review</h3>'
+    +'<p style="margin:0 0 10px;color:var(--ink-soft);font-size:13px">Every question, your answer, and why. Misses are already in the Retry pile.</p>';
+  quiz.pool.forEach(function(q,i){
+    var mine=quiz.answers[i], right=mine===q.a;
+    html+='<div class="rev-item '+(right?"good":"bad")+'">'
+      +'<div style="font-size:12px;color:var(--ink-soft);margin-bottom:4px">Q'+(i+1)+' · '+q.t+(quiz.flags[i]?' · flagged':'')+'</div>'
+      +'<div style="font-weight:600">'+q.q+'</div>'
+      +'<div style="margin-top:6px;font-size:14px">'
+      +(right?'<b style="color:var(--good)">Correct.</b> '+keys[q.a]+': '+q.o[q.a]
+        :'<b style="color:var(--seal)">'+(mine===null?"No answer.":"Your pick: "+keys[mine]+": "+q.o[mine]+".")+'</b> Correct: '+keys[q.a]+': '+q.o[q.a])
+      +'</div><div style="margin-top:4px;color:var(--ink-soft);font-size:13px">'+q.e+'</div></div>';
+  });
+  document.getElementById("quizCard").innerHTML=html;
+  document.getElementById("exAgain").addEventListener("click",startExam);
+  var mb=document.getElementById("exMiss"); if(mb) mb.addEventListener("click",startMissed);
+}
 function startMissed(){
+  if(!leaveExamGuard()) return;
   quiz.mode="MISSED";
   quiz.pool=shuffle(missedIds().map(qById).filter(Boolean));
   quiz.idx=0; quiz.correct=0; buildModebar(); renderQ();
@@ -1316,7 +1663,7 @@ function renderQ(){
   if(quiz.idx>=quiz.pool.length){ renderResult(); return; }
   var q=quiz.pool[quiz.idx]; quiz.answered=false;
   var bp=BLUEPRINT.filter(function(x){return x.k===q.t;})[0];
-  var label=quiz.mode.indexOf("MOCK")===0?"Mock":(quiz.mode==="MISSED"?"Retry":bp.name);
+  var label=quiz.mode.indexOf("MOCK")===0?"Mock":(quiz.mode==="MISSED"?"Retry":(quiz.mode==="BLITZ"?"Blitz":bp.name));
   var html='<div class="qmeta"><span class="pill" style="background:'+colorFor(q.t)+'">'+q.t+' · '+bp.name+'</span>'
     +'<span class="score">Q '+(quiz.idx+1)+'/'+quiz.pool.length+' · score '+quiz.correct+'</span></div>'
     +'<div class="qtext">'+q.q+'</div><div id="opts">';
@@ -1342,7 +1689,7 @@ function answer(i,q){
   var ex=document.getElementById("explain");
   ex.innerHTML='<b>'+(right?"Correct.":"Not quite.")+'</b> '+q.e; ex.classList.add("show");
   document.getElementById("nextBtn").style.display="inline-block";
-  renderWeak(); renderRibbon();
+  renderWeak(); renderRibbon(); renderFinalStretch();
 }
 function renderResult(){
   var pct=quiz.pool.length?Math.round(quiz.correct/quiz.pool.length*100):0;
@@ -1357,6 +1704,7 @@ function renderResult(){
   document.getElementById("againBtn").addEventListener("click",function(){
     if(quiz.mode.indexOf("MOCK")===0) startMock(parseInt(quiz.mode.replace("MOCK",""),10));
     else if(quiz.mode==="MISSED") startMissed();
+    else if(quiz.mode==="BLITZ") startBlitz();
     else startQuiz(quiz.mode);
   });
   var mb=document.getElementById("missBtn"); if(mb) mb.addEventListener("click",startMissed);
@@ -1429,7 +1777,7 @@ function setupTabs(){
 /* ---------- INIT ---------- */
 function init(){
   setupTabs(); renderBlueprint(); renderWeeks(); renderWeak();
-  startQuiz("F"); setDeck("ALL"); renderChecks(); renderRibbon();
+  startQuiz("F"); setDeck("ALL"); renderChecks(); renderRibbon(); renderFinalStretch();
   document.getElementById("fcard").addEventListener("click",function(){ this.classList.toggle("flipped"); });
   document.getElementById("fcard").addEventListener("keydown",function(e){ if(e.key===" "||e.key==="Enter"){e.preventDefault();this.classList.toggle("flipped");} });
   document.getElementById("fcKnow").addEventListener("click",function(){ advanceCard(true); });
@@ -1437,7 +1785,7 @@ function init(){
   document.getElementById("resetBtn").addEventListener("click",function(){
     if(confirm("Reset all progress: plan, scores, flashcards, missed pile, and checklist?")){
       STATE={planDone:{},stats:{},known:{},checks:{},missed:{}}; saveState();
-      renderWeeks(); renderWeak(); renderChecks(); renderRibbon(); buildModebar(); startQuiz("F"); setDeck("ALL");
+      renderWeeks(); renderWeak(); renderChecks(); renderRibbon(); renderFinalStretch(); buildModebar(); startQuiz("F"); setDeck("ALL");
     }
   });
 }
