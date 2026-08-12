@@ -1,0 +1,2805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+<!-- ═══ SECURITY HEADERS ═══ -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com;
+  img-src 'self' data: https:;
+  connect-src 'self';
+  frame-ancestors 'none';
+  base-uri 'self';
+  form-action 'self' mailto: https://wa.me;
+" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<!-- ═══ END SECURITY HEADERS ═══ -->
+
+<title>Hair by Gurbina · Hairstylist in Surrey &amp; Vancouver BC · Balayage, Cuts, Colour &amp; Bridal</title>
+<meta name="description" content="Hairstylist in Surrey and Vancouver, BC. Balayage, precision cuts, colour correction, keratin smoothing, extensions, and South Asian bridal hair. Book a consultation." />
+<meta name="theme-color" content="#170A0F" />
+<meta name="author" content="Gurbina" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' x='5'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+
+<!-- Open Graph. EDIT: if a custom domain replaces GitHub Pages, update these URLs. -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Hair by Gurbina · Hairstylist in Surrey &amp; Vancouver BC" />
+<meta property="og:description" content="Balayage, precision cuts, colour correction, keratin smoothing, extensions, and South Asian bridal hair across the Lower Mainland." />
+<meta property="og:image" content="https://hairbygurbina.com/images/c11-blonde-highlights-side.jpg" />
+<meta property="og:locale" content="en_CA" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Hair by Gurbina · Hairstylist in Surrey &amp; Vancouver BC" />
+<meta name="twitter:description" content="Balayage, cuts, colour and South Asian bridal hair in the Lower Mainland." />
+<meta name="twitter:image" content="https://hairbygurbina.com/images/c11-blonde-highlights-side.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/c11-blonde-highlights-side.jpg" fetchpriority="high" />
+
+<!-- Local SEO: HairSalon structured data.
+     EDIT: if a custom domain replaces GitHub Pages, update "url" and "image". -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Hair by Gurbina",
+  "alternateName": "Style & Glow Studio",
+  "image": "https://hairbygurbina.com/images/c11-blonde-highlights-side.jpg",
+  "url": "https://hairbygurbina.com/",
+  "telephone": "+17789993179",
+  "email": "makeoversgurbina@gmail.com",
+  "priceRange": "$$",
+  "slogan": "Colour that looks born, not booked.",
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": "https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services"
+  },
+  "address": { "@type": "PostalAddress", "addressLocality": "Surrey", "addressRegion": "BC", "addressCountry": "CA" },
+  "areaServed": [
+    { "@type": "City", "name": "Surrey" },
+    { "@type": "City", "name": "Vancouver" },
+    { "@type": "AdministrativeArea", "name": "Lower Mainland, British Columbia" }
+  ],
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Tuesday", "Wednesday"],
+    "opens": "10:00",
+    "closes": "20:00"
+  }],
+  "sameAs": ["https://www.instagram.com/stylendglow"],
+  "knowsAbout": ["Balayage", "Soft perms", "Precision haircuts", "Colour correction", "Keratin smoothing", "Hair extensions", "South Asian bridal hair", "Bridal makeup", "Waterfall braids", "Floral hair placement"]
+}
+</script>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   THE GILDED HOUR · plum noir · champagne gold · rose silk
+   A night-jewel salon: gold foil type, jharokha arch frames,
+   one golden thread drawn through the page.
+═══════════════════════════════════════════════════════════ */
+:root {
+  --noir:        #170A0F;
+  --noir-soft:   #221018;
+  --velvet:      #2C1520;
+  --velvet-hi:   #3A1D2A;
+
+  --ivory:       #F6EDE3;
+  --ivory-soft:  #E4D4C4;
+  --mute:        #BA9E94;
+
+  --champagne:   #D9B87C;
+  --gold-hi:     #F4E3BC;
+  --gold-dim:    rgba(217, 184, 124, 0.35);
+  --gold-line:   rgba(217, 184, 124, 0.22);
+
+  --rose-silk:   #D98A7E;
+  --rose-deep:   #A44A3F;
+  --wa-green:    #25D366;
+
+  --display: 'Fraunces', Georgia, serif;
+  --accent:  'Instrument Serif', Georgia, serif;
+  --sans:    'DM Sans', system-ui, sans-serif;
+  --script:  'Caveat', cursive;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --arch: 999px 999px 18px 18px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
+}
+body {
+  background: var(--noir);
+  color: var(--ivory);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.65;
+  overflow-x: hidden;
+  width: 100%;
+}
+::selection { background: var(--champagne); color: var(--noir); }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+a, button { -webkit-tap-highlight-color: transparent; }
+button { font-family: inherit; }
+
+.wrap { max-width: 1260px; margin: 0 auto; padding: 0 clamp(20px, 4.5vw, 52px); }
+section { position: relative; padding: clamp(80px, 11vw, 130px) 0; }
+
+a:focus-visible, button:focus-visible, [tabindex="0"]:focus-visible {
+  outline: 2px solid var(--champagne);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.skip-link {
+  position: fixed; top: -60px; left: 16px; z-index: 10005;
+  background: var(--champagne); color: var(--noir);
+  padding: 12px 22px; border-radius: 100px;
+  font-size: 13px; font-weight: 500;
+  transition: top 0.25s var(--ease);
+}
+.skip-link:focus { top: 12px; }
+
+/* Gold scroll thread: reading progress at the top edge */
+.scroll-progress {
+  position: fixed; top: var(--safe-top); left: 0; right: 0;
+  height: 2px; z-index: 1003; pointer-events: none;
+}
+.scroll-progress span {
+  display: block; height: 100%; width: 100%;
+  background: linear-gradient(90deg, var(--champagne), var(--gold-hi));
+  transform: scaleX(0); transform-origin: left;
+}
+
+/* ─── Gold foil: animated sheen across text ─── */
+.foil {
+  background: linear-gradient(105deg,
+    #96763F 0%, var(--champagne) 28%, #FFF4D8 47%,
+    #FFEBBC 53%, var(--champagne) 72%, #96763F 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* 200% size + 200% travel = exactly one gradient period, so the loop never jumps */
+  animation: foilSheen 5.5s linear infinite;
+}
+@keyframes foilSheen { to { background-position: 200% 0; } }
+
+/* ─── Eyebrows, titles, shared bits ─── */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--champagne);
+}
+.eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--champagne); opacity: 0.7; }
+
+.section-title {
+  font-family: var(--display);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 120, "SOFT" 40;
+  font-weight: 340;
+  font-size: clamp(2.3rem, 5.2vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  margin-top: 18px;
+}
+.section-title .it { font-style: italic; font-weight: 380; }
+.section-head { margin-bottom: clamp(40px, 6vw, 64px); display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.section-head .aside { max-width: 340px; color: var(--mute); font-size: 15px; }
+.num-plate {
+  font-family: var(--accent); font-style: italic;
+  color: var(--champagne); font-size: 1rem; opacity: 0.85;
+}
+
+/* ─── Buttons ─── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 54px; padding: 16px 34px;
+  border-radius: 100px;
+  font-size: 14px; font-weight: 500; letter-spacing: 0.04em;
+  position: relative; overflow: hidden;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+.btn.gold {
+  background: linear-gradient(120deg, #B8925A, var(--champagne) 45%, var(--gold-hi) 70%, var(--champagne));
+  background-size: 180% 100%;
+  color: var(--noir);
+}
+.btn.gold:hover {
+  transform: translateY(-2px);
+  background-position: 100% 0;
+  box-shadow: 0 18px 40px -14px rgba(217, 184, 124, 0.45);
+}
+.btn.ghost {
+  background: transparent;
+  border-color: var(--gold-dim);
+  color: var(--ivory);
+}
+.btn.ghost:hover { border-color: var(--champagne); color: var(--gold-hi); transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.98); }
+.btn .arrow { transition: transform 0.4s var(--ease); display: inline-block; }
+.btn:hover .arrow { transform: translate(4px, -4px); }
+
+/* ─── Announcement bar ─── */
+.announce-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1001;
+  height: calc(38px + var(--safe-top));
+  padding-top: var(--safe-top);
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(90deg, #241018, #331822 50%, #241018);
+  border-bottom: 1px solid var(--gold-line);
+  padding: 0 44px;
+}
+.announce-text {
+  font-size: 12px; letter-spacing: 0.06em; color: var(--ivory-soft);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.announce-text a { color: var(--champagne); border-bottom: 1px solid var(--gold-dim); padding-bottom: 1px; }
+.ab-close {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--mute);
+  font-size: 18px; cursor: pointer; padding: 4px 10px;
+}
+.ab-close:hover { color: var(--ivory); }
+
+/* ─── Nav ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: calc(18px + var(--safe-top)) clamp(20px, 4.5vw, 52px) 18px;
+  transition: background 0.4s ease, border-color 0.4s ease, padding 0.4s ease, top 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+body.has-announce nav { top: calc(38px + var(--safe-top)); padding-top: 18px; }
+nav.scrolled {
+  background: rgba(23, 10, 15, 0.82);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom-color: var(--gold-line);
+  padding-top: calc(12px + var(--safe-top)); padding-bottom: 12px;
+}
+body.has-announce nav.scrolled { padding-top: 12px; }
+.logo {
+  display: inline-flex; flex-direction: column;
+  line-height: 1; color: var(--ivory);
+}
+.logo-script {
+  font-family: var(--script); font-weight: 600;
+  font-size: 0.98rem; color: var(--champagne);
+  transform: rotate(-2deg); transform-origin: left bottom;
+  margin-bottom: 1px;
+}
+.logo-name {
+  font-family: var(--display);
+  font-variation-settings: "opsz" 60;
+  font-weight: 420; font-size: 1.4rem; letter-spacing: 0.01em;
+}
+.nav-links { display: flex; align-items: center; gap: clamp(18px, 2.6vw, 34px); }
+.nav-links a {
+  font-size: 13px; letter-spacing: 0.08em; color: var(--ivory-soft);
+  position: relative; padding: 6px 0;
+}
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 1px; background: var(--champagne);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform 0.4s var(--ease);
+}
+.nav-links a:hover { color: var(--gold-hi); }
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav-cta {
+  border: 1px solid var(--gold-dim);
+  border-radius: 100px; padding: 10px 22px;
+  font-size: 13px; letter-spacing: 0.06em; color: var(--champagne);
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.nav-cta:hover { background: var(--champagne); color: var(--noir); border-color: var(--champagne); }
+.mobile-book-link { display: none; }
+.nav-burger {
+  display: none; background: none; border: none; cursor: pointer;
+  flex-direction: column; gap: 5px; padding: 8px; z-index: 1002;
+}
+.nav-burger span {
+  width: 24px; height: 1.5px; background: var(--ivory);
+  transition: transform 0.35s var(--ease), opacity 0.3s ease;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ─── Floating mobile book button ─── */
+.floating-book {
+  position: fixed; bottom: calc(18px + var(--safe-bottom)); left: 16px; right: 16px; z-index: 999;
+  display: none; align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(120deg, #B8925A, var(--champagne) 55%, var(--gold-hi));
+  color: var(--noir);
+  padding: 17px 24px; border-radius: 100px;
+  font-size: 15px; font-weight: 500;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 6px 18px rgba(217, 184, 124, 0.25);
+  transform: translateY(120px); opacity: 0;
+  transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
+}
+.floating-book.visible { transform: translateY(0); opacity: 1; }
+
+/* ─── Ask-the-Stylist chat ─── */
+.chat-launch{position:fixed;z-index:1000;bottom:calc(24px + var(--safe-bottom));right:24px;display:inline-flex;align-items:center;gap:9px;padding:13px 18px 13px 15px;border-radius:100px;background:linear-gradient(120deg,#B8925A,var(--champagne) 55%,var(--gold-hi));color:var(--noir);font-family:var(--sans);font-size:14px;font-weight:500;border:none;cursor:pointer;box-shadow:0 16px 40px -12px rgba(0,0,0,0.6),0 6px 18px rgba(217,184,124,0.25);transition:transform 0.35s var(--ease),opacity 0.35s var(--ease),box-shadow 0.35s var(--ease);}
+.chat-launch:hover{transform:translateY(-3px);box-shadow:0 22px 48px -12px rgba(0,0,0,0.7),0 8px 22px rgba(217,184,124,0.35);}
+.chat-launch svg{width:20px;height:20px;flex:0 0 20px;}
+.chat-launch .cl-dot{width:7px;height:7px;border-radius:50%;background:var(--rose-deep);position:relative;}
+.chat-launch .cl-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--rose-deep);animation:pulseRing 2.2s ease-out infinite;}
+body.chat-open .chat-launch{transform:translateY(120px) scale(0.6);opacity:0;pointer-events:none;}
+.chat-panel{position:fixed;z-index:1001;bottom:calc(24px + var(--safe-bottom));right:24px;width:min(390px,calc(100vw - 40px));height:min(600px,calc(100vh - 130px));display:flex;flex-direction:column;background:linear-gradient(180deg,var(--noir-soft),var(--noir));border:1px solid var(--gold-line);border-radius:22px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(0,0,0,0.85);transform:translateY(30px) scale(0.98);opacity:0;pointer-events:none;transition:transform 0.4s var(--ease),opacity 0.4s var(--ease);}
+body.chat-open .chat-panel{transform:translateY(0) scale(1);opacity:1;pointer-events:auto;}
+.chat-head{display:flex;align-items:center;gap:12px;padding:18px 18px 16px;border-bottom:1px solid var(--gold-line);background:linear-gradient(180deg,var(--velvet-hi),transparent);}
+.chat-head .ch-arch{width:42px;height:46px;flex:0 0 42px;border-radius:var(--arch);overflow:hidden;border:1px solid var(--gold-line);background:var(--velvet);}
+.chat-head .ch-arch img{width:100%;height:100%;object-fit:cover;}
+.chat-head .ch-meta{flex:1;min-width:0;}
+.chat-head .ch-title{font-family:var(--display);font-weight:400;font-size:1.05rem;color:var(--ivory);line-height:1.1;}
+.chat-head .ch-sub{font-size:10.5px;letter-spacing:0.03em;color:var(--mute);margin-top:3px;}
+.chat-head .ch-sub b{color:var(--rose-silk);font-weight:500;}
+.chat-close{background:none;border:1px solid var(--gold-line);color:var(--ivory-soft);width:32px;height:32px;border-radius:50%;cursor:pointer;flex:0 0 32px;font-size:18px;line-height:1;transition:border-color 0.3s,color 0.3s;}
+.chat-close:hover{border-color:var(--champagne);color:var(--champagne);}
+.chat-body{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch;}
+.chat-msg{max-width:84%;padding:12px 15px;border-radius:16px;font-size:14px;line-height:1.6;}
+.chat-msg.bot{align-self:flex-start;background:var(--velvet);border:1px solid var(--gold-line);color:var(--ivory-soft);border-bottom-left-radius:5px;}
+.chat-msg.me{align-self:flex-end;background:linear-gradient(135deg,rgba(217,184,124,0.22),rgba(217,184,124,0.1));border:1px solid var(--gold-dim);color:var(--ivory);border-bottom-right-radius:5px;}
+.chat-msg a{color:var(--champagne);border-bottom:1px solid var(--gold-line);white-space:nowrap;}
+.chat-msg.bot strong{color:var(--gold-hi);font-weight:500;}
+.chat-typing{align-self:flex-start;display:inline-flex;gap:5px;padding:14px 16px;background:var(--velvet);border:1px solid var(--gold-line);border-radius:16px;border-bottom-left-radius:5px;}
+.chat-typing span{width:6px;height:6px;border-radius:50%;background:var(--mute);animation:chatDot 1.2s ease-in-out infinite;}
+.chat-typing span:nth-child(2){animation-delay:0.2s;}
+.chat-typing span:nth-child(3){animation-delay:0.4s;}
+@keyframes chatDot{0%,60%,100%{transform:translateY(0);opacity:0.4;}30%{transform:translateY(-5px);opacity:1;}}
+.chat-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 4px;}
+.chat-chips button{background:none;border:1px solid var(--gold-line);color:var(--ivory-soft);border-radius:100px;padding:7px 13px;font-size:12px;cursor:pointer;font-family:var(--sans);transition:border-color 0.3s,color 0.3s;}
+.chat-chips button:hover{border-color:var(--champagne);color:var(--gold-hi);}
+.chat-input{display:flex;gap:9px;padding:14px 16px calc(14px + var(--safe-bottom));border-top:1px solid var(--gold-line);background:var(--noir-soft);}
+.chat-input input{flex:1;min-width:0;background:var(--velvet);border:1px solid var(--gold-line);border-radius:100px;padding:12px 16px;color:var(--ivory);font-family:var(--sans);font-size:14px;outline:none;transition:border-color 0.3s;}
+.chat-input input:focus{border-color:var(--gold-dim);}
+.chat-input input::placeholder{color:var(--mute);}
+.chat-send{flex:0 0 44px;width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,var(--champagne),var(--gold-hi));color:var(--noir);font-size:17px;display:inline-flex;align-items:center;justify-content:center;transition:transform 0.25s var(--ease);}
+.chat-send:hover{transform:scale(1.08);}
+.chat-send:disabled{opacity:0.5;cursor:default;transform:none;}
+@media (max-width:860px){
+  .chat-launch{bottom:calc(88px + var(--safe-bottom));right:16px;padding:12px 16px 12px 14px;font-size:13px;}
+  body.chat-open .floating-book{display:none;}
+  .chat-panel{bottom:0;right:0;left:0;width:100%;height:88vh;border-radius:22px 22px 0 0;}
+}
+@media (prefers-reduced-motion:reduce){
+  .chat-launch,.chat-panel,.chat-send,.chat-typing span,.chat-launch .cl-dot::after{transition:none;animation:none;}
+}
+</style>
+<style>
+/* ─── Hero: full-bleed gilded cover ─── */
+.hero {
+  min-height: 100svh;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(30px, 5vw, 70px);
+  align-items: center;
+  padding-top: calc(150px + var(--safe-top));
+  padding-bottom: 70px;
+  overflow: hidden;
+}
+body.has-announce .hero { padding-top: calc(168px + var(--safe-top)); }
+
+.hero-thread {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+}
+.hero-thread path {
+  fill: none; stroke: var(--champagne); stroke-width: 1.1;
+  opacity: 0.32; stroke-linecap: round;
+  stroke-dasharray: 2600; stroke-dashoffset: 2600;
+  animation: threadDraw 3s var(--ease) 0.5s forwards;
+}
+@keyframes threadDraw { to { stroke-dashoffset: 0; } }
+
+.hero-text { position: relative; z-index: 2; }
+.hero-text > * { animation: riseIn 1s var(--ease) both; }
+.hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-text > *:nth-child(2) { animation-delay: 0.26s; }
+.hero-text > *:nth-child(3) { animation-delay: 0.44s; }
+.hero-text > *:nth-child(4) { animation-delay: 0.6s; }
+.hero-text > *:nth-child(5) { animation-delay: 0.74s; }
+.hero-text > *:nth-child(6) { animation-delay: 0.88s; }
+.hero-text > *:nth-child(7) { animation-delay: 1.02s; }
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(32px); filter: blur(8px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-weight: 330;
+  margin: 20px 0 14px;
+}
+.hero h1 .script-line {
+  display: block;
+  font-family: var(--script); font-weight: 600;
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem);
+  color: var(--rose-silk);
+  transform: rotate(-2.5deg); transform-origin: left bottom;
+  margin: 0 0 -4px 6px;
+}
+.hero h1 .name-line {
+  display: block;
+  font-size: clamp(4.2rem, 11.5vw, 9.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  filter: drop-shadow(0 0 12px rgba(244, 227, 188, 0.35))
+          drop-shadow(0 2px 34px rgba(217, 184, 124, 0.32));
+}
+.hero-tagline {
+  font-family: var(--display);
+  font-variation-settings: "opsz" 90;
+  font-weight: 340;
+  font-size: clamp(1.3rem, 2.7vw, 1.85rem);
+  color: var(--ivory);
+  margin-bottom: 22px;
+}
+.hero-tagline .it { font-style: italic; color: var(--rose-silk); }
+
+.hero-sub {
+  font-size: 16.5px; color: var(--mute);
+  max-width: 470px; margin-bottom: 40px; line-height: 1.7;
+}
+.hero-sub strong { color: var(--ivory); font-weight: 400; }
+
+/* EDIT STATS in the markup below: keep them verifiable. */
+.hero-meta {
+  display: flex; gap: clamp(24px, 4vw, 46px); flex-wrap: wrap;
+  padding: 22px 0; margin-bottom: 40px;
+  border-top: 1px solid var(--gold-line);
+  border-bottom: 1px solid var(--gold-line);
+}
+.hero-meta div { display: flex; flex-direction: column; gap: 5px; }
+.hero-meta .n {
+  font-family: var(--display); font-weight: 340;
+  font-variation-settings: "opsz" 100;
+  font-size: 2rem; line-height: 1; color: var(--ivory);
+}
+.hero-meta .n .em { font-style: italic; color: var(--champagne); }
+.hero-meta .l {
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--mute);
+}
+.live-chip {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid var(--gold-line); border-radius: 100px;
+  background: rgba(34, 16, 24, 0.55);
+  padding: 9px 18px; margin-bottom: 24px;
+  font-size: 12px; letter-spacing: 0.06em; color: var(--ivory-soft);
+}
+.pulse-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--champagne); position: relative; flex: 0 0 8px;
+}
+.pulse-dot::after {
+  content: ""; position: absolute; inset: -4px;
+  border-radius: 50%; border: 1px solid var(--champagne);
+  animation: pulseRing 2.2s ease-out infinite;
+}
+@keyframes pulseRing {
+  0% { transform: scale(0.5); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* Jharokha arch photo composition */
+.hero-visual { position: relative; z-index: 1; height: clamp(480px, 66vh, 660px); }
+.hero-arch {
+  position: absolute; top: 0; right: 0;
+  width: 76%; height: 100%;
+  border-radius: var(--arch);
+  overflow: hidden;
+  animation: archUnveil 1.4s var(--ease) 0.4s both;
+}
+.hero-arch img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: 68% top;
+  animation: slowZoom 22s ease-in-out infinite alternate;
+}
+@keyframes slowZoom { to { transform: scale(1.09); } }
+@keyframes archUnveil {
+  from { clip-path: inset(0 0 100% 0 round 999px 999px 18px 18px); }
+  to   { clip-path: inset(0 0 0 0 round 999px 999px 18px 18px); }
+}
+.hero-arch::after {
+  content: ""; position: absolute; inset: 10px;
+  border: 1px solid rgba(244, 227, 188, 0.55);
+  border-radius: var(--arch);
+  pointer-events: none;
+}
+.hero-arch-ring {
+  position: absolute; top: -14px; right: -14px;
+  width: calc(76% + 28px); height: calc(100% + 28px);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--arch);
+  pointer-events: none;
+  animation: fadeIn 1s ease 1.2s both;
+}
+.hero-small {
+  position: absolute; bottom: -8px; left: 0;
+  width: 42%; aspect-ratio: 4 / 5;
+  animation: riseIn 1s var(--ease) 0.9s both;
+  z-index: 2;
+}
+.hs-ph {
+  width: 100%; height: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 6px solid var(--noir);
+  outline: 1px solid var(--gold-dim);
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7);
+}
+.hs-ph img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.hero-me-tag {
+  position: absolute; bottom: -14px; right: -16px;
+  background: var(--champagne); color: var(--noir);
+  font-family: var(--script); font-weight: 600; font-size: 1.15rem;
+  padding: 7px 19px; border-radius: 100px;
+  transform: rotate(-4deg);
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.hero-side-label {
+  position: absolute; top: 50%; right: -21px;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-size: 10px; letter-spacing: 0.42em; text-transform: uppercase;
+  color: var(--champagne);
+  background: var(--noir);
+  padding: 18px 3px;
+  animation: fadeIn 1s ease 1.4s both;
+}
+
+/* ─── Marquee: gold foil ribbon ─── */
+.marquee-wrap {
+  overflow: hidden; padding: 34px 0;
+  border-top: 1px solid var(--gold-line);
+  border-bottom: 1px solid var(--gold-line);
+  background: linear-gradient(180deg, transparent, rgba(217, 184, 124, 0.05), transparent);
+}
+.marquee-track {
+  display: flex; gap: 44px; width: max-content;
+  animation: marquee 34s linear infinite;
+  font-family: var(--display); font-weight: 340;
+  font-variation-settings: "opsz" 90;
+  font-size: 1.5rem; white-space: nowrap;
+}
+.marquee-track .it { font-style: italic; }
+.marquee-track .dot { color: var(--champagne); opacity: 0.7; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ─── Gallery: the salon wall ─── */
+.gallery-filters {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 38px;
+}
+.gallery-filters button {
+  background: transparent;
+  border: 1px solid var(--gold-line);
+  color: var(--ivory-soft);
+  border-radius: 100px;
+  padding: 10px 20px;
+  font-size: 12.5px; letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.gallery-filters button .count { color: var(--champagne); font-family: var(--accent); font-style: italic; margin-left: 4px; }
+.gallery-filters button:hover { border-color: var(--champagne); }
+.gallery-filters button.active {
+  background: var(--champagne); border-color: var(--champagne);
+  color: var(--noir);
+}
+.gallery-filters button.active .count { color: var(--noir); }
+
+.wall {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 8px;        /* JS spans each plate across these micro-rows */
+  gap: 0 22px;
+  align-items: start;
+}
+.plate {
+  position: relative;
+  background: var(--velvet);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  padding: 12px 12px 16px;
+  cursor: zoom-in;
+  transition: transform 0.45s var(--ease), border-color 0.45s var(--ease), box-shadow 0.45s var(--ease);
+}
+.plate:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold-dim);
+  box-shadow: 0 34px 70px -22px rgba(0, 0, 0, 0.85);
+}
+.plate.filter-hidden { display: none; }
+.plate .ph { position: relative; overflow: hidden; border-radius: var(--radius-sm); }
+.plate .ph::after {
+  content: ""; position: absolute; inset: 8px;
+  border: 1px solid rgba(244, 227, 188, 0.4);
+  border-radius: calc(var(--radius-sm) - 4px);
+  pointer-events: none;
+  opacity: 0; transition: opacity 0.4s ease;
+}
+.plate:hover .ph::after { opacity: 1; }
+.plate img {
+  width: 100%; height: auto; display: block;
+  transition: transform 0.7s var(--ease), filter 0.7s var(--ease);
+}
+.plate:hover img { transform: scale(1.045); filter: saturate(1.1); }
+/* Plates render every photo at its natural ratio: masonry absorbs the height differences, nothing gets cropped */
+.plate-cap {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  padding: 14px 6px 0;
+}
+.plate-cap h4 {
+  font-family: var(--accent); font-style: italic; font-weight: 400;
+  font-size: 1.05rem; color: var(--ivory);
+}
+.plate-cap .tag {
+  font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--champagne); white-space: nowrap;
+}
+.bridal-invite {
+  background: linear-gradient(150deg, var(--velvet-hi), var(--velvet) 65%);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius);
+  padding: clamp(30px, 5vw, 54px);
+}
+.bi-lead {
+  font-family: var(--display); font-weight: 340;
+  font-variation-settings: "opsz" 80;
+  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+  line-height: 1.5; color: var(--ivory);
+  max-width: 760px;
+}
+.bi-lead strong { font-weight: 420; color: var(--gold-hi); }
+.bi-note {
+  font-family: var(--accent); font-style: italic;
+  color: var(--champagne); font-size: 1.05rem;
+  margin: 22px 0 30px;
+}
+.bi-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+@media (max-width: 640px) { .bi-ctas .btn { width: 100%; } }
+
+/* ─── The Mission: full-width manifesto band ─── */
+.mission {
+  text-align: center;
+  border-top: 1px solid var(--gold-line);
+  border-bottom: 1px solid var(--gold-line);
+  background: linear-gradient(180deg, var(--noir), var(--noir-soft) 50%, var(--noir));
+  padding: clamp(90px, 12vw, 150px) 0;
+}
+.mission-lines { max-width: 820px; margin: 34px auto 0; }
+.mission-lines p {
+  font-family: var(--display);
+  font-variation-settings: "opsz" 110, "SOFT" 40;
+  font-weight: 340;
+  color: var(--ivory-soft);
+  font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+.mission-lines p.m1 {
+  font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  margin-bottom: 30px;
+}
+.mission-lines p .it { font-style: italic; }
+.mission-star { color: var(--champagne); font-size: 1.1rem; margin-top: 8px; }
+
+/* ─── The Adjustment Promise ─── */
+.promise {
+  margin-top: 22px;
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  background: linear-gradient(150deg, var(--noir-soft), var(--velvet) 75%);
+  padding: clamp(26px, 4vw, 40px);
+}
+.promise-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 26px; flex-wrap: wrap; }
+.promise-head h3 {
+  font-family: var(--display); font-weight: 350;
+  font-variation-settings: "opsz" 90;
+  font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+  color: var(--ivory);
+}
+.promise-head h3 .it { font-style: italic; }
+.promise-sub { font-family: var(--accent); font-style: italic; color: var(--champagne); font-size: 1.02rem; }
+.promise-list {
+  list-style: none;
+  margin-top: 22px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px 40px;
+}
+.promise-list li {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(217, 184, 124, 0.14);
+  font-size: 14px; color: var(--ivory-soft);
+}
+.pnum {
+  width: 27px; height: 27px; flex: 0 0 27px; border-radius: 50%;
+  border: 1px solid var(--gold-dim); color: var(--champagne);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--accent); font-style: italic; font-size: 11.5px;
+  margin-top: 1px;
+}
+.promise-close {
+  margin-top: 20px;
+  font-family: var(--accent); font-style: italic;
+  color: var(--gold-hi); font-size: 1.08rem;
+}
+@media (max-width: 700px) { .promise-list { grid-template-columns: 1fr; } }
+
+/* Mobile swipe gallery (built by JS from the wall) */
+.m-gallery { display: none; }
+.m-track {
+  display: flex; gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 4px 12px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.m-track::-webkit-scrollbar { display: none; }
+.m-slide {
+  flex: 0 0 82%;
+  scroll-snap-align: center;
+  position: relative;
+  background: var(--velvet);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  padding: 10px 10px 14px;
+}
+.m-slide.filter-hidden { display: none; }
+.m-ph {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: rgba(23, 10, 15, 0.35);
+  display: flex; align-items: center; justify-content: center;
+}
+.m-ph img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+}
+.m-slide figcaption {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  padding: 12px 4px 0;
+}
+.m-slide h4 { font-family: var(--accent); font-style: italic; font-weight: 400; font-size: 1rem; color: var(--ivory); }
+.m-slide .tag { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--champagne); }
+.m-dots { display: flex; justify-content: center; margin-top: 16px; }
+.m-count {
+  font-family: var(--accent); font-style: italic;
+  color: var(--champagne); font-size: 1.02rem;
+  letter-spacing: 0.12em;
+}
+
+/* CTA band after each gallery */
+.glance-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+  margin-top: 44px; padding: 30px 36px;
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  background: linear-gradient(120deg, var(--velvet), var(--noir-soft) 70%);
+}
+.glance-cta p {
+  font-family: var(--display); font-weight: 340;
+  font-variation-settings: "opsz" 90;
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  line-height: 1.3; color: var(--ivory);
+}
+.glance-cta p .it { font-style: italic; color: var(--champagne); }
+</style>
+<style>
+/* ─── Full-bleed break ─── */
+/* ─── About: arch portrait ─── */
+.about {
+  display: grid; grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(40px, 6vw, 90px); align-items: center;
+}
+.about-visual { position: relative; }
+.about-arch {
+  border-radius: var(--arch);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4 / 5.4;
+}
+.about-arch img { width: 100%; height: 100%; object-fit: cover; }
+.about-arch::after {
+  content: ""; position: absolute; inset: 10px;
+  border: 1px solid rgba(244, 227, 188, 0.5);
+  border-radius: var(--arch);
+  pointer-events: none;
+}
+.about-ring {
+  position: absolute; inset: -14px;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--arch);
+  pointer-events: none;
+}
+.about-tag {
+  position: absolute; bottom: 22px; right: -18px;
+  background: var(--champagne); color: var(--noir);
+  font-family: var(--script); font-size: 1.25rem;
+  padding: 8px 20px; border-radius: 100px;
+  transform: rotate(-4deg);
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.55);
+}
+.about-text p { color: var(--mute); margin-top: 22px; max-width: 560px; }
+.about-text p strong { color: var(--ivory); font-weight: 400; }
+.about-text em { font-style: italic; color: var(--rose-silk); }
+.signature {
+  font-family: var(--script); font-size: 2rem; color: var(--champagne);
+  margin-top: 30px;
+}
+
+/* ─── Services: the gilded menu ─── */
+.menu {
+  columns: 2; column-gap: clamp(40px, 6vw, 90px);
+  border-top: 1px solid var(--gold-line);
+  padding-top: 14px;
+}
+.menu-item {
+  break-inside: avoid;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--gold-line);
+}
+.menu-row { display: flex; align-items: baseline; gap: 12px; }
+.menu-row h3 {
+  font-family: var(--display); font-weight: 360;
+  font-variation-settings: "opsz" 80;
+  font-size: 1.3rem; letter-spacing: -0.01em; color: var(--ivory);
+  white-space: nowrap;
+}
+.menu-row h3 .it { font-style: italic; color: var(--gold-hi); }
+.menu-leader {
+  flex: 1; min-width: 24px;
+  border-bottom: 1px dotted rgba(217, 184, 124, 0.45);
+  transform: translateY(-5px);
+}
+.menu-row .menu-no {
+  font-family: var(--accent); font-style: italic;
+  color: var(--champagne); font-size: 0.95rem;
+}
+.menu-item p { color: var(--mute); font-size: 14px; margin-top: 8px; max-width: 480px; }
+.addons { margin-top: 46px; }
+.addons-label {
+  font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--champagne); margin-bottom: 16px;
+}
+.addons-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.addons-pills span {
+  border: 1px solid var(--gold-line);
+  border-radius: 100px; padding: 8px 16px;
+  font-size: 12.5px; color: var(--ivory-soft);
+}
+
+/* ─── Packages: velvet cards ─── */
+.packages-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+}
+.pkg-card {
+  position: relative;
+  background: var(--velvet);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  padding: 30px 26px 26px;
+  display: flex; flex-direction: column;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.pkg-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold-dim);
+  box-shadow: 0 26px 60px -24px rgba(0, 0, 0, 0.75);
+}
+.pkg-card.featured-pkg {
+  background: linear-gradient(160deg, var(--velvet-hi), var(--velvet));
+  border-color: var(--champagne);
+}
+.pkg-badge {
+  display: inline-block; align-self: flex-start;
+  font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--champagne);
+  border: 1px solid var(--gold-dim);
+  border-radius: 100px; padding: 5px 12px; margin-bottom: 18px;
+}
+.featured-pkg .pkg-badge { background: var(--champagne); color: var(--noir); border-color: var(--champagne); }
+.pkg-name {
+  font-family: var(--display); font-weight: 360;
+  font-variation-settings: "opsz" 90;
+  font-size: 1.5rem; color: var(--ivory);
+}
+.pkg-name .it { font-style: italic; color: var(--gold-hi); }
+.pkg-tagline { font-size: 13px; color: var(--rose-silk); margin: 6px 0 18px; }
+.pkg-includes { list-style: none; margin-bottom: 24px; flex: 1; }
+.pkg-includes li {
+  font-size: 13.5px; color: var(--mute);
+  padding: 8px 0 8px 20px; position: relative;
+  border-bottom: 1px solid rgba(217, 184, 124, 0.12);
+}
+.pkg-includes li::before {
+  content: "✦"; position: absolute; left: 0; top: 8px;
+  color: var(--champagne); font-size: 10px;
+}
+.pkg-cta {
+  font-family: var(--accent); font-style: italic;
+  color: var(--champagne); font-size: 1.02rem;
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+.pkg-cta:hover { color: var(--gold-hi); letter-spacing: 0.03em; }
+
+/* ─── Before / After ─── */
+.ba-head{margin-bottom:44px;}
+.ba-head .aside{color:var(--mute);font-family:var(--accent);font-style:italic;font-size:1.15rem;margin-top:14px;max-width:520px;}
+.ba-stage{
+  position:relative;max-width:560px;margin:0 auto;
+  aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--gold-dim);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,0.8);
+  user-select:none;touch-action:pan-y;-webkit-user-select:none;
+}
+.ba-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;}
+.ba-before-wrap{position:absolute;inset:0;overflow:hidden;width:50%;will-change:width;}
+.ba-before-wrap img{width:auto;height:100%;max-width:none;}
+.ba-label{
+  position:absolute;bottom:18px;z-index:3;
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  padding:7px 15px;border-radius:100px;
+  background:rgba(23,10,15,0.72);border:1px solid var(--gold-dim);
+  color:var(--gold-hi);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.ba-label.before{left:18px;}
+.ba-label.after{right:18px;}
+.ba-divider{
+  position:absolute;top:0;bottom:0;width:2px;left:50%;z-index:4;
+  background:linear-gradient(180deg,transparent,var(--gold-hi),transparent);
+  transform:translateX(-50%);will-change:left;
+}
+.ba-handle{
+  position:absolute;top:50%;left:50%;z-index:5;
+  transform:translate(-50%,-50%);
+  width:52px;height:52px;border-radius:50%;
+  background:var(--noir);border:1.5px solid var(--champagne);
+  display:flex;align-items:center;justify-content:center;gap:3px;
+  box-shadow:0 6px 24px rgba(0,0,0,0.6);will-change:left;
+}
+.ba-handle span{color:var(--champagne);font-size:15px;line-height:1;}
+.ba-hint{text-align:center;margin-top:20px;font-family:var(--accent);font-style:italic;color:var(--mute);font-size:1.02rem;}
+.ba-stage.ba-tap{cursor:pointer;}
+.ba-stage.ba-tap .ba-handle{width:46px;height:46px;animation:tapPulse 2.4s ease-in-out infinite;}
+@keyframes tapPulse{0%,100%{box-shadow:0 6px 24px rgba(0,0,0,0.6),0 0 0 0 rgba(217,184,124,0.4);}50%{box-shadow:0 6px 24px rgba(0,0,0,0.6),0 0 0 10px rgba(217,184,124,0);}}
+.ba-stage.ba-tap .ba-divider{opacity:0.5;}
+.ba-stage:not(.ba-tap){cursor:ew-resize;}
+
+/* ─── FAQ ─── */
+/* ─── Policies: velvet cards ─── */
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.policy-card {
+  background: var(--velvet);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  display: flex; flex-direction: column;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.policy-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold-dim);
+  box-shadow: 0 26px 60px -24px rgba(0, 0, 0, 0.75);
+}
+.policy-badge {
+  align-self: flex-start;
+  font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--champagne);
+  border: 1px solid var(--gold-dim);
+  border-radius: 100px; padding: 5px 12px; margin-bottom: 16px;
+}
+.policy-name {
+  font-family: var(--display); font-weight: 360;
+  font-variation-settings: "opsz" 90;
+  font-size: 1.3rem; line-height: 1.2; color: var(--ivory);
+  margin-bottom: 12px;
+}
+.policy-name .it { font-style: italic; color: var(--gold-hi); }
+.policy-card p { font-size: 14.5px; line-height: 1.65; color: var(--mute); }
+.policy-foot {
+  margin-top: 32px; text-align: center;
+  font-size: 14.5px; color: var(--ivory-soft);
+}
+.policy-foot a {
+  color: var(--champagne); border-bottom: 1px solid var(--gold-line);
+  padding-bottom: 1px; white-space: nowrap;
+}
+.policy-foot a:hover { color: var(--gold-hi); }
+.faq-section{background:linear-gradient(180deg,var(--noir),var(--noir-soft) 50%,var(--noir));border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line);}
+.faq-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:clamp(30px,6vw,80px);align-items:start;}
+.faq-intro .aside{color:var(--mute);font-family:var(--accent);font-style:italic;font-size:1.15rem;margin-top:16px;}
+.faq-intro .faq-cta{display:inline-flex;align-items:center;gap:9px;margin-top:26px;font-size:13px;letter-spacing:0.04em;color:var(--champagne);border-bottom:1px solid var(--gold-dim);padding-bottom:3px;}
+.faq-list{border-top:1px solid var(--gold-line);}
+.faq-item{border-bottom:1px solid var(--gold-line);}
+.faq-q{
+  width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  padding:24px 44px 24px 0;position:relative;
+  font-family:var(--display);font-weight:360;font-size:clamp(1.05rem,1.9vw,1.28rem);
+  color:var(--ivory);transition:color 0.3s var(--ease);
+}
+.faq-q:hover{color:var(--gold-hi);}
+.faq-q::after{
+  content:"";position:absolute;right:6px;top:50%;width:13px;height:13px;
+  background:linear-gradient(var(--champagne),var(--champagne)) center/13px 1.5px no-repeat,linear-gradient(var(--champagne),var(--champagne)) center/1.5px 13px no-repeat;
+  transform:translateY(-50%) rotate(0deg);transition:transform 0.4s var(--ease);
+}
+.faq-item.open .faq-q::after{transform:translateY(-50%) rotate(135deg);}
+.faq-a{overflow:hidden;max-height:0;transition:max-height 0.45s var(--ease);}
+.faq-a-inner{padding:0 30px 26px 0;color:var(--ivory-soft);font-size:15px;line-height:1.7;}
+.faq-a-inner strong{color:var(--gold-hi);font-weight:400;}
+@media (max-width:860px){.faq-grid{grid-template-columns:1fr;gap:32px;}}
+
+/* ─── Reviews ─── */
+.quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.quote {
+  position: relative;
+  background: var(--velvet);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  padding: 54px 30px 30px;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.quote:hover { transform: translateY(-6px); border-color: var(--gold-dim); }
+.quote-tag {
+  position: absolute; top: 20px; right: 20px;
+  font-size: 9.5px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 6px 13px; border-radius: 100px; border: 1px solid;
+}
+.quote-tag.bridal { color: var(--rose-silk); border-color: rgba(217,138,126,0.45); background: rgba(217,138,126,0.08); }
+.quote-tag.hair { color: var(--champagne); border-color: var(--gold-dim); background: rgba(217,184,124,0.08); }
+.quote-stars { margin-bottom: 14px; }
+.stars-row { display: inline-flex; gap: 3px; }
+.stars-row svg { width: 15px; height: 15px; color: var(--champagne); }
+.quote-mark {
+  font-family: var(--accent); font-style: italic;
+  font-size: 3.6rem; line-height: 0.4; color: var(--champagne);
+  margin-bottom: 20px; display: block;
+}
+.quote p {
+  font-family: var(--accent); font-size: 1.14rem;
+  line-height: 1.5; color: var(--ivory); margin-bottom: 20px;
+}
+.quote-proof {
+  width: 100%; border-radius: var(--radius-sm);
+  border: 1px solid var(--gold-line);
+  margin-bottom: 22px; display: block;
+  background: rgba(255,255,255,0.02);
+}
+.quote-proof-label {
+  font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--mute); margin-bottom: 10px; display: flex; align-items: center; gap: 7px;
+}
+.quote-proof-label::before { content: "✓"; color: var(--champagne); font-size: 12px; }
+.quote-author { display: flex; align-items: center; gap: 14px; padding-top: 20px; border-top: 1px solid var(--gold-line); }
+.quote-avatar {
+  width: 42px; height: 42px; flex: 0 0 42px;
+  border-radius: 999px 999px 8px 8px;
+  background: linear-gradient(150deg, var(--champagne), var(--rose-deep));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--noir); font-weight: 600; font-size: 13px;
+}
+.quote-who .name { display: block; font-size: 14px; color: var(--ivory); font-weight: 400; }
+.quote-who .role { display: block; font-size: 12px; color: var(--mute); font-family: var(--accent); font-style: italic; }
+@media (max-width: 900px) { .quotes { grid-template-columns: 1fr; } }
+
+/* ─── Contact ─── */
+.contact {
+  background: linear-gradient(180deg, var(--noir), var(--noir-soft) 40%, var(--noir));
+  text-align: center;
+  overflow: hidden;
+}
+.contact-thread {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+}
+.contact-thread path {
+  fill: none; stroke: var(--champagne); stroke-width: 1.2;
+  opacity: 0.4; stroke-linecap: round;
+}
+.contact .wrap { position: relative; z-index: 1; }
+.contact h2 {
+  font-family: var(--display); font-weight: 330;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-size: clamp(2.8rem, 7.5vw, 5.6rem);
+  line-height: 1.02; letter-spacing: -0.025em;
+  margin: 22px 0 26px; color: var(--ivory);
+}
+.contact h2 .it { font-style: italic; }
+.contact-sub { color: var(--mute); max-width: 520px; margin: 0 auto 42px; }
+.contact-grid { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 50px; }
+.btn.wa { background: var(--wa-green); color: #06281a; border-color: var(--wa-green); }
+.btn.wa:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -14px rgba(37, 211, 102, 0.35); }
+.contact-meta {
+  display: flex; justify-content: center; gap: clamp(28px, 5vw, 70px); flex-wrap: wrap;
+  padding-top: 34px; border-top: 1px solid var(--gold-line);
+  font-size: 14px; color: var(--mute);
+}
+.contact-meta strong {
+  display: block; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--champagne); font-weight: 500; margin-bottom: 6px;
+}
+.contact-meta a { color: var(--ivory-soft); }
+.contact-meta a:hover { color: var(--gold-hi); }
+
+/* ─── Footer ─── */
+footer {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+  padding: 34px 0 44px;
+  border-top: 1px solid var(--gold-line);
+  font-size: 13px; color: var(--mute);
+}
+footer .socials { display: flex; gap: 22px; }
+footer .socials a:hover { color: var(--gold-hi); }
+footer em { font-family: var(--accent); font-style: italic; color: var(--ivory-soft); }
+footer .credit { font-family: var(--script); font-size: 1.1rem; color: var(--champagne); }
+
+/* ─── Lightbox ─── */
+.lb-overlay {
+  position: fixed; inset: 0; z-index: 10002;
+  background: rgba(12, 5, 8, 0.94);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s var(--ease);
+}
+.lb-overlay.open { opacity: 1; pointer-events: auto; }
+.lb-figure { margin: 0; max-width: min(92vw, 940px); display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.lb-figure img {
+  max-width: 100%; max-height: 76vh; object-fit: contain;
+  border-radius: var(--radius);
+  outline: 1px solid var(--gold-dim); outline-offset: 8px;
+  box-shadow: 0 50px 140px -30px rgba(0, 0, 0, 0.8);
+  transform: scale(0.96);
+  transition: transform 0.35s var(--ease);
+}
+.lb-overlay.open .lb-figure img { transform: scale(1); }
+.lb-cap {
+  color: var(--gold-hi); font-family: var(--accent); font-style: italic;
+  font-size: 1.15rem; text-align: center; padding: 0 60px;
+}
+.lb-btn {
+  position: fixed; width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(246, 237, 227, 0.08);
+  border: 1px solid var(--gold-dim);
+  color: var(--ivory); font-size: 19px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.lb-btn:hover { background: rgba(217, 184, 124, 0.25); transform: scale(1.06); }
+.lb-close { top: 22px; right: 22px; }
+.lb-prev { left: 18px; top: 50%; margin-top: -24px; }
+.lb-next { right: 18px; top: 50%; margin-top: -24px; }
+
+/* iOS-safe scroll lock while mobile menu open */
+html.menu-locked { overflow: hidden; height: 100%; }
+body.menu-open {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* ─── Reveal on scroll ─── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-stagger > * { opacity: 0; transform: translateY(22px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.reveal-stagger.visible > * { opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.15s; }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.2s; }
+.reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.25s; }
+.reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.3s; }
+.reveal-stagger.visible > *:nth-child(7) { transition-delay: 0.35s; }
+.reveal-stagger.visible > *:nth-child(8) { transition-delay: 0.4s; }
+.reveal-stagger.visible > *:nth-child(9) { transition-delay: 0.45s; }
+.reveal-stagger.visible > *:nth-child(n+10) { transition-delay: 0.5s; }
+
+/* ─── Responsive ─── */
+@media (max-width: 1080px) {
+  .wall { grid-template-columns: repeat(2, 1fr); }
+  .packages-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .nav-links {
+    position: fixed; inset: 0; z-index: 1002;
+    background: var(--noir);
+    flex-direction: column; justify-content: center; gap: 26px;
+    opacity: 0; pointer-events: none;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    transition: opacity 0.4s var(--ease);
+  }
+  .nav-links.open { opacity: 1; pointer-events: auto; touch-action: none; }
+  .nav-links a {
+    font-family: var(--display); font-weight: 340;
+    font-variation-settings: "opsz" 100;
+    font-size: 2rem; letter-spacing: -0.01em;
+  }
+  .mobile-book-link { display: block; color: var(--champagne) !important; font-style: italic; }
+  .nav-cta { display: none; }
+  .nav-burger { display: flex; }
+  .floating-book { display: flex; }
+  body.menu-open .floating-book { display: none; }
+  body.menu-open .announce-bar { display: none; }
+
+  .hero { grid-template-columns: 1fr; padding-top: calc(120px + var(--safe-top)); min-height: auto; }
+  body.has-announce .hero { padding-top: calc(138px + var(--safe-top)); }
+  .hero-thread { display: none; }
+  .hero-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .hero-meta div { padding: 0 14px; }
+  .hero-meta div:first-child { padding-left: 0; }
+  .hero-meta div + div { border-left: 1px solid var(--gold-line); }
+  .nav-links a { opacity: 0; transform: translateY(16px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+  .nav-links.open a { opacity: 1; transform: translateY(0); }
+  .nav-links.open a:nth-child(1) { transition-delay: 0.06s; }
+  .nav-links.open a:nth-child(2) { transition-delay: 0.12s; }
+  .nav-links.open a:nth-child(3) { transition-delay: 0.18s; }
+  .nav-links.open a:nth-child(4) { transition-delay: 0.24s; }
+  .nav-links.open a:nth-child(5) { transition-delay: 0.30s; }
+  .nav-links.open a:nth-child(6) { transition-delay: 0.36s; }
+  .nav-links.open a:nth-child(7) { transition-delay: 0.44s; }
+  .hero-visual { height: auto; aspect-ratio: 4 / 4.6; margin-top: 10px; }
+  .hero-arch { width: 82%; }
+  .hero-arch-ring { width: calc(82% + 28px); }
+  .hero-side-label { display: none; }
+
+  .about { grid-template-columns: 1fr; }
+  .about-visual { max-width: 380px; margin: 0 auto; }
+  .menu { columns: 1; }
+  .section-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+@media (max-width: 768px) {
+  .wall { display: none; }
+  .m-gallery { display: block; }
+  .gallery-filters {
+    flex-wrap: nowrap; overflow-x: auto;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px; margin-right: calc(-1 * clamp(20px, 4.5vw, 52px));
+    padding-right: 48px;
+    -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, #000 88%, transparent);
+  }
+  .gallery-filters::-webkit-scrollbar { display: none; }
+  .gallery-filters button { flex: 0 0 auto; }
+  .m-track { overscroll-behavior-x: contain; }
+  .glance-cta { flex-direction: column; align-items: flex-start; padding: 26px 24px; }
+  .glance-cta .btn { width: 100%; }
+}
+@media (max-width: 640px) {
+  section { padding: 68px 0; }
+  .menu-row { flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; }
+  .menu-row h3 { white-space: normal; font-size: 1.2rem; }
+  .menu-leader { display: none; }
+  .packages-grid { grid-template-columns: 1fr; }
+  .contact-grid { flex-direction: column; }
+  .contact-grid .btn { width: 100%; }
+  .hero-meta { gap: 20px; }
+  .hero-meta .n { font-size: 1.6rem; }
+  .lb-btn { width: 42px; height: 42px; }
+  .lb-prev { left: 10px; } .lb-next { right: 10px; }
+  .lb-cap { padding: 0 20px; font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal, .reveal-stagger > * { opacity: 1; transform: none; }
+}
+
+/* ─── Booking widget: service → day → time → WhatsApp ─── */
+/* ─── Book card: one path, Square ─── */
+.book-card {
+  background: linear-gradient(150deg, var(--velvet-hi), var(--velvet) 60%);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius);
+  padding: clamp(30px, 5vw, 50px);
+  text-align: center;
+}
+.chairs-strip {
+  display: flex; justify-content: center; gap: clamp(12px, 2.6vw, 26px);
+  flex-wrap: wrap; margin-bottom: 32px;
+}
+.chair {
+  text-align: center; padding: 16px 30px; min-width: 132px;
+  border: 1px solid var(--gold-line); border-radius: var(--radius);
+  background: rgba(23, 10, 15, 0.35);
+}
+.chair .t { font-family: var(--display); font-weight: 350; font-size: 1.5rem; color: var(--gold-hi); display: block; }
+.chair .d { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); }
+.book-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.btn-big { min-height: 60px; padding: 18px 44px; font-size: 15.5px; }
+.btn-big::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.55) 50%, transparent 58%);
+  transform: translateX(-130%);
+  animation: sheenSweep 5.5s ease-in-out infinite;
+}
+@keyframes sheenSweep {
+  0%, 55% { transform: translateX(-130%); }
+  75%, 100% { transform: translateX(130%); }
+}
+.book-card .bw-note { max-width: 560px; margin: 18px auto 0; }
+@media (max-width: 640px) {
+  .book-actions { flex-direction: column; }
+  .book-actions .btn { width: 100%; }
+  .chair { flex: 1; min-width: 0; padding: 13px 8px; }
+}
+
+.bw-note { font-size: 12.5px; color: var(--mute); margin-top: 16px; }
+</style>
+</head>
+<body class="has-announce">
+<a class="skip-link" href="#colour-cuts">Skip to the work</a>
+<div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
+
+<div class="announce-bar" id="announceBar">
+  <div class="announce-text" id="announceText">
+    <span id="announceMsg">Now booking colour, treatments &amp; cuts across Surrey &amp; Vancouver · <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer">book an appointment</a></span>
+  </div>
+  <button class="ab-close" id="announceClose" aria-label="Close announcement">×</button>
+</div>
+
+<nav id="nav">
+  <a href="#" class="logo" aria-label="Hair by Gurbina, back to top">
+    <span class="logo-script">hair by</span>
+    <span class="logo-name">Gurbina</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#colour-cuts">Hair</a>
+    <a href="#about">About</a>
+    <a href="#services">Menu</a>
+    <a href="#packages">Packages</a>
+    <a href="#words">Reviews</a>
+    <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer">Book</a>
+    <a href="#work">Bridal</a>
+    <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="mobile-book-link">Book a consultation →</a>
+  </div>
+  <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="nav-cta">Book →</a>
+  <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="floating-book" id="floatingBook">
+  <span>Book a consultation</span><span>→</span>
+</a>
+
+<!-- ═══ ASK THE STYLIST · free hair-advice chat ═══ -->
+<button class="chat-launch" id="chatLaunch" aria-label="Ask the stylist a hair question">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.6-.8L3 21l1.9-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>
+  <span>Ask the stylist</span>
+  <span class="cl-dot" aria-hidden="true"></span>
+</button>
+<div class="chat-panel" id="chatPanel" role="dialog" aria-modal="false" aria-label="Ask the stylist" aria-hidden="true">
+  <div class="chat-head">
+    <div class="ch-arch"><img src="images/gurbina-portrait.jpg" alt="" loading="lazy" decoding="async" /></div>
+    <div class="ch-meta">
+      <div class="ch-title">Ask the Stylist</div>
+      <div class="ch-sub">Free hair answers · <b>Gurbina replies on WhatsApp</b></div>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body" id="chatBody" aria-live="polite"></div>
+  <div class="chat-chips" id="chatChips"></div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Ask about colour, box dye, balayage…" autocomplete="off" enterkeyhint="send" />
+    <button class="chat-send" id="chatSend" aria-label="Send message">↑</button>
+  </div>
+</div>
+
+<div class="wrap">
+<header class="hero">
+  <!-- Signature: one golden strand drawn through the opening -->
+  <svg class="hero-thread" viewBox="0 0 1200 720" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M -40 620 C 200 604, 380 592, 520 560 C 700 518, 690 300, 880 258 C 1010 230, 1090 198, 1250 150" />
+  </svg>
+
+  <div class="hero-text">
+    <span class="eyebrow">Hairstylist · Surrey &amp; Vancouver BC</span>
+    <h1>
+      <span class="script-line">hair by</span>
+      <span class="name-line foil">Gurbina</span>
+    </h1>
+    <p class="hero-tagline">cuts, colour, and a <span class="it">finish</span> people remember.</p>
+    <p class="hero-sub">
+      Hairstylist in Surrey and Vancouver. Balayage, highlights, colour correction, keratin, hair botox, and precision cuts, <strong>plus bridal and events</strong>. Everyday hair, done beautifully.
+    </p>
+    <!-- EDIT STATS: keep these verifiable. To add a real client count once
+         Gurbina confirms one, copy a block and use:
+         <span class="n"><span class="em stat-count" data-count="500">500</span>+</span> -->
+    <div class="hero-meta">
+      <div>
+        <span class="n"><span class="em stat-count" data-count="7">7</span>+</span>
+        <span class="l">Years Behind the Chair</span>
+      </div>
+      <div>
+        <span class="n"><span class="em">1:1</span></span>
+        <span class="l">Personal Appointments</span>
+      </div>
+      <div>
+        <span class="n"><span class="em stat-count" data-count="12">12</span></span>
+        <span class="l">Signature Services</span>
+      </div>
+    </div>
+    <div class="live-chip">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      Booking Tuesdays &amp; Wednesdays · chairs at 10 · 1 · 5
+    </div>
+    <div class="hero-ctas">
+      <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="btn gold"><span>Book a consultation</span><span class="arrow">↗</span></a>
+      <a href="#colour-cuts" class="btn ghost"><span>See the work</span><span>↓</span></a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-arch-ring" aria-hidden="true"></div>
+    <div class="hero-arch">
+      <img src="images/c11-blonde-highlights-side.jpg" alt="Bright blonde highlights with soft curled ends by Gurbina, hairstylist in Surrey BC" fetchpriority="high" />
+    </div>
+    <div class="hero-small">
+      <div class="hs-ph">
+        <img src="images/gurbina-portrait.jpg" alt="Gurbina, the hairstylist behind Hair by Gurbina" fetchpriority="high" />
+      </div>
+      <span class="hero-me-tag">meet Gurbina ✦</span>
+    </div>
+    <span class="hero-side-label">Hair by Gurbina · Lower Mainland BC</span>
+  </div>
+</header>
+</div>
+
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Balayage</span><span class="dot">✦</span>
+    <span class="it">Precision Cuts</span><span class="dot">✦</span>
+    <span>Colour Correction</span><span class="dot">✦</span>
+    <span class="it">Keratin Smoothing</span><span class="dot">✦</span>
+    <span>Extensions</span><span class="dot">✦</span>
+    <span>Soft Perms</span><span class="dot">✦</span>
+    <span class="it">South Asian Bridal</span><span class="dot">✦</span>
+    <span>Waterfall Braids</span><span class="dot">✦</span>
+    <span>Balayage</span><span class="dot">✦</span>
+    <span class="it">Precision Cuts</span><span class="dot">✦</span>
+    <span>Colour Correction</span><span class="dot">✦</span>
+    <span class="it">Keratin Smoothing</span><span class="dot">✦</span>
+    <span>Extensions</span><span class="dot">✦</span>
+    <span>Soft Perms</span><span class="dot">✦</span>
+    <span class="it">South Asian Bridal</span><span class="dot">✦</span>
+    <span>Waterfall Braids</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ═══ CUTS & COLOUR · leads the page ═══ -->
+<section id="colour-cuts">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">Cuts · Colour · Care</span>
+      <h2 class="section-title">Colour, cuts &amp; care you'll <span class="it foil">love.</span></h2>
+    </div>
+    <p class="aside">Balayage, highlights, colour correction, keratin, hair botox, and cuts. Everyday hair, done in a way that keeps you coming back every six weeks.</p>
+  </div>
+
+  <div class="gallery-filters reveal" id="cutsFilters" role="group" aria-label="Filter cuts and colour gallery">
+    <button class="active" data-filter="all">All <span class="count">·30</span></button>
+    <button data-filter="colour">Colour <span class="count">·27</span></button>
+    <button data-filter="balayage">Balayage <span class="count">·17</span></button>
+    <button data-filter="keratin">Keratin &amp; Botox <span class="count">·3</span></button>
+    <button data-filter="highlights">Highlights <span class="count">·9</span></button>
+    <button data-filter="perms">Perms <span class="count">·4</span></button>
+  </div>
+
+  <div class="wall reveal-stagger" id="cutsWall">
+    <div class="plate square" data-category="colour balayage">
+      <div class="ph"><img src="images/c24-caramel-balayage-waves.jpg" width="1086" height="1448" alt="Caramel balayage with soft beach waves" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Caramel melt · beach waves</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate tall" data-category="colour highlights">
+      <div class="ph"><img src="images/c17-honey-ribbon-highlights.jpg" width="1086" height="1448" alt="Honey caramel highlights on dark brunette hair, sleek straight finish" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Honey ribbons · sleek and straight</h4><span class="tag">Highlights</span></div>
+    </div>
+    <div class="plate square" data-category="colour balayage">
+      <div class="ph"><img src="images/c25-golden-glam-balayage.jpg" width="1086" height="1448" alt="Dark base melting into golden glam balayage waves" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Golden hour glam · dark base</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate square" data-category="colour balayage">
+      <div class="ph"><img src="images/c26-mushroom-ash-melt.jpg" width="736" height="1104" alt="Mushroom ash ombre melt on brunette hair" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Mushroom ash melt</h4><span class="tag">Ombre</span></div>
+    </div>
+    <div class="plate tall" data-category="colour highlights balayage">
+      <div class="ph"><img src="images/c10-caramel-highlights-waves.jpg" width="1196" height="1612" alt="Caramel balayage highlights with soft waves by a Surrey hairstylist" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Caramel ribbons · soft waves</h4><span class="tag">Highlights</span></div>
+    </div>
+    <div class="plate tall" data-category="perms">
+      <div class="ph"><img src="images/c20-caramel-spiral-perm.jpg" width="1122" height="1402" alt="Caramel spiral perm with defined bouncy curls" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Spiral perm · caramel bounce</h4><span class="tag">Perm</span></div>
+    </div>
+    <div class="plate tall" data-category="colour highlights">
+      <div class="ph"><img src="images/c16-half-up-ribbon-highlights.jpg" width="1039" height="1377" alt="Half-up hairstyle with silver clip and bold ribbon highlights, Surrey BC" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Half-up ribbons · silver clip</h4><span class="tag">Highlights</span></div>
+    </div>
+    <div class="plate tall" data-category="colour balayage">
+      <div class="ph"><img src="images/c27-golden-blonde-balayage.jpg" width="736" height="981" alt="Golden blonde balayage with bouncy curled ends" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Golden ribbons · bouncy finish</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate square" data-category="colour highlights">
+      <div class="ph"><img src="images/c18-ash-bronde-highlights.jpg" width="1086" height="1448" alt="Cool ash bronde highlights, glass-straight finish" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Ash bronde · glass straight</h4><span class="tag">Highlights</span></div>
+    </div>
+    <div class="plate tall" data-category="perms">
+      <div class="ph"><img src="images/c21-black-spiral-perm.jpg" width="1047" height="1502" alt="Long jet black spiral perm, full volume" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Jet black spirals · mega volume</h4><span class="tag">Perm</span></div>
+    </div>
+    <div class="plate square" data-category="colour highlights">
+      <div class="ph"><img src="images/c12-caramel-highlights-layers.jpg" width="1086" height="1448" alt="Golden caramel highlights on dark layered hair" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Golden threads · dark base</h4><span class="tag">Highlights</span></div>
+    </div>
+    <div class="plate tall" data-category="colour balayage">
+      <div class="ph"><img src="images/c28-cream-blonde-ombre.jpg" width="736" height="1327" alt="Dark roots melting to cream blonde, soft waves" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Cream blonde melt</h4><span class="tag">Ombre</span></div>
+    </div>
+    <div class="plate tall" data-category="colour highlights balayage">
+      <div class="ph"><img src="images/c13-toffee-balayage-waves.jpg" width="1086" height="1448" alt="Toffee balayage highlights with loose waves, Vancouver BC" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Toffee glow · black base</h4><span class="tag">Highlights</span></div>
+    </div>
+    <div class="plate square" data-category="perms">
+      <div class="ph"><img src="images/c22-brunette-ringlet-perm.jpg" width="1086" height="1448" alt="Glossy brunette ringlet perm, long length" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Ringlet perm · glossy brunette</h4><span class="tag">Perm</span></div>
+    </div>
+    <div class="plate square" data-category="colour balayage">
+      <div class="ph"><img src="images/c29-cinnamon-ribbons-black.jpg" width="1086" height="1448" alt="Cinnamon ribbons through black silk waves" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Cinnamon on black · silk waves</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate tall" data-category="colour balayage">
+      <div class="ph"><img src="images/c30-honey-balayage-curls.jpg" width="844" height="1500" alt="Honey balayage melt on dark hair with bouncy curls" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Honey melt · bouncy curls</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate tall" data-category="colour balayage">
+      <div class="ph"><img src="images/c40-caramel-ombre-hearts.jpg" width="844" height="1500" alt="Caramel ombre with soft curls, dark roots melting to warm ends" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Caramel ombre · soft curls</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate tall" data-category="colour balayage">
+      <div class="ph"><img src="images/c31-golden-blonde-curls.jpg" width="844" height="1500" alt="Golden blonde balayage with soft glossy curls" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Golden blonde · glossy curls</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate tall" data-category="colour balayage">
+      <div class="ph"><img src="images/c32-bronde-balayage-waves.jpg" width="797" height="1500" alt="Bronde balayage with cool beachy waves" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Bronde waves · cool-toned</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate tall" data-category="colour balayage">
+      <div class="ph"><img src="images/c33-ash-blonde-sleek.jpg" width="1200" height="1600" alt="Ash blonde highlights, sleek straight side profile" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Ash blonde · sleek and straight</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate square" data-category="colour balayage">
+      <div class="ph"><img src="images/c34-ash-bronde-sleek.jpg" width="1086" height="1448" alt="Cool ash bronde balayage, glass-straight finish" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Ash bronde · glass finish</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate tall" data-category="colour balayage">
+      <div class="ph"><img src="images/c35-mushroom-balayage-layers.jpg" width="1024" height="1536" alt="Mushroom bronde balayage on long layers" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Mushroom bronde · long layers</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate tall" data-category="colour keratin">
+      <div class="ph"><img src="images/c36-bronde-keratin-sleek.jpg" width="1024" height="1536" alt="Bronde colour with a keratin sleek-straight finish" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Keratin sleek · bronde shine</h4><span class="tag">Keratin</span></div>
+    </div>
+    <div class="plate tall" data-category="colour keratin">
+      <div class="ph"><img src="images/c37-caramel-keratin-shine.jpg" width="736" height="981" alt="Caramel highlights with mirror keratin shine" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Caramel shine · keratin smooth</h4><span class="tag">Keratin</span></div>
+    </div>
+    <div class="plate square" data-category="colour balayage">
+      <div class="ph"><img src="images/c38-blonde-balayage-melt.jpg" width="675" height="1200" alt="Dark roots melting into blonde balayage waves" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Blonde melt · soft waves</h4><span class="tag">Balayage</span></div>
+    </div>
+    <div class="plate tall" data-category="colour keratin">
+      <div class="ph"><img src="images/c39-honey-balayage-curls2.jpg" width="736" height="1308" alt="Honey balayage with a smooth glossy blowout" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Honey gloss · smooth blowout</h4><span class="tag">Keratin</span></div>
+    </div>
+    <div class="plate tall" data-category="colour highlights">
+      <div class="ph"><img src="images/c14-ash-highlights-brunette.jpg" width="720" height="960" alt="Subtle ash highlights woven through dark brunette hair" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Whisper-light ash strands</h4><span class="tag">Highlights</span></div>
+    </div>
+    <div class="plate tall" data-category="cut colour highlights">
+      <div class="ph"><img src="images/c19-cream-ribbons-ucut.jpg" width="1086" height="1448" alt="Creamy blonde ribbon highlights with a soft U cut, back view" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Cream ribbons · soft U cut</h4><span class="tag">Cut + Colour</span></div>
+    </div>
+    <div class="plate square" data-category="colour balayage perms">
+      <div class="ph"><img src="images/c23-copper-balayage-curls.jpg" width="1086" height="1448" alt="Copper balayage glowing through natural curls" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Copper glow · natural curls</h4><span class="tag">Curls + Colour</span></div>
+    </div>
+    <div class="plate square" data-category="colour highlights">
+      <div class="ph"><img src="images/c15-chunky-blonde-highlights.jpg" width="1086" height="1448" alt="Chunky blonde highlights with bouncy ringlet curls" loading="lazy" decoding="async"/></div>
+      <div class="plate-cap"><h4>Vanilla chunks · bouncy curls</h4><span class="tag">Highlights</span></div>
+    </div>
+  </div>
+
+  <!-- Mobile swipe view is generated by JS from the wall above -->
+  <div class="m-gallery">
+    <div class="m-track" id="cutsTrack" aria-label="Cuts and colour gallery, swipe to browse"></div>
+    <div class="m-dots" id="cutsDots"></div>
+  </div>
+
+  <div class="glance-cta reveal">
+    <p>Healthy, lived-in colour that still looks intentional six weeks out. <span class="it">That's the standard.</span></p>
+    <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="btn gold"><span>Book your colour</span><span class="arrow">↗</span></a>
+  </div>
+</section>
+</div>
+
+<!-- ═══ THE TRANSFORMATION ═══ -->
+<section id="transformation">
+  <div class="wrap">
+    <div class="ba-head reveal">
+      <span class="eyebrow">The Transformation</span>
+      <h2 class="section-title">Dark to dimensional, <span class="it foil">no damage.</span></h2>
+      <p class="aside">A real colour transformation, straight and flat to warm balayage with movement. Drag or tap to see the difference.</p>
+    </div>
+    <div class="ba-stage reveal" id="baStage">
+      <img class="ba-after" src="images/ba-after.jpg" width="1050" height="1400" alt="After: warm caramel balayage with soft curls by Gurbina" />
+      <div class="ba-before-wrap" id="baBefore">
+        <img src="images/ba-before.jpg" width="1050" height="1400" alt="Before: dark natural brunette" />
+      </div>
+      <span class="ba-label before">Before</span>
+      <span class="ba-label after">After</span>
+      <div class="ba-divider" id="baDivider"></div>
+      <div class="ba-handle" id="baHandle"><span>‹</span><span>›</span></div>
+    </div>
+    <p class="ba-hint" id="baHint">drag to reveal</p>
+  </div>
+</section>
+
+<!-- ═══ THE MISSION ═══ -->
+<section id="mission" class="mission">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="justify-content: center;">The Mission</span>
+    <div class="mission-lines reveal-stagger">
+      <p class="m1">Colour that looks <span class="it foil">born,</span> not booked.</p>
+      <p>Soft where it should be, bright where light lands, <span class="it">honest as it grows.</span></p>
+      <p>No chasing trends. No hard lines. No hair that looks done.</p>
+      <p>Just <span class="it">you,</span> on your best day, every day.</p>
+    </div>
+    <div class="mission-star" aria-hidden="true">✦</div>
+    <div class="signature reveal">Gurbina</div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="about">
+    <div class="about-visual reveal">
+      <div class="about-ring" aria-hidden="true"></div>
+      <div class="about-arch">
+        <img src="images/gurbina-portrait.jpg" alt="Gurbina, hairstylist serving Surrey and Vancouver BC" loading="lazy" decoding="async" />
+      </div>
+      <div class="about-tag">hi, it's me ✦</div>
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">The Girl Behind the Chair</span>
+      <h2 class="section-title">Seven years of <span class="it foil">colour,</span> cuts, treatments, and <span class="it">brides.</span></h2>
+      <p>
+        I trained formally and spent years in a busy full-service salon before building my own practice here in the Lower Mainland. That's where I learned the discipline behind the craft: every bride's family watching over my shoulder, every strand counted, no detail too small.
+      </p>
+      <p>
+        I'm happiest in the finish. A bridal look can be complicated on paper and still feel <em>off</em> if the braid isn't balanced, the curls aren't sealed, the flowers aren't placed with intention. <strong>The difference between a good bridal style and one a bride keeps talking about is almost always the last ten minutes.</strong>
+      </p>
+      <p>
+        I specialize in South Asian bridal: waterfall and fishtail braids, rose-bun architecture, floral placement with gypsophila and fresh blooms, and the dimensional curl work that carries a look from the pheras to the reception. Western bridal, balayage, precision cutting, and smoothing treatments are home too. <strong>Every girl deserves to leave the chair feeling more like herself.</strong>
+      </p>
+      <div class="signature">Gurbina</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES · the gilded menu ═══ -->
+<section id="services">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">The Menu</span>
+      <h2 class="section-title">What I'm <span class="it foil">known</span> for.</h2>
+    </div>
+    <p class="aside">Hair and makeup. Set like a menu because that's what it is: pick what the day calls for, from bridal day-of to everyday upkeep.</p>
+  </div>
+
+  <div class="menu reveal-stagger">
+    <div class="menu-item">
+      <div class="menu-row"><h3>Dimensional <span class="it">Balayage</span></h3><span class="menu-leader"></span><span class="menu-no">the colour</span></div>
+      <p>Hand-painted colour with soft grow-out. Natural, sun-kissed, designed to look good eight weeks from now, not just the day you leave the chair.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Precision <span class="it">Cutting</span></h3><span class="menu-leader"></span><span class="menu-no">the cut</span></div>
+      <p>Blunt bobs, french bobs, clavicle layers, long movement. Dry cuts, point cuts, whatever the hair is actually asking for.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Colour <span class="it">Correction</span></h3><span class="menu-leader"></span><span class="menu-no">the rescue</span></div>
+      <p>Box-dye recoveries, banding, brass removal, tone fixes. The work nobody wants but somebody has to do beautifully, and gently.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Keratin &amp; <span class="it">Smoothing</span></h3><span class="menu-leader"></span><span class="menu-no">the treatment</span></div>
+      <p>Keratin treatments, Brazilian blowouts, anti-frizz smoothing. Healthier hair that behaves, minus the harsh formaldehyde shortcuts.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Perms &amp; <span class="it">Curl Sets</span></h3><span class="menu-leader"></span><span class="menu-no">the curls</span></div>
+      <p>Modern soft perms, spiral sets, and defined ringlets. Volume and movement that lasts for months, shaped to your face and your mornings.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Extensions &amp; <span class="it">Length</span></h3><span class="menu-leader"></span><span class="menu-no">the length</span></div>
+      <p>Tape-ins, clip-ins, blending, placement, and maintenance. Subtle enough that the consult focuses on the haircut, not the install.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Events &amp; <span class="it">Blowouts</span></h3><span class="menu-leader"></span><span class="menu-no">the night</span></div>
+      <p>Red carpet, prom, sangeet, engagement parties. Voluminous blowouts, Hollywood waves, and pin-perfect updos that last all night.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>South Asian <span class="it">Bridal</span></h3><span class="menu-leader"></span><span class="menu-no">the brides</span></div>
+      <p>Sikh, Punjabi, Hindu, Muslim: ceremony-specific looks that hold through the pheras, jaimala, and ten cousins asking for photos. Floral placement is half the craft.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Waterfall &amp; <span class="it">Fishtail</span></h3><span class="menu-leader"></span><span class="menu-no">the braids</span></div>
+      <p>Woven crowns, cascading braids, butterfly fishtails, and the classic half-up that photographs beautifully from every angle. Balanced tension, nothing pulls or falls.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Floral <span class="it">Placement</span></h3><span class="menu-leader"></span><span class="menu-no">the flowers</span></div>
+      <p>Rose buns built into the hair itself, fresh flower crowns, baby's breath, bougainvillea. Every bloom placed to survive the ceremony.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Bridal <span class="it">Makeup</span></h3><span class="menu-leader"></span><span class="menu-no">the makeup</span></div>
+      <p>Full bridal looks built around the outfit and ceremony. Airbrush or HD foundation, custom-blended lip, and the touch-up plan for a 12-hour day.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-row"><h3>Soft Glam <span class="it">&amp; Party</span></h3><span class="menu-leader"></span><span class="menu-no">the glam</span></div>
+      <p>Sangeet, engagement, reception. Buildable glam from soft-day to full-glam-night.</p>
+    </div>
+  </div>
+
+  <div class="addons reveal">
+    <div class="addons-label">✦ &nbsp;Add-ons &amp; quick services</div>
+    <div class="addons-pills">
+      <span>Hair Wash &amp; Style</span><span>Updo Practice</span><span>Trial Sessions</span>
+      <span>Touch-up Visits</span><span>Saree Draping</span><span>Dupatta Setting</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PACKAGES ═══ -->
+<section id="packages">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">Packages &amp; Bundles</span>
+      <h2 class="section-title">More together, <span class="it foil">better value.</span></h2>
+    </div>
+    <p class="aside">Bundle the services you need into one booking. No surprise add-ons: everything's clear before we start.</p>
+  </div>
+
+  <div class="packages-grid reveal-stagger">
+    <div class="pkg-card">
+      <span class="pkg-badge">Hair + Colour</span>
+      <h3 class="pkg-name">The <span class="it">Glow-Up</span></h3>
+      <p class="pkg-tagline">Hair refresh + colour</p>
+      <ul class="pkg-includes">
+        <li>Balayage or highlights</li>
+        <li>Precision cut</li>
+        <li>Blowout &amp; style</li>
+        <li>Deep conditioning treatment</li>
+      </ul>
+      <a href="#book" class="pkg-cta">enquire now →</a>
+    </div>
+    <div class="pkg-card featured-pkg">
+      <span class="pkg-badge">The Big Day</span>
+      <h3 class="pkg-name">The Bridal <span class="it">Day</span></h3>
+      <p class="pkg-tagline">Everything for the wedding day</p>
+      <ul class="pkg-includes">
+        <li>Bridal hair, full look</li>
+        <li>Bridal makeup</li>
+        <li>Floral placement</li>
+        <li>Touch-up kit included</li>
+        <li>Travel within Lower Mainland</li>
+      </ul>
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%27m%20planning%20my%20wedding%20and%20would%20love%20to%20talk%20about%20bridal%20hair." target="_blank" rel="noopener noreferrer" class="pkg-cta">enquire now →</a>
+    </div>
+    <div class="pkg-card">
+      <span class="pkg-badge">Wedding Party</span>
+      <h3 class="pkg-name">The <span class="it">Party</span> Package</h3>
+      <p class="pkg-tagline">Bride + 2 bridesmaids</p>
+      <ul class="pkg-includes">
+        <li>Bridal hair + makeup</li>
+        <li>2 × bridesmaid hair</li>
+        <li>Coordinated styling</li>
+        <li>Priority morning booking</li>
+      </ul>
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%27m%20planning%20my%20wedding%20and%20would%20love%20to%20talk%20about%20bridal%20hair." target="_blank" rel="noopener noreferrer" class="pkg-cta">enquire now →</a>
+    </div>
+    <div class="pkg-card">
+      <span class="pkg-badge">Ceremony</span>
+      <h3 class="pkg-name">Event <span class="it">Glam</span></h3>
+      <p class="pkg-tagline">Sangeet &amp; engagement</p>
+      <ul class="pkg-includes">
+        <li>Hair, braids or half-up</li>
+        <li>Soft party makeup</li>
+        <li>Suitable for all ceremonies</li>
+      </ul>
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%27m%20planning%20my%20wedding%20and%20would%20love%20to%20talk%20about%20bridal%20hair." target="_blank" rel="noopener noreferrer" class="pkg-cta">enquire now →</a>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══ REVIEWS ═══ -->
+<section id="words">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">Kind Words</span>
+      <h2 class="section-title">What clients <span class="it foil">keep</span> saying.</h2>
+    </div>
+    <p class="aside">Real messages from real clients, shared with their permission.</p>
+  </div>
+
+  <div class="quotes reveal-stagger">
+    <div class="quote">
+      <span class="quote-tag hair">Colour</span>
+      <div class="quote-stars"><span class="stars-row" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg></span></div>
+      <span class="quote-mark">❝</span>
+      <p>She listened carefully to exactly what I wanted and absolutely nailed my hair colour. It turned out even better than I imagined. Incredibly knowledgeable, kind, and her prices are so affordable for the quality. I'll definitely be back!</p>
+      <div class="quote-proof-label">Real message</div>
+      <img src="images/review-tania.jpg" class="quote-proof" loading="lazy" decoding="async" alt="Text message review from Tania praising her hair colour" />
+      <div class="quote-author">
+        <div class="quote-avatar">T</div>
+        <div class="quote-who"><span class="name">Tania</span><span class="role">Colour client</span></div>
+      </div>
+    </div>
+
+    <div class="quote">
+      <span class="quote-tag hair">Colour</span>
+      <div class="quote-stars"><span class="stars-row" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg></span></div>
+      <span class="quote-mark">❝</span>
+      <p>Seriously it's 10/10. Thanks so much beauty. Now you're my permanent stylist ❤️</p>
+      <div class="quote-proof-label">Real message</div>
+      <img src="images/review-permanent.jpg" class="quote-proof" loading="lazy" decoding="async" alt="Instagram message calling Gurbina her permanent stylist" />
+      <div class="quote-author">
+        <div class="quote-avatar">R</div>
+        <div class="quote-who"><span class="name">Ravneet</span><span class="role">First-time colour client</span></div>
+      </div>
+    </div>
+
+    <div class="quote">
+      <span class="quote-tag hair">Colour Correction</span>
+      <div class="quote-stars"><span class="stars-row" role="img" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg></span></div>
+      <span class="quote-mark">❝</span>
+      <p>It was really a challenge to go from black to a new light colour and you did a great job. I'm so glad I chose you, and thank you for being so informative about the whole process and the options.</p>
+      <div class="quote-proof-label">Real message</div>
+      <img src="images/review-blacktolight.jpg" class="quote-proof" loading="lazy" decoding="async" alt="Message thanking Gurbina for a black-to-light colour transformation" />
+      <div class="quote-author">
+        <div class="quote-avatar">J</div>
+        <div class="quote-who"><span class="name">Jess</span><span class="role">Colour correction client</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ═══ FAQ ═══ -->
+<section id="faq" class="faq-section">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-intro reveal">
+        <span class="eyebrow">Good to Know</span>
+        <h2 class="section-title">Before your <span class="it foil">first visit.</span></h2>
+        <p class="aside">The questions I get asked most, answered honestly. If yours isn't here, just message me.</p>
+        <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20have%20a%20question%20before%20booking." target="_blank" rel="noopener noreferrer" class="faq-cta">Ask on WhatsApp →</a>
+      </div>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <button class="faq-q">How much does colour cost?</button>
+          <div class="faq-a"><div class="faq-a-inner">Colour is quoted per head, because length, density, and where you're starting from all change the work. I'll confirm a clear price before we book, <strong>no surprises at the chair</strong>. Send me a photo of your hair on WhatsApp for an exact quote.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How long will my appointment take?</button>
+          <div class="faq-a"><div class="faq-a-inner">Every colour appointment is a full <strong>three-hour block</strong> so nothing is rushed. Bigger transformations, like going dark to blonde, can run longer, and I'll always tell you the realistic timing before the day.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Will colouring damage my hair?</button>
+          <div class="faq-a"><div class="faq-a-inner">Healthy hair is the whole point. I work in stages, use bond-protecting products, and will <strong>never push your hair past what it can safely take</strong> in one session. Sometimes the honest answer is two appointments instead of one, and I'll tell you if that's the case.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">It's my first time with you and I'm nervous.</button>
+          <div class="faq-a"><div class="faq-a-inner">That's completely normal, and it's exactly why every appointment starts with a proper consultation. We'll talk through what you want, what's realistic, and the plan <strong>before any colour touches your hair</strong>.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How do I keep my colour looking fresh?</button>
+          <div class="faq-a"><div class="faq-a-inner">You'll go home knowing exactly what to use and what to avoid. A few simple habits, sulphate-free wash, heat protectant, the right toning, keep your colour looking <strong>salon-fresh for weeks longer</strong>.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Where are you located?</button>
+          <div class="faq-a"><div class="faq-a-inner">I take colour and treatment appointments in <strong>Surrey and Vancouver</strong>, Tuesdays and Wednesdays. Exact location and parking details are shared when you book.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ POLICIES · the fine print, in her voice ═══ -->
+<section id="policies">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">Studio Policies</span>
+      <h2 class="section-title">Fair to you, fair to the <span class="it foil">chair.</span></h2>
+    </div>
+    <p class="aside">Clear terms, no surprises. Booking an appointment means you're happy with these, and you can always ask me first.</p>
+  </div>
+
+  <div class="policy-grid reveal-stagger">
+    <div class="policy-card">
+      <span class="policy-badge">Your time</span>
+      <h3 class="policy-name">Held just for <span class="it">you</span></h3>
+      <p>Booking reserves a full chair block in your name. A card on file secures it, and nothing is charged when you book. You only ever pay for the service you sit for.</p>
+    </div>
+    <div class="policy-card">
+      <span class="policy-badge">Cancelling</span>
+      <h3 class="policy-name">48 hours, and it's <span class="it">free</span></h3>
+      <!-- EDIT POLICY: fee kept generic on purpose. If your Square no-show / late-cancel
+           setting uses a specific amount or deposit, you can name it in this paragraph.
+           Leaving it generic means the page can never contradict what Square charges. -->
+      <p>Life happens, just tell me early. Reschedule or cancel free up to 48 hours before your chair time. Later than that, or a no-show, a fee applies to the card on file, because a three-hour chair can't be refilled last minute.</p>
+    </div>
+    <div class="policy-card">
+      <span class="policy-badge">Running late</span>
+      <h3 class="policy-name">A quick message <span class="it">saves it</span></h3>
+      <p>Text me on WhatsApp if you're running behind. There's a short grace window, but past it the service may need shortening or moving so the next guest isn't pushed back.</p>
+    </div>
+    <div class="policy-card">
+      <span class="policy-badge">Getting it right</span>
+      <h3 class="policy-name">Love it before you <span class="it">leave</span></h3>
+      <!-- EDIT POLICY: your signed consent form says concerns must be raised before
+           leaving (same-day fix); your old Instagram card mentioned a 7-day window.
+           Kept to the consent-form version. Tell me the real rule if it differs. -->
+      <p>We check your look together at the chair. If anything feels off, tell me before you leave and I'll perfect it the same day. Colour keeps settling over the first week, so give it a few washes before judging the tone.</p>
+    </div>
+    <div class="policy-card">
+      <span class="policy-badge">Offers</span>
+      <h3 class="policy-name">Promo pricing, <span class="it">honest results</span></h3>
+      <p>Promotional bookings get the same products and care as everything else. Results still depend on your hair's history and condition, so an offer isn't a promise of one exact result. The consultation always comes first.</p>
+    </div>
+    <div class="policy-card">
+      <span class="policy-badge">Before we start</span>
+      <h3 class="policy-name">We begin with a <span class="it">plan</span></h3>
+      <p>New colour starts with a proper consultation, and a short consultation and consent form at your first visit. It keeps the plan, the price, and your hair's safety clear before anything begins.</p>
+    </div>
+  </div>
+
+  <p class="policy-foot">Questions before you book? <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20have%20a%20question%20about%20your%20booking%20policies." target="_blank" rel="noopener noreferrer">Ask me on WhatsApp ↗</a></p>
+</section>
+
+<!-- ═══ BOOK A CHAIR · Tue & Wed services ═══ -->
+<section id="book">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">Book a Chair · Tuesdays &amp; Wednesdays</span>
+      <h2 class="section-title">Pick your chair, <span class="it foil">it's yours.</span></h2>
+    </div>
+    <p class="aside">Colour and treatment days run Tuesday and Wednesday with three chairs a day: 10 am, 1 pm, and 5 pm. Each appointment gets a full three-hour block, booked live on Square.</p>
+  </div>
+
+  <div class="book-card reveal">
+    <div class="chairs-strip" aria-label="Daily appointment times">
+      <div class="chair"><span class="t">10:00 am</span><span class="d">Morning chair</span></div>
+      <div class="chair"><span class="t">1:00 pm</span><span class="d">Afternoon chair</span></div>
+      <div class="chair"><span class="t">5:00 pm</span><span class="d">Evening chair</span></div>
+    </div>
+    <div class="book-actions">
+      <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="btn gold btn-big"><span>Book on Square</span><span class="arrow">↗</span></a>
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20Quick%20question%20before%20I%20book." target="_blank" rel="noopener noreferrer" class="btn ghost"><span>Questions? WhatsApp</span><span>↗</span></a>
+    </div>
+    <p class="bw-note">Pick your service and time on Square: live availability, instant confirmation, no back and forth. Bridal and event dates are quoted personally on WhatsApp.</p>
+  </div>
+
+  <div class="promise reveal">
+    <div class="promise-head">
+      <h3>The Adjustment <span class="it foil">Promise</span></h3>
+      <p class="promise-sub">Colour is a craft, and I stand behind mine.</p>
+    </div>
+    <ul class="promise-list">
+      <li><span class="pnum">01</span>Something feels off? Message me first.</li>
+      <li><span class="pnum">02</span>Prompt adjustments to the original service are free.</li>
+      <li><span class="pnum">03</span>A change of mind is a new service.</li>
+      <li><span class="pnum">04</span>Home care as advised keeps the promise valid.</li>
+    </ul>
+    <p class="promise-close">One conversation fixes almost everything ✦</p>
+  </div>
+</section>
+
+<!-- ═══ BRIDAL · also available ═══ -->
+<section id="work">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">Also Available · Bridal &amp; Events</span>
+      <h2 class="section-title">Weddings &amp; events, <span class="it foil">too.</span></h2>
+    </div>
+    <p class="aside">For the big days: bridal hair and makeup, floral placement, and styling built to last from morning to the last dance.</p>
+  </div>
+
+  <div class="bridal-invite reveal">
+    <p class="bi-lead">
+      Bridal and event styling is designed around <strong>your outfit, your ceremonies, and your timeline</strong>, with a trial before the day. Sikh, Punjabi, Hindu and Western looks all welcome, hair and makeup together.
+    </p>
+    <p class="bi-note">The full bridal portfolio is shared privately during your consultation ✦</p>
+    <div class="bi-ctas">
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%27d%20love%20to%20ask%20about%20bridal%20or%20event%20styling." target="_blank" rel="noopener noreferrer" class="btn ghost"><span>Ask about bridal &amp; events</span><span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="contact">
+  <svg class="contact-thread" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+    <path class="thread-path" d="M -40 520 C 200 470, 300 200, 600 260 C 880 316, 960 140, 1250 100" />
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow reveal" style="justify-content: center;">Say hello</span>
+    <h2 class="reveal">Let's build something<br/><span class="it foil">beautiful ✦</span></h2>
+    <p class="contact-sub reveal">
+      Booking brides, events, and everyday appointments across the Lower Mainland. Send a note with your date, occasion, and a reference photo. I'll write back with availability and a quote.
+    </p>
+    <div class="contact-grid reveal">
+      <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="btn gold"><span>Book on Square</span><span class="arrow">↗</span></a>
+      <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%27d%20love%20to%20book%20a%20consultation." target="_blank" rel="noopener" class="btn wa"><span>WhatsApp</span><span>↗</span></a>
+      <a href="https://www.instagram.com/stylendglow" target="_blank" rel="noopener" class="btn ghost"><span>DM on Instagram</span><span>↗</span></a>
+    </div>
+    <div class="contact-meta reveal">
+      <div><strong>Phone</strong><a href="tel:+17789993179">+1 (778) 999-3179</a></div>
+      <div><strong>Email</strong><a href="mailto:makeoversgurbina@gmail.com">makeoversgurbina@gmail.com</a></div>
+      <div><strong>Based</strong>Surrey · Vancouver · BC</div>
+      <div><strong>Travel</strong>Anywhere in the Lower Mainland</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+<footer>
+  <div>© 2026 <em>Hair by Gurbina</em> · Hairstylist · Surrey &amp; Vancouver BC</div>
+  <div class="socials">
+    <a href="https://www.instagram.com/stylendglow" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:makeoversgurbina@gmail.com">Email</a>
+    <a href="#policies">Policies</a>
+  </div>
+  <div class="credit">styled with love ✦</div>
+</footer>
+</div>
+
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ─────────────────────────────────────────────────
+     HAPTICS — silent on desktop, subtle on phone
+  ───────────────────────────────────────────────── */
+  function haptic(ms) {
+    if (navigator.vibrate && !reducedMotion) {
+      try { navigator.vibrate(ms || 8); } catch (e) {}
+    }
+  }
+
+  /* ─────────────────────────────────────────────────
+     ANNOUNCEMENT BAR
+     Safe DOM construction only — no innerHTML.
+  ───────────────────────────────────────────────── */
+  const announceBar = document.getElementById('announceBar');
+  const announceMsg = document.getElementById('announceMsg');
+  const announceText = document.getElementById('announceText');
+  const announceClose = document.getElementById('announceClose');
+  // EDIT ANNOUNCEMENTS: add real offers here once Gurbina confirms them.
+  const messages = [
+    { text: 'Now booking colour, treatments & cuts across Surrey & Vancouver · ', link: 'book an appointment', href: '#book' },
+    { text: 'Prefer to chat? ', link: 'WhatsApp Gurbina directly', href: 'https://wa.me/17789993179?text=Hi%20Gurbina!', external: true }
+  ];
+  function setAnnounceMessage(idx) {
+    announceText.style.opacity = '0';
+    announceText.style.transform = 'translateY(-8px)';
+    setTimeout(() => {
+      announceMsg.textContent = '';
+      const m = messages[idx];
+      announceMsg.appendChild(document.createTextNode(m.text));
+      if (m.link) {
+        const a = document.createElement('a');
+        a.textContent = m.link;
+        a.href = m.href;
+        if (m.external) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+        announceMsg.appendChild(a);
+      }
+      announceText.style.opacity = '1';
+      announceText.style.transform = 'translateY(0)';
+    }, 500);
+  }
+  let msgIdx = 0;
+  const announceTimer = setInterval(() => {
+    msgIdx = (msgIdx + 1) % messages.length;
+    setAnnounceMessage(msgIdx);
+  }, 5000);
+  announceClose.addEventListener('click', () => {
+    clearInterval(announceTimer);
+    announceBar.style.transition = 'all 0.4s ease';
+    announceBar.style.transform = 'translateY(-100%)';
+    announceBar.style.opacity = '0';
+    setTimeout(() => {
+      announceBar.style.display = 'none';
+      document.body.classList.remove('has-announce');
+    }, 400);
+  });
+
+  /* ─────────────────────────────────────────────────
+     SINGLE THROTTLED SCROLL HANDLER
+  ───────────────────────────────────────────────── */
+  const nav = document.getElementById('nav');
+  const floatingBook = document.getElementById('floatingBook');
+  const contactSec = document.getElementById('contact');
+  const scrollBar = document.getElementById('scrollBar');
+  const heroEl = document.querySelector('.hero');
+  const heroText = document.querySelector('.hero-text');
+  const heroVisual = document.querySelector('.hero-visual');
+  let ticking = false;
+  function onScroll() {
+    const sy = window.scrollY;
+    const isMobile = window.innerWidth <= 900;
+    nav.classList.toggle('scrolled', sy > 40);
+    if (scrollBar) {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      scrollBar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, sy / max) : 0) + ')';
+    }
+    if (heroEl && !reducedMotion && sy < window.innerHeight * 0.9) {
+      // gentle parallax on hero inner content, capped so nothing spills out
+      const drift = Math.min(sy * 0.06, 40);
+      heroText && (heroText.style.transform = 'translateY(' + drift.toFixed(1) + 'px)');
+      heroVisual && (heroVisual.style.transform = 'translateY(' + (drift * 0.5).toFixed(1) + 'px)');
+    }
+    if (isMobile && floatingBook) {
+      const atContact = contactSec && contactSec.getBoundingClientRect().top < window.innerHeight;
+      floatingBook.classList.toggle('visible', sy > window.innerHeight * 0.75 && !atContact);
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+
+  /* ─────────────────────────────────────────────────
+     MOBILE HAMBURGER
+  ───────────────────────────────────────────────── */
+  const burger = document.getElementById('navBurger');
+  const navLinks = document.getElementById('navLinks');
+  let menuScrollY = 0;
+  function blockTouch(e) {
+    // allow scrolling only if the target is the menu itself (it doesn't scroll anyway)
+    if (!e.target.closest('.nav-links')) e.preventDefault();
+  }
+  function setMenu(open) {
+    burger.classList.toggle('open', open);
+    navLinks.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) {
+      menuScrollY = window.scrollY;
+      document.documentElement.classList.add('menu-locked');
+      document.body.classList.add('menu-open');
+      document.body.style.top = '-' + menuScrollY + 'px';
+      document.addEventListener('touchmove', blockTouch, { passive: false });
+    } else {
+      document.documentElement.classList.remove('menu-locked');
+      document.body.classList.remove('menu-open');
+      document.body.style.top = '';
+      document.removeEventListener('touchmove', blockTouch, { passive: false });
+      window.scrollTo(0, menuScrollY);
+    }
+  }
+  burger.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+
+  /* ─────────────────────────────────────────────────
+     MOBILE SWIPE GALLERIES — built from the wall markup
+     so photos and captions live in ONE place.
+     Bridal slides get a WhatsApp "share this look" button.
+  ───────────────────────────────────────────────── */
+  function buildMobileGallery(wallId, trackId, dotsId) {
+    const wall = document.getElementById(wallId);
+    const track = document.getElementById(trackId);
+    const dotsBox = document.getElementById(dotsId);
+    if (!wall || !track || !dotsBox) return;
+
+    wall.querySelectorAll('.plate').forEach(plate => {
+      const img = plate.querySelector('img');
+      const name = plate.querySelector('h4')?.textContent || '';
+      const tag = plate.querySelector('.tag')?.textContent || '';
+      const slide = document.createElement('figure');
+      slide.className = 'm-slide';
+      slide.dataset.category = plate.dataset.category || '';
+
+      const im = document.createElement('img');
+      im.src = img.getAttribute('src');
+      im.alt = img.alt;
+      im.loading = 'lazy';
+      im.decoding = 'async';
+      const ph = document.createElement('div');
+      ph.className = 'm-ph';
+      ph.appendChild(im);
+      slide.appendChild(ph);
+
+      const cap = document.createElement('figcaption');
+      const h = document.createElement('h4');
+      h.textContent = name;
+      const t = document.createElement('span');
+      t.className = 'tag';
+      t.textContent = tag;
+      cap.appendChild(h);
+      cap.appendChild(t);
+      slide.appendChild(cap);
+
+      track.appendChild(slide);
+    });
+
+    // Gold fraction counter (04 · 19): tracks swipes, respects filters
+    const counter = document.createElement('span');
+    counter.className = 'm-count';
+    counter.setAttribute('aria-live', 'polite');
+    dotsBox.appendChild(counter);
+    function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+    let lastIdx = -1;
+    function updateCounter() {
+      const vis = [...track.querySelectorAll('.m-slide:not(.filter-hidden)')];
+      if (!vis.length) { counter.textContent = ''; return; }
+      const centre = track.scrollLeft + track.clientWidth / 2;
+      let idx = 0, best = Infinity;
+      vis.forEach((sl, i) => {
+        const d = Math.abs(sl.offsetLeft + sl.offsetWidth / 2 - centre);
+        if (d < best) { best = d; idx = i; }
+      });
+      counter.textContent = pad2(idx + 1) + ' · ' + pad2(vis.length);
+      if (idx !== lastIdx) { if (lastIdx !== -1) haptic(5); lastIdx = idx; }
+    }
+    let dotTicking = false;
+    track.addEventListener('scroll', () => {
+      if (!dotTicking) {
+        requestAnimationFrame(() => { updateCounter(); dotTicking = false; });
+        dotTicking = true;
+      }
+    }, { passive: true });
+    updateCounter();
+    track._updateCounter = updateCounter;
+  }
+  buildMobileGallery('cutsWall', 'cutsTrack', 'cutsDots');
+
+  /* ─────────────────────────────────────────────────
+     GRID MASONRY — spans each plate across 8px rows.
+     Grid items composite safely; multicol never did.
+  ───────────────────────────────────────────────── */
+  const WALL_ROW = 8, WALL_GAP = 22;
+  function layoutWall() {
+    const wall = document.getElementById('cutsWall');
+    if (!wall || !wall.offsetParent) return;   // hidden on mobile
+    const plates = [...wall.querySelectorAll('.plate:not(.filter-hidden)')];
+    plates.forEach(pl => { pl.style.gridRowEnd = 'auto'; });
+    const spans = plates.map(pl => Math.ceil((pl.getBoundingClientRect().height + WALL_GAP) / WALL_ROW));
+    plates.forEach((pl, i) => { pl.style.gridRowEnd = 'span ' + spans[i]; });
+  }
+  let wallRaf = false;
+  function requestWallLayout() {
+    if (wallRaf) return;
+    wallRaf = true;
+    requestAnimationFrame(() => { layoutWall(); wallRaf = false; });
+  }
+  requestWallLayout();
+  window.addEventListener('load', requestWallLayout);
+  document.querySelectorAll('#cutsWall img').forEach(im => {
+    if (!im.complete) im.addEventListener('load', requestWallLayout, { once: true });
+  });
+  let wallResizeT;
+  window.addEventListener('resize', () => {
+    clearTimeout(wallResizeT);
+    wallResizeT = setTimeout(requestWallLayout, 150);
+  }, { passive: true });
+
+  /* ─────────────────────────────────────────────────
+     GALLERY FILTERS — filter both wall and mobile track
+  ───────────────────────────────────────────────── */
+  function wireGalleryFilter(barId, wallId, trackId) {
+    const bar = document.getElementById(barId);
+    const wall = document.getElementById(wallId);
+    const track = document.getElementById(trackId);
+    if (!bar) return;
+    const buttons = bar.querySelectorAll('button');
+    function applyFilter(filter) {
+      const items = [];
+      if (wall) items.push(...wall.querySelectorAll('.plate'));
+      if (track) items.push(...track.querySelectorAll('.m-slide'));
+      items.forEach(el => {
+        const cats = (el.dataset.category || '').toLowerCase();
+        el.classList.toggle('filter-hidden', filter !== 'all' && !cats.includes(filter));
+      });
+      if (track) {
+        track.scrollTo({ left: 0 });
+        if (track._updateCounter) track._updateCounter();
+      }
+      requestWallLayout();
+    }
+    buttons.forEach(btn => {
+      btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+      btn.addEventListener('click', () => {
+        haptic(10);
+        buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        applyFilter(btn.dataset.filter);
+      });
+    });
+  }
+  wireGalleryFilter('cutsFilters', 'cutsWall', 'cutsTrack');
+
+  /* ─────────────────────────────────────────────────
+     REVEAL ON SCROLL
+  ───────────────────────────────────────────────── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+
+  /* ─────────────────────────────────────────────────
+     STAT COUNT-UP
+  ───────────────────────────────────────────────── */
+  document.querySelectorAll('.stat-count').forEach(el => {
+    const target = parseInt(el.dataset.count, 10);
+    if (isNaN(target)) return;
+    if (reducedMotion) { el.textContent = target; return; }
+    const dur = 1100;
+    const t0 = performance.now() + 450;
+    function tick(now) {
+      const p = Math.min(1, Math.max(0, (now - t0) / dur));
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+
+  /* ─────────────────────────────────────────────────
+     CONTACT THREAD — draws when the section scrolls in
+  ───────────────────────────────────────────────── */
+  const threadPath = document.querySelector('.thread-path');
+  if (threadPath && !reducedMotion) {
+    const len = threadPath.getTotalLength();
+    threadPath.style.strokeDasharray = len;
+    threadPath.style.strokeDashoffset = len;
+    const tio = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          threadPath.style.transition = 'stroke-dashoffset 2.6s cubic-bezier(0.22, 1, 0.36, 1)';
+          threadPath.style.strokeDashoffset = '0';
+          tio.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+    tio.observe(document.getElementById('contact'));
+  }
+
+  /* ─────────────────────────────────────────────────
+     LIGHTBOX — tap any photo for full screen
+     Keyboard: Esc closes, arrows navigate
+  ───────────────────────────────────────────────── */
+  (function () {
+    const cards = document.querySelectorAll('#cutsWall .plate, .m-slide');
+    if (!cards.length) return;
+    const sources = [];
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lb-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Photo viewer');
+    const fig = document.createElement('figure');
+    fig.className = 'lb-figure';
+    const lbImg = document.createElement('img');
+    lbImg.decoding = 'async';
+    const lbCap = document.createElement('figcaption');
+    lbCap.className = 'lb-cap';
+    fig.appendChild(lbImg);
+    fig.appendChild(lbCap);
+    overlay.appendChild(fig);
+
+    function makeBtn(cls, label, glyph) {
+      const b = document.createElement('button');
+      b.className = 'lb-btn ' + cls;
+      b.setAttribute('aria-label', label);
+      b.textContent = glyph;
+      overlay.appendChild(b);
+      return b;
+    }
+    const btnClose = makeBtn('lb-close', 'Close photo viewer', '✕');
+    const btnPrev = makeBtn('lb-prev', 'Previous photo', '←');
+    const btnNext = makeBtn('lb-next', 'Next photo', '→');
+    document.body.appendChild(overlay);
+
+    let cur = 0, lastFocus = null;
+    function render() {
+      const it = sources[cur];
+      lbImg.src = it.src;
+      lbImg.alt = it.alt;
+      lbCap.textContent = it.cap;
+    }
+    function openLB(i) {
+      cur = i;
+      render();
+      lastFocus = document.activeElement;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+      haptic(8);
+    }
+    function closeLB() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    function step(d) {
+      cur = (cur + d + sources.length) % sources.length;
+      render();
+      haptic(6);
+    }
+
+    cards.forEach(card => {
+      const img = card.querySelector('img');
+      if (!img) return;
+      const cap = (card.querySelector('h4')?.textContent || card.querySelector('.tag')?.textContent || img.alt || '').trim();
+      const idx = sources.length;
+      sources.push({ src: img.getAttribute('src'), alt: img.alt || cap, cap });
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', 'View larger: ' + (cap || 'photo'));
+      card.addEventListener('click', () => openLB(idx));
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLB(idx); }
+      });
+    });
+
+    btnClose.addEventListener('click', closeLB);
+    btnPrev.addEventListener('click', () => step(-1));
+    btnNext.addEventListener('click', () => step(1));
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeLB(); });
+    document.addEventListener('keydown', e => {
+      if (!overlay.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLB();
+      else if (e.key === 'ArrowLeft') step(-1);
+      else if (e.key === 'ArrowRight') step(1);
+    });
+    // Thumb navigation: swipe left/right to move through the photos
+    let touchX = null, touchY = null;
+    overlay.addEventListener('touchstart', e => {
+      touchX = e.touches[0].clientX;
+      touchY = e.touches[0].clientY;
+    }, { passive: true });
+    overlay.addEventListener('touchend', e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      const dy = e.changedTouches[0].clientY - touchY;
+      if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.4) step(dx < 0 ? 1 : -1);
+      touchX = touchY = null;
+    }, { passive: true });
+  })();
+
+  /* ─────────────────────────────────────────────────
+     HAPTIC WIRING for primary actions
+  ───────────────────────────────────────────────── */
+  document.querySelectorAll('.btn, .pkg-cta, .floating-book, .nav-cta, .mobile-book-link').forEach(el => {
+    el.addEventListener('click', () => haptic(8));
+  });
+
+  /* ─────────────────────────────────────────────────
+     EASTER EGG — press G three times: gold rain
+  ───────────────────────────────────────────────── */
+  let keyBuffer = [];
+  document.addEventListener('keydown', e => {
+    keyBuffer.push(e.key.toLowerCase());
+    if (keyBuffer.length > 3) keyBuffer.shift();
+    if (keyBuffer.join('') === 'ggg') {
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          const spark = document.createElement('div');
+          spark.textContent = ['✦','❀','✧','✦'][Math.floor(Math.random() * 4)];
+          spark.style.cssText = 'position:fixed;top:-30px;left:' + (Math.random() * 100) + 'vw;color:' +
+            ['#D9B87C','#F4E3BC','#D98A7E','#A44A3F'][Math.floor(Math.random() * 4)] +
+            ';font-size:' + (Math.random() * 22 + 14) + 'px;z-index:10001;pointer-events:none;animation:goldFall ' +
+            (3 + Math.random() * 2) + 's linear forwards;';
+          document.body.appendChild(spark);
+          setTimeout(() => spark.remove(), 5200);
+        }, i * 80);
+      }
+      keyBuffer = [];
+    }
+  });
+  const eggStyle = document.createElement('style');
+  eggStyle.textContent = '@keyframes goldFall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }';
+  document.head.appendChild(eggStyle);
+
+  // ─── Before/After: smooth drag that follows finger/mouse, on BOTH mobile & desktop ───
+  (function(){
+    const stage=document.getElementById('baStage');
+    if(!stage) return;
+    const before=document.getElementById('baBefore');
+    const divider=document.getElementById('baDivider');
+    const handle=document.getElementById('baHandle');
+    const hint=document.getElementById('baHint');
+    const isTouch=window.matchMedia('(hover:none)').matches;
+
+    function setPos(pct){
+      pct=Math.max(0,Math.min(100,pct));
+      before.style.width=pct+'%';
+      divider.style.left=pct+'%';
+      handle.style.left=pct+'%';
+    }
+    function pctFromX(clientX){
+      const r=stage.getBoundingClientRect();
+      return ((clientX-r.left)/r.width)*100;
+    }
+    setPos(50);
+    if(hint) hint.textContent = isTouch ? 'drag to reveal the before' : 'drag or hover to reveal';
+
+    // ── Pointer Events unify mouse + touch and follow the finger smoothly ──
+    let dragging=false, decided=false, startX=0, startY=0;
+
+    stage.addEventListener('pointerdown', e=>{
+      dragging=true; decided=false;
+      startX=e.clientX; startY=e.clientY;
+      // if pressing right on the handle, we're definitely sliding — commit now
+      if(e.target.closest('.ba-handle')){ decided=true; stage.setPointerCapture(e.pointerId); setPos(pctFromX(e.clientX)); }
+    });
+
+    stage.addEventListener('pointermove', e=>{
+      if(!dragging){
+        // desktop hover-to-reveal (mouse only, no button held)
+        if(!isTouch && e.pointerType==='mouse') setPos(pctFromX(e.clientX));
+        return;
+      }
+      if(!decided){
+        // First move decides intent: mostly-horizontal = slide, mostly-vertical = let page scroll
+        const dx=Math.abs(e.clientX-startX), dy=Math.abs(e.clientY-startY);
+        if(dx<6 && dy<6) return;              // too small to tell yet
+        if(dy>dx){ dragging=false; return; }  // vertical → release, page scrolls normally
+        decided=true;
+        stage.setPointerCapture(e.pointerId); // horizontal → capture, we own this gesture
+      }
+      e.preventDefault();                     // now block scroll while sliding
+      setPos(pctFromX(e.clientX));
+    }, {passive:false});
+
+    function end(){ dragging=false; decided=false; }
+    stage.addEventListener('pointerup', end);
+    stage.addEventListener('pointercancel', end);
+  })();
+
+  // ─── FAQ accordion ───
+  (function(){
+    const items=document.querySelectorAll('.faq-item');
+    items.forEach(item=>{
+      const q=item.querySelector('.faq-q');
+      const a=item.querySelector('.faq-a');
+      q.addEventListener('click',()=>{
+        const isOpen=item.classList.contains('open');
+        items.forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight='0px';});
+        if(!isOpen){ item.classList.add('open'); a.style.maxHeight=a.scrollHeight+'px'; }
+      });
+    });
+  })();
+
+/* ═════════════════════════════════════════════════
+   ASK THE STYLIST — free hair-advice chat
+   Ships with a built-in master-stylist knowledge base
+   (no API key, safe on static hosting). To upgrade to a
+   live AI model later, stand up a small Cloudflare Worker
+   that holds the model key SERVER-SIDE and returns
+   { reply: "..." }, then paste its URL below. Empty = the
+   built-in guide. Never put an API key in this file.
+═════════════════════════════════════════════════ */
+(function(){
+  const STYLIST_WORKER_URL = ''; // e.g. 'https://gurbina-stylist.<acct>.workers.dev'
+  const SQ = 'https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services';
+  const WA = 'https://wa.me/17789993179?text=Hi%20Gurbina!%20I%20have%20a%20question%20about%20my%20hair.';
+
+  const launch = document.getElementById('chatLaunch');
+  const panel  = document.getElementById('chatPanel');
+  const closeB = document.getElementById('chatClose');
+  const bodyEl = document.getElementById('chatBody');
+  const chips  = document.getElementById('chatChips');
+  const input  = document.getElementById('chatInput');
+  const sendB  = document.getElementById('chatSend');
+  if(!launch || !panel) return;
+
+  const KB = [
+    {t:['box dye','boxed dye','box color','box colour','drugstore dye','home dye','home colour','store bought'],
+     a:`Box dye is stubborn. It packs in extra pigment and sometimes metallic salts that sit deep in the strand, so one colour on top usually goes muddy or patchy. Fixing it is controlled correction: reading what is underneath, gently removing or lifting the old dye, then rebuilding tone in stages so the hair stays healthy. Very doable, just not a one-bottle job. Send a photo and I will tell you honestly what it takes. [WA]`},
+    {t:['brassy','brass','orange hair','gone orange','turned orange','yellow tone','warm tones','too warm'],
+     a:`Brass is the warm pigment that shows once the cooler tones fade, most common on lifted or highlighted hair. A toner or gloss neutralises it, and a purple or blue shampoo once a week keeps it in check between visits. If it has gone properly orange rather than a little warm, that is a toning-or-lift call best judged from a photo. [WA]`},
+    {t:['dark to blonde','black to blonde','dark to light','black to light','go blonde','going blonde','how many sessions','one session','from black','from dark','lighten my hair'],
+     a:`Going dark or black to blonde is the biggest ask in colour. Hair only lifts so far in one sitting before it stops being safe, so real transformations are usually staged over two or more appointments with treatments in between. Rushing it is exactly how hair snaps, so the honest plan protects your length. I will map a realistic timeline once I see where you are starting from. [WA]`},
+    {t:['what is balayage','balayage mean','freehand','hand painted','sun kissed','balayage'],
+     a:`Balayage is hand-painted colour, swept through freehand so it grows out soft with no harsh regrowth line. Lower maintenance than foils because there is no stark root, and built to look natural and sun-kissed. It suits most lengths and can be as subtle or as bright as you like. [BOOK]`},
+    {t:['balayage vs','vs highlights','vs foils','balayage or highlights','difference between','foilyage','babylights','highlights','foils','foil'],
+     a:`Foils and highlights lift even sections close to the root for a brighter, more uniform, higher-maintenance result. Balayage is painted by hand for a softer, blended, grow-out-friendly look. Babylights and foilyage sit in between. Which one fits comes down to your hair and how often you want to be in the chair. [BOOK]`},
+    {t:['colour correction','color correction','fix my colour','fix my color','colour gone wrong','color gone wrong','uneven colour','patchy','banding','banded','correct my colour'],
+     a:`Colour correction is the repair work: evening out bands, lifting old box dye, fixing a colour gone wrong, or rescuing an over-processed blonde. It is careful, staged, and priced per head because every case is different. Send a clear photo and I will tell you what is realistic and what it involves. [WA]`},
+    {t:['damage','damaged','ruin my hair','wreck my hair','breakage','break off','fried','over processed','overprocessed','fall out'],
+     a:`Healthy hair is the whole point, so I work in stages and use bond protection to keep it intact. Sometimes the honest answer is two gentler appointments instead of one aggressive one. Colour done properly should not wreck your hair, but every head has a safe limit in a sitting, and I will always tell you where it is. [BOOK]`},
+    {t:['olaplex','bond builder','bonding treatment','bond repair','k18','plex'],
+     a:`Bond builders like Olaplex re-link the bonds that lifting can break, which is why I run bond protection through colour work. They are a support, not a magic undo, so they do their best alongside good technique and aftercare rather than as a rescue afterwards.`},
+    {t:['toner','gloss','glaze','how long does toner','toner last','tone my hair'],
+     a:`A toner or gloss refines the final shade, cancels unwanted warmth, and adds shine. It is a stain rather than a permanent, so it softens over roughly four to six weeks depending on how often you wash and what you use. Sulphate-free washing and the right purple shampoo stretch it out. [BOOK]`},
+    {t:['purple shampoo','blue shampoo','toning shampoo','silver shampoo'],
+     a:`Purple cancels yellow, blue cancels orange. Use it once or twice a week, not every wash, leave it a couple of minutes, then rinse. Overusing it can leave a dull violet cast, so treat it as a top-up between salon toners. Blondes lean purple, darker or balayaged hair often wants blue.`},
+    {t:['keratin','hair botox','botox','smoothing treatment','brazilian blowout','frizz treatment','anti frizz'],
+     a:`Keratin smoothing coats and relaxes the hair to kill frizz and cut styling time, and it is the stronger smoother. Hair botox is more of a deep repair and conditioning treatment that smooths and adds gloss without the same relaxing effect. Keratin for sleek and low-frizz, botox for repair and shine. [BOOK]`},
+    {t:['after keratin','keratin aftercare','wash after keratin','after smoothing','after my keratin'],
+     a:`After a smoothing treatment, treat it gently for the first few days, sulphate-free shampoo from then on, and keep tight kinks out of the hair while it settles. Sulphates and salt strip it out faster, so the right home products are what make it last.`},
+    {t:['root touch up','touch up my roots','roots done','regrowth','how often should i colour','how often colour','grow out','how often roots'],
+     a:`Root regrowth on all-over colour usually wants a touch-up every four to six weeks. Balayage and painted colour are far more forgiving, often three to four months, because there is no hard regrowth line. It depends on the technique and how much contrast you carry.`},
+    {t:['grey','gray','greys','grays','white hair','cover grey','covering grey','grey coverage'],
+     a:`Greys are very coverable. The approach depends on how much grey you have and whether you want full opaque coverage or a softer blended look that grows out gently, and resistant greys sometimes need a specific formula and timing. Tell me roughly how much grey and I will suggest the kindest way to handle it. [WA]`},
+    {t:['hard water','mineral','buildup','build up','well water','shower filter','water is hard','dull colour'],
+     a:`Hard water leaves mineral buildup that dulls colour and can pull blondes dingy or orange. A clarifying or chelating wash now and then lifts the minerals, and a shower filter helps if it is constant. If your colour fades fast or your blonde looks off, water is often the hidden culprit.`},
+    {t:['extensions','tape in','tape ins','clip in','clip ins','weft','add length','longer hair','more length'],
+     a:`I work with tape-ins, clip-ins, and blending for length and fullness, matched and placed so the focus stays on the cut, not the install. The right type depends on your natural hair, lifestyle, and budget, which is a quick consult. [BOOK]`},
+    {t:['how much','cost','price','pricing','quote','expensive','charge','rates','afford'],
+     a:`Colour is quoted per head, because length, density, and where you are starting from all change the work. No surprises at the chair, I confirm a clear price before we book. Send a photo of your hair for an exact quote. [WA]`},
+    {t:['how long will','how long does it','how long is','how long for','appointment take','how long'],
+     a:`Every colour appointment is a full three-hour block so nothing is rushed, and bigger transformations can run longer. I will always give you realistic timing before the day. [BOOK]`},
+    {t:['book','booking','where are you','located','location','address','what days','open on','opening hours','tuesday','wednesday'],
+     a:`Colour and treatment days run Tuesday and Wednesday in Surrey and Vancouver, three chairs a day at 10, 1, and 5. You can book live on Square, and exact location and parking come through once you book. [BOOK]`},
+    {t:['bridal','wedding','bride','trial','engagement','sangeet','reception','maid of honour'],
+     a:`Bridal and event styling is built around your outfit, ceremonies, and timeline, with a trial before the day, hair and makeup together. Sikh, Punjabi, Hindu and Western looks all welcome. Message me your date and I will talk you through it. [WA]`},
+    {t:['perm','perms','soft perm','curl set','wave perm'],
+     a:`Modern perms are a world away from the old ones: soft waves or defined curls shaped to your face, with movement that lasts months. Whether your hair suits one depends on its condition and length, which is a quick consult. [BOOK]`},
+    {t:['first time','nervous','scared','never had','consultation','consult','what happens','what to expect'],
+     a:`Totally normal, and it is exactly why every appointment starts with a proper consultation. We talk through what you want, what is realistic, and the plan before any colour touches your hair. No pressure, no surprises. [BOOK]`},
+    {t:['pregnant','pregnancy','breastfeeding','expecting','safe during pregnancy'],
+     a:`Plenty of people colour through pregnancy, and many choose lower-ammonia options, balayage, or highlights that keep product off the scalp for extra peace of mind. It is worth a quick word with your doctor too. Nothing medical from me, just the hair side, and I am happy to plan a gentle approach.`},
+    {t:['patch test','allergy','allergic','reaction','sensitive scalp','itchy scalp','burning'],
+     a:`If you have ever reacted to colour, or it is a brand new product for you, a patch test 48 hours before is the safe move. Any burning or a real reaction during a service means stop and see a professional, not push through. Tell me about any sensitivities before we book. [WA]`},
+    {t:['aftercare','maintain','keep my colour','keep colour fresh','home care','what shampoo','which shampoo','look after','make colour last'],
+     a:`You will leave knowing exactly what to use and avoid. The basics: sulphate-free wash, a heat protectant, cooler water, and the right toning shampoo. Those few habits keep colour salon-fresh for weeks longer.`}
+  ];
+
+  const STARTERS = ['How do I fix box dye?','Why did my blonde go brassy?','Balayage vs highlights?','Can I go dark to blonde?'];
+
+  function linkify(str){
+    return str
+      .replace(/\[WA\]/g, ' <a href="'+WA+'" target="_blank" rel="noopener noreferrer">Message on WhatsApp ↗</a>')
+      .replace(/\[BOOK\]/g, ' <a href="'+SQ+'" target="_blank" rel="noopener noreferrer">Book on Square ↗</a>');
+  }
+  function norm(str){ return ' ' + str.toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim() + ' '; }
+  function findAnswer(raw){
+    const t = norm(raw); let best=null, score=0;
+    for(const item of KB){
+      let sc=0;
+      for(const tag of item.t){ if(t.indexOf(tag) !== -1) sc += tag.split(' ').length; }
+      if(sc>score){ score=sc; best=item; }
+    }
+    return score>=1 ? best.a : null;
+  }
+  function respond(raw){
+    const n = raw.toLowerCase().trim();
+    if(/(^|\s)(thanks|thank you|thankyou|thx|ty|cheers)(\s|$)/.test(n) && n.length<32)
+      return 'Anytime ✦ Ask me anything else about your hair whenever you like.';
+    const hit = findAnswer(raw); if(hit) return hit;
+    if(/^(hi|hey|hello|hiya|yo|hola|good (morning|afternoon|evening)|namaste|sat sri akal)\b/.test(n))
+      return "Hi! I'm Gurbina's hair guide ✦ Ask me anything, colour, box dye, balayage, treatments, damage, going blonde, whatever's on your mind. What are you thinking about?";
+    return "That's a great one to get right for your exact hair, and I'd rather not guess. Send a photo on WhatsApp and Gurbina will tell you straight, free. [WA]";
+  }
+
+  const history = [];
+  function scrollDown(){ bodyEl.scrollTop = bodyEl.scrollHeight; }
+  function addMsg(text, who, trusted){
+    const d = document.createElement('div');
+    d.className = 'chat-msg ' + who;
+    if(trusted) d.innerHTML = linkify(text); else d.textContent = text;
+    bodyEl.appendChild(d); scrollDown(); return d;
+  }
+  function typingBubble(){
+    const d = document.createElement('div'); d.className = 'chat-typing';
+    d.innerHTML = '<span></span><span></span><span></span>';
+    bodyEl.appendChild(d); scrollDown(); return d;
+  }
+  async function getReply(text){
+    if(STYLIST_WORKER_URL){
+      try{
+        const r = await fetch(STYLIST_WORKER_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({messages:history})});
+        if(r.ok){ const d = await r.json(); if(d && d.reply) return {out:d.reply, trusted:false}; }
+      }catch(e){ /* fall back to the built-in guide */ }
+    }
+    return {out:respond(text), trusted:true};
+  }
+  let busy = false;
+  async function send(text){
+    text = (text||'').trim(); if(!text || busy) return;
+    busy = true; input.value=''; sendB.disabled = true;
+    addMsg(text, 'me', false); history.push({role:'user', content:text});
+    const tb = typingBubble();
+    const {out, trusted} = await getReply(text);
+    const wait = Math.min(1100, 380 + out.length * 7);
+    setTimeout(()=>{
+      tb.remove(); addMsg(out, 'bot', trusted); history.push({role:'assistant', content:out});
+      busy = false; sendB.disabled = false;
+      if(document.body.classList.contains('chat-open')) input.focus();
+    }, wait);
+  }
+
+  let started = false;
+  function boot(){
+    if(started) return; started = true;
+    addMsg("Hi ✦ I'm Gurbina's hair guide. Ask me anything about colour, box dye, balayage, treatments, or a colour that went wrong, all free. What's on your mind?", 'bot', true);
+    STARTERS.forEach(q=>{ const b = document.createElement('button'); b.type='button'; b.textContent = q; b.addEventListener('click', ()=>send(q)); chips.appendChild(b); });
+  }
+  function openChat(){ document.body.classList.add('chat-open'); panel.setAttribute('aria-hidden','false'); boot(); setTimeout(()=>input.focus(), 360); }
+  function closeChat(){ document.body.classList.remove('chat-open'); panel.setAttribute('aria-hidden','true'); launch.focus(); }
+
+  launch.addEventListener('click', openChat);
+  closeB.addEventListener('click', closeChat);
+  document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && document.body.classList.contains('chat-open')) closeChat(); });
+  sendB.addEventListener('click', ()=>send(input.value));
+  input.addEventListener('keydown', e=>{ if(e.key === 'Enter'){ e.preventDefault(); send(input.value); } });
+})();
+</script>
+
+</body>
+</html>
