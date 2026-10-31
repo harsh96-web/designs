@@ -11,7 +11,7 @@
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   font-src 'self' https://fonts.gstatic.com;
   img-src 'self' data: https:;
-  connect-src 'self';
+  connect-src 'self' https://*.workers.dev;
   frame-ancestors 'none';
   base-uri 'self';
   form-action 'self' mailto: https://wa.me;
@@ -21,22 +21,25 @@
 <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 <!-- ═══ END SECURITY HEADERS ═══ -->
 
-<title>Hair by Gurbina · Hairstylist in Surrey &amp; Vancouver BC · Balayage, Cuts, Colour &amp; Bridal</title>
-<meta name="description" content="Hairstylist in Surrey and Vancouver, BC. Balayage, precision cuts, colour correction, keratin smoothing, extensions, and South Asian bridal hair. Book a consultation." />
+<script>document.documentElement.classList.add('js');</script>
+<title>Hair by Gurbina · Red Seal Certified Hairstylist · Surrey &amp; Vancouver BC</title>
+<meta name="description" content="Red Seal certified hairstylist in Surrey and Vancouver, BC. Balayage, colour correction, keratin, cuts, extensions and South Asian bridal hair. Book on Square." />
 <meta name="theme-color" content="#170A0F" />
 <meta name="author" content="Gurbina" />
+<link rel="canonical" href="https://hairbygurbina.com/" />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' x='5'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
 
 <!-- Open Graph. EDIT: if a custom domain replaces GitHub Pages, update these URLs. -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Hair by Gurbina · Hairstylist in Surrey &amp; Vancouver BC" />
-<meta property="og:description" content="Balayage, precision cuts, colour correction, keratin smoothing, extensions, and South Asian bridal hair across the Lower Mainland." />
+<meta property="og:title" content="Hair by Gurbina · Red Seal Certified Hairstylist in Surrey &amp; Vancouver BC" />
+<meta property="og:url" content="https://hairbygurbina.com/" />
+<meta property="og:description" content="Balayage, colour correction, keratin, precision cuts, extensions and South Asian bridal hair, by a Red Seal certified hairstylist in the Lower Mainland." />
 <meta property="og:image" content="https://hairbygurbina.com/images/c11-blonde-highlights-side.jpg" />
 <meta property="og:locale" content="en_CA" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Hair by Gurbina · Hairstylist in Surrey &amp; Vancouver BC" />
-<meta name="twitter:description" content="Balayage, cuts, colour and South Asian bridal hair in the Lower Mainland." />
+<meta name="twitter:title" content="Hair by Gurbina · Red Seal Certified Hairstylist" />
+<meta name="twitter:description" content="Red Seal certified hairstylist: balayage, cuts, colour and South Asian bridal hair in the Lower Mainland." />
 <meta name="twitter:image" content="https://hairbygurbina.com/images/c11-blonde-highlights-side.jpg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,20 +65,146 @@
     "@type": "ReserveAction",
     "target": "https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services"
   },
-  "address": { "@type": "PostalAddress", "addressLocality": "Surrey", "addressRegion": "BC", "addressCountry": "CA" },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Surrey",
+    "addressRegion": "BC",
+    "addressCountry": "CA"
+  },
   "areaServed": [
-    { "@type": "City", "name": "Surrey" },
-    { "@type": "City", "name": "Vancouver" },
-    { "@type": "AdministrativeArea", "name": "Lower Mainland, British Columbia" }
+    {
+      "@type": "City",
+      "name": "Surrey"
+    },
+    {
+      "@type": "City",
+      "name": "Vancouver"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Lower Mainland, British Columbia"
+    }
   ],
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Tuesday", "Wednesday"],
-    "opens": "10:00",
-    "closes": "20:00"
-  }],
-  "sameAs": ["https://www.instagram.com/stylendglow"],
-  "knowsAbout": ["Balayage", "Soft perms", "Precision haircuts", "Colour correction", "Keratin smoothing", "Hair extensions", "South Asian bridal hair", "Bridal makeup", "Waterfall braids", "Floral hair placement"]
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Tuesday",
+        "Wednesday"
+      ],
+      "opens": "10:00",
+      "closes": "20:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/stylendglow"
+  ],
+  "knowsAbout": [
+    "Balayage",
+    "Soft perms",
+    "Precision haircuts",
+    "Colour correction",
+    "Keratin smoothing",
+    "Hair extensions",
+    "South Asian bridal hair",
+    "Bridal makeup",
+    "Waterfall braids",
+    "Floral hair placement"
+  ],
+  "description": "Red Seal certified hairstylist in Surrey and Vancouver, BC: balayage, colour correction, keratin smoothing, perms, extensions, precision cuts, and South Asian bridal hair and makeup.",
+  "founder": {
+    "@type": "Person",
+    "name": "Gurbina",
+    "honorificSuffix": "RSE",
+    "jobTitle": "Red Seal certified hairstylist",
+    "knowsLanguage": [
+      "English",
+      "Punjabi",
+      "Hindi"
+    ],
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Certificate of Qualification with Interprovincial Red Seal Endorsement, Hairstylist (332A)",
+      "credentialCategory": "Certificate of Qualification",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "SkilledTradesBC"
+      },
+      "dateCreated": "2026"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does colour cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Colour is quoted per head, because length, density, and where you're starting from all change the work. I'll confirm a clear price before we book, no surprises at the chair. Send me a photo of your hair on WhatsApp for an exact quote."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long will my appointment take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every colour appointment is a full three-hour block so nothing is rushed. Bigger transformations, like going dark to blonde, can run longer, and I'll always tell you the realistic timing before the day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will colouring damage my hair?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Healthy hair is the whole point. I work in stages, use bond-protecting products, and will never push your hair past what it can safely take in one session. Sometimes the honest answer is two appointments instead of one, and I'll tell you if that's the case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "It's my first time with you and I'm nervous.",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That's completely normal, and it's exactly why every appointment starts with a proper consultation. We'll talk through what you want, what's realistic, and the plan before any colour touches your hair."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I keep my colour looking fresh?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You'll go home knowing exactly what to use and what to avoid. A few simple habits, sulphate-free wash, heat protectant, the right toning, keep your colour looking salon-fresh for weeks longer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where are you located?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I take colour and treatment appointments in Surrey and Vancouver, Tuesdays and Wednesdays. Exact location and parking details are shared when you book."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are you Red Seal certified?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. I hold a Certificate of Qualification with Interprovincial Red Seal Endorsement for hairstylists (332A), issued by SkilledTradesBC in 2026. It's the national standard for the trade, and I earned it after more than 6,000 verified industry hours. That's what the RSE after my name means."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we talk in Punjabi or Hindi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Of course. Consultations can be in English, Punjabi or Hindi, whichever feels easiest, at the chair or on WhatsApp."
+      }
+    }
+  ]
 }
 </script>
 
@@ -1381,14 +1510,375 @@ body.menu-open {
 
 .bw-note { font-size: 12.5px; color: var(--mute); margin-top: 16px; }
 </style>
+<style>
+/* ═══════════════════════════════════════════════════════════
+   2026 REBUILD · Red Seal seal, service finder, aftercare
+   planner, bridal planner, lightbox "ask about this look".
+   Same Gilded Hour tokens; one new colour: the seal's wax red.
+   ═══════════════════════════════════════════════════════════ */
+:root { --wax: #9A3B32; --wax-deep: #5C1F1A; }
+[hidden] { display: none !important; }
+
+/* ─── The Red Seal endorsement mark ───
+   The official mark is shown exactly as provided: upright, uncropped, original colours.
+   Its GIF edges are matted to white, so it sits on a warm paper disc, the way the seal
+   sits on her certificate. If images/rs-icon.gif is missing, the gold seal shows instead. */
+.seal-defs { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+.seal-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.seal { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.seal:focus-visible { outline: none; }
+.seal:focus-visible .seal-mount,
+.seal.no-mark:focus-visible .seal-fallback { outline: 2px solid var(--champagne); outline-offset: 5px; border-radius: 50%; }
+.seal-mount {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; aspect-ratio: 1; padding: 8%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #FFFEFB, #FBF5EC 58%, #F1E6D6);
+  box-shadow: 0 0 0 1px rgba(217, 184, 124, 0.75), 0 0 0 6px rgba(23, 10, 15, 0.55),
+              0 0 0 7px var(--gold-line), 0 26px 44px -14px rgba(0, 0, 0, 0.7);
+}
+.rs-mark { display: block; width: 100%; height: auto; }
+.seal-fallback { display: none; filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.55)); }
+.seal.no-mark .seal-mount { display: none; }
+.seal.no-mark .seal-fallback { display: block; }
+.seal-name {
+  font-family: var(--accent); font-style: italic; font-size: 1rem; line-height: 1;
+  color: var(--gold-hi); background: var(--noir);
+  border: 1px solid var(--gold-dim); border-radius: 100px;
+  padding: 6px 14px 7px; white-space: nowrap;
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.6);
+}
+.seal--hero {
+  position: absolute; z-index: 4;
+  top: 6%; left: calc(24% - clamp(58px, 5.8vw, 75px));
+  width: clamp(116px, 11.6vw, 150px);
+  transition: transform 0.5s var(--ease);
+}
+.seal--hero:hover { transform: translateY(-3px); }
+.seal--hero .seal-mount, .seal--hero .seal-fallback { animation: sealPress 0.9s var(--ease) 1.6s both; }
+.seal--hero .seal-name { animation: fadeIn 0.8s ease 2.2s both; }
+@keyframes sealPress {
+  0% { opacity: 0; transform: scale(1.14); }
+  60% { opacity: 1; transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Red Seal section ─── */
+.rs-grid {
+  display: grid; grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(40px, 6vw, 90px); align-items: center;
+}
+.rs-plate {
+  position: relative;
+  background: linear-gradient(160deg, var(--velvet-hi), var(--velvet) 70%);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius);
+  padding: clamp(34px, 5vw, 56px) clamp(24px, 4vw, 44px) clamp(26px, 4vw, 38px);
+}
+.rs-plate::before {
+  content: ""; position: absolute; inset: 10px;
+  border: 1px solid var(--gold-line);
+  border-radius: calc(var(--radius) - 6px);
+  pointer-events: none;
+}
+.rs-seal { width: min(210px, 60%); margin: 6px auto 34px; }
+.rs-cert { position: relative; border-top: 1px solid var(--gold-line); }
+.rs-cert div {
+  display: grid; grid-template-columns: 92px 1fr; gap: 14px;
+  padding: 13px 0; border-bottom: 1px solid rgba(217, 184, 124, 0.14);
+}
+.rs-cert dt { font-family: var(--accent); font-style: italic; color: var(--champagne); font-size: 1rem; line-height: 1.4; }
+.rs-cert dd { color: var(--ivory-soft); font-size: 14px; line-height: 1.5; }
+.rs-lead { color: var(--mute); margin-top: 22px; max-width: 540px; font-size: 16px; }
+.rs-points { list-style: none; margin-top: 34px; display: grid; gap: 24px; max-width: 560px; }
+.rs-points li { position: relative; padding-left: 28px; }
+.rs-points li::before { content: "✦"; position: absolute; left: 0; top: 5px; color: var(--champagne); font-size: 12px; }
+.rs-points h3 {
+  font-family: var(--display); font-weight: 380;
+  font-variation-settings: "opsz" 80;
+  font-size: 1.22rem; line-height: 1.25; color: var(--ivory); margin-bottom: 6px;
+}
+.rs-points p { color: var(--mute); font-size: 14.5px; line-height: 1.65; }
+.rs-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 38px; }
+
+/* ─── Service finder ─── */
+.finder {
+  position: relative;
+  background: linear-gradient(150deg, var(--velvet-hi), var(--velvet) 65%);
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--radius);
+  padding: clamp(26px, 4.5vw, 52px);
+}
+.fd-progress { display: flex; gap: 8px; margin-bottom: 30px; }
+.fd-progress span { flex: 1; height: 3px; border-radius: 3px; background: var(--gold-line); transition: background 0.4s var(--ease); }
+.fd-progress span.on { background: var(--champagne); }
+.fd-step { border: none; min-width: 0; outline: none; }
+.js .fd-step:not(.is-active) { display: none; }
+.fd-step.is-active { animation: fdIn 0.45s var(--ease) both; }
+@keyframes fdIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.fd-step legend {
+  padding: 0; margin-bottom: 24px;
+  font-family: var(--display); font-weight: 340;
+  font-variation-settings: "opsz" 100;
+  font-size: clamp(1.5rem, 3.2vw, 2.15rem); line-height: 1.15;
+  color: var(--ivory);
+}
+.fd-num { display: block; font-family: var(--accent); font-style: italic; font-size: 1.02rem; color: var(--champagne); margin-bottom: 10px; }
+.fd-options { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.fd-options label, .care-pills label, .bp-seg label { position: relative; cursor: pointer; }
+.fd-options input, .care-pills input, .bp-seg input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.fd-options label span {
+  display: flex; align-items: center; min-height: 58px; height: 100%;
+  padding: 14px 20px;
+  border: 1px solid var(--gold-line); border-radius: 14px;
+  background: rgba(23, 10, 15, 0.35);
+  color: var(--ivory-soft); font-size: 15px; line-height: 1.35;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), color 0.3s var(--ease);
+}
+.fd-options label:hover span { border-color: var(--gold-dim); color: var(--ivory); }
+.fd-options input:checked + span { border-color: var(--champagne); background: rgba(217, 184, 124, 0.14); color: var(--gold-hi); }
+.fd-options input:focus-visible + span,
+.care-pills input:focus-visible + span,
+.bp-seg input:focus-visible + span { outline: 2px solid var(--champagne); outline-offset: 3px; }
+.fd-nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 26px; }
+.fd-back { background: none; border: none; color: var(--mute); font-size: 13.5px; letter-spacing: 0.04em; cursor: pointer; padding: 10px 0; }
+.fd-back:hover { color: var(--gold-hi); }
+.fd-next { min-height: 48px; padding: 12px 28px; margin-left: auto; }
+.fd-next:disabled { opacity: 0.4; cursor: default; transform: none; box-shadow: none; }
+.fd-noscript { color: var(--mute); font-size: 14px; }
+.fd-noscript a { color: var(--champagne); border-bottom: 1px solid var(--gold-dim); }
+.fd-result { outline: none; animation: fdIn 0.5s var(--ease) both; }
+.fd-kicker { font-family: var(--accent); font-style: italic; color: var(--champagne); font-size: 1.12rem; }
+.fd-service {
+  font-family: var(--display); font-weight: 330;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-size: clamp(2.1rem, 5vw, 3.5rem); line-height: 1.04; letter-spacing: -0.02em;
+  color: var(--ivory); margin: 10px 0 16px;
+}
+.fd-why { color: var(--ivory-soft); max-width: 620px; font-size: 16px; }
+.fd-notes { list-style: none; margin: 24px 0 32px; display: grid; gap: 11px; max-width: 640px; }
+.fd-notes li { position: relative; padding-left: 22px; color: var(--mute); font-size: 14.5px; }
+.fd-notes li::before { content: "✦"; position: absolute; left: 0; top: 3px; font-size: 10px; color: var(--champagne); }
+.fd-notes li.flag { color: var(--rose-silk); }
+.fd-notes li.flag::before { color: var(--rose-silk); }
+.fd-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.fd-restart {
+  margin-top: 24px; background: none; border: none; cursor: pointer;
+  color: var(--mute); font-size: 13.5px; padding: 4px 0 2px;
+  border-bottom: 1px solid var(--gold-line);
+}
+.fd-restart:hover { color: var(--gold-hi); border-color: var(--gold-dim); }
+
+/* ─── Aftercare planner ─── */
+.care { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(18px, 3vw, 28px); align-items: start; }
+.care-controls, .care-plan {
+  background: var(--velvet);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius);
+  padding: clamp(24px, 3.5vw, 38px);
+}
+.care-plan { background: linear-gradient(160deg, var(--velvet-hi), var(--velvet) 70%); border-color: var(--gold-dim); }
+.care-field { border: none; min-width: 0; }
+.care-field legend, .care-date > span {
+  display: block; padding: 0; margin-bottom: 14px;
+  font-family: var(--accent); font-style: italic; color: var(--champagne); font-size: 1.08rem;
+}
+.care-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.care-pills span, .bp-seg span {
+  display: inline-flex; align-items: center; min-height: 44px;
+  padding: 10px 18px; border-radius: 100px;
+  border: 1px solid var(--gold-line);
+  color: var(--ivory-soft); font-size: 13.5px;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.care-pills label:hover span, .bp-seg label:hover span { border-color: var(--gold-dim); }
+.care-pills input:checked + span, .bp-seg input:checked + span { background: var(--champagne); border-color: var(--champagne); color: var(--noir); }
+.care-date { display: block; margin-top: 28px; }
+.care-date input, .bp-field input[type="date"] {
+  width: 100%; min-height: 52px;
+  background: rgba(23, 10, 15, 0.45);
+  border: 1px solid var(--gold-line); border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--ivory); font-family: var(--sans); font-size: 16px;
+  color-scheme: dark;
+  transition: border-color 0.3s var(--ease);
+}
+.care-date input:focus, .bp-field input[type="date"]:focus { outline: none; border-color: var(--champagne); }
+.care-note { font-size: 12.5px; color: var(--mute); margin-top: 18px; line-height: 1.6; }
+.care-title {
+  font-family: var(--display); font-weight: 350;
+  font-variation-settings: "opsz" 90;
+  font-size: clamp(1.35rem, 2.6vw, 1.7rem); color: var(--ivory);
+  margin-bottom: 8px;
+}
+.care-steps { list-style: none; counter-reset: care; }
+.care-steps li {
+  counter-increment: care;
+  display: grid; grid-template-columns: 34px 1fr; gap: 4px 14px;
+  padding: 16px 0; border-bottom: 1px solid rgba(217, 184, 124, 0.14);
+}
+.care-steps li::before {
+  content: counter(care);
+  grid-row: span 2;
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--accent); font-style: italic; color: var(--champagne); font-size: 13px;
+}
+.care-when { font-family: var(--display); font-weight: 380; font-size: 1.06rem; color: var(--ivory); }
+.care-when small { font-family: var(--sans); font-weight: 300; font-size: 12px; color: var(--mute); margin-left: 8px; white-space: nowrap; }
+.care-text { color: var(--mute); font-size: 14.5px; line-height: 1.6; }
+.care-next {
+  margin-top: 24px; padding: 20px 22px; border-radius: 14px;
+  background: linear-gradient(120deg, rgba(217, 184, 124, 0.14), rgba(217, 184, 124, 0.04));
+  border: 1px solid var(--gold-dim);
+}
+.care-next p { color: var(--ivory-soft); font-size: 15px; }
+.care-next strong { color: var(--gold-hi); font-weight: 400; }
+.care-actions { display: flex; gap: 12px 20px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+.care-actions .btn { min-height: 48px; padding: 12px 26px; }
+.care-alt { font-size: 13.5px; color: var(--champagne); border-bottom: 1px solid var(--gold-dim); padding-bottom: 2px; }
+.care-alt:hover { color: var(--gold-hi); }
+.care-status { font-size: 13px; color: var(--gold-hi); margin-top: 12px; min-height: 1px; }
+
+/* ─── Bridal planner ─── */
+.bridal-planner {
+  margin-top: 22px; scroll-margin-top: 110px;
+  display: grid; grid-template-columns: 1.25fr 0.75fr;
+  border: 1px solid var(--gold-line); border-radius: var(--radius);
+  overflow: hidden; background: var(--velvet);
+}
+.bp-main { padding: clamp(26px, 4vw, 44px); }
+.bp-title {
+  font-family: var(--display); font-weight: 350;
+  font-variation-settings: "opsz" 90;
+  font-size: clamp(1.4rem, 2.8vw, 1.85rem); color: var(--ivory);
+}
+.bp-title .it { font-style: italic; color: var(--gold-hi); }
+.bp-sub { color: var(--mute); font-size: 14.5px; margin: 8px 0 28px; max-width: 520px; }
+.bp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 26px; }
+.bp-field { border: none; min-width: 0; padding: 0; }
+.bp-wide { grid-column: 1 / -1; }
+.bp-field > span, .bp-field legend {
+  display: block; padding: 0; margin-bottom: 10px;
+  font-family: var(--accent); font-style: italic; color: var(--champagne); font-size: 1.04rem;
+}
+.stepper { display: inline-flex; align-items: center; border: 1px solid var(--gold-line); border-radius: 100px; }
+.stepper button {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: none; border: none; cursor: pointer;
+  color: var(--champagne); font-size: 20px; line-height: 1;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+}
+.stepper button:hover { background: rgba(217, 184, 124, 0.12); color: var(--gold-hi); }
+.stepper button:disabled { opacity: 0.35; cursor: default; background: none; }
+.stepper output { min-width: 44px; text-align: center; font-family: var(--display); font-size: 1.3rem; color: var(--ivory); }
+.bp-seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.bp-aside {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; gap: 4px;
+  padding: clamp(28px, 4vw, 44px);
+  background: linear-gradient(160deg, var(--velvet-hi), var(--noir-soft));
+  border-left: 1px solid var(--gold-line);
+}
+.bp-days {
+  font-family: var(--display); font-weight: 330;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-size: clamp(3.4rem, 7vw, 5.4rem); line-height: 1; letter-spacing: -0.03em;
+}
+.bp-days-l { font-family: var(--accent); font-style: italic; color: var(--champagne); font-size: 1.12rem; }
+.bp-note { color: var(--mute); font-size: 14px; line-height: 1.6; margin: 18px auto 24px; max-width: 290px; }
+.bp-actions { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 300px; }
+.bp-actions .btn { width: 100%; }
+
+/* ─── Hero stats stay on one row; labels wrap inside their column ─── */
+.hero-meta { flex-wrap: nowrap; }
+.hero-meta > div { flex: 0 1 auto; min-width: 0; }
+
+/* The open phone menu sits above the chat button, not under it */
+body.menu-open .chat-launch { display: none; }
+
+/* ─── Next chair day, Google review slot ─── */
+.next-chair { font-family: var(--accent); font-style: italic; color: var(--champagne); font-size: 1.15rem; margin-bottom: 22px; }
+.review-actions { display: flex; justify-content: center; margin-top: 34px; }
+
+/* ─── Lightbox: ask about this look ─── */
+.lb-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.lb-actions a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  padding: 10px 20px; border-radius: 100px;
+  font-size: 13.5px; letter-spacing: 0.03em;
+  border: 1px solid var(--gold-dim); color: var(--ivory);
+  background: rgba(23, 10, 15, 0.6);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.lb-actions a:hover { transform: translateY(-2px); border-color: var(--champagne); }
+.lb-actions a.lb-ask {
+  background: linear-gradient(120deg, #B8925A, var(--champagne) 55%, var(--gold-hi));
+  color: var(--noir); border-color: transparent; font-weight: 500;
+}
+.lb-figure img { max-height: 70vh; }
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .seal--hero { top: 4%; left: calc(18% - 50px); width: 100px; gap: 8px; }
+  .seal--hero .seal-name { font-size: 0.86rem; padding: 5px 11px 6px; }
+  .rs-grid { grid-template-columns: 1fr; }
+  .rs-visual { width: 100%; max-width: 440px; margin: 0 auto; }
+  .care { grid-template-columns: 1fr; }
+  .bridal-planner { grid-template-columns: 1fr; }
+  .bp-aside { border-left: none; border-top: 1px solid var(--gold-line); }
+  .nav-links { gap: 20px; }
+  .nav-links.open a:nth-child(8) { transition-delay: 0.5s; }
+}
+@media (max-width: 640px) {
+  .eb-loc, .chip-times { display: none; }
+  .hero-meta .l { letter-spacing: 0.14em; }
+  .fd-options { grid-template-columns: 1fr; }
+  .fd-options label span { min-height: 52px; }
+  .fd-actions .btn, .rs-ctas .btn, .care-actions .btn { width: 100%; }
+  .bp-grid { grid-template-columns: 1fr; }
+  .rs-cert div { grid-template-columns: 80px 1fr; gap: 10px; }
+  .lb-figure img { max-height: 58vh; }
+}
+@media (max-width: 400px) {
+  .hero-meta .n { font-size: 1.4rem; }
+}
+</style>
 </head>
 <body class="has-announce">
+<svg class="seal-defs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sealGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#96763F"/><stop offset=".32" stop-color="#D9B87C"/>
+      <stop offset=".5" stop-color="#FFF4D8"/><stop offset=".68" stop-color="#D9B87C"/>
+      <stop offset="1" stop-color="#8A6A36"/>
+    </linearGradient>
+    <radialGradient id="sealWax" cx=".38" cy=".32" r=".78">
+      <stop offset="0" stop-color="#C2564A"/><stop offset=".55" stop-color="#9A3B32"/>
+      <stop offset="1" stop-color="#5C1F1A"/>
+    </radialGradient>
+    <path id="sealRing" d="M100,100 m-66,0 a66,66 0 1,1 132,0 a66,66 0 1,1 -132,0"/>
+    <symbol id="sealArt" viewBox="0 0 200 200">
+      <path d="M191.50,90.38 Q204.00,100.00 191.50,109.62 Q201.73,121.62 187.50,128.43 Q195.01,142.30 179.67,146.00 Q184.14,161.13 168.37,161.56 Q169.59,177.29 154.08,174.43 Q152.00,190.07 137.42,184.05 Q132.14,198.91 119.13,189.99 Q110.87,203.43 100.00,192.00 Q89.13,203.43 80.87,189.99 Q67.86,198.91 62.58,184.05 Q48.00,190.07 45.92,174.43 Q30.41,177.29 31.63,161.56 Q15.86,161.13 20.33,146.00 Q4.99,142.30 12.50,128.43 Q-1.73,121.62 8.50,109.62 Q-4.00,100.00 8.50,90.38 Q-1.73,78.38 12.50,71.57 Q4.99,57.70 20.33,54.00 Q15.86,38.87 31.63,38.44 Q30.41,22.71 45.92,25.57 Q48.00,9.93 62.58,15.95 Q67.86,1.09 80.87,10.01 Q89.13,-3.43 100.00,8.00 Q110.87,-3.43 119.13,10.01 Q132.14,1.09 137.42,15.95 Q152.00,9.93 154.08,25.57 Q169.59,22.71 168.37,38.44 Q184.14,38.87 179.67,54.00 Q195.01,57.70 187.50,71.57 Q201.73,78.38 191.50,90.38 Z" fill="url(#sealGold)"/>
+      <circle cx="100" cy="100" r="86" fill="url(#sealWax)"/>
+      <circle cx="100" cy="100" r="85" fill="none" stroke="#3B110E" stroke-opacity=".55" stroke-width="2"/>
+      <circle cx="100" cy="100" r="80" fill="none" stroke="url(#sealGold)" stroke-width="1.4"/>
+      <circle cx="100" cy="100" r="51" fill="none" stroke="url(#sealGold)" stroke-width="1"/>
+      <ellipse cx="78" cy="62" rx="34" ry="16" fill="#FFFFFF" opacity=".07" transform="rotate(-28 78 62)"/>
+      <text font-size="13.2" fill="url(#sealGold)" style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;letter-spacing:.04em">
+        <textPath href="#sealRing" textLength="404" lengthAdjust="spacing">Red Seal certified &#10022; Hairstylist 332A &#10022; SkilledTradesBC 2026 &#10022;</textPath>
+      </text>
+      <text x="100" y="118" text-anchor="middle" font-size="52" fill="url(#sealGold)" style="font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:400">G</text>
+    </symbol>
+  </defs>
+</svg>
 <a class="skip-link" href="#colour-cuts">Skip to the work</a>
 <div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
 
 <div class="announce-bar" id="announceBar">
   <div class="announce-text" id="announceText">
-    <span id="announceMsg">Now booking colour, treatments &amp; cuts across Surrey &amp; Vancouver · <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer">book an appointment</a></span>
+    <span id="announceMsg">Now Red Seal certified ✦ <a href="#red-seal">see what it means</a></span>
   </div>
   <button class="ab-close" id="announceClose" aria-label="Close announcement">×</button>
 </div>
@@ -1400,11 +1890,11 @@ body.menu-open {
   </a>
   <div class="nav-links" id="navLinks">
     <a href="#colour-cuts">Hair</a>
-    <a href="#about">About</a>
+    <a href="#red-seal">Red Seal</a>
     <a href="#services">Menu</a>
-    <a href="#packages">Packages</a>
+    <a href="#finder">Service finder</a>
     <a href="#words">Reviews</a>
-    <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer">Book</a>
+    <a href="#aftercare">Aftercare</a>
     <a href="#work">Bridal</a>
     <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="mobile-book-link">Book a consultation →</a>
   </div>
@@ -1449,39 +1939,40 @@ body.menu-open {
   </svg>
 
   <div class="hero-text">
-    <span class="eyebrow">Hairstylist · Surrey &amp; Vancouver BC</span>
+    <span class="eyebrow"><span>Red Seal certified hairstylist<span class="eb-loc"> · Surrey &amp; Vancouver BC</span></span></span>
     <h1>
       <span class="script-line">hair by</span>
       <span class="name-line foil">Gurbina</span>
     </h1>
     <p class="hero-tagline">cuts, colour, and a <span class="it">finish</span> people remember.</p>
     <p class="hero-sub">
-      Hairstylist in Surrey and Vancouver. Balayage, highlights, colour correction, keratin, hair botox, and precision cuts, <strong>plus bridal and events</strong>. Everyday hair, done beautifully.
+      Balayage, highlights, colour correction, keratin, hair botox, and precision cuts in Surrey and Vancouver, <strong>plus bridal and events</strong>. Everyday hair, done beautifully.
     </p>
-    <!-- EDIT STATS: keep these verifiable. To add a real client count once
-         Gurbina confirms one, copy a block and use:
+    <!-- EDIT STATS: keep these verifiable. 8+ years and 6,000+ verified hours come from
+         Gurbina's résumé and her SkilledTradesBC record (Red Seal, 2026). To add a real
+         client count once she confirms one, copy a block and use:
          <span class="n"><span class="em stat-count" data-count="500">500</span>+</span> -->
     <div class="hero-meta">
       <div>
-        <span class="n"><span class="em stat-count" data-count="7">7</span>+</span>
+        <span class="n"><span class="em stat-count" data-count="8">8</span>+</span>
         <span class="l">Years Behind the Chair</span>
       </div>
       <div>
-        <span class="n"><span class="em">1:1</span></span>
-        <span class="l">Personal Appointments</span>
+        <span class="n"><span class="em stat-count" data-count="6000">6,000</span>+</span>
+        <span class="l">Verified Hours</span>
       </div>
       <div>
-        <span class="n"><span class="em stat-count" data-count="12">12</span></span>
-        <span class="l">Signature Services</span>
+        <span class="n"><span class="em">1:1</span></span>
+        <span class="l">One Client at a Time</span>
       </div>
     </div>
     <div class="live-chip">
       <span class="pulse-dot" aria-hidden="true"></span>
-      Booking Tuesdays &amp; Wednesdays · chairs at 10 · 1 · 5
+      <span id="nextChairText">Booking Tuesdays &amp; Wednesdays · chairs at 10 · 1 · 5</span>
     </div>
     <div class="hero-ctas">
       <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="btn gold"><span>Book a consultation</span><span class="arrow">↗</span></a>
-      <a href="#colour-cuts" class="btn ghost"><span>See the work</span><span>↓</span></a>
+      <a href="#finder" class="btn ghost"><span>Find your service</span><span>↓</span></a>
     </div>
   </div>
 
@@ -1497,12 +1988,16 @@ body.menu-open {
       <span class="hero-me-tag">meet Gurbina ✦</span>
     </div>
     <span class="hero-side-label">Hair by Gurbina</span>
+    <!-- Red Seal Endorsement Official Mark (images/rs-icon.gif), shown as provided. Use needs
+         permission from SkilledTradesBC. If the file is removed, the gold seal shows instead. -->
+    <a class="seal seal--hero" href="#red-seal" aria-label="Gurbina, RSE: Red Seal certified hairstylist. See what it means"><span class="seal-mount"><img class="rs-mark" src="images/rs-icon.gif" width="920" height="914" alt="Red Seal endorsement mark, Interprovincial Standard" decoding="async" onerror="this.closest('.seal').classList.add('no-mark')" /></span><svg class="seal-svg seal-fallback" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><use href="#sealArt"/></svg><span class="seal-name">Gurbina, RSE</span></a>
   </div>
 </header>
 </div>
 
 <div class="marquee-wrap" aria-hidden="true">
   <div class="marquee-track">
+    <span>Red Seal Certified</span><span class="dot">✦</span>
     <span>Balayage</span><span class="dot">✦</span>
     <span class="it">Precision Cuts</span><span class="dot">✦</span>
     <span>Colour Correction</span><span class="dot">✦</span>
@@ -1511,6 +2006,7 @@ body.menu-open {
     <span>Soft Perms</span><span class="dot">✦</span>
     <span class="it">South Asian Bridal</span><span class="dot">✦</span>
     <span>Waterfall Braids</span><span class="dot">✦</span>
+    <span>Red Seal Certified</span><span class="dot">✦</span>
     <span>Balayage</span><span class="dot">✦</span>
     <span class="it">Precision Cuts</span><span class="dot">✦</span>
     <span>Colour Correction</span><span class="dot">✦</span>
@@ -1730,9 +2226,12 @@ body.menu-open {
     </div>
     <div class="about-text reveal">
       <span class="eyebrow">The Girl Behind the Chair</span>
-      <h2 class="section-title">Seven years of <span class="it foil">colour,</span> cuts, treatments, and <span class="it">brides.</span></h2>
+      <h2 class="section-title">Eight years of <span class="it foil">colour,</span> cuts, treatments, and <span class="it">brides.</span></h2>
       <p>
         I trained formally and spent years in a busy full-service salon before building my own practice here in the Lower Mainland. That's where I learned the discipline behind the craft: every bride's family watching over my shoulder, every strand counted, no detail too small.
+      </p>
+      <p>
+        In 2026 I earned my <strong>Red Seal</strong>, Canada's national standard for hairstylists, after more than 6,000 verified hours behind the chair. Consultations can be in English, Punjabi or Hindi, whichever feels easiest for you.
       </p>
       <p>
         I'm happiest in the finish. A bridal look can be complicated on paper and still feel <em>off</em> if the braid isn't balanced, the curls aren't sealed, the flowers aren't placed with intention. <strong>The difference between a good bridal style and one a bride keeps talking about is almost always the last ten minutes.</strong>
@@ -1741,6 +2240,50 @@ body.menu-open {
         I specialize in South Asian bridal: waterfall and fishtail braids, rose-bun architecture, floral placement with gypsophila and fresh blooms, and the dimensional curl work that carries a look from the pheras to the reception. Western bridal, balayage, precision cutting, and smoothing treatments are home too. <strong>Every girl deserves to leave the chair feeling more like herself.</strong>
       </p>
       <div class="signature">Gurbina</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE RED SEAL · the credential, in plain words ═══ -->
+<section id="red-seal">
+  <div class="rs-grid">
+    <div class="rs-visual reveal">
+      <div class="rs-plate">
+        <div class="seal rs-seal">
+          <span class="seal-mount"><img class="rs-mark" src="images/rs-icon.gif" width="920" height="914" alt="Red Seal endorsement mark, Interprovincial Standard" loading="lazy" decoding="async" onerror="this.closest('.seal').classList.add('no-mark')" /></span>
+          <svg class="seal-svg seal-fallback" viewBox="0 0 200 200" role="img" aria-label="Red Seal certified hairstylist seal"><use href="#sealArt"/></svg>
+        </div>
+        <dl class="rs-cert">
+          <div><dt>Holder</dt><dd>Gurbina, RSE</dd></div>
+          <div><dt>Certificate</dt><dd>Certificate of Qualification with Interprovincial Red Seal Endorsement</dd></div>
+          <div><dt>Trade</dt><dd>Hairstylist (332A)</dd></div>
+          <div><dt>Issued by</dt><dd>SkilledTradesBC</dd></div>
+          <div><dt>Earned</dt><dd>2026</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="rs-text reveal">
+      <span class="eyebrow">The Red Seal</span>
+      <h2 class="section-title">Certified to the <span class="it foil">national</span> standard.</h2>
+      <p class="rs-lead">In 2026 I earned my Red Seal, the interprovincial standard for skilled trades in Canada. Here's what it means when you sit in my chair.</p>
+      <ul class="rs-points">
+        <li>
+          <h3>Tested on the hard parts</h3>
+          <p>The Red Seal exam is 120 questions set against the national standard for hairstylists, covering colour and lightening, cutting, styling, chemical services, and safety and hygiene.</p>
+        </li>
+        <li>
+          <h3>Proven behind the chair</h3>
+          <p>Before I wrote it, SkilledTradesBC verified more than 6,000 of my industry hours. The exam came after the hours, not instead of them.</p>
+        </li>
+        <li>
+          <h3>Recognized across Canada</h3>
+          <p>The endorsement is recognized by every province and territory, so it means the same thing wherever you're from.</p>
+        </li>
+      </ul>
+      <div class="rs-ctas">
+        <a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener noreferrer" class="btn gold"><span>Book a consultation</span><span class="arrow">↗</span></a>
+        <a href="#finder" class="btn ghost"><span>Find your service</span><span>↓</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -1815,6 +2358,68 @@ body.menu-open {
   </div>
 </section>
 
+<!-- ═══ SERVICE FINDER · four taps to the right chair ═══ -->
+<section id="finder">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">Service Finder</span>
+      <h2 class="section-title">Not sure what to <span class="it foil">book?</span></h2>
+    </div>
+    <p class="aside">Four quick taps and I'll point you to the right appointment, or ask for photos first when your hair needs a closer look. Nothing is booked until you choose.</p>
+  </div>
+
+  <div class="finder reveal" id="finderApp">
+    <div class="fd-progress" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+    <form class="fd-form" id="finderForm" novalidate>
+      <fieldset class="fd-step is-active" tabindex="-1">
+        <legend><span class="fd-num">Question 1 of 4</span>What are you hoping for?</legend>
+        <div class="fd-options">
+          <label><input type="radio" name="goal" value="balayage" /><span>Lived-in balayage or highlights</span></label>
+          <label><input type="radio" name="goal" value="correction" /><span>Fix a colour that went wrong</span></label>
+          <label><input type="radio" name="goal" value="roots" /><span>Cover greys or refresh roots</span></label>
+          <label><input type="radio" name="goal" value="smooth" /><span>Smooth, frizz-free hair</span></label>
+          <label><input type="radio" name="goal" value="curls" /><span>Curls and volume</span></label>
+          <label><input type="radio" name="goal" value="cut" /><span>A new cut or shape</span></label>
+          <label><input type="radio" name="goal" value="length" /><span>More length or fullness</span></label>
+          <label><input type="radio" name="goal" value="bridal" /><span>Bridal or an event</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="fd-step" tabindex="-1">
+        <legend><span class="fd-num">Question 2 of 4</span>What's been on your hair in the last two years?</legend>
+        <div class="fd-options">
+          <label><input type="radio" name="history" value="natural" /><span>Nothing, it's my natural colour</span></label>
+          <label><input type="radio" name="history" value="salon" /><span>Salon colour only</span></label>
+          <label><input type="radio" name="history" value="boxdye" /><span>Box dye or henna</span></label>
+          <label><input type="radio" name="history" value="lightened" /><span>Bleach or lightener</span></label>
+          <label><input type="radio" name="history" value="unsure" /><span>I'm not sure</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="fd-step" tabindex="-1">
+        <legend><span class="fd-num">Question 3 of 4</span>How often do you want to come in?</legend>
+        <div class="fd-options">
+          <label><input type="radio" name="visits" value="often" /><span>Every 6 to 8 weeks</span></label>
+          <label><input type="radio" name="visits" value="season" /><span>Every 3 to 4 months</span></label>
+          <label><input type="radio" name="visits" value="rare" /><span>A couple of times a year</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="fd-step" tabindex="-1">
+        <legend><span class="fd-num">Question 4 of 4</span>When do you need it?</legend>
+        <div class="fd-options">
+          <label><input type="radio" name="when" value="soon" /><span>As soon as possible</span></label>
+          <label><input type="radio" name="when" value="month" /><span>Sometime this month</span></label>
+          <label><input type="radio" name="when" value="date" /><span>For a date I'm planning</span></label>
+        </div>
+      </fieldset>
+      <div class="fd-nav">
+        <button type="button" class="fd-back" id="fdBack" hidden>← Back</button>
+        <button type="submit" class="btn gold fd-next" id="fdNext" disabled><span>Next</span></button>
+      </div>
+      <noscript><p class="fd-noscript">The finder needs JavaScript. You can <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20Could%20you%20help%20me%20choose%20the%20right%20appointment%3F" target="_blank" rel="noopener noreferrer">message me on WhatsApp</a> and I'll help you choose.</p></noscript>
+    </form>
+    <div class="fd-result" id="finderResult" role="region" aria-labelledby="fdService" tabindex="-1" hidden></div>
+  </div>
+</section>
+
 <!-- ═══ PACKAGES ═══ -->
 <section id="packages">
   <div class="section-head reveal">
@@ -1876,7 +2481,6 @@ body.menu-open {
     </div>
   </div>
 </section>
-</div>
 
 <!-- ═══ REVIEWS ═══ -->
 <section id="words">
@@ -1928,9 +2532,59 @@ body.menu-open {
       </div>
     </div>
   </div>
+  <!-- Shows once GOOGLE_REVIEW_URL is set in the script at the bottom of this file -->
+  <div class="review-actions" id="reviewActions" hidden>
+    <a class="btn ghost" id="googleReview" href="#" target="_blank" rel="noopener noreferrer"><span>Leave a Google review</span><span>↗</span></a>
+  </div>
 </section>
 
-<div class="wrap">
+<!-- ═══ AFTERCARE · care plan + next-visit reminder ═══ -->
+<section id="aftercare">
+  <div class="section-head reveal">
+    <div class="lead">
+      <span class="eyebrow">Aftercare</span>
+      <h2 class="section-title">Make it <span class="it foil">last.</span></h2>
+    </div>
+    <p class="aside">Just had your hair done? Pick your service and the date for a simple care plan, plus a reminder for your next visit.</p>
+  </div>
+
+  <div class="care reveal" id="careApp">
+    <form class="care-controls" id="careForm" novalidate>
+      <fieldset class="care-field">
+        <legend>Your service</legend>
+        <div class="care-pills">
+          <label><input type="radio" name="care" value="balayage" checked /><span>Balayage</span></label>
+          <label><input type="radio" name="care" value="highlights" /><span>Highlights</span></label>
+          <label><input type="radio" name="care" value="roots" /><span>All-over colour or roots</span></label>
+          <label><input type="radio" name="care" value="keratin" /><span>Keratin</span></label>
+          <label><input type="radio" name="care" value="botox" /><span>Hair botox</span></label>
+          <label><input type="radio" name="care" value="perm" /><span>Soft perm</span></label>
+          <label><input type="radio" name="care" value="cut" /><span>Haircut</span></label>
+          <label><input type="radio" name="care" value="extensions" /><span>Tape-in extensions</span></label>
+        </div>
+      </fieldset>
+      <label class="care-date"><span>Appointment date</span><input type="date" id="careDate" /></label>
+      <p class="care-note">These timings are typical, and I'll confirm yours at the chair. Had a colour correction? Follow the stage plan we set together.</p>
+    </form>
+
+    <div class="care-plan" id="carePlan">
+      <h3 class="care-title" id="careTitle">Your balayage plan</h3>
+      <ol class="care-steps" id="careSteps">
+        <li><span class="care-when">The first few days</span><span class="care-text">Give it a couple of days before the first wash. Colour keeps settling over the first week, so judge the tone after a few washes.</span></li>
+        <li><span class="care-when">Every wash</span><span class="care-text">Sulphate-free, colour-safe shampoo, cooler water, and heat protectant before hot tools.</span></li>
+        <li><span class="care-when">Months 3 to 4</span><span class="care-text">Refresh time. Balayage grows out softly, so there's no hard line to chase.</span></li>
+      </ol>
+      <div class="care-next">
+        <p id="careNext">Your next balayage refresh: in about 3 to 4 months.</p>
+        <div class="care-actions">
+          <button type="button" class="btn gold" id="careIcs"><span>Add a reminder to my calendar</span></button>
+          <a class="care-alt" id="careGcal" href="https://calendar.google.com/calendar/render?action=TEMPLATE" target="_blank" rel="noopener noreferrer">Use Google Calendar instead</a>
+        </div>
+        <p class="care-status" id="careStatus" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══ FAQ ═══ -->
 <section id="faq" class="faq-section">
@@ -1966,6 +2620,14 @@ body.menu-open {
         <div class="faq-item">
           <button class="faq-q">Where are you located?</button>
           <div class="faq-a"><div class="faq-a-inner">I take colour and treatment appointments in <strong>Surrey and Vancouver</strong>, Tuesdays and Wednesdays. Exact location and parking details are shared when you book.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Are you Red Seal certified?</button>
+          <div class="faq-a"><div class="faq-a-inner">Yes. I hold a Certificate of Qualification with Interprovincial Red Seal Endorsement for hairstylists (332A), issued by SkilledTradesBC in 2026. It's the national standard for the trade, and I earned it <strong>after more than 6,000 verified industry hours</strong>. That's what the RSE after my name means.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can we talk in Punjabi or Hindi?</button>
+          <div class="faq-a"><div class="faq-a-inner">Of course. Consultations can be in English, Punjabi or Hindi, <strong>whichever feels easiest</strong>, at the chair or on WhatsApp.</div></div>
         </div>
       </div>
     </div>
@@ -2035,6 +2697,7 @@ body.menu-open {
   </div>
 
   <div class="book-card reveal">
+    <p class="next-chair" id="bookNextChair">Chair days are Tuesday and Wednesday.</p>
     <div class="chairs-strip" aria-label="Daily appointment times">
       <div class="chair"><span class="t">10:00 am</span><span class="d">Morning chair</span></div>
       <div class="chair"><span class="t">1:00 pm</span><span class="d">Afternoon chair</span></div>
@@ -2081,6 +2744,59 @@ body.menu-open {
       <a href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%27d%20love%20to%20ask%20about%20bridal%20or%20event%20styling." target="_blank" rel="noopener noreferrer" class="btn ghost"><span>Ask about bridal &amp; events</span><span class="arrow">↗</span></a>
     </div>
   </div>
+
+  <!-- Bridal planner: builds a WhatsApp or email enquiry, nothing is sent by the page -->
+  <div class="bridal-planner reveal" id="bridalPlanner">
+    <form class="bp-main" id="bpForm" novalidate>
+      <h3 class="bp-title">Plan your <span class="it">bridal</span> hair</h3>
+      <p class="bp-sub">Fill in what you know. It turns into a message you can send me on WhatsApp or by email, and I'll reply with availability and a quote.</p>
+      <div class="bp-grid">
+        <label class="bp-field bp-wide"><span>Wedding date</span><input type="date" id="bpDate" /></label>
+        <div class="bp-field">
+          <span id="bpEvLbl">Events that need hair</span>
+          <div class="stepper" role="group" aria-labelledby="bpEvLbl" data-key="events" data-min="1" data-max="8">
+            <button type="button" data-d="-1" aria-label="One fewer event">−</button><output id="bpEvents" aria-live="polite">1</output><button type="button" data-d="1" aria-label="One more event">+</button>
+          </div>
+        </div>
+        <div class="bp-field">
+          <span id="bpPtLbl">People besides you</span>
+          <div class="stepper" role="group" aria-labelledby="bpPtLbl" data-key="party" data-min="0" data-max="15">
+            <button type="button" data-d="-1" aria-label="One fewer person">−</button><output id="bpParty" aria-live="polite">0</output><button type="button" data-d="1" aria-label="One more person">+</button>
+          </div>
+        </div>
+        <fieldset class="bp-field">
+          <legend>Services</legend>
+          <div class="bp-seg">
+            <label><input type="radio" name="bpSvc" value="hair and makeup" checked /><span>Hair and makeup</span></label>
+            <label><input type="radio" name="bpSvc" value="hair only" /><span>Hair only</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="bp-field">
+          <legend>Where</legend>
+          <div class="bp-seg">
+            <label><input type="radio" name="bpWhere" value="at my home or venue" checked /><span>My home or venue</span></label>
+            <label><input type="radio" name="bpWhere" value="at the studio" /><span>The studio</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="bp-field bp-wide">
+          <legend>Trial before the day</legend>
+          <div class="bp-seg">
+            <label><input type="radio" name="bpTrial" value="yes please" checked /><span>Yes please</span></label>
+            <label><input type="radio" name="bpTrial" value="not sure yet" /><span>Not sure yet</span></label>
+          </div>
+        </fieldset>
+      </div>
+    </form>
+    <div class="bp-aside">
+      <span class="bp-days foil" id="bpDays">✦</span>
+      <span class="bp-days-l" id="bpDaysL">your countdown</span>
+      <p class="bp-note" id="bpNote" aria-live="polite">Add your wedding date to start the countdown.</p>
+      <div class="bp-actions">
+        <a class="btn gold" id="bpWa" href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%27m%20planning%20my%20wedding%20and%20would%20love%20to%20talk%20about%20bridal%20hair." target="_blank" rel="noopener noreferrer"><span>Send on WhatsApp</span><span class="arrow">↗</span></a>
+        <a class="btn ghost" id="bpMail" href="mailto:makeoversgurbina@gmail.com?subject=Bridal%20enquiry"><span>Send by email</span></a>
+      </div>
+    </div>
+  </div>
 </section>
 </div>
 
@@ -2105,16 +2821,18 @@ body.menu-open {
       <div><strong>Email</strong><a href="mailto:makeoversgurbina@gmail.com">makeoversgurbina@gmail.com</a></div>
       <div><strong>Based</strong>Surrey · Vancouver · BC</div>
       <div><strong>Travel</strong>Anywhere in the Lower Mainland</div>
+      <div><strong>Languages</strong>English, Punjabi, Hindi</div>
     </div>
   </div>
 </section>
 
 <div class="wrap">
 <footer>
-  <div>© 2026 <em>Hair by Gurbina</em> · Hairstylist · Surrey &amp; Vancouver BC</div>
+  <div>© 2026 <em>Hair by Gurbina</em> · Red Seal certified hairstylist · Surrey &amp; Vancouver BC</div>
   <div class="socials">
     <a href="https://www.instagram.com/stylendglow" target="_blank" rel="noopener">Instagram</a>
     <a href="mailto:makeoversgurbina@gmail.com">Email</a>
+    <a href="#aftercare">Aftercare</a>
     <a href="#policies">Policies</a>
   </div>
   <div class="credit">styled with love ✦</div>
@@ -2143,7 +2861,8 @@ body.menu-open {
   const announceClose = document.getElementById('announceClose');
   // EDIT ANNOUNCEMENTS: add real offers here once Gurbina confirms them.
   const messages = [
-    { text: 'Now booking colour, treatments & cuts across Surrey & Vancouver · ', link: 'book an appointment', href: '#book' },
+    { text: 'Now Red Seal certified ✦ ', link: 'see what it means', href: '#red-seal' },
+    { text: 'Now booking colour, treatments & cuts across Surrey & Vancouver · ', link: 'book an appointment', href: 'https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services', external: true },
     { text: 'Prefer to chat? ', link: 'WhatsApp Gurbina directly', href: 'https://wa.me/17789993179?text=Hi%20Gurbina!', external: true }
   ];
   function setAnnounceMessage(idx) {
@@ -2187,9 +2906,6 @@ body.menu-open {
   const floatingBook = document.getElementById('floatingBook');
   const contactSec = document.getElementById('contact');
   const scrollBar = document.getElementById('scrollBar');
-  const heroEl = document.querySelector('.hero');
-  const heroText = document.querySelector('.hero-text');
-  const heroVisual = document.querySelector('.hero-visual');
   let ticking = false;
   function onScroll() {
     const sy = window.scrollY;
@@ -2198,12 +2914,6 @@ body.menu-open {
     if (scrollBar) {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       scrollBar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, sy / max) : 0) + ')';
-    }
-    if (heroEl && !reducedMotion && sy < window.innerHeight * 0.9) {
-      // gentle parallax on hero inner content, capped so nothing spills out
-      const drift = Math.min(sy * 0.06, 40);
-      heroText && (heroText.style.transform = 'translateY(' + drift.toFixed(1) + 'px)');
-      heroVisual && (heroVisual.style.transform = 'translateY(' + (drift * 0.5).toFixed(1) + 'px)');
     }
     if (isMobile && floatingBook) {
       const atContact = contactSec && contactSec.getBoundingClientRect().top < window.innerHeight;
@@ -2404,13 +3114,13 @@ body.menu-open {
   document.querySelectorAll('.stat-count').forEach(el => {
     const target = parseInt(el.dataset.count, 10);
     if (isNaN(target)) return;
-    if (reducedMotion) { el.textContent = target; return; }
+    if (reducedMotion) { el.textContent = target.toLocaleString('en-CA'); return; }
     const dur = 1100;
     const t0 = performance.now() + 450;
     function tick(now) {
       const p = Math.min(1, Math.max(0, (now - t0) / dur));
       const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(eased * target);
+      el.textContent = Math.round(eased * target).toLocaleString('en-CA');
       if (p < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -2458,6 +3168,21 @@ body.menu-open {
     lbCap.className = 'lb-cap';
     fig.appendChild(lbImg);
     fig.appendChild(lbCap);
+    // Turn inspiration into a conversation: ask about this exact look, or book it
+    const lbActs = document.createElement('div');
+    lbActs.className = 'lb-actions';
+    const lbAsk = document.createElement('a');
+    lbAsk.className = 'lb-ask';
+    lbAsk.target = '_blank'; lbAsk.rel = 'noopener noreferrer';
+    lbAsk.textContent = 'Ask about this look ↗';
+    const lbBook = document.createElement('a');
+    lbBook.className = 'lb-book';
+    lbBook.target = '_blank'; lbBook.rel = 'noopener noreferrer';
+    lbBook.href = 'https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services';
+    lbBook.textContent = 'Book on Square ↗';
+    lbActs.appendChild(lbAsk);
+    lbActs.appendChild(lbBook);
+    fig.appendChild(lbActs);
     overlay.appendChild(fig);
 
     function makeBtn(cls, label, glyph) {
@@ -2479,6 +3204,7 @@ body.menu-open {
       lbImg.src = it.src;
       lbImg.alt = it.alt;
       lbCap.textContent = it.cap;
+      lbAsk.href = 'https://wa.me/17789993179?text=' + encodeURIComponent('Hi Gurbina! I love the "' + it.cap + '" look on your website. Could we talk about something like it for my hair?');
     }
     function openLB(i) {
       cur = i;
@@ -2668,6 +3394,10 @@ body.menu-open {
   if(!launch || !panel) return;
 
   const KB = [
+    {t:['red seal','redseal','certified','certification','certificate','license','licence','qualified','qualification','credentials','332a','how many years','years of experience','how experienced'],
+     a:`Yes. Gurbina is a Red Seal certified hairstylist. She holds a Certificate of Qualification with Interprovincial Red Seal Endorsement, Hairstylist (332A), from SkilledTradesBC, earned in 2026 after more than 6,000 verified industry hours. It is the national standard for the trade, covering colour and lightening, cutting, chemical services, and safety. That is what the RSE after her name stands for. [BOOK]`},
+    {t:['punjabi','hindi','language','languages','in english'],
+     a:`Yes. Consultations can be in English, Punjabi or Hindi, at the chair or on WhatsApp, whichever feels easiest for you. [WA]`},
     {t:['box dye','boxed dye','box color','box colour','drugstore dye','home dye','home colour','store bought'],
      a:`Box dye is stubborn. It packs in extra pigment and sometimes metallic salts that sit deep in the strand, so one colour on top usually goes muddy or patchy. Fixing it is controlled correction: reading what is underneath, gently removing or lifting the old dye, then rebuilding tone in stages so the hair stays healthy. Very doable, just not a one-bottle job. Send a photo and I will tell you honestly what it takes. [WA]`},
     {t:['brassy','brass','orange hair','gone orange','turned orange','yellow tone','warm tones','too warm'],
@@ -2770,28 +3500,20 @@ body.menu-open {
      a:`Hair types run from 1 straight, through 2 wavy and 3 curly, to 4 coily, with a, b, c for how tight the pattern is. Type is a starting point for products and cutting, but porosity, density, and condition matter just as much for what actually works. Happy to read yours in a consult and build a routine around it. [BOOK]`},
     {t:['too ashy','too dark','toner too dark','over toned','went grey','muddy toner'],
      a:`An over-toned or too-ashy result usually softens within a few washes because toner is not permanent. A clarifying wash speeds it up, and warmth can be added back in the salon if it went flat or muddy. If it is drastically wrong, that is a quick correction, not something to live with. [WA]`},
-    {t:['sticky','tacky','feels sticky','gluey','gunky','sticky residue','tacky feel'],
-     a:`Sticky or tacky hair is almost always residue sitting on the strand, from product buildup, hard water minerals, conditioner not rinsed fully, or heavy oils and gels. A clarifying shampoo strips it back, and a chelating wash goes further if your water is hard. If it started right after a treatment or colour and will not wash out, send me a photo and I will help. [WA]`},
-    {t:['static','staticky','flyaway static','hair static','hair standing up'],
-     a:`Static is dry hair holding an electric charge, classic in cold, dry, indoor-heated air. Hydrate with a leave-in or a drop of oil, use a metal or wooden comb rather than plastic, and a little water or hand cream smoothed over the surface kills it in a pinch. A humidifier at home helps the whole problem.`},
-    {t:['smell','smelly','odour','odor','musty','damp smell','bad smell'],
+    {t:['smell','smelly','odour','odor','musty','damp smell','bad smell','smells','hair stinks'],
      a:`Hair smell is usually buildup, or drying hair while it is still damp, which lets mildew set in at the roots. Clarify to clear buildup, always dry the scalp properly, and keep it clean without over-washing. A scalp smell that lingers despite all that is worth a doctor, since it can be a scalp condition.`},
-    {t:['hold a curl','wont curl','curl drops','curl falls','curl wont stay','holds no curl','curl doesnt last'],
-     a:`Hair that will not hold a curl is usually too soft, too freshly washed, or heat-damaged. Prep with a light styling product, curl on clean-but-not-just-washed hair, use the right heat, and let each curl cool fully before you touch it. If it is scorched from past heat, that is a protein-and-trim fix. [BOOK]`},
     {t:['itchy scalp','scalp itchy','scalp itches','scratchy scalp','itchy head'],
      a:`An itchy scalp is usually dryness, buildup, or the start of dandruff. Switch to a gentle sulphate-free wash, make sure product is rinsed out fully, and a soothing or anti-dandruff shampoo a couple of times a week settles most of it. If it is red, sore, or relentless, that is one for a doctor rather than hair advice.`},
     {t:['single strand knots','fairy knots','tiny knots','little knots','knots on my ends'],
      a:`Those tiny knots on the ends are single-strand knots, most common on curly, dry, or damaged hair where a strand wraps around itself. Keeping the ends moisturised, sleeping on silk, protective styles, and regular dustings all cut them down. Once one forms it is best snipped, not pulled.`},
-    {t:['sticky','tacky','feels sticky','why sticky','hair sticky','sticky residue','gummy after wash'],
+    {t:['sticky','tacky','feels sticky','why sticky','hair sticky','sticky residue','gummy after wash','gluey','gunky','tacky feel'],
      a:`Sticky or tacky hair is almost always residue or an imbalance, not the hair itself. Usual culprits: conditioner or product not rinsed out fully, buildup from dry shampoo or oils, hard-water minerals, or too much protein leaving it gummy. A clarifying or chelating wash resets it, and easing off heavy products helps. If it turned sticky or mushy right after a treatment or bleach, that is a protein-moisture issue worth a professional look. [WA]`},
-    {t:['static','staticky','flyaway static','standing up','electric hair'],
+    {t:['static','staticky','flyaway static','standing up','electric hair','hair static','hair standing up'],
      a:`Static is dry hair holding a charge, worst in cold, dry air and from synthetic hats and plastic brushes. Add moisture with a leave-in or a drop of oil, switch to a metal or boar-bristle brush, and a tiny bit of hand cream smoothed over the surface kills it in a pinch. A silk pillowcase and a humidifier help through winter.`},
     {t:['green hair','turned green','went green','greenish','green tint','green tinge'],
      a:`Green usually comes from chlorine, hard water, or minerals grabbing onto lightened hair, and sometimes from ashy toners over a warm base. A clarifying or chelating wash lifts the minerals, and a warm or red-based gloss neutralises the green in the salon. Wetting your hair before you swim and rinsing straight after stops it coming back. [WA]`},
-    {t:['hold a curl','curl wont hold','curls wont hold','curls dont hold','curls fall out','wont hold curl','style wont hold','curls drop'],
+    {t:['hold a curl','curl wont hold','curls wont hold','curls dont hold','curls fall out','wont hold curl','style wont hold','curls drop','wont curl','curl drops','curl falls','curl wont stay','holds no curl','curl doesnt last'],
      a:`Curls drop when hair is too clean and slippery, too weighed down with product, or heat-damaged and unable to bounce. Prep with a light mousse or setting spray, use the right barrel, let each curl cool fully before you touch it, and finish with a flexible spray. If nothing holds even freshly styled, heat damage may be the real story.`},
-    {t:['smell','smells','odour','odor','musty','hair stinks','damp smell'],
-     a:`Hair odour usually starts at the scalp: sweat, product buildup, or drying too slowly so it stays damp. Wash the scalp properly, clarify now and then, and always dry fully rather than tying hair up wet. A smell that lingers on clean hair is a scalp thing worth a doctor.`},
   ];
 
   const STARTERS = ['Why is my hair so frizzy?','How do I fix box dye?','Why did my blonde go brassy?','Can I go dark to blonde?'];
@@ -2892,6 +3614,491 @@ body.menu-open {
   document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && document.body.classList.contains('chat-open')) closeChat(); });
   sendB.addEventListener('click', ()=>send(input.value));
   input.addEventListener('keydown', e=>{ if(e.key === 'Enter'){ e.preventDefault(); send(input.value); } });
+})();
+</script>
+
+<script>
+/* ═════════════════════════════════════════════════
+   2026 REBUILD · next chair day, service finder,
+   aftercare planner, bridal planner, review slot.
+   Everything here only builds links (Square, WhatsApp,
+   email, calendar). The page never sends or stores data.
+═════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  // EDIT: paste Gurbina's Google review link (Google Business Profile, "Ask for reviews")
+  // to switch on the "Leave a Google review" button under Kind Words. Empty = hidden.
+  const GOOGLE_REVIEW_URL = '';
+
+  const SQ = 'https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services';
+  const WA_NUMBER = '17789993179';
+  const EMAIL = 'makeoversgurbina@gmail.com';
+  const TZ = 'America/Vancouver';
+  const CHAIR_DAYS = [2, 3];          // Tuesday, Wednesday
+  const LAST_CHAIR_HOUR = 17;         // the 5 pm chair
+  const CHAIR_TIMES = '10 am, 1 pm, 5 pm';
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = id => document.getElementById(id);
+  const buzz = ms => { if (navigator.vibrate && !reduced) { try { navigator.vibrate(ms || 8); } catch (e) {} } };
+  const wa = text => 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  /* ── Dates, always in Vancouver time. Days are kept at noon UTC so DST never shifts them. ── */
+  function vanNow() {
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+    const get = type => parseInt((parts.find(p => p.type === type) || { value: '0' }).value, 10) || 0;
+    return { y: get('year'), m: get('month'), d: get('day'), h: get('hour') % 24 };
+  }
+  const mkDay = (y, m, d) => new Date(Date.UTC(y, m - 1, d, 12));
+  const addDays = (dt, n) => new Date(dt.getTime() + n * 864e5);
+  const today = () => { const n = vanNow(); return mkDay(n.y, n.m, n.d); };
+  const fmt = (dt, opts) => dt.toLocaleDateString('en-CA', Object.assign({ timeZone: 'UTC' }, opts));
+  const longDay = dt => fmt(dt, dt.getUTCFullYear() === today().getUTCFullYear()
+    ? { weekday: 'long', month: 'long', day: 'numeric' }
+    : { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  const fullDay = dt => fmt(dt, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  const fmtUS = (dt, opts) => dt.toLocaleDateString('en-US', Object.assign({ timeZone: 'UTC' }, opts));
+  const shortDay = dt => fmtUS(dt, { month: 'short', day: 'numeric' });
+  const isoDay = dt => dt.toISOString().slice(0, 10);
+  const ymd = dt => isoDay(dt).replace(/-/g, '');
+  function parseDay(v) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || '');
+    return m ? mkDay(+m[1], +m[2], +m[3]) : null;
+  }
+  function chairDayOnOrAfter(dt) {
+    let d = dt;
+    for (let i = 0; i < 7; i++) { if (CHAIR_DAYS.includes(d.getUTCDay())) return d; d = addDays(d, 1); }
+    return dt;
+  }
+
+  /* ── Next chair day: hero chip + book card ── */
+  function nextChair() {
+    const n = vanNow();
+    let d = mkDay(n.y, n.m, n.d);
+    for (let i = 0; i < 8; i++) {
+      if (CHAIR_DAYS.includes(d.getUTCDay()) && !(i === 0 && n.h >= LAST_CHAIR_HOUR)) return { date: d, offset: i };
+      d = addDays(d, 1);
+    }
+    return null;
+  }
+  const NC = nextChair();
+  function chairWords(nc) {
+    if (!nc) return 'Tuesdays and Wednesdays';
+    if (nc.offset === 0) return 'today';
+    if (nc.offset === 1) return 'tomorrow';
+    return longDay(nc.date);
+  }
+  (function paintNextChair() {
+    if (!NC) return;
+    const hero = $('nextChairText');
+    if (hero) {
+      const short = NC.offset === 0 ? 'today' : NC.offset === 1 ? 'tomorrow' : fmtUS(NC.date, { weekday: 'short', month: 'short', day: 'numeric' });
+      hero.textContent = NC.offset === 0 ? 'Chair day today' : 'Next chair day: ' + short;
+      hero.appendChild(el('span', 'chip-times', ' · ' + CHAIR_TIMES));
+    }
+    const book = $('bookNextChair');
+    if (book) book.textContent = 'Next chair day: ' + chairWords(NC) + '. Open times are live on Square.';
+  })();
+
+  /* ── Service finder ── */
+  (function finder() {
+    const form = $('finderForm');
+    if (!form) return;
+    const steps = [...form.querySelectorAll('.fd-step')];
+    const bars = [...document.querySelectorAll('#finderApp .fd-progress span')];
+    const back = $('fdBack');
+    const next = $('fdNext');
+    const out = $('finderResult');
+    const answers = {};
+    let cur = 0, timer = null;
+
+    const LABEL = {
+      history: { natural: 'natural, never coloured', salon: 'salon colour only', boxdye: 'box dye or henna', lightened: 'bleach or lightener', unsure: 'not sure' },
+      visits: { often: 'every 6 to 8 weeks', season: 'every 3 to 4 months', rare: 'a couple of times a year' },
+      when: { soon: 'as soon as possible', month: 'sometime this month', date: "for a date I'm planning" }
+    };
+
+    function stepName(i) { const inp = steps[i].querySelector('input'); return inp ? inp.name : ''; }
+    function updateNext() {
+      next.disabled = !answers[stepName(cur)];
+      next.querySelector('span').textContent = cur === steps.length - 1 ? 'See my match' : 'Next';
+    }
+    function show(i, focus) {
+      cur = i;
+      steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
+      bars.forEach((b, k) => b.classList.toggle('on', k <= i));
+      back.hidden = i === 0;
+      updateNext();
+      if (focus) steps[i].focus({ preventScroll: true });
+    }
+    function advance() {
+      if (answers.goal === 'bridal' && cur === 0) return finish();
+      if (cur < steps.length - 1) show(cur + 1, true); else finish();
+    }
+
+    // Tapping an option moves on by itself; keyboard users choose with the arrows and press Next.
+    let viaKey = false;
+    form.addEventListener('keydown', () => { viaKey = true; });
+    form.addEventListener('pointerdown', () => { viaKey = false; });
+    function pick(t) {
+      answers[t.name] = t.value;
+      updateNext();
+      if (viaKey) return;
+      clearTimeout(timer);
+      timer = setTimeout(advance, reduced ? 0 : 260);
+    }
+    form.addEventListener('change', e => { if (e.target.matches('input[type="radio"]')) pick(e.target); });
+    form.addEventListener('click', e => {
+      if (!e.target.matches('input[type="radio"]')) return;
+      if (!viaKey) buzz(8);
+      pick(e.target);
+    });
+    form.addEventListener('submit', e => { e.preventDefault(); if (!next.disabled) advance(); });
+    back.addEventListener('click', () => { clearTimeout(timer); if (cur > 0) show(cur - 1, true); });
+
+    function recommend(a) {
+      const colourGoal = ['balayage', 'roots', 'correction'].includes(a.goal);
+      const r = { service: '', why: '', notes: [], photosFirst: false, bridal: false };
+      switch (a.goal) {
+        case 'balayage':
+          if (a.visits === 'often') {
+            r.service = 'Highlights';
+            r.why = 'You like to come in often, so foils or fine highlights give you a brighter, more precise blonde that stays fresh every visit.';
+          } else {
+            r.service = 'Dimensional Balayage';
+            r.why = 'Hand-painted colour with no hard regrowth line, so it can go three to four months between visits and still look intentional.';
+          }
+          r.notes.push({ text: 'Every colour appointment is a full three-hour block, so nothing is rushed.' });
+          break;
+        case 'roots':
+          r.service = 'Root touch-up or grey blending';
+          r.why = a.visits === 'often'
+            ? 'All-over colour usually wants a root touch-up every four to six weeks to keep regrowth invisible.'
+            : 'Want longer between visits? A softer blended look grows out gently instead of leaving a hard line.';
+          r.notes.push({ text: "Tell me roughly how much grey you have and I'll suggest the kindest way to handle it." });
+          break;
+        case 'correction':
+          r.service = 'Colour correction';
+          r.photosFirst = true;
+          r.why = 'Box-dye recoveries, banding, brass and tone fixes start with photos, so I can tell you honestly whether it takes one visit or two.';
+          r.notes.push({ text: 'Healthy hair comes first. Sometimes the honest plan is two appointments instead of one.' });
+          break;
+        case 'smooth':
+          r.service = 'Keratin & Smoothing';
+          r.why = 'Keratin is the stronger smoother, for sleek, low-frizz hair that takes less time to style.';
+          r.notes.push({ text: 'If your hair needs repair more than smoothing, hair botox is the gentler, conditioning option.' });
+          break;
+        case 'curls':
+          r.service = 'Soft Perm or Curl Set';
+          r.why = 'Soft waves or defined curls shaped to your face, with movement that lasts for months.';
+          r.notes.push({ text: 'Whether your hair suits a perm depends on its condition and length, which is a quick consult.' });
+          if (a.history === 'boxdye' || a.history === 'lightened') r.photosFirst = true;
+          break;
+        case 'cut':
+          r.service = 'Precision Cut';
+          r.why = 'Blunt bobs, layers or long movement, cut for what your hair is actually asking for.';
+          r.notes.push({ text: 'Thinking about colour too? The Glow-Up package pairs a cut with balayage or highlights.' });
+          break;
+        case 'length':
+          r.service = 'Extensions & Length';
+          r.photosFirst = true;
+          r.why = 'Tape-ins, clip-ins and blending, matched and placed so the focus stays on your hair, not the install.';
+          r.notes.push({ text: 'The right type depends on your hair, lifestyle and budget. Photos help me quote it properly.' });
+          break;
+        default:
+          r.service = 'Bridal & Events';
+          r.bridal = true;
+          r.why = 'Bridal styling is planned around your outfit, your ceremonies and your timeline, with a trial before the day.';
+          r.notes.push({ text: 'The planner below turns your date and party size into a message you can send me.' });
+      }
+      if (!r.bridal && a.goal !== 'cut') {
+        if (a.history === 'boxdye') r.notes.unshift({ flag: true, text: "Box dye and henna change how lightener behaves, so I'll want photos first and may suggest a strand test." });
+        if (a.history === 'lightened') r.notes.unshift({ flag: true, text: 'Previously lightened hair needs a bond-protecting plan. Photos help me check its condition first.' });
+        if (a.history === 'unsure') r.notes.unshift({ flag: true, text: "Not sure what's on your hair? That's common. A few daylight photos help me read it." });
+        if (colourGoal && ['boxdye', 'lightened', 'unsure'].includes(a.history)) r.photosFirst = true;
+      }
+      if (colourGoal) r.notes.push({ text: "Ever reacted to colour? Tell me before booking and we'll do a patch test 48 hours ahead." });
+      if (a.when === 'soon') r.notes.push({ text: 'Next chair day: ' + chairWords(NC) + '. Open times are live on Square.' });
+      else if (a.when === 'month') r.notes.push({ text: 'Chairs run Tuesdays and Wednesdays at 10 am, 1 pm and 5 pm, booked live on Square.' });
+      else if (a.when === 'date' && !r.bridal) r.notes.push({ text: 'Planning around a date? Put it in your message so I can time your colour and toner for it.' });
+      return r;
+    }
+
+    function message(r) {
+      const lines = ['Hi Gurbina! I used the service finder on your website.', 'Looking for: ' + r.service];
+      if (answers.history && !r.bridal) lines.push('Hair history: ' + LABEL.history[answers.history]);
+      if (answers.visits && !r.bridal) lines.push('Visits: ' + LABEL.visits[answers.visits]);
+      if (answers.when && !r.bridal) lines.push('Timing: ' + LABEL.when[answers.when]);
+      lines.push(r.photosFirst ? "I'll send a few photos of my hair in daylight." : 'Could you help me with the right booking?');
+      return lines.join('\n');
+    }
+
+    function cta(label, href, gold, internal) {
+      const a = el('a', 'btn ' + (gold ? 'gold' : 'ghost'));
+      a.href = href;
+      if (!internal) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+      a.appendChild(el('span', null, label));
+      a.appendChild(el('span', gold ? 'arrow' : null, internal ? '↓' : '↗'));
+      a.addEventListener('click', () => buzz(8));
+      return a;
+    }
+
+    function finish() {
+      const r = recommend(answers);
+      const msg = message(r);
+      out.textContent = '';
+      out.appendChild(el('p', 'fd-kicker', "Here's where I'd start"));
+      const h = el('h3', 'fd-service', r.service); h.id = 'fdService';
+      out.appendChild(h);
+      out.appendChild(el('p', 'fd-why', r.why));
+      const ul = el('ul', 'fd-notes');
+      r.notes.forEach(n => ul.appendChild(el('li', n.flag ? 'flag' : null, n.text)));
+      out.appendChild(ul);
+      const acts = el('div', 'fd-actions');
+      if (r.bridal) {
+        acts.appendChild(cta('Plan your bridal hair', '#bridalPlanner', true, true));
+        acts.appendChild(cta('Message on WhatsApp', wa(msg), false));
+      } else if (r.photosFirst) {
+        acts.appendChild(cta('Send photos on WhatsApp', wa(msg), true));
+        acts.appendChild(cta('Book on Square', SQ, false));
+      } else {
+        acts.appendChild(cta('Book on Square', SQ, true));
+        acts.appendChild(cta('Ask on WhatsApp', wa(msg), false));
+      }
+      out.appendChild(acts);
+      const again = el('button', 'fd-restart', 'Start over');
+      again.type = 'button';
+      again.addEventListener('click', restart);
+      out.appendChild(again);
+
+      form.hidden = true;
+      bars.forEach(b => b.classList.add('on'));
+      out.hidden = false;
+      out.focus({ preventScroll: true });
+      const top = out.getBoundingClientRect().top;
+      if (top < 90 || top > window.innerHeight * 0.6) {
+        window.scrollTo({ top: window.scrollY + top - 110, behavior: reduced ? 'auto' : 'smooth' });
+      }
+      buzz(14);
+    }
+
+    function restart() {
+      form.reset();
+      Object.keys(answers).forEach(k => delete answers[k]);
+      out.hidden = true;
+      out.textContent = '';
+      form.hidden = false;
+      show(0, true);
+    }
+
+    show(0, false);
+  })();
+
+  /* ── Aftercare planner + calendar reminder ── */
+  (function aftercare() {
+    const form = $('careForm');
+    if (!form) return;
+    const dateIn = $('careDate'), list = $('careSteps'), title = $('careTitle');
+    const nextP = $('careNext'), icsBtn = $('careIcs'), gcal = $('careGcal'), status = $('careStatus');
+
+    const FIRST_DAYS = { when: 'The first few days', at: 0, text: 'Give it a couple of days before the first wash. Colour keeps settling over the first week, so judge the tone after a few washes.' };
+    const COLOUR_WASH = { when: 'Every wash', text: 'Sulphate-free, colour-safe shampoo, cooler water, and heat protectant before hot tools.' };
+    const PLAN = {
+      balayage: { label: 'balayage', task: 'balayage refresh', window: '3 to 4 months', weeks: 12, steps: [FIRST_DAYS, COLOUR_WASH,
+        { when: 'Weeks 4 to 6', at: 28, text: 'Toner softens around now. Purple or blue shampoo once or twice a week tops it up between salon toners.' },
+        { when: 'Months 3 to 4', at: 84, text: "Refresh time. Balayage grows out softly, so there's no hard line to chase." }] },
+      highlights: { label: 'highlights', task: 'highlights refresh', window: '6 to 8 weeks', weeks: 6, steps: [FIRST_DAYS, COLOUR_WASH,
+        { when: 'Weeks 4 to 6', at: 28, text: 'Brass starting to show? Purple shampoo once or twice a week, never every wash.' },
+        { when: 'Weeks 6 to 8', at: 42, text: 'Refresh time, to keep the blonde bright and the regrowth soft.' }] },
+      roots: { label: 'colour', task: 'root touch-up', window: '4 to 6 weeks', weeks: 4, steps: [FIRST_DAYS,
+        { when: 'Every wash', text: 'Sulphate-free shampoo and cooler water. In summer, UV protection keeps the shade from fading.' },
+        { when: 'Weeks 4 to 6', at: 28, text: 'Root touch-up time. Want longer between visits? Ask about a softer blended look that grows out gently.' }] },
+      keratin: { label: 'keratin', task: 'keratin refresh', window: '3 to 5 months', weeks: 12, steps: [
+        { when: 'The first few days', at: 0, text: 'Go gently: no tight ponytails, clips or tucking behind the ears while it settles.' },
+        { when: 'Every wash', text: 'Sulphate-free shampoo only. Sulphates and salt water strip smoothing faster.' },
+        { when: 'Months 3 to 5', at: 84, text: "Frizz creeping back is your sign it's time to redo it." }] },
+      botox: { label: 'hair botox', task: 'hair botox treatment', window: '2 to 3 months', weeks: 8, steps: [
+        { when: 'Every wash', text: 'Sulphate-free shampoo and a rich conditioner keep the gloss in for longer.' },
+        { when: 'Once a week', text: 'A deep-conditioning mask keeps the repair going between treatments.' },
+        { when: 'Months 2 to 3', at: 56, text: 'Shine fading and ends feeling dry again? Time for your next treatment.' }] },
+      perm: { label: 'perm', task: 'perm shape-up', window: 'about 3 months', weeks: 12, steps: [
+        { when: 'The first 48 hours', at: 0, text: 'Keep it dry and loose so the new shape sets: no washing, tight ties or clips.' },
+        { when: 'Every wash', text: "Sulphate-free shampoo and a light conditioner. Scrunch instead of brushing once it's dry." },
+        { when: 'Around 3 months', at: 84, text: 'A shape-up trim keeps the curl sitting right.' }] },
+      cut: { label: 'cut', task: 'trim', window: '6 to 10 weeks', weeks: 8, steps: [
+        { when: 'Every day', text: 'Heat protectant before hot tools, and detangle from the ends up.' },
+        { when: 'Weeks 6 to 10', at: 42, text: 'Trim time. Sharper, shorter shapes want the earlier end.' }] },
+      extensions: { label: 'extensions', task: 'extensions move-up', window: '6 to 8 weeks', weeks: 6, steps: [
+        { when: 'The first 48 hours', at: 0, text: 'Keep the tapes dry and skip oils near the roots while they bond.' },
+        { when: 'Every day', text: 'Brush from the ends up with a soft or loop brush, and sleep in a loose braid.' },
+        { when: 'Weeks 6 to 8', at: 42, text: 'Move-up time, as your own hair grows the tapes down.' }] }
+    };
+
+    dateIn.value = isoDay(today());
+    let current = null;
+
+    function plan() {
+      const c = form.querySelector('input[name="care"]:checked');
+      return PLAN[c ? c.value : 'balayage'];
+    }
+    function eventText(p, due) {
+      return {
+        title: 'Book your ' + p.task + ' with Gurbina',
+        details: 'Your ' + p.task + ' window (' + p.window + ') opens around ' + fullDay(due) + '. Chairs run Tuesdays and Wednesdays at 10 am, 1 pm and 5 pm. Book on Square: ' + SQ
+      };
+    }
+    function paint() {
+      const p = plan();
+      const start = parseDay(dateIn.value) || today();
+      title.textContent = 'Your ' + p.label + ' plan';
+      list.textContent = '';
+      p.steps.forEach(s => {
+        const li = el('li');
+        const w = el('span', 'care-when', s.when);
+        if (typeof s.at === 'number') w.appendChild(el('small', null, s.at === 0 ? shortDay(start) : 'from ' + shortDay(addDays(start, s.at))));
+        li.appendChild(w);
+        li.appendChild(el('span', 'care-text', s.text));
+        list.appendChild(li);
+      });
+      const due = chairDayOnOrAfter(addDays(start, p.weeks * 7));
+      nextP.textContent = '';
+      nextP.appendChild(document.createTextNode('Your next ' + p.task + ': around '));
+      nextP.appendChild(el('strong', null, longDay(due)));
+      nextP.appendChild(document.createTextNode(' (' + p.window + ').'));
+      const ev = eventText(p, due);
+      gcal.href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+        + '&text=' + encodeURIComponent(ev.title)
+        + '&dates=' + ymd(due) + '/' + ymd(addDays(due, 1))
+        + '&details=' + encodeURIComponent(ev.details);
+      current = { p: p, due: due, ev: ev };
+      status.textContent = '';
+    }
+
+    function icsEscape(s) { return s.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n'); }
+    function fold(line) {
+      if (line.length <= 74) return line;
+      let outLine = line.slice(0, 74), rest = line.slice(74);
+      while (rest.length) { outLine += '\r\n ' + rest.slice(0, 73); rest = rest.slice(73); }
+      return outLine;
+    }
+    function buildIcs(c) {
+      const stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+      return [
+        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Hair by Gurbina//Aftercare reminder//EN',
+        'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:' + Date.now() + '-' + Math.random().toString(36).slice(2, 10) + '@hairbygurbina.com',
+        'DTSTAMP:' + stamp,
+        'DTSTART;VALUE=DATE:' + ymd(c.due),
+        'DTEND;VALUE=DATE:' + ymd(addDays(c.due, 1)),
+        'SUMMARY:' + icsEscape(c.ev.title),
+        'DESCRIPTION:' + icsEscape(c.ev.details),
+        'URL:' + SQ,
+        'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:' + icsEscape(c.ev.title), 'TRIGGER:-PT15H', 'END:VALARM',
+        'END:VEVENT', 'END:VCALENDAR'
+      ].map(fold).join('\r\n') + '\r\n';
+    }
+
+    form.addEventListener('change', paint);
+    dateIn.addEventListener('input', paint);
+    icsBtn.addEventListener('click', () => {
+      if (!current) paint();
+      const blob = new Blob([buildIcs(current)], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = el('a');
+      a.href = url;
+      a.download = 'hair-by-gurbina-' + current.p.task.replace(/\s+/g, '-') + '.ics';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      status.textContent = 'Reminder downloaded. Open the file to add it to your calendar.';
+      buzz(12);
+    });
+    paint();
+  })();
+
+  /* ── Bridal planner ── */
+  (function bridal() {
+    const form = $('bpForm');
+    if (!form) return;
+    const dateIn = $('bpDate'), daysEl = $('bpDays'), daysL = $('bpDaysL'), note = $('bpNote');
+    const waBtn = $('bpWa'), mailBtn = $('bpMail');
+    const counts = { events: 1, party: 0 };
+    dateIn.min = isoDay(today());
+
+    form.querySelectorAll('.stepper').forEach(st => {
+      const key = st.dataset.key, min = +st.dataset.min, max = +st.dataset.max;
+      const outEl = st.querySelector('output');
+      const [minus, plus] = st.querySelectorAll('button');
+      function sync() {
+        outEl.textContent = counts[key];
+        minus.disabled = counts[key] <= min;
+        plus.disabled = counts[key] >= max;
+      }
+      st.addEventListener('click', e => {
+        const b = e.target.closest('button');
+        if (!b || b.disabled) return;
+        counts[key] = Math.max(min, Math.min(max, counts[key] + (+b.dataset.d)));
+        sync();
+        buzz(6);
+        update();
+      });
+      sync();
+    });
+
+    function pick(name) { const c = form.querySelector('input[name="' + name + '"]:checked'); return c ? c.value : ''; }
+    function update() {
+      const wed = parseDay(dateIn.value);
+      const lines = ["Hi Gurbina! I'm planning my wedding and used the bridal planner on your website."];
+      let subject = 'Bridal enquiry';
+      if (wed) {
+        const diff = Math.round((wed - today()) / 864e5);
+        if (diff < 0) {
+          daysEl.textContent = '✦'; daysL.textContent = 'your countdown';
+          note.textContent = 'That date has already passed. Pick your wedding date to start the countdown.';
+        } else {
+          daysEl.textContent = diff.toLocaleString('en-CA');
+          daysL.textContent = diff === 1 ? 'day to go' : 'days to go';
+          note.textContent = diff <= 14
+            ? "That's soon. Message me today so I can check the date."
+            : "Send this and I'll reply with availability and a quote.";
+          lines.push('Wedding date: ' + fullDay(wed));
+          subject = 'Bridal enquiry for ' + fmt(wed, { month: 'long', day: 'numeric', year: 'numeric' });
+        }
+      } else {
+        daysEl.textContent = '✦'; daysL.textContent = 'your countdown';
+        note.textContent = 'Add your wedding date to start the countdown.';
+      }
+      lines.push('Events that need hair: ' + counts.events);
+      lines.push('People besides me: ' + counts.party);
+      lines.push('Services: ' + pick('bpSvc'));
+      lines.push('Where: ' + pick('bpWhere'));
+      lines.push('Trial before the day: ' + pick('bpTrial'));
+      lines.push('Could you send me your availability and a quote?');
+      const body = lines.join('\n');
+      waBtn.href = wa(body);
+      mailBtn.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    }
+    form.addEventListener('change', update);
+    dateIn.addEventListener('input', update);
+    update();
+  })();
+
+  /* ── Google review button: shows once the link above is filled in ── */
+  (function reviews() {
+    const box = $('reviewActions'), a = $('googleReview');
+    if (!box || !a || !GOOGLE_REVIEW_URL) return;
+    a.href = GOOGLE_REVIEW_URL;
+    box.hidden = false;
+  })();
 })();
 </script>
 
