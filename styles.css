@@ -723,3 +723,8 @@ html.season .faq summary::after {
 /* Soft seasonal snow (drawn by main.js inside the hero photo and the holiday card) */
 .hero-visual .arch { position: relative; }
 .snowfall { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+
+/* Specialty cards: taller photos so each look shows properly */
+.spec-media { aspect-ratio: 1 / 1; }
+@media (min-width: 760px) { .spec-media { aspect-ratio: 4 / 5; } }
+.spec-media img { object-position: center 30%; }
