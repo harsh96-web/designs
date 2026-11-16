@@ -23,103 +23,106 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wdth,wght@70,260&family=WindSong&text=HARbyGurbina&display=block">
-<link rel="stylesheet" href="styles.css?v=20261115r5">
-<link rel="preload" as="image" href="images/c41-bronde-ribbons-hero.jpg" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css?v=20261115r12">
+<link rel="preload" as="image" href="images/c46-copper-layers-black-tips-760.jpg" imagesrcset="images/c46-copper-layers-black-tips-sm.jpg 570w, images/c46-copper-layers-black-tips-760.jpg 760w, images/c46-copper-layers-black-tips.jpg 945w" imagesizes="(min-width: 1000px) 420px, (min-width: 720px) 42vw, (min-width: 460px) 420px, calc(100vw - 40px)" fetchpriority="high">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="hdr">
   <div class="wrap hdr-in">
-    <a class="logo" href="index.html" aria-label="Hair By Gurbina, home"><svg class="logo-svg" viewBox="-4 -2 352 206" aria-hidden="true" focusable="false"><g class="lg-caps"><text x="2" y="110">H</text><text x="88" y="110">A</text><text x="196" y="110">R</text></g><path class="lg-pin" d="M175 186V12a4.2 4.2 0 0 0-8.4 0q-3 6 0 12t0 12 0 12 0 12 0 12 0 12 0 12 0 12 0 12 0 12 0 12 0 12V176"/><ellipse class="lg-tip" cx="175" cy="187" rx="2.6" ry="3.4"/><ellipse class="lg-tip" cx="166.6" cy="177" rx="2.6" ry="3.4"/><g class="lg-script" transform="translate(96 160) scale(.64 1)"><text>by</text></g><g class="lg-script" transform="translate(188 162) scale(.64 1)"><text>Gurbina</text></g></svg></a>
+    <a class="logo" href="index.html"><img class="logo-img" src="images/logo-gurbina-full.png" width="389" height="540" alt="Gurbina Hair Expert, home"></a>
     <nav class="nav" aria-label="Main"><a href="work.html">Work</a><a href="services.html">Services &amp; Prices</a><a href="index.html#about">About</a></nav>
-    <a class="btn btn-sm hdr-book" href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener">Book</a>
+    <a class="hdr-book" href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener">Book</a>
     <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span></button>
   </div>
-  <nav class="menu" id="menu" aria-label="Menu"><a href="work.html">Work</a><a href="services.html">Services &amp; Prices</a><a href="index.html#about">About</a><a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener">Book an appointment</a></nav>
+  <nav class="menu" id="menu" aria-label="Menu"><a href="work.html">Work</a><a href="services.html">Services &amp; Prices</a><a href="index.html#about">About</a><a href="policies.html">Policies &amp; aftercare</a><a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener">Book an appointment</a></nav>
 </header>
 
 <main id="main">
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-h">
     <div class="wrap hero-grid">
-      <figure class="hero-photo">
-        <img src="images/c41-bronde-ribbons-hero.jpg" width="770" height="1460" fetchpriority="high"
-             alt="Long dark hair with soft bronde ribbon highlights and loose waves from crown to ends, coloured by Gurbina">
-      </figure>
-      <div class="hero-copy">
-        <p class="cred"><span>Professional Hairstylist</span><span>Canadian Red Seal Endorsement</span></p>
-        <h1>Beautiful colour, <em>made for you.</em></h1>
-        <p class="lead">Balayage, highlights and colour correction for clients across Metro&nbsp;Vancouver and the Lower&nbsp;Mainland.</p>
-        <div class="cta" id="heroCta" data-sticky-trigger><a class="btn" href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener">Book an appointment</a><a class="quiet" href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%27d%20like%20to%20ask%20about%20my%20colour.%20Here%27s%20a%20photo%20of%20my%20hair%20now%3A" target="_blank" rel="noopener">Ask about your colour on WhatsApp</a></div>
+      <div class="hero-intro">
+        <p class="eyebrow">Surrey, BC</p>
+        <h1 id="hero-h">Beautiful colour, <em>made for you.</em></h1>
+        <p class="lead">Balayage, highlights and colour correction tailored to your hair.</p>
       </div>
+      <div class="hero-actions">
+        <a class="btn btn-block" id="heroBook" href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener" data-sticky-trigger>Book an appointment</a>
+        <a class="link" href="services.html">View services &amp; prices</a>
+        <p class="trust">Professional Hairstylist · Red Seal Endorsement</p>
+      </div>
+      <figure class="hero-photo">
+        <img src="images/c46-copper-layers-black-tips-760.jpg" srcset="images/c46-copper-layers-black-tips-sm.jpg 570w, images/c46-copper-layers-black-tips-760.jpg 760w, images/c46-copper-layers-black-tips.jpg 945w" sizes="(min-width: 1000px) 420px, (min-width: 720px) 42vw, (min-width: 460px) 420px, calc(100vw - 40px)" width="945" height="1665" fetchpriority="high"
+             alt="Long layered hair seen from behind, copper caramel colour with black ends flicking out through the layers, coloured by Gurbina">
+      </figure>
     </div>
   </section>
 
   <section class="sec" id="work" aria-labelledby="work-h">
     <div class="wrap">
-      <div class="sec-head"><h2 id="work-h">Recent work</h2><a class="more" href="work.html">See all work</a></div>
-      <ul class="work"><li><a class="work-link" href="work.html"><img src="images/c44-icy-blonde-glass-straight-sm.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Icy platinum blonde, straight and glossy"></a><p class="cap">Icy blonde</p></li><li><a class="work-link" href="work.html"><img src="images/c43-caramel-chunky-highlights-sm.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Bold caramel and honey highlights with soft side-swept waves"></a><p class="cap">Caramel dimension</p></li><li><a class="work-link" href="work.html"><img src="images/c24-caramel-balayage-waves-sm.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Soft caramel balayage with beach waves"></a><p class="cap">Caramel balayage</p></li><li><a class="work-link" href="work.html"><img src="images/c45-sandy-blonde-root-melt-sm.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Sandy blonde balayage with a soft root and sleek finish"></a><p class="cap">Sandy blonde, soft root</p></li><li><a class="work-link" href="work.html"><img src="images/c29-cinnamon-ribbons-black-sm.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Cinnamon ribbons of colour through very dark hair"></a><p class="cap">Cinnamon on dark hair</p></li><li><a class="work-link" href="work.html"><img src="images/c36-bronde-keratin-sleek-sm.jpg" width="506" height="760" loading="lazy" decoding="async" alt="Smooth, sleek bronde hair after keratin smoothing"></a><p class="cap">Keratin smooth</p></li></ul>
+      <h2 id="work-h">Selected work</h2>
+      <ul class="work work-4"><li><a class="work-link" href="work.html"><img src="images/c29-cinnamon-ribbons-black-sm.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Cinnamon ribbons of colour through very dark, long wavy hair"></a><p class="cap">Cinnamon ribbons</p></li><li><a class="work-link" href="work.html"><img src="images/c24-caramel-balayage-waves-sm.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Soft caramel balayage with beach waves"></a><p class="cap">Caramel balayage</p></li><li><a class="work-link" href="work.html"><img src="images/c25-golden-glam-balayage-sm.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Dark base melting into golden balayage waves"></a><p class="cap">Golden balayage</p></li><li><a class="work-link" href="work.html"><img src="images/c44-icy-blonde-glass-straight-sm.jpg" width="570" height="760" loading="lazy" decoding="async" alt="Icy platinum blonde, straight and glossy"></a><p class="cap">Icy blonde</p></li></ul>
+      <p class="sec-link"><a class="link" href="work.html">View all work</a></p>
     </div>
   </section>
 
   <section class="sec sec-alt" id="services" aria-labelledby="svc-h">
     <div class="wrap">
-      <div class="sec-head"><h2 id="svc-h">What I do</h2><a class="more" href="services.html">Full services &amp; prices</a></div>
+      <h2 id="svc-h">Services</h2>
+      <p class="sec-note">Prices in CAD from my booking menu. I'll confirm yours before we begin.</p>
       <div class="svc">
-        <article>
-          <h3>Balayage &amp; Highlights</h3>
-          <p>Hand-painted balayage, foils and babylights, with toner and root touch-ups to keep colour fresh.</p>
-          <ul class="price"><li><span>Balayage / Ombré</span><b>Starts from $175</b></li><li><span>Toner</span><b>$60</b></li></ul>
-        </article>
-        <article>
-          <h3>Colour Correction</h3>
-          <p>Box dye, banding or colour that didn't turn out. We start with a consultation and an honest plan.</p>
-          <ul class="price"><li><span>Colour Correction</span><b>$300</b></li></ul>
-        </article>
-        <article>
-          <h3>Smoothing &amp; Treatments</h3>
-          <p>Keratin, hair botox and nanoplastia to calm frizz, plus treatments for strength and shine.</p>
-          <ul class="price"><li><span>Keratin Smoothing</span><b>Starts from $250</b></li><li><span>Hair Botox</span><b>Starts from $250</b></li></ul>
-        </article>
+        <section class="svc-grp" aria-labelledby="svc-colour">
+          <h3 id="svc-colour">Colour</h3>
+          <ul class="plist"><li><span>Balayage / Ombré</span><b><small>Starts from </small>$175</b></li><li><span>Partial Highlights</span><b><small>Starts from </small>$145</b></li><li><span>Root Touch-Up</span><b><small>Starts from </small>$105</b></li><li><span>Colour Correction</span><b>$300</b></li></ul>
+        </section>
+        <section class="svc-grp" aria-labelledby="svc-smooth">
+          <h3 id="svc-smooth">Smoothing &amp; Treatments</h3>
+          <ul class="plist"><li><span>Keratin Smoothing</span><b><small>Starts from </small>$250</b></li><li><span>Hair Botox</span><b><small>Starts from </small>$250</b></li><li><span>Nanoplastia</span><b>$250</b></li></ul>
+        </section>
+        <section class="svc-grp" aria-labelledby="svc-cuts">
+          <h3 id="svc-cuts">Cuts &amp; Styling</h3>
+          <ul class="plist"><li><span>Signature Cut &amp; Blowdry</span><b><small>Starts from </small>$75</b></li><li><span>Wash &amp; Blowdry</span><b>$55</b></li><li><span>Updo / Styling</span><b><small>Starts from </small>$80</b></li></ul>
+        </section>
       </div>
+      <p class="sec-link"><a class="link" href="services.html">Full services &amp; prices</a></p>
     </div>
   </section>
 
   <section class="sec" id="about" aria-labelledby="about-h">
     <div class="wrap about">
-      <figure class="arch"><img src="images/gurbina-portrait-sm.jpg" width="507" height="760" loading="lazy" decoding="async" alt="Gurbina, hairstylist"></figure>
-      <div>
+      <figure class="about-photo"><img src="images/gurbina-portrait-sm.jpg" srcset="images/gurbina-portrait-sm.jpg 506w, images/gurbina-portrait.jpg 1024w"
+           sizes="(min-width: 720px) 320px, 148px" width="506" height="760" loading="lazy" decoding="async" alt="Gurbina, hairstylist"></figure>
+      <div class="about-text">
         <h2 id="about-h">Hi, I'm Gurbina.</h2>
         <p>Colour is the work I love most. Every appointment starts with a real consultation: your hair history, its condition, and how you want it to look months from now, not just today. If getting there safely takes two visits, I'll tell you before we start.</p>
       </div>
     </div>
   </section>
 
-  <section class="sec sec-alt" id="book" aria-labelledby="book-h" data-sticky-hide>
+  <section class="sec sec-alt sec-dark" id="book" aria-labelledby="book-h" data-sticky-hide>
     <div class="wrap book">
       <div>
         <h2 id="book-h">Book your appointment</h2>
         <dl class="facts">
-          <div><dt>Where</dt><dd>Appointments in Surrey, BC, for clients across Metro&nbsp;Vancouver and the Lower&nbsp;Mainland. The exact address comes with your booking.</dd></div>
-          <div><dt>When</dt><dd><a href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener">View available appointments</a></dd></div>
+          <div><dt>Where</dt><dd>Surrey, BC, for clients across Metro&nbsp;Vancouver and the Lower&nbsp;Mainland. The exact address comes with your booking.</dd></div>
           <div><dt>Not sure?</dt><dd>Book a free 15-minute consultation, or send me a photo first.</dd></div>
+          <div><dt>Cancelling</dt><dd>Please give at least 48 hours' notice. <a href="policies.html">Booking policies</a></dd></div>
         </dl>
         <div class="cta"><a class="btn" href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener">Book an appointment</a><a class="quiet" href="https://wa.me/17789993179?text=Hi%20Gurbina!%20I%27d%20like%20to%20ask%20about%20my%20colour.%20Here%27s%20a%20photo%20of%20my%20hair%20now%3A" target="_blank" rel="noopener">Send a photo on WhatsApp</a></div>
       </div>
       <div class="faq" id="faq">
         <details><summary>How much will my colour cost?</summary><p>It depends on length, thickness and your hair's history. Prices are on the <a href="services.html">services page</a>, and I'll confirm yours before we begin.</p></details>
         <details><summary>I've used box dye or henna. Can you still colour it?</summary><p>Usually, yes. Tell me what was used and when, because it changes the plan. I may do a strand test first.</p></details>
-        <details><summary>What if I need to cancel?</summary><p>Give at least 48 hours' notice to cancel or reschedule, and your deposit is refunded or moved to your new appointment. Cancelling within 48 hours forfeits the deposit. Full details are in the <a href="policies.html">policies</a>.</p></details>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="ftr">
+<footer class="ftr" data-sticky-hide>
   <div class="wrap ftr-in">
-    <a class="logo" href="index.html" aria-label="Hair By Gurbina, home"><svg class="logo-svg" viewBox="-4 -2 352 206" aria-hidden="true" focusable="false"><g class="lg-caps"><text x="2" y="110">H</text><text x="88" y="110">A</text><text x="196" y="110">R</text></g><path class="lg-pin" d="M175 186V12a4.2 4.2 0 0 0-8.4 0q-3 6 0 12t0 12 0 12 0 12 0 12 0 12 0 12 0 12 0 12 0 12 0 12 0 12V176"/><ellipse class="lg-tip" cx="175" cy="187" rx="2.6" ry="3.4"/><ellipse class="lg-tip" cx="166.6" cy="177" rx="2.6" ry="3.4"/><g class="lg-script" transform="translate(96 160) scale(.64 1)"><text>by</text></g><g class="lg-script" transform="translate(188 162) scale(.64 1)"><text>Gurbina</text></g></svg></a>
+    <a class="logo logo-ftr" href="index.html"><img class="logo-mark" src="images/logo-gurbina-full.png" width="389" height="540" loading="lazy" decoding="async" alt="Gurbina Hair Expert, home"></a>
     <nav class="ftr-links" aria-label="Footer">
       <a href="work.html">Work</a>
       <a href="services.html">Services &amp; Prices</a>
@@ -139,6 +142,6 @@
   <a class="btn btn-block" href="https://book.squareup.com/appointments/zlbd2rp8vhr4ct/location/L7CC5ZZGKC1F4/services" target="_blank" rel="noopener">Book an appointment</a>
 </div>
 
-<script src="main.js?v=20261115r5" defer></script>
+<script src="main.js?v=20261115r12" defer></script>
 </body>
 </html>

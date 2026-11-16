@@ -1,4 +1,4 @@
-/* Hair By Gurbina · site script: menu, sticky Book bar, gallery filters, photo viewer, year.
+/* Hair By Gurbina · site script: menu, phone Book bar, gallery filters, photo viewer, year.
    Every page still works without it (links open the photos and booking page directly). */
 (() => {
   'use strict';
@@ -22,12 +22,14 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen()) { set(false); btn.focus(); } });
   }
 
-  /* ---------- One sticky Book button on phones ----------
-     Appears once the page's first section scrolls away; hides over the closing booking section. */
+  /* ---------- Phone Book bar ----------
+     Shows once the page's main Book button (or the page heading) has scrolled away,
+     hides over [data-sticky-hide] sections (closing booking section, footer) and while the menu is open (CSS).
+     Keyboard focus is kept clear of it. */
   const sticky = $('#sticky');
   const trigger = $('[data-sticky-trigger]');
   if (sticky && trigger && 'IntersectionObserver' in window) {
-    document.body.classList.add('has-sticky');
+    document.documentElement.classList.add('has-sticky');
     let past = false;
     const covering = new Set();
     const update = () => sticky.classList.toggle('show', past && covering.size === 0);
@@ -37,6 +39,12 @@
       update();
     }, { threshold: 0.1 });
     $$('[data-sticky-hide]').forEach((el) => hideIO.observe(el));
+    document.addEventListener('focusin', (e) => {
+      if (!sticky.classList.contains('show') || sticky.contains(e.target)) return;
+      const r = e.target.getBoundingClientRect();
+      const barTop = sticky.getBoundingClientRect().top;
+      if (r.bottom > barTop - 8) window.scrollBy({ top: r.bottom - barTop + 16, behavior: 'instant' });
+    });
   }
 
   /* ---------- Gallery filters ---------- */
